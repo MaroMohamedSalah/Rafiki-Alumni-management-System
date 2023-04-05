@@ -3,15 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-// oneSignal
-import { OneSignalProvider } from "react";
+// PWA
+import ServiceWorker from "./sw";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 ReactDOM.render(
 	<React.StrictMode>
-		<OneSignalProvider appId="8b907f94-4d57-4b6e-830e-0d6ee2c0ea7a">
-			<App />
-		</OneSignalProvider>
+		<App />
 	</React.StrictMode>,
 	document.getElementById("root")
 );
@@ -20,3 +18,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+ServiceWorker();
