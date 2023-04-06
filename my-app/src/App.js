@@ -20,7 +20,10 @@ const analytics = getAnalytics(app);
 // Get registration token. Initially this makes a network call, once retrieved
 // subsequent calls to getToken will return from cache.
 const messaging = getMessaging();
-getToken(messaging, { vapidKey: "<YOUR_PUBLIC_VAPID_KEY_HERE>" })
+getToken(messaging, {
+	vapidKey:
+		"BFQoofb1KwYIq2bS6Vc7MzyI3i01DzUkh4t6oS5PcpeQcKbMcS2rSfljg9eXYpfnnWurDdI1YBRQqwIWZFQERbM",
+})
 	.then((currentToken) => {
 		if (currentToken) {
 			// Send the token to your server and update the UI if necessary
