@@ -1,0 +1,15 @@
+.LandingPage {
+	background-color: var(--bg-1);
+}
+.LandingPage button {
+	border-radius: var(--main-border-radius);
+	background-color: var(--bs-blue);
+	width: 260px;
+	color: var(--bs-body-bg);
+	font-weight: 600;
+	font-size: 1.75em;
+}
+.LandingPage button:hover {
+	opacity: 0.75;
+	background-color: var(--bs-blue);
+}

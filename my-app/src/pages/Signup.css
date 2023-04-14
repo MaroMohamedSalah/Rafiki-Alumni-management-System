@@ -1,0 +1,112 @@
+.Signup {
+	min-height: 100vh;
+}
+.Signup .container-fluid,
+.Signup .container-fluid .row {
+	min-height: inherit;
+}
+.Signup .row > div:nth-child(1) {
+	background-color: var(--color-one);
+}
+.Signup .row > div:nth-of-type(1) img {
+	width: 78%;
+	animation: up-Down 5s both linear infinite;
+}
+
+.Signup .row .introText h1 {
+	font-style: normal;
+	font-weight: 600;
+	font-size: 35px;
+	text-align: center;
+}
+.Signup .row .introText p {
+	font-size: 10px;
+	text-align: center;
+	font-weight: 800;
+}
+
+.Signup form {
+	position: relative;
+	min-height: calc(100vh - 104.5px);
+}
+.Signup form .part1,
+.Signup form .part2 {
+	position: absolute;
+	width: 100%;
+	transition: all var(--main-transition) ease-in-out;
+}
+.Signup form .part1 {
+	top: 50%;
+	transform: translateY(-50%);
+}
+.Signup form .part2 {
+	top: 190px;
+	display: none;
+}
+.Signup form .input-group,
+.Signup form button,
+.OTP .input-group,
+.OTP button {
+	border: 2px solid var(--color-tow);
+	border-radius: var(--main-border-radius);
+	z-index: 20;
+}
+.Signup form .submit {
+	/* top: calc(190.4px + 380.8px); */
+	top: 68%;
+	transition: all var(--main-transition) ease-in-out;
+}
+.Signup form button {
+	background-color: #42217b;
+	color: #ffffff;
+	font-family: 600;
+	transition: all 0.2s ease-in-out !important;
+	margin-bottom: 20px;
+}
+.Signup form button:hover {
+	background-color: #42217b !important;
+	color: #ffffff !important;
+	opacity: 0.75;
+}
+.Signup form .error,
+.OTP .error {
+	margin-left: 1em;
+	color: red;
+	z-index: 10;
+	opacity: 1;
+	transition: all var(--main-transition) ease-in-out;
+}
+.Signup form .input-group span {
+	background: transparent;
+	border: none;
+}
+.Signup form .input-group span img {
+	height: 22px;
+	width: 22px;
+}
+.Signup form .input-group input {
+	border: none;
+}
+.Signup form .input-group input:focus {
+	outline: none !important;
+	box-shadow: none !important;
+	border: none;
+}
+.Signup form .input-group input::placeholder {
+	opacity: 1;
+	transition: all var(--main-transition) ease-in-out;
+}
+.Signup form .input-group input:focus::placeholder {
+	opacity: 0;
+}
+@keyframes up-Down {
+	0% {
+		transform: translateY(10px);
+	}
+	50% {
+		transform: translateY(0px);
+	}
+	100% {
+		transform: translateY(10px);
+	}
+}

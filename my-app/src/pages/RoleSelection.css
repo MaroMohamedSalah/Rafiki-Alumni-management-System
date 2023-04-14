@@ -1,0 +1,25 @@
+.RoleSelection {
+	min-height: 100vh;
+	background-color: var(--bg-1);
+}
+.RoleSelection .title span {
+	color: var(--color-three);
+	font-weight: 500;
+}
+
+.RoleSelection a button {
+	padding: 10px;
+	border-radius: var(--main-border-radius);
+	background-color: var(--color-three);
+	margin-bottom: 30px;
+	width: 100%;
+	color: var(--color-one);
+	font-size: 1.75em;
+}
+.RoleSelection button:hover {
+	background-color: var(--color-three);
+	opacity: 0.75;
+}
+.RoleSelection a {
+	text-decoration: none;
+}
