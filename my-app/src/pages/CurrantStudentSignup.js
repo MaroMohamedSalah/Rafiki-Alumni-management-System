@@ -1,4 +1,4 @@
-import collageLogo from "../imgs/Sign up img.svg";
+import studentImg from "../imgs/Student img 2.svg";
 import icon1 from "../imgs/sign up 1.svg";
 import icon2 from "../imgs/sign up  2.svg";
 import icon3 from "../imgs/sign up 3.svg";
@@ -9,6 +9,7 @@ import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
 import "./Signup.css";
+import ProgressLine from "../components/ProgressLine";
 
 const CurrantStudentSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -51,8 +52,7 @@ const CurrantStudentSignup = () => {
 			e.preventDefault();
 			if (nationalIDError === "" && collageIDError === "") {
 				setSubmitBtnContent("submit");
-				document.querySelector(".Signup form .submit ").style.top =
-					"calc(190.4px + 380.8px)";
+				document.querySelector(".Signup form .submit ").style.top = "459px";
 				setTimeout(() => {
 					part2.style.display = "block";
 				}, 500);
@@ -68,14 +68,12 @@ const CurrantStudentSignup = () => {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center">
-						<img src={collageLogo} alt="" />
+						<img src={studentImg} alt="" />
 					</div>
 					<div className="col-12 col-md-6">
 						<div className="introText p-4">
-							<h1>Currant Student Signup</h1>
-							<p className="text-black-50">
-								Connect Again To Us and get all benefits from using our platform
-							</p>
+							<h1>Signup</h1>
+							<p className="text-black-50">join to us as a student</p>
 						</div>
 						<div className="form">
 							<form action="#" method="post">
@@ -253,6 +251,7 @@ const CurrantStudentSignup = () => {
 						</div>
 					</div>
 				</div>
+				<ProgressLine />
 			</div>
 		</div>
 	);

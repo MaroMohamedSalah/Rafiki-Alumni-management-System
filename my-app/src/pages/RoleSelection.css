@@ -1,25 +1,41 @@
 .RoleSelection {
-	min-height: 100vh;
-	background-color: var(--bg-1);
-}
-.RoleSelection .title span {
-	color: var(--color-three);
-	font-weight: 500;
-}
-
-.RoleSelection a button {
-	padding: 10px;
-	border-radius: var(--main-border-radius);
-	background-color: var(--color-three);
-	margin-bottom: 30px;
-	width: 100%;
-	color: var(--color-one);
-	font-size: 1.75em;
-}
-.RoleSelection button:hover {
-	background-color: var(--color-three);
-	opacity: 0.75;
+	height: 100vh;
+	background-color: white;
 }
 .RoleSelection a {
+	height: 272px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 16px;
+	border: 1px solid #000000;
+	border-radius: 20px;
 	text-decoration: none;
+	transition: all var(--main-transition) ease-in-out;
+}
+.RoleSelection a:hover {
+	opacity: 0.75;
+}
+.RoleSelection .alumni {
+	background-color: var(--Alumni-color);
+}
+.RoleSelection .student {
+	background-color: var(--Student-color);
+}
+.RoleSelection .hr {
+	background-color: var(--HR-color);
+}
+.RoleSelection a h1 {
+	color: white;
+	font-weight: 500;
+	font-size: 50px;
+}
+/* Add media query for mobile devices */
+@media (max-width: 767px) {
+	.RoleSelection a {
+		max-height: 152px;
+	}
+	.RoleSelection a h1 {
+		font-size: 40px;
+	}
 }

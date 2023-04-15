@@ -7,6 +7,7 @@ import AlumniSignup from "./pages/AlumniSignup";
 import OTPVerification from "./pages/OTPVerification";
 import CurrantStudentSignup from "./pages/CurrantStudentSignup";
 import HRSignup from "./pages/HRSignup";
+import ProgressLine from "./components/ProgressLine";
 
 function App() {
 	return (
@@ -16,9 +17,8 @@ function App() {
 					<Route exact={true} path="/" element={<LandingPage />} />
 					<Route path="/roleSelection" element={<RoleSelection />} />
 					<Route path="/alumniSignup" element={<AlumniSignup />} />
-					<Route path="/StudentSignup" element={<CurrantStudentSignup />} />
+					<Route path="/studentSignup" element={<CurrantStudentSignup />} />
 					<Route path="/hrSignup" element={<HRSignup />} />
-					{/* <Route path="/OTP" element={<OTPVerification />} /> */}
 				</Routes>
 			</BrowserRouter>
 		</div>

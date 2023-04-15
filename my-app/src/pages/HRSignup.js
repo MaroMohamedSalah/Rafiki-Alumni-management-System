@@ -1,4 +1,5 @@
-import collageLogo from "../imgs/Sign up img.svg";
+import HRimg from "../imgs/HR img 2.svg";
+import icon2 from "../imgs/sign up  2.svg";
 import icon3 from "../imgs/sign up 3.svg";
 import icon4 from "../imgs/sign up 4.svg";
 import icon5 from "../imgs/sign up 5.svg";
@@ -7,6 +8,7 @@ import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
 import "./Signup.css";
+import ProgressLine from "../components/ProgressLine";
 
 const HRSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -48,8 +50,7 @@ const HRSignup = () => {
 			e.preventDefault();
 			if (usernameError === "") {
 				setSubmitBtnContent("submit");
-				document.querySelector(".Signup form .submit ").style.top =
-					"calc(190.4px + 380.8px)";
+				document.querySelector(".Signup form .submit ").style.top = "400px";
 				setTimeout(() => {
 					part2.style.display = "block";
 				}, 500);
@@ -64,7 +65,7 @@ const HRSignup = () => {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center">
-						<img src={collageLogo} alt="" />
+						<img src={HRimg} alt="" />
 					</div>
 					<div className="col-12 col-md-6">
 						<div className="introText p-4">
@@ -101,41 +102,43 @@ const HRSignup = () => {
 								</div>
 
 								<div className="part2 position-absolute" id="part2">
-									<div className="fname mb-3">
-										<div className="input-group p-2">
-											<span className="input-group-text" id="basic-addon1">
-												<img src={icon4} alt="" />
-											</span>
-											<input
-												name="fname"
-												id="fname"
-												type="text"
-												className="form-control"
-												placeholder="First Name"
-												aria-label="First Name"
-												aria-describedby="basic-addon1"
-												onChange={(e) => {}}
-											/>
+									<div className="d-flex justify-content-between">
+										<div className="fname mb-3">
+											<div className="input-group p-2">
+												<span className="input-group-text" id="basic-addon1">
+													<img src={icon2} alt="" />
+												</span>
+												<input
+													name="fname"
+													id="fname"
+													type="text"
+													className="form-control"
+													placeholder="First Name"
+													aria-label="First Name"
+													aria-describedby="basic-addon1"
+													onChange={(e) => {}}
+												/>
+											</div>
+											<h5 className="error">{firstNameError}</h5>
 										</div>
-										<h5 className="error">{firstNameError}</h5>
-									</div>
-									<div className="lname mb-3">
-										<div className="input-group p-2">
-											<span className="input-group-text" id="basic-addon1">
-												<img src={icon4} alt="" />
-											</span>
-											<input
-												name="lname"
-												id="lname"
-												type="text"
-												className="form-control"
-												placeholder="Last Name"
-												aria-label="Last Name"
-												aria-describedby="basic-addon1"
-												onChange={(e) => {}}
-											/>
+										<div className="lname mb-3">
+											<div className="input-group p-2">
+												<span className="input-group-text" id="basic-addon1">
+													<img src={icon2} alt="" />
+												</span>
+												<input
+													name="lname"
+													id="lname"
+													type="text"
+													className="form-control"
+													placeholder="Last Name"
+													aria-label="Last Name"
+													aria-describedby="basic-addon1"
+													onChange={(e) => {}}
+												/>
+											</div>
+											<h5 className="error">{lastNameError}</h5>
 										</div>
-										<h5 className="error">{lastNameError}</h5>
 									</div>
 
 									<div className="email mb-3">
@@ -241,6 +244,7 @@ const HRSignup = () => {
 						</div>
 					</div>
 				</div>
+				<ProgressLine />
 			</div>
 		</div>
 	);

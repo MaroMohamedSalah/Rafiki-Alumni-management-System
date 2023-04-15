@@ -1,15 +1,26 @@
 .Signup {
 	min-height: 100vh;
+	overflow: hidden;
+}
+.Signup .container-fluid {
+	position: relative;
 }
 .Signup .container-fluid,
 .Signup .container-fluid .row {
 	min-height: inherit;
 }
-.Signup .row > div:nth-child(1) {
-	background-color: var(--color-one);
+.AlumniSignup .row > div:nth-child(1) {
+	background-color: var(--Alumni-color);
+}
+.StudentSignup .row > div:nth-child(1) {
+	background-color: var(--Student-color);
+}
+.HRSignup .row > div:nth-child(1) {
+	background-color: var(--HR-color);
 }
 .Signup .row > div:nth-of-type(1) img {
-	width: 78%;
+	max-width: 75%;
+	max-height: 75%;
 	animation: up-Down 5s both linear infinite;
 }
 
@@ -27,7 +38,7 @@
 
 .Signup form {
 	position: relative;
-	min-height: calc(100vh - 104.5px);
+	min-height: 75vh;
 }
 .Signup form .part1,
 .Signup form .part2 {
@@ -40,41 +51,67 @@
 	transform: translateY(-50%);
 }
 .Signup form .part2 {
-	top: 190px;
 	display: none;
 }
+.AlumniSignup form .part2,
+.HRSignup form .part2 {
+	top: 90px;
+}
+.StudentSignup form .part2 {
+	top: 170px;
+}
 .Signup form .input-group,
-.Signup form button,
-.OTP .input-group,
-.OTP button {
+.Signup form button {
 	border: 2px solid var(--color-tow);
 	border-radius: var(--main-border-radius);
 	z-index: 20;
 }
 .Signup form .submit {
-	/* top: calc(190.4px + 380.8px); */
 	top: 68%;
 	transition: all var(--main-transition) ease-in-out;
 }
 .Signup form button {
-	background-color: #42217b;
 	color: #ffffff;
 	font-family: 600;
 	transition: all 0.2s ease-in-out !important;
 	margin-bottom: 20px;
 }
+.AlumniSignup form button {
+	background-color: var(--Alumni-color);
+}
+.StudentSignup form button {
+	background-color: var(--Student-color);
+}
+.HRSignup form button {
+	background-color: var(--HR-color);
+}
 .Signup form button:hover {
-	background-color: #42217b !important;
 	color: #ffffff !important;
 	opacity: 0.75;
 }
-.Signup form .error,
-.OTP .error {
+.AlumniSignup form button:hover {
+	background-color: #007e9e !important;
+}
+.StudentSignup form button:hover {
+	background-color: #12685d !important;
+}
+.HRSignup form button:hover {
+	background-color: #2b6f85 !important;
+}
+.Signup form .error {
 	margin-left: 1em;
-	color: red;
 	z-index: 10;
 	opacity: 1;
 	transition: all var(--main-transition) ease-in-out;
+}
+.AlumniSignup form .error {
+	color: var(--Alumni-color);
+}
+.StudentSignup form .error {
+	color: var(--Student-color);
+}
+.HRSignup form .error {
+	color: var(--HR-color);
 }
 .Signup form .input-group span {
 	background: transparent;
@@ -83,6 +120,7 @@
 .Signup form .input-group span img {
 	height: 22px;
 	width: 22px;
+	cursor: pointer;
 }
 .Signup form .input-group input {
 	border: none;

@@ -1,0 +1,40 @@
+.progress-bar {
+	height: 16px;
+	background: #007e9e;
+	border: 1px solid #000000;
+	border-radius: 20px;
+}
+.progress {
+	height: 100%;
+	border: 1px;
+	border-radius: 20px;
+	background-color: #eb5d61;
+	width: 0; /* Initial width is 0% */
+	transition: all var(--main-transition) ease-in-out;
+}
+.Signup .progress-bar {
+	position: fixed;
+	width: 98%;
+	bottom: 0;
+	margin-bottom: 10px !important;
+}
+/* Add media query for mobile devices */
+@media (max-width: 767px) {
+	.Signup .progress-bar {
+		margin-bottom: 10px !important;
+		width: 93% !important;
+	}
+}
+
+.StudentSignup .progress-bar {
+	background-color: #12685d;
+}
+.HRSignup .progress-bar {
+	background-color: #2b6f85;
+}
+.StudentSignup .progress-bar .progress {
+	background-color: var(--Student-color);
+}
+.HRSignup .progress-bar .progress {
+	background-color: var(--HR-color);
+}
