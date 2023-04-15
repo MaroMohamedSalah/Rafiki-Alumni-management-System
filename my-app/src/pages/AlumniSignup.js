@@ -1,6 +1,5 @@
 import alumniImg from "../imgs/Alumni img 2.svg";
 import icon1 from "../imgs/sign up 1.svg";
-import icon2 from "../imgs/sign up  2.svg";
 import icon3 from "../imgs/sign up 3.svg";
 import icon4 from "../imgs/sign up 4.svg";
 import icon5 from "../imgs/sign up 5.svg";
@@ -10,6 +9,7 @@ import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
 import "./Signup.css";
 import ProgressLine from "../components/ProgressLine";
+import Backbtn from "../components/Backbtn";
 
 const AlumniSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -63,6 +63,14 @@ const AlumniSignup = () => {
 	return (
 		<div className="Signup AlumniSignup">
 			<div className="container-fluid">
+				<Backbtn
+					btnColor={"white"}
+					btnSize={"25px"}
+					btnTop={"10px"}
+					btnColorMobile={"var(--Alumni-color)"}
+					btnSizeMobile={"15px"}
+					btnTopMobile={"10px"}
+				/>
 				<div className="row">
 					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center">
 						<img src={alumniImg} alt="" />

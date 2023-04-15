@@ -9,6 +9,7 @@ import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
 import "./Signup.css";
 import ProgressLine from "../components/ProgressLine";
+import Backbtn from "../components/Backbtn";
 
 const HRSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -63,6 +64,14 @@ const HRSignup = () => {
 	return (
 		<div className="Signup HRSignup">
 			<div className="container-fluid">
+				<Backbtn
+					btnColor={"white"}
+					btnSize={"25px"}
+					btnTop={"10px"}
+					btnColorMobile={"var(--HR-color)"}
+					btnSizeMobile={"15px"}
+					btnTopMobile={"10px"}
+				/>
 				<div className="row">
 					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center">
 						<img src={HRimg} alt="" />

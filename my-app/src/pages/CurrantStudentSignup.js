@@ -10,6 +10,7 @@ import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
 import "./Signup.css";
 import ProgressLine from "../components/ProgressLine";
+import Backbtn from "../components/Backbtn";
 
 const CurrantStudentSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -66,6 +67,14 @@ const CurrantStudentSignup = () => {
 	return (
 		<div className="Signup StudentSignup">
 			<div className="container-fluid">
+				<Backbtn
+					btnColor={"white"}
+					btnSize={"25px"}
+					btnTop={"10px"}
+					btnColorMobile={"var(--Student-color)"}
+					btnSizeMobile={"15px"}
+					btnTopMobile={"10px"}
+				/>
 				<div className="row">
 					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center">
 						<img src={studentImg} alt="" />

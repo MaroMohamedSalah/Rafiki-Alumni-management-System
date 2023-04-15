@@ -5,10 +5,19 @@ import AlumniImg from "../imgs/Alumni img.png";
 import StudentImg from "../imgs/Student img.svg";
 import HRImg from "../imgs/HR img.svg";
 import ProgressLine from "../components/ProgressLine";
+import Backbtn from "../components/Backbtn";
 function RoleSelection() {
 	return (
 		<div className="RoleSelection">
 			<div className="container">
+				<Backbtn
+					btnColor={"var(--HR-color)"}
+					btnSize={"25px"}
+					btnTop={"28px"}
+					btnColorMobile={"var(--Alumni-color)"}
+					btnSizeMobile={"20px"}
+					btnTopMobile={"20px"}
+				/>
 				<h1 className="title p-3 text-center">Please Specify Your Role</h1>
 				<div className="row">
 					<div className="col-12 col-md-6">
