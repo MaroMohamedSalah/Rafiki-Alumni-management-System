@@ -1,12 +1,12 @@
-.Signup {
+.Auth {
 	min-height: 100vh;
 	overflow: hidden;
 }
-.Signup .container-fluid {
+.Auth .container-fluid {
 	position: relative;
 }
-.Signup .container-fluid,
-.Signup .container-fluid .row {
+.Auth .container-fluid,
+.Auth .container-fluid .row {
 	min-height: inherit;
 }
 .AlumniSignup .row > div:nth-child(1) {
@@ -18,39 +18,54 @@
 .HRSignup .row > div:nth-child(1) {
 	background-color: var(--HR-color);
 }
-.Signup .row > div:nth-of-type(1) img {
+.Login .row > div:nth-child(1) {
+	background-color: var(--login-color-1);
+}
+.ForgetPass .row > div:nth-child(1) {
+	background-color: var(--Forget-pass-color);
+}
+.ForgetPass .row > div:nth-child(1) img {
+	margin-left: 25%;
+	max-width: 130% !important;
+}
+.Auth .row > div:nth-of-type(1) img {
 	max-width: 75%;
 	max-height: 75%;
 	animation: up-Down 5s both linear infinite;
 }
 
-.Signup .row .introText h1 {
+.Auth .row .introText h1 {
 	font-style: normal;
 	font-weight: 600;
 	font-size: 35px;
 	text-align: center;
 }
-.Signup .row .introText p {
+.Auth .row .introText p {
 	font-size: 10px;
 	text-align: center;
 	font-weight: 800;
 }
 
-.Signup form {
+.Auth form {
 	position: relative;
 	min-height: 75vh;
 }
-.Signup form .part1,
-.Signup form .part2 {
+.Login form,
+.ForgetPass form {
+	position: unset;
+	min-height: unset;
+}
+.Auth form .part1,
+.Auth form .part2 {
 	position: absolute;
 	width: 100%;
 	transition: all var(--main-transition) ease-in-out;
 }
-.Signup form .part1 {
+.Auth form .part1 {
 	top: 50%;
 	transform: translateY(-50%);
 }
-.Signup form .part2 {
+.Auth form .part2 {
 	display: none;
 }
 .AlumniSignup form .part2,
@@ -60,17 +75,18 @@
 .StudentSignup form .part2 {
 	top: 170px;
 }
-.Signup form .input-group,
-.Signup form button {
+.Auth form .input-group,
+.Auth form button,
+.Login .toSignup button {
 	border: 2px solid var(--color-tow);
 	border-radius: var(--main-border-radius);
 	z-index: 20;
 }
-.Signup form .submit {
+.Auth form .submit {
 	top: 68%;
 	transition: all var(--main-transition) ease-in-out;
 }
-.Signup form button {
+.Auth form button {
 	color: #ffffff;
 	font-family: 600;
 	transition: all 0.2s ease-in-out !important;
@@ -85,7 +101,24 @@
 .HRSignup form button {
 	background-color: var(--HR-color);
 }
-.Signup form button:hover {
+.Login form button,
+.Login .toSignup button,
+.ForgetPass form button {
+	background-color: var(--login-color-2);
+	border: 1px solid #23032e !important;
+}
+@media (max-width: 767px) {
+	.ForgetPass form button {
+		width: 75% !important;
+	}
+}
+.Login .toSignup button {
+	color: white;
+}
+.Login .toSignup button:hover {
+	opacity: 0.75;
+}
+.Auth form button:hover {
 	color: #ffffff !important;
 	opacity: 0.75;
 }
@@ -98,7 +131,11 @@
 .HRSignup form button:hover {
 	background-color: #2b6f85 !important;
 }
-.Signup form .error {
+.Login form button:hover,
+.ForgetPass button:hover {
+	background-color: var(--login-color-2) !important;
+}
+.Auth form .error {
 	margin-left: 1em;
 	z-index: 10;
 	opacity: 1;
@@ -113,29 +150,36 @@
 .HRSignup form .error {
 	color: var(--HR-color);
 }
-.Signup form .input-group span {
+.Auth form .input-group span {
 	background: transparent;
 	border: none;
 }
-.Signup form .input-group span img {
+.Auth form .input-group span img {
 	height: 22px;
 	width: 22px;
 	cursor: pointer;
 }
-.Signup form .input-group input {
+.Auth form .input-group input {
 	border: none;
 }
-.Signup form .input-group input:focus {
+.Auth form .input-group input:focus {
 	outline: none !important;
 	box-shadow: none !important;
 	border: none;
 }
-.Signup form .input-group input::placeholder {
+.Auth form .input-group input::placeholder {
 	opacity: 1;
 	transition: all var(--main-transition) ease-in-out;
 }
-.Signup form .input-group input:focus::placeholder {
+.Auth form .input-group input:focus::placeholder {
 	opacity: 0;
+}
+.Login .ForgetPass {
+	color: black;
+}
+.Login .forgetPass a {
+	text-decoration: none;
+	color: var(--login-color-2);
 }
 @keyframes up-Down {
 	0% {

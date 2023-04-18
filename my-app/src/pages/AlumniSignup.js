@@ -7,7 +7,7 @@ import icon6 from "../imgs/sign up 6.svg";
 import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
-import "./Signup.css";
+import "./Auth.css";
 import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
 
@@ -45,12 +45,12 @@ const AlumniSignup = () => {
 		const part1 = document.getElementById("part1");
 		const part2 = document.getElementById("part2");
 		const nationalID = document.getElementById("NID");
-		const submitBtn = document.querySelector(".Signup form .submit button");
+		const submitBtn = document.querySelector(".Auth form .submit button");
 		submitBtn.onclick = (e) => {
 			e.preventDefault();
 			if (nationalIDError === "") {
 				setSubmitBtnContent("submit");
-				document.querySelector(".Signup form .submit ").style.top = "400px";
+				document.querySelector(".Auth form .submit ").style.top = "400px";
 				setTimeout(() => {
 					part2.style.display = "block";
 				}, 500);
@@ -61,7 +61,7 @@ const AlumniSignup = () => {
 		};
 	}, [nationalIDError]);
 	return (
-		<div className="Signup AlumniSignup">
+		<div className="Auth AlumniSignup">
 			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}

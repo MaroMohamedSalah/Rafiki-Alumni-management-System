@@ -8,7 +8,7 @@ import icon6 from "../imgs/sign up 6.svg";
 import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
-import "./Signup.css";
+import "./Auth.css";
 import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
 
@@ -48,12 +48,12 @@ const CurrantStudentSignup = () => {
 		const part2 = document.getElementById("part2");
 		const nationalID = document.getElementById("NID");
 		const ID = document.getElementById("ID");
-		const submitBtn = document.querySelector(".Signup form .submit button");
+		const submitBtn = document.querySelector(".Auth form .submit button");
 		submitBtn.onclick = (e) => {
 			e.preventDefault();
 			if (nationalIDError === "" && collageIDError === "") {
 				setSubmitBtnContent("submit");
-				document.querySelector(".Signup form .submit ").style.top = "459px";
+				document.querySelector(".Auth form .submit ").style.top = "459px";
 				setTimeout(() => {
 					part2.style.display = "block";
 				}, 500);
@@ -65,7 +65,7 @@ const CurrantStudentSignup = () => {
 		};
 	}, [collageIDError, nationalIDError]);
 	return (
-		<div className="Signup StudentSignup">
+		<div className="Auth StudentSignup">
 			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}

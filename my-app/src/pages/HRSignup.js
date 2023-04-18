@@ -7,7 +7,7 @@ import icon6 from "../imgs/sign up 6.svg";
 import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import React, { useState, useEffect } from "react";
-import "./Signup.css";
+import "./Auth.css";
 import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
 
@@ -45,13 +45,13 @@ const HRSignup = () => {
 	useEffect(() => {
 		const part1 = document.getElementById("part1");
 		const part2 = document.getElementById("part2");
-		const submitBtn = document.querySelector(".Signup form .submit button");
+		const submitBtn = document.querySelector(".Auth form .submit button");
 		const username = document.getElementById("username");
 		submitBtn.onclick = (e) => {
 			e.preventDefault();
 			if (usernameError === "") {
 				setSubmitBtnContent("submit");
-				document.querySelector(".Signup form .submit ").style.top = "400px";
+				document.querySelector(".Auth form .submit ").style.top = "400px";
 				setTimeout(() => {
 					part2.style.display = "block";
 				}, 500);
@@ -62,7 +62,7 @@ const HRSignup = () => {
 		};
 	}, [usernameError]);
 	return (
-		<div className="Signup HRSignup">
+		<div className="Auth HRSignup">
 			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}
@@ -78,10 +78,8 @@ const HRSignup = () => {
 					</div>
 					<div className="col-12 col-md-6">
 						<div className="introText p-4">
-							<h1>HR Signup</h1>
-							<p className="text-black-50">
-								Connect Again To Us and get all benefits from using our platform
-							</p>
+							<h1>Signup</h1>
+							<p className="text-black-50">join to us as a HR</p>
 						</div>
 						<div className="form">
 							<form action="#" method="post">
