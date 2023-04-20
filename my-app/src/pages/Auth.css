@@ -73,7 +73,7 @@
 	top: 90px;
 }
 .StudentSignup form .part2 {
-	top: 170px;
+	top: 69px;
 }
 .Auth form .input-group,
 .Auth form button,
@@ -81,6 +81,12 @@
 	border: 2px solid var(--color-tow);
 	border-radius: var(--main-border-radius);
 	z-index: 20;
+}
+@media (max-width: 767px) {
+	.StudentSignup form .input-group {
+		padding: 3px !important;
+		overflow: hidden !important;
+	}
 }
 .Auth form .submit {
 	top: 68%;
@@ -146,6 +152,12 @@
 }
 .StudentSignup form .error {
 	color: var(--Student-color);
+	font-size: 1em;
+}
+@media (max-width: 767px) {
+	.StudentSignup form .error {
+		font-size: 0.75em;
+	}
 }
 .HRSignup form .error {
 	color: var(--HR-color);
