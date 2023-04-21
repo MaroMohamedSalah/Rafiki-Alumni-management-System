@@ -125,8 +125,9 @@ const AlumniSignup = () => {
 				}
 			}
 		} else {
-			if (nationalID.value.length !== 0 && nationalIDError.length === 0) {
+			if (nationalID.value.length !== 0) {
 				// go to login
+				console.log("login");
 				navigate("/login");
 			}
 		}
@@ -165,8 +166,10 @@ const AlumniSignup = () => {
 
 								<div className="part2 position-absolute" id="part2">
 									<UsernameInput
-										usernameError={usernameError}
 										setUsernameError={setUsernameError}
+										usernameError={usernameError}
+										isMain={false}
+										setSubmitBtnContent={setSubmitBtnContent}
 									/>
 
 									<EmailInput

@@ -1,8 +1,15 @@
-import React, { useState } from "react";
 import icon3 from "../imgs/sign up 3.svg";
 
-const UsernameInput = ({ setUsernameError, usernameError }) => {
+const UsernameInput = ({
+	setUsernameError,
+	usernameError,
+	isMain,
+	setSubmitBtnContent,
+}) => {
+	// check if username is exist in database
 	const usernameChecker = (username) => {
+		const submitBtn = document.querySelector(".Auth form .submit button");
+		isMain === true && submitBtn.setAttribute("disabled", true);
 		fetch(
 			"https://alumnimanagmentsys12.000webhostapp.com/APIs/check_username.php",
 			{
@@ -17,10 +24,13 @@ const UsernameInput = ({ setUsernameError, usernameError }) => {
 		)
 			.then((response) => response.json())
 			.then((data) => {
+				isMain === true && submitBtn.removeAttribute("disabled");
 				if (data.error === true) {
 					setUsernameError(data.message);
+					isMain === true && setSubmitBtnContent("Login");
 				} else {
 					setUsernameError("");
+					isMain === true && setSubmitBtnContent("Confirm");
 				}
 			})
 			.catch((error) => console.error("Error:", error));

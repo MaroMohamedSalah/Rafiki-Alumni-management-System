@@ -174,6 +174,8 @@ const CurrantStudentSignup = () => {
 									<UsernameInput
 										setUsernameError={setUsernameError}
 										usernameError={usernameError}
+										isMain={false}
+										setSubmitBtnContent={setSubmitBtnContent}
 									/>
 
 									<EmailInput
