@@ -5,6 +5,7 @@ import forgetPassImg from "../imgs/forget pass img.svg";
 import icon1 from "../imgs/sign up 4.svg";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import notification from "../sounds/notification 1.mp3";
 
 const ForgetPass = () => {
 	const [emailError, setEmailError] = useState("");
@@ -13,6 +14,7 @@ const ForgetPass = () => {
 	const [showToast, setShowToast] = useState(false); // Added state for toast visibility
 	const [recipient, setRecipient] = useState("");
 	const navigate = useNavigate();
+
 	const handelFormSubmit = (e) => {
 		e.preventDefault();
 		if (emailError === "") {
@@ -22,7 +24,7 @@ const ForgetPass = () => {
 			// sendEmail();
 			setTimeout(() => {
 				navigate("/sendEmail");
-			}, 5000);
+			}, 1000);
 		}
 	};
 
@@ -52,8 +54,9 @@ const ForgetPass = () => {
 	useEffect(() => {
 		// Play sound when playSound state changes
 		if (playSound) {
-			const audio = new Audio("../sounds/notification 1.mp3"); // Replace with the path to your sound file
+			const audio = new Audio(notification); // Replace with the path to your sound file
 			audio.play();
+			console.log("music played");
 			setPlaySound(false);
 		}
 	}, [playSound]);

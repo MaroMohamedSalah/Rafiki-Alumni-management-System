@@ -8,12 +8,86 @@ import icon2 from "../imgs/sign up 5.svg";
 import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 const Login = () => {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [usernameError, setUsernameError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
+
+	// check if any input is empty
+	const validateInputsValues = (inputs) => {
+		let error = false;
+
+		Array.from(inputs).forEach((input) => {
+			if (input[1].length === 0) {
+				error = true;
+				console.error(`Error: ${input[0]} is required`); // Log error message for empty input
+				// Set error message for empty input using state setter functions
+				switch (input[0]) {
+					case "username":
+						setUsernameError(`${input[0]} is required`);
+						break;
+					case "password":
+						setPasswordError(`${input[0]} is required`);
+						break;
+					default:
+						break;
+				}
+			}
+		});
+		return error; // Return true indicating if any input is empty
+	};
+
+	const handelSubmit = async (e) => {
+		const submitBtn = document.querySelector(".Auth form .submit button");
+		const form = document.querySelector(".Auth form");
+		e.preventDefault();
+
+		// Form data validation logic here
+		const formData = new FormData(form);
+		let anyInputIsEmpty = validateInputsValues(formData);
+		if (!usernameError && !passwordError && anyInputIsEmpty !== true) {
+			submitBtn.setAttribute("disabled", true);
+			// If no errors exist, send form data to API
+			try {
+				const response = await fetch(
+					"https://alumnimanagmentsys12.000webhostapp.com/APIs/login.php",
+					{
+						method: "POST",
+						body: formData,
+					}
+				);
+				const data = await response.json();
+
+				// Handle response from API here
+				// Example: Check if response indicates success or error
+				submitBtn.removeAttribute("disabled");
+				if (data.status !== "error") {
+					// Success
+					Swal.fire({
+						title: "Success!",
+						text: "You Logged in successful!",
+						icon: "success",
+					});
+					// setTimeout(() => {
+					// 	// Redirect to login page after 3 seconds
+					// 	navigate("/login");
+					// }, 3000);
+
+					console.log("Logged in successful!", data);
+				} else {
+					// Error
+					console.error("Error: " + data.message);
+					setPasswordError("Password or Username may be incorrect");
+					setUsernameError("Password or Username may be incorrect");
+				}
+			} catch (error) {
+				console.error("Error: " + error.message);
+			}
+		}
+	};
 	return (
 		<div className="Auth Login">
 			<div className="container-fluid">
@@ -45,7 +119,7 @@ const Login = () => {
 							<p className="text-black-50">welcome back again to us </p>
 						</div>
 						<div className="form w-75">
-							<form action="#" method="post">
+							<form action="#" method="post" onSubmit={handelSubmit}>
 								<div className="username mb-3">
 									<div className="input-group p-2">
 										<span className="input-group-text" id="basic-addon1">
@@ -59,6 +133,16 @@ const Login = () => {
 											placeholder="Username"
 											aria-label="Username"
 											aria-describedby="basic-addon1"
+											onChange={(e) => {
+												const regex = /^[a-zA-Z0-9_]{3,20}$/;
+												if (!regex.test(e.target.value)) {
+													setUsernameError(
+														"Username must be 3-20 characters long and can only contain letters, numbers, and underscores."
+													);
+												} else {
+													setUsernameError("");
+												}
+											}}
 										/>
 									</div>
 									<h5 className="error">{usernameError}</h5>
@@ -77,6 +161,11 @@ const Login = () => {
 											placeholder="Password"
 											aria-label="Password"
 											aria-describedby="basic-addon1"
+											onChange={(e) => {
+												e.target.value < 6
+													? setPasswordError("Invalid Password length")
+													: setPasswordError("");
+											}}
 										/>
 										<span className="input-group-text" id="basic-addon1">
 											{showPassword === true ? (
