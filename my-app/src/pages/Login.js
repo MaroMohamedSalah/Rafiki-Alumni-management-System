@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
 import loginImg from "../imgs/login img.svg";
@@ -15,6 +15,7 @@ const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [usernameError, setUsernameError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
+	const navigate = useNavigate(); // Get navigate function from react-router-dom
 
 	// check if any input is empty
 	const validateInputsValues = (inputs) => {
@@ -65,16 +66,25 @@ const Login = () => {
 				// Example: Check if response indicates success or error
 				submitBtn.removeAttribute("disabled");
 				if (data.status !== "error") {
+					// record the user id in localStorage
+					localStorage.setItem("UserID", data.user_id);
 					// Success
 					Swal.fire({
 						title: "Success!",
-						text: "You Logged in successful!",
+						text: `You Logged in successfully, as ${data.actor}!`,
 						icon: "success",
 					});
-					// setTimeout(() => {
-					// 	// Redirect to login page after 3 seconds
-					// 	navigate("/login");
-					// }, 3000);
+					setTimeout(() => {
+						// Redirect to Actor profile page after 3 seconds
+						switch (data.actor) {
+							case "Alumni":
+								navigate("/alumniProfile");
+								break;
+
+							default:
+								break;
+						}
+					}, 3000);
 
 					console.log("Logged in successful!", data);
 				} else {

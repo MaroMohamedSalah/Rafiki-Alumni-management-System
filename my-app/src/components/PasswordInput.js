@@ -1,7 +1,7 @@
 import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import icon5 from "../imgs/sign up 5.svg";
-import icon6 from "../imgs/sign up 6.svg";
+import icon6 from "../imgs/sign up 6.svg"; 
 import { useState } from "react";
 const PasswordInput = ({
 	passwordError,

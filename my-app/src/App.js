@@ -11,6 +11,7 @@ import ProgressLine from "./components/ProgressLine";
 import Login from "./pages/Login";
 import ForgetPass from "./pages/ForgetPass";
 import SendEmail from "./pages/SendEmail";
+import AlumniProfile from "./pages/AlumniProfile";
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 					<Route path="/login" element={<Login />} />
 					<Route path="/resetPass" element={<ForgetPass />} />
 					<Route path="/sendEmail" element={<SendEmail />} />
+					<Route path="/alumniProfile" element={<AlumniProfile />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
