@@ -1,7 +1,11 @@
+/* Profile in general */
 .profile {
 	min-height: 100vh;
 	padding: 35px 0px;
 }
+/* ---  */
+
+/* Profile img and general info  */
 .profile .name {
 	font-size: 48px;
 	font-weight: 600;
@@ -12,13 +16,26 @@
 	width: 150px;
 	height: 150px;
 	border: 1px solid #000000;
-	border-radius: 20px;
+	border-radius: var(--main-border-radius);
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	cursor: pointer;
 }
-.profile .ProfileImg i {
+.profile .ProfileImg .userImg {
 	font-size: 4em;
+	transition: all var(--main-transition) ease-in-out;
+}
+.profile .ProfileImg .addImg {
+	z-index: -1;
+	transition: all var(--main-transition) ease-in-out;
+}
+.profile .ProfileImg:hover .userImg {
+	opacity: 0.25;
+}
+.profile .ProfileImg:hover .addImg {
+	z-index: 1;
+	font-size: 3em;
 }
 @media (max-width: 767px) {
 	.profile .ProfileImg {
@@ -27,10 +44,12 @@
 		height: 130px;
 	}
 	.profile .ProfileImg i {
-		font-size: 4em;
+		font-size: 1em;
 	}
 }
+/* ---  */
 
+/* profile edit btn  */
 .AlumniProfile .Edit-btn {
 	background-color: var(--Alumni-color);
 	border-radius: 22px;
@@ -50,3 +69,113 @@
 		margin-right: 0px;
 	}
 }
+/* ---  */
+
+/* profile sections in general  */
+.profile .sec {
+	border: 1px solid #000000;
+	border-radius: var(--main-border-radius);
+	margin: 20px 0px;
+	width: 100%;
+	padding: 19px;
+}
+.profile .sec .sec-title {
+	border-bottom: 1px solid;
+	font-size: 30px;
+	padding-bottom: 5px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	gap: 10px;
+}
+.profile .sec .sec-title .visibility {
+	right: 0;
+	font-size: 20px;
+}
+.profile .sec .sec-title .icon {
+	font-size: 20px;
+}
+.profile .empty-sec,
+.profile .not-empty-sec {
+	padding: 28px 9px;
+}
+.profile .empty-sec .add {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	opacity: 0;
+	transition: all var(--main-transition);
+}
+.profile .empty-sec .add .addIcon {
+	font-size: 2em;
+}
+.profile .empty-sec .add h1 {
+	font-size: 30px;
+}
+.profile .empty {
+	transition: all var(--main-transition) ease-in-out;
+	cursor: pointer;
+}
+.profile .empty:hover {
+	background-color: #cbcacad3;
+}
+.profile .empty:hover .add {
+	opacity: 1;
+}
+.profile .empty-sec .sec-placeholder {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.profile .empty-sec .sec-placeholder span:nth-of-type(1) {
+	display: inline-block;
+	background-color: #c9c8c8;
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+}
+.profile .empty-sec .sec-placeholder span:nth-of-type(2) {
+	display: inline-block;
+	width: 112px;
+	height: 13px;
+	background-color: #c9c8c8;
+	margin-left: 10px;
+}
+.profile .empty-sec .sec-placeholder-2 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+	flex-direction: column;
+	align-items: start;
+}
+.profile .empty-sec .sec-placeholder-2 span,
+.profile .empty-sec .sec-placeholder-2 .half {
+	display: inline-block;
+	background-color: #c9c8c8;
+	width: 90%;
+	height: 17px;
+	border-radius: 0;
+	margin-bottom: 10px;
+}
+.profile .empty-sec .sec-placeholder-2 .half {
+	width: 35% !important;
+}
+/* ---  */
+
+/* Profile URLs section  */
+/* ---  */
+
+/* Profile contact info  */
+.ProfileContactInfo .not-empty-sec {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.ProfileContactInfo .not-empty-sec h1 {
+	font-size: 32px;
+}
+.ProfileContactInfo .not-empty-sec h1 .icon {
+	margin-right: 10px;
+}
+/* ---  */

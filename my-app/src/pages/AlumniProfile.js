@@ -1,8 +1,11 @@
 import Backbtn from "../components/Backbtn";
+import ProfileAboutSec from "../components/ProfileAboutSec";
+import ProfileContactInfoSec from "../components/ProfileContactInfoSec";
 import ProfileEditBtn from "../components/ProfileEditBtn";
 import ProfileImg from "../components/ProfileImg";
 import ProfileJobTitle from "../components/ProfileJobTitle";
 import ProfileName from "../components/ProfileName";
+import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 const AlumniProfile = () => {
@@ -17,6 +20,7 @@ const AlumniProfile = () => {
 					btnSizeMobile={"19px"}
 					btnTopMobile={"10px"}
 				/>
+
 				<div className="row">
 					<div className="col-12 col-md-2">
 						<ProfileImg />
@@ -35,6 +39,27 @@ const AlumniProfile = () => {
 					<div className="col-0 col-md-4 d-none d-md-block"></div>
 					<div className="col-md-2 d-flex flex-column justify-content-center align-items-end">
 						<ProfileEditBtn />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12 col-md-6">
+						<ProfileURLsSec />
+					</div>
+					<div className="col-12 col-md-6">
+						<ProfileURLsSec />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<ProfileAboutSec />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<ProfileContactInfoSec />
 					</div>
 				</div>
 			</div>
