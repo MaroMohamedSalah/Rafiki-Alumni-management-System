@@ -37,6 +37,11 @@
 	z-index: 1;
 	font-size: 3em;
 }
+.profile .sec-title .add {
+	right: 27px;
+	font-size: 20px;
+	cursor: pointer;
+}
 @media (max-width: 767px) {
 	.profile .ProfileImg {
 		margin: auto;
@@ -78,6 +83,9 @@
 	margin: 20px 0px;
 	width: 100%;
 	padding: 19px;
+}
+.profile .sec .visibility {
+	cursor: pointer;
 }
 .profile .sec .sec-title {
 	border-bottom: 1px solid;
@@ -123,10 +131,19 @@
 .profile .empty:hover .add {
 	opacity: 1;
 }
-.profile .empty-sec .sec-placeholder {
+.profile .empty-sec .sec-placeholder,
+.profile .empty-sec .skill-placeholder {
 	display: flex;
 	align-items: center;
 	margin-bottom: 10px;
+}
+.profile .empty-sec .skill-placeholder span {
+	display: inline-block;
+	background-color: #c9c8c8;
+	width: 60px;
+	height: 20px;
+	border-radius: 5px;
+	margin-right: 5px;
 }
 .profile .empty-sec .sec-placeholder span:nth-of-type(1) {
 	display: inline-block;
@@ -167,15 +184,54 @@
 /* ---  */
 
 /* Profile contact info  */
-.ProfileContactInfo .not-empty-sec {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-.ProfileContactInfo .not-empty-sec h1 {
+.AlumniProfile .ProfileContactInfo .not-empty-sec h1,
+.AlumniProfile .PersonalInformation .not-empty-sec h1 {
 	font-size: 32px;
 }
-.ProfileContactInfo .not-empty-sec h1 .icon {
+.AlumniProfile .ProfileContactInfo .not-empty-sec h1 .icon,
+.AlumniProfile .PersonalInformation .not-empty-sec h1 .icon {
 	margin-right: 10px;
+}
+.AlumniProfile .ProfileContactInfo .not-empty-sec .add-phone,
+.AlumniProfile .PersonalInformation .not-empty-sec .add-address {
+	cursor: pointer;
+	transition: all var(--main-transition) ease-in-out;
+}
+.AlumniProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
+.AlumniProfile .PersonalInformation .not-empty-sec .add-address:hover {
+	color: var(--Alumni-color) !important;
+}
+.AlumniProfile .ProfileContactInfo .not-empty-sec a,
+.AlumniProfile .PersonalInformation .not-empty-sec a {
+	text-decoration: none !important;
+	color: black;
+}
+/* ---  */
+
+/* Profile skills  */
+.profile .sec-title .add {
+	right: 27px;
+	font-size: 20px;
+	cursor: pointer;
+}
+/* ---  */
+
+/* Profile Edu  */
+.ProfileEdu .edu-list .row div:nth-of-type(2) h5 {
+	padding: 5px 15px;
+}
+.ProfileEdu .gpa,
+.ProfileEdu .status {
+	margin-top: 5px;
+}
+.ProfileEdu .gpa div:nth-of-type(2) h5,
+.ProfileEdu .status div:nth-of-type(2) h5 {
+	background-color: #0eab00;
+	display: inline;
+	border-radius: 19px;
+	color: white;
+}
+.ProfileEdu .status div:nth-of-type(2) h5 {
+	background-color: var(--Alumni-color);
 }
 /* ---  */

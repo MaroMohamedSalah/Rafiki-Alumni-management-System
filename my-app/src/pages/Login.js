@@ -9,6 +9,7 @@ import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import { useState } from "react";
 import Swal from "sweetalert2";
+// import jwt from "jsonwebtoken";
 
 const Login = () => {
 	const [password, setPassword] = useState("");

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const ProfileUsername = ({ userID }) => {
+const ProfileUsername = () => {
 	const [username, setUsername] = useState("");
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ const ProfileUsername = ({ userID }) => {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [userID]);
+	}, []);
 
 	return username.length === 0 ? (
 		<p class="placeholder-glow w-50">

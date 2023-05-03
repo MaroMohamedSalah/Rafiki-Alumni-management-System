@@ -2,9 +2,13 @@ import Backbtn from "../components/Backbtn";
 import ProfileAboutSec from "../components/ProfileAboutSec";
 import ProfileContactInfoSec from "../components/ProfileContactInfoSec";
 import ProfileEditBtn from "../components/ProfileEditBtn";
+import ProfileEdu from "../components/ProfileEdu";
+import ProfileExperience from "../components/ProfileExperiece";
 import ProfileImg from "../components/ProfileImg";
 import ProfileJobTitle from "../components/ProfileJobTitle";
 import ProfileName from "../components/ProfileName";
+import ProfilePersonalInfo from "../components/ProfilePersonalInfo";
+import ProfileSkills from "../components/ProfileSkills";
 import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
@@ -60,6 +64,30 @@ const AlumniProfile = () => {
 				<div className="row">
 					<div className="col-12">
 						<ProfileContactInfoSec />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<ProfileSkills />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<ProfileExperience />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<ProfileEdu />
+					</div>
+				</div>
+
+				<div className="row">
+					<div className="col-12">
+						<ProfilePersonalInfo />
 					</div>
 				</div>
 			</div>

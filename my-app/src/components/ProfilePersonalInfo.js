@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import Keypad from "../imgs/Keypad.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ProfileContactInfoSec = () => {
-	const [isEmpty, setIsEmpty] = useState(true);
-	const [email, setEmail] = useState("");
-	const addPhoneNumber = async () => {
+const ProfilePersonalInfo = () => {
+	const [birthDay, setBirthDay] = useState("");
+	const addAddress = async () => {
 		const { value: num } = await Swal.fire({
 			title: "Please Enter Your Phone Number",
 			input: "text",
@@ -68,19 +66,19 @@ const ProfileContactInfoSec = () => {
 				)}`
 			)
 			.then((response) => {
-				setEmail(response.data.email);
+				// setEmail(response.data.email);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
 	return (
-		<section className={"ProfileContactInfo sec"}>
+		<section className={"PersonalInformation sec"}>
 			<h1 className="sec-title position-relative">
 				<span className="icon">
-					<i className="fa-solid fa-phone"></i>
+					<i class="fa-solid fa-circle-info"></i>
 				</span>{" "}
-				Contact
+				Personal Information
 				<OverlayTrigger
 					overlay={
 						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
@@ -94,28 +92,26 @@ const ProfileContactInfoSec = () => {
 					</div>
 				</OverlayTrigger>
 			</h1>
-			<div className="not-empty-sec row">
+			<div className="row not-empty-sec p-3">
 				<div className="col-12 col-md-6">
-					<h1 onClick={addPhoneNumber}>
+					<h1 onClick={addAddress}>
 						<span className="icon">
-							<img src={Keypad} alt="" />
+							<i className="fa-solid fa-location-dot"></i>
 						</span>
-						<span className="text-black-50 add-phone">
-							Add Your Phone Number
-						</span>
+						<span className="text-black-50 add-address">Add Your Address</span>
 					</h1>
 				</div>
 				<div className="col-12 col-md-6">
 					<h1 className="d-flex align-items-center justify-content-start justify-content-md-end">
 						<span className="icon">
-							<i className="fa-regular fa-envelope"></i>
+							<i className="fa-solid fa-cake-candles"></i>
 						</span>{" "}
-						{email === "" ? (
+						{birthDay === "" ? (
 							<p class="placeholder-glow w-50 m-0 d-flex align-items-center">
 								<span class="placeholder w-100"></span>
 							</p>
 						) : (
-							<a href={`mailto:${email}`}>{email}</a>
+							<address></address>
 						)}
 					</h1>
 				</div>
@@ -124,4 +120,4 @@ const ProfileContactInfoSec = () => {
 	);
 };
 
-export default ProfileContactInfoSec;
+export default ProfilePersonalInfo;
