@@ -48,6 +48,7 @@ const ProfileContactInfoSec = () => {
 				Swal.fire({
 					title: result.message,
 				});
+				window.location.reload();
 			} catch (error) {
 				console.error(error);
 				Swal.fire({

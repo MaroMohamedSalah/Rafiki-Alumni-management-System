@@ -21,6 +21,24 @@
 	align-items: center;
 	overflow: hidden;
 	cursor: pointer;
+	position: relative;
+}
+.profile .ProfileImg .label {
+	bottom: -8px;
+	width: 100%;
+	text-align: center;
+	left: 0;
+	font-size: 21px;
+	color: white;
+}
+.AlumniProfile .ProfileImg .label {
+	background: var(--Alumni-color);
+}
+.HRprofile .ProfileImg .label {
+	background: var(--HR-color);
+}
+.StudentProfile .ProfileImg .label {
+	background: var(--Student-color);
 }
 .profile .ProfileImg .userImg {
 	font-size: 4em;
@@ -55,7 +73,7 @@
 /* ---  */
 
 /* profile edit & generate cv btns  */
-.AlumniProfile .Edit-btn,
+.profile .Edit-btn,
 .profile .GenerateCV {
 	border-radius: 22px;
 	color: white;
@@ -68,23 +86,29 @@
 .AlumniProfile .Edit-btn {
 	background-color: var(--Alumni-color);
 }
-.AlumniProfile .Edit-btn i {
+.HRprofile .Edit-btn {
+	background-color: var(--HR-color);
+}
+.StudentProfile .Edit-btn {
+	background-color: var(--Student-color);
+}
+.profile .Edit-btn i {
 	font-size: 0.85em;
 	margin-right: 5px;
 }
 @media (max-width: 767px) {
-	.AlumniProfile .Edit-btn,
+	.profile .Edit-btn,
 	.profile .GenerateCV {
 		position: absolute;
 		top: 10px;
 	}
-	.AlumniProfile .Edit-btn {
+	.profile .Edit-btn {
 		right: 0;
 	}
 	.profile .GenerateCV {
 		right: 30px;
 	}
-	.AlumniProfile .Edit-btn i {
+	.profile .Edit-btn i {
 		margin-right: 0px;
 	}
 }
@@ -208,6 +232,12 @@
 .AlumniProfile .url-list a:hover {
 	color: var(--Alumni-color);
 }
+.HRprofile .url-list a:hover {
+	color: var(--HR-color);
+}
+.StudentProfile .url-list a:hover {
+	color: var(--Student-color);
+}
 .ProfileURLs .url-list li .icon {
 	margin-right: 10px;
 	font-size: 20px;
@@ -225,16 +255,16 @@
 /* ---  */
 
 /* Profile contact info  */
-.AlumniProfile .ProfileContactInfo .not-empty-sec h1,
-.AlumniProfile .PersonalInformation .not-empty-sec h1 {
+.profile .ProfileContactInfo .not-empty-sec h1,
+.profile .PersonalInformation .not-empty-sec h1 {
 	font-size: 32px;
 }
-.AlumniProfile .ProfileContactInfo .not-empty-sec h1 .icon,
-.AlumniProfile .PersonalInformation .not-empty-sec h1 .icon {
+.profile .ProfileContactInfo .not-empty-sec h1 .icon,
+.profile .PersonalInformation .not-empty-sec h1 .icon {
 	margin-right: 10px;
 }
-.AlumniProfile .ProfileContactInfo .not-empty-sec .add-phone,
-.AlumniProfile .PersonalInformation .not-empty-sec .add-address {
+.profile .ProfileContactInfo .not-empty-sec .add-phone,
+.profile .PersonalInformation .not-empty-sec .add-address {
 	cursor: pointer;
 	transition: all var(--main-transition) ease-in-out;
 }
@@ -242,8 +272,16 @@
 .AlumniProfile .PersonalInformation .not-empty-sec .add-address:hover {
 	color: var(--Alumni-color) !important;
 }
-.AlumniProfile .ProfileContactInfo .not-empty-sec a,
-.AlumniProfile .PersonalInformation .not-empty-sec a {
+.HRprofile .ProfileContactInfo .not-empty-sec .add-phone:hover,
+.HRprofile .PersonalInformation .not-empty-sec .add-address:hover {
+	color: var(--HR-color) !important;
+}
+.StudentProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
+.StudentProfile .PersonalInformation .not-empty-sec .add-address:hover {
+	color: var(--Student-color) !important;
+}
+.profile .ProfileContactInfo .not-empty-sec a,
+.profile .PersonalInformation .not-empty-sec a {
 	text-decoration: none !important;
 	color: black;
 }
@@ -272,8 +310,14 @@
 	border-radius: 19px;
 	color: white;
 }
-.ProfileEdu .status div:nth-of-type(2) h5 {
+.AlumniProfile .ProfileEdu .status div:nth-of-type(2) h5 {
 	background-color: var(--Alumni-color);
+}
+.HRprofile .ProfileEdu .status div:nth-of-type(2) h5 {
+	background-color: var(--HR-color);
+}
+.StudentProfile .ProfileEdu .status div:nth-of-type(2) h5 {
+	background-color: var(--Student-color);
 }
 /* ---  */
 /* Profile cv */

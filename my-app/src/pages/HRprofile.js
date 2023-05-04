@@ -15,10 +15,10 @@ import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
-const AlumniProfile = () => {
+const HRprofile = () => {
 	const [completeProgress, setCompleteProgress] = useState("10");
 	return (
-		<div className="AlumniProfile profile">
+		<div className="HRprofile profile">
 			<div className="container">
 				<Backbtn
 					btnColor={"var(--Alumni-color)"}
@@ -31,7 +31,7 @@ const AlumniProfile = () => {
 
 				<div className="row mt-5">
 					<div className="col-12 col-md-2">
-						<ProfileImg actor={"Alumni"} />
+						<ProfileImg actor={"HR"} />
 					</div>
 					<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
 						<div className="order-md-1 order-2 w-100">
@@ -40,13 +40,9 @@ const AlumniProfile = () => {
 						<div className="order-md-2 order-1">
 							<ProfileName />
 						</div>
-						<div className="order-md-3 order-3">
-							<ProfileJobTitle />
-						</div>
 					</div>
-					<div className="col-0 col-md-3 d-none d-md-block"></div>
-					<div className="col-md-3 d-flex flex-row justify-content-center align-items-center">
-						<GenerateCV />
+					<div className="col-0 col-md-4 d-none d-md-block"></div>
+					<div className="col-md-2 d-flex flex-row justify-content-end align-items-center">
 						<ProfileEditBtn />
 					</div>
 				</div>
@@ -84,21 +80,9 @@ const AlumniProfile = () => {
 						<ProfileExperience />
 					</div>
 				</div>
-
-				<div className="row">
-					<div className="col-12">
-						<ProfileEdu />
-					</div>
-				</div>
-
-				<div className="row">
-					<div className="col-12">
-						<ProfilePersonalInfo />
-					</div>
-				</div>
 			</div>
 		</div>
 	);
 };
 
-export default AlumniProfile;
+export default HRprofile;

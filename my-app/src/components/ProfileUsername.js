@@ -20,11 +20,11 @@ const ProfileUsername = () => {
 	}, []);
 
 	return username.length === 0 ? (
-		<p class="placeholder-glow w-50">
-			@<span class="placeholder w-50"></span>
+		<p class="placeholder-glow w-100 text-center text-md-start">
+			@<span class="placeholder w-25"></span>
 		</p>
 	) : (
-		<h5>@{username}</h5>
+		<h5 className="text-center text-md-start">@{username}</h5>
 	);
 };
 

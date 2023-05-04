@@ -82,6 +82,10 @@ const Login = () => {
 								navigate("/alumniProfile");
 								break;
 
+							case "HR":
+								navigate("/hrProfile");
+								break;
+
 							default:
 								break;
 						}

@@ -1,6 +1,6 @@
 import Profile from "../imgs/Alumni img.png";
 import Swal from "sweetalert2";
-const ProfileImg = () => {
+const ProfileImg = ({ actor }) => {
 	const addImg = () => {
 		// Define file validation function
 		const validateFile = (file) => {
@@ -77,6 +77,9 @@ const ProfileImg = () => {
 		<div className="ProfileImg img-fluid" id="profile-image" onClick={addImg}>
 			<div className="userImg">
 				<i className="fa-regular fa-user"></i>
+				<h1 className="position-absolute label">
+					<span className="icon"></span> {actor}
+				</h1>
 			</div>
 			<div className="addImg position-absolute">
 				<i className="fa-solid fa-plus"></i>
