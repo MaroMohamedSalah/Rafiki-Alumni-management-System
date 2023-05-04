@@ -1,12 +1,32 @@
 import { useEffect, useState } from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 const ProfileURLsSec = () => {
 	const [isEmpty, setIsEmpty] = useState(true);
+	const [integrationsURLs, setIntegrationsURLs] = useState();
+	const [linkedin, setLinkedin] = useState("");
 
-	const getURLs = () => {};
+	const getURLs = () => {
+		fetch(
+			"https://alumnimanagmentsys12.000webhostapp.com/APIs/get_integrations_urls.php",
+			{
+				method: "POST",
+				body: new URLSearchParams({
+					user_id: localStorage.getItem("UserID"),
+				}),
+			}
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				setIntegrationsURLs(data);
+				setIsEmpty(false);
+			})
+			.catch((error) => console.error(error));
+	};
 
-	const submitURLs = (requestData) => {
+	const storeURLs = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
 		const apiUrl =
 			"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_integrations_urls.php";
@@ -24,6 +44,7 @@ const ProfileURLsSec = () => {
 						text: "Your URLs have been added to your record.",
 					});
 					setIsEmpty(false);
+					getURLs();
 				} else {
 					// show an error message if the request failed
 					throw new Error("Failed to add URLs. Please try again later.");
@@ -46,7 +67,7 @@ const ProfileURLsSec = () => {
       <form>
         <div class="form-group">
           <label for="linkedin">LinkedIn:</label>
-          <input type="text" name="linkedin" id="linkedin">
+          <input type="text" name="linkedin" id="linkedin" value=${linkedin}>
         </div>
         <div class="form-group">
           <label for="github">GitHub:</label>
@@ -72,8 +93,6 @@ const ProfileURLsSec = () => {
 				const behanceValue = behanceInput.value.trim();
 
 				// Regular expressions for validating URLs
-				const urlRegex =
-					/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
 				const linkedinRegex =
 					/^https:\/\/www\.linkedin\.com\/in\/[a-z0-9_-]+\/?$/i;
 				const githubRegex = /^https:\/\/github\.com\/[a-z0-9_-]+\/?$/i;
@@ -94,7 +113,7 @@ const ProfileURLsSec = () => {
 					Swal.showValidationMessage("Invalid Behance URL");
 				}
 
-				// If all URLs are valid, return an object with the values
+				// If at least one URL is valid, return an object with the values
 				if (linkedinValue || githubValue || behanceValue) {
 					const requestData = {
 						userID: localStorage.getItem("UserID"),
@@ -103,26 +122,92 @@ const ProfileURLsSec = () => {
 						behanceURL: behanceValue || "",
 					};
 					return requestData;
+				} else {
+					Swal.showValidationMessage("Please enter at least one URL");
 				}
 			},
 		}).then((result) => {
 			// If the user clicked "Save" and all URLs are valid, submit the form
 			if (result.isConfirmed && result.value) {
-				submitURLs(result.value);
+				storeURLs(result.value);
 			}
 		});
 	};
 
+	const displayURLs = () => {
+		if (integrationsURLs) {
+			return integrationsURLs.map((u) => {
+				switch (u.url_type) {
+					case "linkedin":
+						return (
+							<li>
+								<span className="icon linkedin">
+									<i className="fa-brands fa-linkedin"></i>
+								</span>{" "}
+								<a href={u.url_value}>Linkedin</a>
+							</li>
+						);
+					case "github":
+						return (
+							<li>
+								<span className="icon github">
+									<i className="fa-brands fa-github"></i>
+								</span>{" "}
+								<a href={u.url_value}>Github</a>
+							</li>
+						);
+					case "behance":
+						return (
+							<li>
+								<span className="icon behance">
+									<i className="fa-brands fa-square-behance"></i>
+								</span>{" "}
+								<a href={u.url_value}>Behance</a>
+							</li>
+						);
+					default:
+						return null;
+				}
+			});
+		}
+		return null;
+	};
+
+	useEffect(() => {
+		getURLs();
+	}, []);
 	return (
 		<section
 			className={isEmpty === true ? "ProfileURLs sec empty" : "ProfileURLs sec"}
-			onClick={isEmpty === true && addURLs}
+			onClick={() => {
+				if (isEmpty) addURLs();
+			}}
 		>
-			<h1 className="sec-title">
+			<h1 className="sec-title position-relative">
 				<span className="icon">
 					<i className="fa-solid fa-link"></i>
 				</span>{" "}
 				Links & websites
+				{isEmpty === false && (
+					<>
+						<OverlayTrigger
+							overlay={<Tooltip id="my-tooltip">Visibility</Tooltip>}
+							placement="bottom"
+						>
+							<div className="visibility position-absolute">
+								<i className="fa-solid fa-user-tie"></i>
+							</div>
+						</OverlayTrigger>
+						<OverlayTrigger
+							overlay={<Tooltip id="my-tooltip">Edit URLs</Tooltip>}
+							placement="bottom"
+						>
+							<div className="add position-absolute" onClick={addURLs}>
+								<i className="fa-solid fa-plus"></i>
+							</div>
+						</OverlayTrigger>
+					</>
+				)}
 			</h1>
 			{isEmpty === true ? (
 				<div className="empty-sec position-relative">
@@ -141,7 +226,9 @@ const ProfileURLsSec = () => {
 						<h1>Add Your Accounts URLs</h1>
 					</div>
 				</div>
-			) : null}
+			) : (
+				<ul className="url-list">{displayURLs()}</ul>
+			)}
 		</section>
 	);
 };

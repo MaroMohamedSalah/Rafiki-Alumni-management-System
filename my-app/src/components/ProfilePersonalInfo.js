@@ -98,7 +98,7 @@ const ProfilePersonalInfo = () => {
 						<span className="icon">
 							<i className="fa-solid fa-location-dot"></i>
 						</span>
-						<span className="text-black-50 add-address">Add Your Address</span>
+						<span className="text-black-50 add-address">Add Your Country</span>
 					</h1>
 				</div>
 				<div className="col-12 col-md-6">

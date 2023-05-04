@@ -5,8 +5,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const ProfileContactInfoSec = () => {
-	const [isEmpty, setIsEmpty] = useState(true);
 	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState(null);
 	const addPhoneNumber = async () => {
 		const { value: num } = await Swal.fire({
 			title: "Please Enter Your Phone Number",
@@ -32,13 +32,12 @@ const ProfileContactInfoSec = () => {
 		});
 
 		if (num) {
-			const userId = localStorage.getItem("UserID");
 			const url =
 				"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_phone.php";
 			const options = {
 				method: "POST",
 				body: JSON.stringify({
-					userId: parseInt(localStorage.getItem("UserID")),
+					userID: localStorage.getItem("UserID"),
 					phone: num,
 				}),
 			};
@@ -73,7 +72,21 @@ const ProfileContactInfoSec = () => {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, []);
+
+		fetch("https://alumnimanagmentsys12.000webhostapp.com/APIs/get_phone.php", {
+			method: "POST",
+			body: JSON.stringify({
+				userID: localStorage.getItem("UserID"),
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setPhone(data.phone);
+				console.log(data.phone);
+			})
+			.catch((error) => console.log(error));
+	}, [phone]);
+
 	return (
 		<section className={"ProfileContactInfo sec"}>
 			<h1 className="sec-title position-relative">
@@ -100,9 +113,13 @@ const ProfileContactInfoSec = () => {
 						<span className="icon">
 							<img src={Keypad} alt="" />
 						</span>
-						<span className="text-black-50 add-phone">
-							Add Your Phone Number
-						</span>
+						{phone === null ? (
+							<span className="text-black-50 add-phone">
+								Add Your Phone Number
+							</span>
+						) : (
+							<span>{phone}</span>
+						)}
 					</h1>
 				</div>
 				<div className="col-12 col-md-6">
