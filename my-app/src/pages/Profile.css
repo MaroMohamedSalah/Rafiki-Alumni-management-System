@@ -54,21 +54,35 @@
 }
 /* ---  */
 
-/* profile edit btn  */
-.AlumniProfile .Edit-btn {
-	background-color: var(--Alumni-color);
+/* profile edit & generate cv btns  */
+.AlumniProfile .Edit-btn,
+.profile .GenerateCV {
 	border-radius: 22px;
 	color: white;
 	border: 1px solid black;
+	margin-right: 5px;
+}
+.profile .GenerateCV {
+	background-color: #39b581;
+}
+.AlumniProfile .Edit-btn {
+	background-color: var(--Alumni-color);
 }
 .AlumniProfile .Edit-btn i {
 	font-size: 0.85em;
 	margin-right: 5px;
 }
 @media (max-width: 767px) {
-	.AlumniProfile .Edit-btn {
+	.AlumniProfile .Edit-btn,
+	.profile .GenerateCV {
 		position: absolute;
 		top: 10px;
+	}
+	.AlumniProfile .Edit-btn {
+		right: 0;
+	}
+	.profile .GenerateCV {
+		right: 30px;
 	}
 	.AlumniProfile .Edit-btn i {
 		margin-right: 0px;
@@ -83,6 +97,7 @@
 	margin: 20px 0px;
 	width: 100%;
 	padding: 19px;
+	min-height: calc(100% - 20px);
 }
 .profile .sec .visibility {
 	cursor: pointer;
@@ -233,5 +248,12 @@
 }
 .ProfileEdu .status div:nth-of-type(2) h5 {
 	background-color: var(--Alumni-color);
+}
+/* ---  */
+/* Profile cv */
+.ProfileCV .uploadCV {
+	background-color: #bbbbbb;
+	border: 1px solid;
+	border-radius: 19px;
 }
 /* ---  */

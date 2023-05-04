@@ -1,5 +1,7 @@
+import { useState } from "react";
 import Backbtn from "../components/Backbtn";
 import ProfileAboutSec from "../components/ProfileAboutSec";
+import ProfileCV from "../components/ProfileCV";
 import ProfileContactInfoSec from "../components/ProfileContactInfoSec";
 import ProfileEditBtn from "../components/ProfileEditBtn";
 import ProfileEdu from "../components/ProfileEdu";
@@ -12,7 +14,9 @@ import ProfileSkills from "../components/ProfileSkills";
 import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
+import GenerateCV from "../components/GenerateCV";
 const AlumniProfile = () => {
+	const [completeProgress, setCompleteProgress] = useState("10");
 	return (
 		<div className="AlumniProfile profile">
 			<div className="container">
@@ -25,7 +29,7 @@ const AlumniProfile = () => {
 					btnTopMobile={"10px"}
 				/>
 
-				<div className="row">
+				<div className="row mt-5">
 					<div className="col-12 col-md-2">
 						<ProfileImg />
 					</div>
@@ -40,8 +44,9 @@ const AlumniProfile = () => {
 							<ProfileJobTitle />
 						</div>
 					</div>
-					<div className="col-0 col-md-4 d-none d-md-block"></div>
-					<div className="col-md-2 d-flex flex-column justify-content-center align-items-end">
+					<div className="col-0 col-md-3 d-none d-md-block"></div>
+					<div className="col-md-3 d-flex flex-row justify-content-center align-items-center">
+						<GenerateCV />
 						<ProfileEditBtn />
 					</div>
 				</div>
@@ -50,8 +55,9 @@ const AlumniProfile = () => {
 					<div className="col-12 col-md-6">
 						<ProfileURLsSec />
 					</div>
+
 					<div className="col-12 col-md-6">
-						<ProfileURLsSec />
+						<ProfileCV progressPercentage={completeProgress} />
 					</div>
 				</div>
 

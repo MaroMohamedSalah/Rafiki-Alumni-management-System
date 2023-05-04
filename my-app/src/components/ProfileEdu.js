@@ -26,8 +26,8 @@ const ProfileEdu = () => {
 				<ul className="edu-list">
 					<li>
 						<div className="d-flex justify-content-between align-items-center">
-							<h1>Studying level</h1>
-							<h1>2019-2023</h1>
+							<h3 className="fw-bold">Studying level</h3>
+							<h3>2019-2023</h3>
 						</div>
 
 						<h5 className="academic-specialization">
