@@ -13,6 +13,9 @@ import ForgetPass from "./pages/ForgetPass";
 import SendEmail from "./pages/SendEmail";
 import AlumniProfile from "./pages/AlumniProfile";
 import HRprofile from "./pages/HRprofile";
+import StudentProfile from "./pages/StudentProfile";
+import AdminProfile from "./pages/AdminProfile";
+import ProfessorProfile from "./pages/ProfessorProfile";
 
 function App() {
 	return (
@@ -29,6 +32,9 @@ function App() {
 					<Route path="/sendEmail" element={<SendEmail />} />
 					<Route path="/alumniProfile" element={<AlumniProfile />} />
 					<Route path="/hrProfile" element={<HRprofile />} />
+					<Route path="/studentProfile" element={<StudentProfile />} />
+					<Route path="/adminProfile" element={<AdminProfile />} />
+					<Route path="/professorProfile" element={<ProfessorProfile />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

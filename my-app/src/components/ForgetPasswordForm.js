@@ -4,9 +4,11 @@ import icon1 from "../imgs/sign up 4.svg";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SendEmail from "../pages/SendEmail";
+import axios from "axios";
 
 const ForgetPasswordForm = () => {
 	const [emailError, setEmailError] = useState("");
+	const [email, setEmail] = useState("");
 	const navigate = useNavigate();
 	const handelFormSubmit = (e) => {
 		e.preventDefault();
@@ -14,6 +16,21 @@ const ForgetPasswordForm = () => {
 			navigate("/sendEmail");
 		}
 	};
+
+	useEffect(() => {
+		axios
+			.get(
+				`https://alumnimanagmentsys12.000webhostapp.com/APIs/get_email.php?user_id=${localStorage.getItem(
+					"UserID"
+				)}`
+			)
+			.then((response) => {
+				setEmail(response.data.email);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	});
 	return (
 		<>
 			<div className="introText p-4 w-100">
@@ -38,6 +55,7 @@ const ForgetPasswordForm = () => {
 								placeholder="Email"
 								aria-label="Email"
 								aria-describedby="basic-addon1"
+								// value={email}
 								onChange={(e) => {
 									if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)) {
 										setEmailError("Invalid Email Address");

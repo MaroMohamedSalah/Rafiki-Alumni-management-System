@@ -48,7 +48,7 @@ const ProfileContactInfoSec = () => {
 				Swal.fire({
 					title: result.message,
 				});
-				window.location.reload();
+				setPhone(num);
 			} catch (error) {
 				console.error(error);
 				Swal.fire({
@@ -110,7 +110,7 @@ const ProfileContactInfoSec = () => {
 			</h1>
 			<div className="not-empty-sec row">
 				<div className="col-12 col-md-6">
-					<h1 onClick={addPhoneNumber}>
+					<h1 className="phone-number" onClick={addPhoneNumber}>
 						<span className="icon">
 							<img src={Keypad} alt="" />
 						</span>
@@ -119,7 +119,12 @@ const ProfileContactInfoSec = () => {
 								Add Your Phone Number
 							</span>
 						) : (
-							<span>{phone}</span>
+							<>
+								<span>{phone}</span>
+								<span className="edit" onClick={addPhoneNumber}>
+									<i className="fa-solid fa-pen-to-square"></i>
+								</span>
+							</>
 						)}
 					</h1>
 				</div>

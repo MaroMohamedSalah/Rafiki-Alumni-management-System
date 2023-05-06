@@ -45,9 +45,9 @@ const AlumniProfile = () => {
 						</div>
 					</div>
 					<div className="col-0 col-md-3 d-none d-md-block"></div>
-					<div className="col-md-3 d-flex flex-row justify-content-center align-items-center">
+					<div className="col-md-3 d-flex flex-row justify-content-end align-items-center">
 						<GenerateCV />
-						<ProfileEditBtn />
+						{/* <ProfileEditBtn /> */}
 					</div>
 				</div>
 

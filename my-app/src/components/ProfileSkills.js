@@ -17,7 +17,7 @@ const ProfileSkills = () => {
 					<img src={skillIcon} alt="" />
 				</span>{" "}
 				Skills
-				<OverlayTrigger
+				{/* <OverlayTrigger
 					overlay={
 						<Tooltip id="my-tooltip" style={{ marginBottom: "10px" }}>
 							Visibility
@@ -40,7 +40,7 @@ const ProfileSkills = () => {
 					<div className="add position-absolute" id="add-skill">
 						<i className="fa-solid fa-plus"></i>
 					</div>
-				</OverlayTrigger>
+				</OverlayTrigger> */}
 			</h1>
 			{isEmpty === true ? (
 				<div className="empty-sec position-relative">

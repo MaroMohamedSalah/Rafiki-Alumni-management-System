@@ -75,21 +75,31 @@ const Login = () => {
 						text: `You Logged in successfully, as ${data.actor}!`,
 						icon: "success",
 					});
-					setTimeout(() => {
-						// Redirect to Actor profile page after 3 seconds
-						switch (data.actor) {
-							case "Alumni":
-								navigate("/alumniProfile");
-								break;
 
-							case "HR":
-								navigate("/hrProfile");
-								break;
+					// Redirect to Actor profile page
+					switch (data.actor) {
+						case "Alumni":
+							navigate("/alumniProfile");
+							break;
 
-							default:
-								break;
-						}
-					}, 3000);
+						case "HR":
+							navigate("/hrProfile");
+							break;
+						case "Current student":
+							navigate("/studentProfile");
+							break;
+
+						case "Admin":
+							navigate("/adminProfile");
+							break;
+
+						case "Professors":
+							navigate("/professorProfile");
+							break;
+
+						default:
+							break;
+					}
 
 					console.log("Logged in successful!", data);
 				} else {
@@ -103,6 +113,7 @@ const Login = () => {
 			}
 		}
 	};
+
 	return (
 		<div className="Auth Login">
 			<div className="container-fluid">

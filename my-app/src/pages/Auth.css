@@ -9,6 +9,18 @@
 .Auth .container-fluid .row {
 	min-height: inherit;
 }
+.Auth ::selection {
+	color: white;
+}
+.AlumniSignup ::selection {
+	background-color: var(--Alumni-color);
+}
+.HRSignup ::selection {
+	background-color: var(--HR-color);
+}
+.StudentSignup ::selection {
+	background-color: var(--Student-color);
+}
 .AlumniSignup .row > div:nth-child(1) {
 	background-color: var(--Alumni-color);
 }

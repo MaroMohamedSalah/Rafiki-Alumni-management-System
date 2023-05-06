@@ -5,39 +5,35 @@ import Swal from "sweetalert2";
 
 const ProfilePersonalInfo = () => {
 	const [birthDay, setBirthDay] = useState("");
-	const addAddress = async () => {
-		const { value: num } = await Swal.fire({
-			title: "Please Enter Your Phone Number",
-			input: "text",
-			inputAttributes: {
-				autocapitalize: "off",
+	const [country, setCountry] = useState(null);
+
+	const addCountry = async () => {
+		// Fetch list of all countries
+		const countriesResponse = await fetch("https://restcountries.com/v3.1/all");
+		const countriesData = await countriesResponse.json();
+		const countries = countriesData.map((country) => country.name.common);
+
+		// Display select dialog for country
+		const { value: selectedCountry } = await Swal.fire({
+			title: "Please Select Your Country",
+			input: "select",
+			inputOptions: {
+				...countries,
 			},
 			showCancelButton: true,
 			confirmButtonText: "ADD",
-			showLoaderOnConfirm: true,
-			preConfirm: (num) => {
-				// validate the phone number using a regular expression
-				const phonePattern = /^[0-9]{10}$/;
-				if (!phonePattern.test(num)) {
-					Swal.showValidationMessage(
-						"Please enter a valid 10-digit phone number"
-					);
-					return;
-				}
-				return num;
-			},
 			allowOutsideClick: () => !Swal.isLoading(),
 		});
 
-		if (num) {
-			const userId = localStorage.getItem("UserID");
+		if (selectedCountry) {
+			// Send address to server
 			const url =
-				"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_phone.php";
+				"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_country.php";
 			const options = {
 				method: "POST",
 				body: JSON.stringify({
-					userId: parseInt(localStorage.getItem("UserID")),
-					phone: num,
+					userID: parseInt(localStorage.getItem("UserID")),
+					country: countries[selectedCountry],
 				}),
 			};
 
@@ -47,11 +43,12 @@ const ProfilePersonalInfo = () => {
 				Swal.fire({
 					title: result.message,
 				});
+				setCountry(countries[selectedCountry]);
 			} catch (error) {
 				console.error(error);
 				Swal.fire({
 					title: "Error occurred",
-					text: "Failed to add phone number",
+					text: "Failed to add address",
 					icon: "error",
 				});
 			}
@@ -59,18 +56,21 @@ const ProfilePersonalInfo = () => {
 	};
 
 	useEffect(() => {
-		axios
-			.get(
-				`https://alumnimanagmentsys12.000webhostapp.com/APIs/get_email.php?user_id=${localStorage.getItem(
-					"UserID"
-				)}`
-			)
-			.then((response) => {
-				// setEmail(response.data.email);
+		fetch(
+			"https://alumnimanagmentsys12.000webhostapp.com/APIs/get_country.php",
+			{
+				method: "POST",
+				body: JSON.stringify({
+					userID: localStorage.getItem("UserID"),
+				}),
+			}
+		)
+			.then((response) => response.json())
+			.then((data) => {
+				setCountry(data.country);
+				console.log(data);
 			})
-			.catch((error) => {
-				console.log(error);
-			});
+			.catch((error) => console.log(error));
 	}, []);
 	return (
 		<section className={"PersonalInformation sec"}>
@@ -94,11 +94,22 @@ const ProfilePersonalInfo = () => {
 			</h1>
 			<div className="row not-empty-sec p-3">
 				<div className="col-12 col-md-6">
-					<h1 onClick={addAddress}>
+					<h1 onClick={addCountry}>
 						<span className="icon">
 							<i className="fa-solid fa-location-dot"></i>
 						</span>
-						<span className="text-black-50 add-address">Add Your Country</span>
+						{country === null ? (
+							<span className="text-black-50 add-address">
+								Add Your Country
+							</span>
+						) : (
+							<>
+								<span>{country}</span>
+								<span className="edit" onClick={addCountry}>
+									<i className="fa-solid fa-pen-to-square"></i>
+								</span>
+							</>
+						)}
 					</h1>
 				</div>
 				<div className="col-12 col-md-6">
@@ -110,9 +121,7 @@ const ProfilePersonalInfo = () => {
 							<p class="placeholder-glow w-50 m-0 d-flex align-items-center">
 								<span class="placeholder w-100"></span>
 							</p>
-						) : (
-							<address></address>
-						)}
+						) : null}
 					</h1>
 				</div>
 			</div>

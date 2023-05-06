@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 const ProfileName = () => {
-	const [first_name, setFirst_name] = useState("");
-	const [last_name, setLast_name] = useState("");
+	const [first_name, setFirst_name] = useState(null);
+	const [last_name, setLast_name] = useState(null);
 	useEffect(() => {
 		fetch("https://alumnimanagmentsys12.000webhostapp.com/APIs/get_name.php", {
 			method: "POST",
@@ -18,10 +18,10 @@ const ProfileName = () => {
 				console.log(first_name);
 			})
 			.catch((error) => console.log(error));
-	}, []);
+	}, [first_name]);
 	return (
 		<h1 className="name">
-			{first_name === "" || last_name === "" ? (
+			{first_name === null || last_name === null ? (
 				<p class="placeholder-glow" style={{ width: "200px" }}>
 					<span class="placeholder w-100"></span>
 				</p>

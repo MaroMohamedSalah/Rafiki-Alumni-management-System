@@ -3,6 +3,24 @@
 	min-height: 100vh;
 	padding: 35px 0px;
 }
+.profile ::selection {
+	color: white;
+}
+.AlumniProfile ::selection {
+	background-color: var(--Alumni-color);
+}
+.HRprofile ::selection {
+	background-color: var(--HR-color);
+}
+.StudentProfile ::selection {
+	background-color: var(--Student-color);
+}
+.AdminProfile ::selection {
+	background-color: var(--Admin-color);
+}
+.ProfessorProfile ::selection {
+	background-color: var(--Professor-color);
+}
 /* ---  */
 
 /* Profile img and general info  */
@@ -40,6 +58,12 @@
 .StudentProfile .ProfileImg .label {
 	background: var(--Student-color);
 }
+.AdminProfile .ProfileImg .label {
+	background: var(--Admin-color);
+}
+.ProfessorProfile .ProfileImg .label {
+	background: var(--Professor-color);
+}
 .profile .ProfileImg .userImg {
 	font-size: 4em;
 	transition: all var(--main-transition) ease-in-out;
@@ -69,11 +93,14 @@
 	.profile .ProfileImg i {
 		font-size: 1em;
 	}
+	.profile .name {
+		font-size: 30px;
+		margin-top: 10px;
+	}
 }
 /* ---  */
 
-/* profile edit & generate cv btns  */
-.profile .Edit-btn,
+/* generate cv btns  */
 .profile .GenerateCV {
 	border-radius: 22px;
 	color: white;
@@ -83,33 +110,10 @@
 .profile .GenerateCV {
 	background-color: #39b581;
 }
-.AlumniProfile .Edit-btn {
-	background-color: var(--Alumni-color);
-}
-.HRprofile .Edit-btn {
-	background-color: var(--HR-color);
-}
-.StudentProfile .Edit-btn {
-	background-color: var(--Student-color);
-}
-.profile .Edit-btn i {
-	font-size: 0.85em;
-	margin-right: 5px;
-}
 @media (max-width: 767px) {
-	.profile .Edit-btn,
 	.profile .GenerateCV {
 		position: absolute;
 		top: 10px;
-	}
-	.profile .Edit-btn {
-		right: 0;
-	}
-	.profile .GenerateCV {
-		right: 30px;
-	}
-	.profile .Edit-btn i {
-		margin-right: 0px;
 	}
 }
 /* ---  */
@@ -238,6 +242,12 @@
 .StudentProfile .url-list a:hover {
 	color: var(--Student-color);
 }
+.AdminProfile .url-list a:hover {
+	color: var(--Admin-color);
+}
+.ProfessorProfile .url-list a:hover {
+	color: var(--Professor-color);
+}
 .ProfileURLs .url-list li .icon {
 	margin-right: 10px;
 	font-size: 20px;
@@ -258,6 +268,9 @@
 .profile .ProfileContactInfo .not-empty-sec h1,
 .profile .PersonalInformation .not-empty-sec h1 {
 	font-size: 32px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
 }
 .profile .ProfileContactInfo .not-empty-sec h1 .icon,
 .profile .PersonalInformation .not-empty-sec h1 .icon {
@@ -267,6 +280,34 @@
 .profile .PersonalInformation .not-empty-sec .add-address {
 	cursor: pointer;
 	transition: all var(--main-transition) ease-in-out;
+}
+.profile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.profile .PersonalInformation .not-empty-sec h1 .edit {
+	font-size: 19px;
+	margin: auto;
+	height: 100%;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.AlumniProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.AlumniProfile .PersonalInformation .not-empty-sec h1 .edit {
+	color: var(--Alumni-color);
+}
+.HRprofile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.HRprofile .PersonalInformation .not-empty-sec h1 .edit {
+	color: var(--HR-color);
+}
+.StudentProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.StudentProfile .PersonalInformation .not-empty-sec h1 .edit {
+	color: var(--Student-color);
+}
+.AdminProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.AdminProfile .PersonalInformation .not-empty-sec h1 .edit {
+	color: var(--Admin-color);
+}
+.ProfessorProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.ProfessorProfile .PersonalInformation .not-empty-sec h1 .edit {
+	color: var(--Professor-color);
 }
 .AlumniProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
 .AlumniProfile .PersonalInformation .not-empty-sec .add-address:hover {
@@ -279,6 +320,14 @@
 .StudentProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
 .StudentProfile .PersonalInformation .not-empty-sec .add-address:hover {
 	color: var(--Student-color) !important;
+}
+.AdminProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
+.AdminProfile .PersonalInformation .not-empty-sec .add-address:hover {
+	color: var(--Admin-color) !important;
+}
+.ProfessorProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
+.ProfessorProfile .PersonalInformation .not-empty-sec .add-address:hover {
+	color: var(--Professor-color) !important;
 }
 .profile .ProfileContactInfo .not-empty-sec a,
 .profile .PersonalInformation .not-empty-sec a {
@@ -318,6 +367,12 @@
 }
 .StudentProfile .ProfileEdu .status div:nth-of-type(2) h5 {
 	background-color: var(--Student-color);
+}
+.AdminProfile .ProfileEdu .status div:nth-of-type(2) h5 {
+	background-color: var(--Admin-color);
+}
+.ProfessorProfile .ProfileEdu .status div:nth-of-type(2) h5 {
+	background-color: var(--Professor-color);
 }
 /* ---  */
 /* Profile cv */

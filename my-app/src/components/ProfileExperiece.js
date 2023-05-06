@@ -16,7 +16,7 @@ const ProfileExperience = () => {
 					<i className="fa-solid fa-briefcase"></i>
 				</span>{" "}
 				Experience
-				<OverlayTrigger
+				{/* <OverlayTrigger
 					overlay={
 						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
 							Visibility
@@ -27,7 +27,7 @@ const ProfileExperience = () => {
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-earth-americas"></i>
 					</div>
-				</OverlayTrigger>
+				</OverlayTrigger> */}
 			</h1>
 			{isEmpty === true ? (
 				<div className="empty-sec position-relative">
