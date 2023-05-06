@@ -26,6 +26,11 @@ const EmailInput = ({ emailError, setEmailError }) => {
 			.catch((error) => console.error("Error:", error));
 	};
 
+	const makeVibrate = () => {
+		if ("vibrate" in navigator) {
+			navigator.vibrate([50]);
+		}
+	};
 	return (
 		<div className="email mb-3">
 			<div className="input-group p-2">
@@ -48,6 +53,7 @@ const EmailInput = ({ emailError, setEmailError }) => {
 							emailChecker(e.target.value);
 						}
 					}}
+					onClick={makeVibrate}
 				/>
 			</div>
 			<h5 className="error">{emailError}</h5>

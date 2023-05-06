@@ -132,7 +132,11 @@ const AlumniSignup = () => {
 			}
 		}
 	};
-
+	const makeVibrate = () => {
+		if ("vibrate" in navigator) {
+			navigator.vibrate([50]);
+		}
+	};
 	return (
 		<div className="Auth AlumniSignup">
 			<div className="container-fluid">
@@ -186,7 +190,11 @@ const AlumniSignup = () => {
 									/>
 								</div>
 								<div className="submit text-center position-absolute w-100">
-									<button className="btn px-5" type="submit">
+									<button
+										className="btn px-5"
+										type="submit"
+										onClick={makeVibrate}
+									>
 										{submitBtnContent}
 									</button>
 								</div>

@@ -76,6 +76,20 @@ const Login = () => {
 						icon: "success",
 					});
 
+					// Display welcome notification with vibration
+					if (
+						"Notification" in window &&
+						Notification.permission === "granted"
+					) {
+						const notification = new Notification("Welcome Back!", {
+							body: `Hey there, ${data.username}! Thanks for logging in. Check out your profile.`,
+						});
+
+						if ("vibrate" in navigator) {
+							navigator.vibrate([100, 50, 200, 50, 100]);
+						}
+					}
+
 					// Redirect to Actor profile page
 					switch (data.actor) {
 						case "Alumni":

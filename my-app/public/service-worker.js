@@ -1,11 +1,6 @@
 /* eslint-disable no-restricted-globals */
 const CACHE_NAME = "my-app-cache";
-const urlsToCache = [
-	"/",
-	"/index.html",
-	"/manifest.json",
-	// Add the URLs of your app's assets here
-];
+const urlsToCache = ["./", "./index.html", "./manifest.json"];
 
 self.addEventListener("install", (event) => {
 	event.waitUntil(
@@ -20,3 +15,11 @@ self.addEventListener("fetch", (event) => {
 			.then((response) => response || fetch(event.request))
 	);
 });
+
+if ("Notification" in self && Notification.permission === "default") {
+	Notification.requestPermission().then((permission) => {
+		if (permission === "granted") {
+			console.log("Notification permission granted.");
+		}
+	});
+}

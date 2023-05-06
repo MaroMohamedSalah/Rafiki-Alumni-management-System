@@ -16,6 +16,12 @@ const CurrantStudentSignup = () => {
 	const [confirmPass, setConfirmPass] = useState("");
 	const navigate = useNavigate(); // Get navigate function from react-router-dom
 
+	const makeVibrate = () => {
+		if ("vibrate" in navigator) {
+			navigator.vibrate([50]);
+		}
+	};
+
 	// Define state variables for error messages
 	const [nationalIDError, setNationalIDError] = useState();
 	const [collageIDError, setCollageIDError] = useState();
@@ -192,7 +198,11 @@ const CurrantStudentSignup = () => {
 									/>
 								</div>
 								<div className="submit text-center position-absolute w-100">
-									<button className="btn px-5 m-0" type="submit">
+									<button
+										className="btn px-5 m-0"
+										type="submit"
+										onClick={makeVibrate}
+									>
 										{submitBtnContent}
 									</button>
 								</div>
