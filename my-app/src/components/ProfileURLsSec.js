@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-const ProfileURLsSec = () => {
+const ProfileURLsSec = ({ setCompleteProgress }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [integrationsURLs, setIntegrationsURLs] = useState();
-	const [linkedin, setLinkedin] = useState("");
 
 	const getURLs = () => {
 		fetch(
@@ -65,17 +64,22 @@ const ProfileURLsSec = () => {
 			title: "Add Your Accounts URLs",
 			html: `
       <form>
-        <div class="form-group">
-          <label for="linkedin">LinkedIn:</label>
-          <input type="text" name="linkedin" id="linkedin" value=${linkedin}>
+		<div class="input-box">
+			<input type="text" name="linkedin" id="linkedin">
+            <span>Linkedin</span>
+            <i></i>
         </div>
-        <div class="form-group">
-          <label for="github">GitHub:</label>
-          <input type="text" name="github" id="github">
+		
+		<div class="input-box">
+			<input type="text" name="github" id="github">
+            <span>Github</span>
+            <i></i>
         </div>
-        <div class="form-group">
-          <label for="behance">Behance:</label>
-          <input type="text" name="behance" id="behance">
+
+		<div class="input-box">
+			<input type="text" name="behance" id="behance">
+            <span>Behance</span>
+            <i></i>
         </div>
       </form>
     `,
@@ -144,7 +148,9 @@ const ProfileURLsSec = () => {
 								<span className="icon linkedin">
 									<i className="fa-brands fa-linkedin"></i>
 								</span>{" "}
-								<a href={u.url_value}>Linkedin</a>
+								<a href={u.url_value} target="_blank" rel="noreferrer">
+									Linkedin
+								</a>
 							</li>
 						);
 					case "github":
@@ -153,7 +159,9 @@ const ProfileURLsSec = () => {
 								<span className="icon github">
 									<i className="fa-brands fa-github"></i>
 								</span>{" "}
-								<a href={u.url_value}>Github</a>
+								<a href={u.url_value} target="_blank" rel="noreferrer">
+									Github
+								</a>
 							</li>
 						);
 					case "behance":
@@ -162,7 +170,9 @@ const ProfileURLsSec = () => {
 								<span className="icon behance">
 									<i className="fa-brands fa-square-behance"></i>
 								</span>{" "}
-								<a href={u.url_value}>Behance</a>
+								<a href={u.url_value} target="_blank" rel="noreferrer">
+									Behance
+								</a>
 							</li>
 						);
 					default:

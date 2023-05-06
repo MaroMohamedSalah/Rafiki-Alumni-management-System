@@ -3,7 +3,6 @@ import Backbtn from "../components/Backbtn";
 import ProfileAboutSec from "../components/ProfileAboutSec";
 import ProfileCV from "../components/ProfileCV";
 import ProfileContactInfoSec from "../components/ProfileContactInfoSec";
-import ProfileEditBtn from "../components/ProfileEditBtn";
 import ProfileEdu from "../components/ProfileEdu";
 import ProfileExperience from "../components/ProfileExperiece";
 import ProfileImg from "../components/ProfileImg";
@@ -16,7 +15,13 @@ import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 const AlumniProfile = () => {
-	const [completeProgress, setCompleteProgress] = useState("10");
+	const [completeProgress, setCompleteProgress] = useState("40");
+
+	// // define a function to update the progress
+	// const updateProgress = () => {
+	// 	const progressIncrement = 10; // increment by 10% for each completed section
+	// 	setCompleteProgress((prevProgress) => prevProgress + progressIncrement);
+	// };
 	return (
 		<div className="AlumniProfile profile">
 			<div className="container">
@@ -47,13 +52,12 @@ const AlumniProfile = () => {
 					<div className="col-0 col-md-3 d-none d-md-block"></div>
 					<div className="col-md-3 d-flex flex-row justify-content-end align-items-center">
 						<GenerateCV />
-						{/* <ProfileEditBtn /> */}
 					</div>
 				</div>
 
 				<div className="row">
 					<div className="col-12 col-md-6">
-						<ProfileURLsSec />
+						<ProfileURLsSec setCompleteProgress={setCompleteProgress} />
 					</div>
 
 					<div className="col-12 col-md-6">
@@ -87,7 +91,7 @@ const AlumniProfile = () => {
 
 				<div className="row">
 					<div className="col-12">
-						<ProfileEdu />
+						<ProfileEdu actor={"Alumni"} />
 					</div>
 				</div>
 

@@ -87,7 +87,7 @@ const StudentProfile = () => {
 
 				<div className="row">
 					<div className="col-12">
-						<ProfileEdu />
+						<ProfileEdu actor={"Student"} />
 					</div>
 				</div>
 

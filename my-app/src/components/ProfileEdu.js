@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
-const ProfileEdu = () => {
+const ProfileEdu = ({ actor }) => {
 	return (
 		<section className={"ProfileEdu sec"}>
 			<h1 className="sec-title position-relative">
@@ -66,7 +66,7 @@ const ProfileEdu = () => {
 								<h5>Status:</h5>
 							</div>
 							<div className="col-6">
-								<h5>Alumni</h5>
+								<h5>{actor}</h5>
 							</div>
 						</div>
 					</li>
