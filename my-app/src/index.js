@@ -5,17 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 if ("serviceWorker" in navigator) {
-	window.addEventListener("load", () => {
-		navigator.serviceWorker
-			.register("/service-worker.js")
-			.then((registration) => {
-				console.log("Service worker registered:", registration);
-			})
-			.catch((error) => {
-				console.log("Service worker registration failed:", error);
-			});
+	window.addEventListener("load", function () {
+		navigator.serviceWorker.register("/sw.js");
 	});
 }
+
+// add Notification and ask for notification
+Notification.requestPermission((status) => {
+	console.log("status", status);
+});
 
 ReactDOM.render(
 	<React.StrictMode>
