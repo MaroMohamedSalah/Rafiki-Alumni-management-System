@@ -138,7 +138,9 @@ const ProfileContactInfoSec = () => {
 								<span class="placeholder w-100"></span>
 							</p>
 						) : (
-							<a href={`mailto:${email}`}>{email}</a>
+							<a className="email" href={`mailto:${email}`}>
+								{email}
+							</a>
 						)}
 					</h1>
 				</div>

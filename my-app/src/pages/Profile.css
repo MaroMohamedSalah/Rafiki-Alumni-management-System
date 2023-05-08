@@ -381,6 +381,16 @@
 	text-decoration: none !important;
 	color: black;
 }
+.profile .ProfileContactInfo .email {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@media (max-width: 767px) {
+	.profile .ProfileContactInfo .email {
+		font-size: 20px;
+	}
+}
 /* ---  */
 
 /* Profile skills  */
