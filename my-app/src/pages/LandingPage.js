@@ -13,7 +13,6 @@ const LandingPage = () => {
 						<button className="btn p-3 m-5">Signup</button>
 					</Link>
 				</div>
-				<ProgressLine />
 			</div>
 		</div>
 	);

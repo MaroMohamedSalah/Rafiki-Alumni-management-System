@@ -4,7 +4,7 @@ import Keypad from "../imgs/Keypad.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ProfileContactInfoSec = () => {
+const ProfileContactInfoSec = ({ setCompleteProgress, completeProgress }) => {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState(null);
 	const addPhoneNumber = async () => {
@@ -86,6 +86,11 @@ const ProfileContactInfoSec = () => {
 				console.log(data.phone);
 			})
 			.catch((error) => console.log(error));
+
+		// if (phone !== null) {
+		// 	console.log(completeProgress);
+		// 	setCompleteProgress(completeProgress + 10);
+		// }
 	}, [phone]);
 
 	return (

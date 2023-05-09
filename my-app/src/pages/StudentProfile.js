@@ -16,7 +16,6 @@ import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 const StudentProfile = () => {
-	const [completeProgress, setCompleteProgress] = useState("10");
 	return (
 		<div className="StudentProfile profile">
 			<div className="container">
@@ -47,7 +46,6 @@ const StudentProfile = () => {
 					<div className="col-0 col-md-3 d-none d-md-block"></div>
 					<div className="col-md-3 d-flex flex-row justify-content-end align-items-center">
 						<GenerateCV />
-						{/* <ProfileEditBtn /> */}
 					</div>
 				</div>
 
@@ -57,7 +55,7 @@ const StudentProfile = () => {
 					</div>
 
 					<div className="col-12 col-md-6">
-						<ProfileCV progressPercentage={completeProgress} />
+						<ProfileCV />
 					</div>
 				</div>
 

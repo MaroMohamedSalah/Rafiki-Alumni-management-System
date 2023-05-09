@@ -30,7 +30,7 @@ const AdminProfile = () => {
 
 				<div className="row mt-5">
 					<div className="col-12 col-md-2">
-						<ProfileImg actor={"Alumni"} />
+						<ProfileImg actor={"Admin"} />
 					</div>
 					<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
 						<div className="order-md-1 order-2 w-100">
@@ -47,11 +47,17 @@ const AdminProfile = () => {
 
 				<div className="row">
 					<div className="col-12 col-md-6">
-						<ProfileURLsSec />
+						<ProfileURLsSec
+							setCompleteProgress={setCompleteProgress}
+							completeProgress={completeProgress}
+						/>
 					</div>
 
 					<div className="col-12 col-md-6">
-						<ProfileCV progressPercentage={completeProgress} />
+						<ProfileCV
+							progressPercentage={completeProgress}
+							setProgressPercentage={setCompleteProgress}
+						/>
 					</div>
 				</div>
 

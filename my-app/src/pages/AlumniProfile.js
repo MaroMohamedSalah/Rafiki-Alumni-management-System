@@ -15,13 +15,6 @@ import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 const AlumniProfile = () => {
-	const [completeProgress, setCompleteProgress] = useState("40");
-
-	// // define a function to update the progress
-	// const updateProgress = () => {
-	// 	const progressIncrement = 10; // increment by 10% for each completed section
-	// 	setCompleteProgress((prevProgress) => prevProgress + progressIncrement);
-	// };
 	return (
 		<div className="AlumniProfile profile">
 			<div className="container">
@@ -57,11 +50,11 @@ const AlumniProfile = () => {
 
 				<div className="row">
 					<div className="col-12 col-md-6">
-						<ProfileURLsSec setCompleteProgress={setCompleteProgress} />
+						<ProfileURLsSec />
 					</div>
 
 					<div className="col-12 col-md-6">
-						<ProfileCV progressPercentage={completeProgress} />
+						<ProfileCV />
 					</div>
 				</div>
 

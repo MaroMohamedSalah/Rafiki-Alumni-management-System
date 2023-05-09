@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Swal from "sweetalert2";
 
-const ProfileURLsSec = ({ setCompleteProgress }) => {
+const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [integrationsURLs, setIntegrationsURLs] = useState();
 
@@ -21,6 +21,7 @@ const ProfileURLsSec = ({ setCompleteProgress }) => {
 				console.log(data);
 				setIntegrationsURLs(data);
 				setIsEmpty(false);
+				// setCompleteProgress(completeProgress + 10);
 			})
 			.catch((error) => console.error(error));
 	};

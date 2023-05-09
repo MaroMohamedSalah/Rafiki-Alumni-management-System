@@ -2,7 +2,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ProfileProgress from "./ProfileProgress";
 import Swal from "sweetalert2";
 
-const ProfileCV = ({ progressPercentage }) => {
+const ProfileCV = () => {
 	const addCV = () => {
 		// Define file validation function
 		const validateFile = (file) => {
@@ -105,7 +105,7 @@ const ProfileCV = ({ progressPercentage }) => {
 					Upload CV..
 				</button>
 
-				<ProfileProgress progress={progressPercentage} />
+				<ProfileProgress />
 			</div>
 		</section>
 	);

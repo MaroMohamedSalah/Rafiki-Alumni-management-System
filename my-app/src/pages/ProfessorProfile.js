@@ -3,7 +3,6 @@ import Backbtn from "../components/Backbtn";
 import ProfileAboutSec from "../components/ProfileAboutSec";
 import ProfileCV from "../components/ProfileCV";
 import ProfileContactInfoSec from "../components/ProfileContactInfoSec";
-import ProfileEdu from "../components/ProfileEdu";
 import ProfileExperience from "../components/ProfileExperiece";
 import ProfileImg from "../components/ProfileImg";
 import ProfileJobTitle from "../components/ProfileJobTitle";
@@ -15,7 +14,8 @@ import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 const ProfessorProfile = () => {
-	const [completeProgress, setCompleteProgress] = useState("10");
+	const [completeProgress, setCompleteProgress] = useState(20);
+	console.log("profile ", completeProgress);
 	return (
 		<div className="ProfessorProfile profile">
 			<div className="container">
@@ -51,7 +51,10 @@ const ProfessorProfile = () => {
 
 				<div className="row">
 					<div className="col-12 col-md-6">
-						<ProfileURLsSec />
+						<ProfileURLsSec
+							setCompleteProgress={setCompleteProgress}
+							completeProgress={completeProgress}
+						/>
 					</div>
 
 					<div className="col-12 col-md-6">
@@ -67,7 +70,10 @@ const ProfessorProfile = () => {
 
 				<div className="row">
 					<div className="col-12">
-						<ProfileContactInfoSec />
+						<ProfileContactInfoSec
+							setCompleteProgress={setCompleteProgress}
+							completeProgress={completeProgress}
+						/>
 					</div>
 				</div>
 

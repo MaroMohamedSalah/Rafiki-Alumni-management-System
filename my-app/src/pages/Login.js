@@ -75,40 +75,29 @@ const Login = () => {
 						text: `You Logged in successfully, as ${data.actor}!`,
 						icon: "success",
 					});
-
-					// Display welcome notification with vibration
-					if (
-						"Notification" in window &&
-						Notification.permission === "granted"
-					) {
-						const notification = new Notification("Welcome Back!", {
-							body: `Hey there, ${data.username}! Thanks for logging in. Check out your profile.`,
-						});
-
-						if ("vibrate" in navigator) {
-							navigator.vibrate([100, 50, 200, 50, 100]);
-						}
-					}
-
 					// Redirect to Actor profile page
 					switch (data.actor) {
 						case "Alumni":
 							navigate("/alumniProfile");
+							displayNotification(data.username);
 							break;
-
 						case "HR":
 							navigate("/hrProfile");
+							displayNotification(data.username);
 							break;
 						case "Current student":
 							navigate("/studentProfile");
+							displayNotification(data.username);
 							break;
 
 						case "Admin":
 							navigate("/adminProfile");
+							displayNotification(data.username);
 							break;
 
 						case "Professors":
 							navigate("/professorProfile");
+							displayNotification(data.username);
 							break;
 
 						default:
@@ -128,6 +117,18 @@ const Login = () => {
 		}
 	};
 
+	const displayNotification = (username) => {
+		// Display welcome notification with vibration
+		if ("Notification" in window && Notification.permission === "granted") {
+			const notification = new Notification("Welcome Back!", {
+				body: `Hey there, ${username}! Thanks for logging in. Check out your profile.`,
+			});
+
+			if ("vibrate" in navigator) {
+				navigator.vibrate([100, 50, 200, 50, 100]);
+			}
+		}
+	};
 	return (
 		<div className="Auth Login">
 			<div className="container-fluid">

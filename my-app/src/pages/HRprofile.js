@@ -9,14 +9,11 @@ import ProfileExperience from "../components/ProfileExperiece";
 import ProfileImg from "../components/ProfileImg";
 import ProfileJobTitle from "../components/ProfileJobTitle";
 import ProfileName from "../components/ProfileName";
-import ProfilePersonalInfo from "../components/ProfilePersonalInfo";
 import ProfileSkills from "../components/ProfileSkills";
 import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
-import GenerateCV from "../components/GenerateCV";
 const HRprofile = () => {
-	const [completeProgress, setCompleteProgress] = useState("10");
 	return (
 		<div className="HRprofile profile">
 			<div className="container">
@@ -49,7 +46,7 @@ const HRprofile = () => {
 					</div>
 
 					<div className="col-12 col-md-6">
-						<ProfileCV progressPercentage={completeProgress} />
+						<ProfileCV />
 					</div>
 				</div>
 
