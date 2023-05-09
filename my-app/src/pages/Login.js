@@ -116,7 +116,7 @@ const Login = () => {
 			}
 		}
 	};
-
+	console.log("v-3");
 	const displayNotification = (username) => {
 		// Display welcome notification with vibration
 		if ("Notification" in window && Notification.permission === "granted") {
@@ -126,9 +126,12 @@ const Login = () => {
 
 			if ("vibrate" in navigator) {
 				navigator.vibrate([100, 50, 200, 50, 100]);
+			} else {
+				console.log("Vibration not supported on this device.");
 			}
 		}
 	};
+
 	return (
 		<div className="Auth Login">
 			<div className="container-fluid">

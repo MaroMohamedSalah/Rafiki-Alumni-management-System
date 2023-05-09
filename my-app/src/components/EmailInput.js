@@ -46,7 +46,7 @@ const EmailInput = ({ emailError, setEmailError }) => {
 					aria-label="Email"
 					aria-describedby="basic-addon1"
 					onChange={(e) => {
-						if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)) {
+						if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
 							setEmailError("Invalid Email Address");
 						} else {
 							setEmailError("");

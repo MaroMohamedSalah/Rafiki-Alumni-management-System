@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import axios from "axios";
 import Swal from "sweetalert2";
 
 const ProfilePersonalInfo = () => {
@@ -52,6 +51,13 @@ const ProfilePersonalInfo = () => {
 					icon: "error",
 				});
 			}
+
+			// Add event listener to close popup on back button press
+			// const handlePopstate = () => {
+			// 	console.log("close");
+			// 	Swal.close();
+			// 	window.removeEventListener("popstate", handlePopstate);
+			// };
 		}
 	};
 
@@ -71,6 +77,7 @@ const ProfilePersonalInfo = () => {
 				console.log(data);
 			})
 			.catch((error) => console.log(error));
+		console.log(window.location.href);
 	}, []);
 	return (
 		<section className={"PersonalInformation sec"}>

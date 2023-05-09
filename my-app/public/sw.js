@@ -1,20 +1,20 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = "FCAI-v3";
+const CACHE_NAME = "FCAI-v4";
 const assist = [
 	"/",
 	"/index.html",
 	"../src/components/Backbtn.js",
-	"./favicon.ico",
-	"./icon-192x192.png",
-	"./manifest.json",
-	"../src/imgs/Alumni img.png",
-	"../src/pages/AlumniSignup.js",
-	"../src/pages/HRSignup.js",
-	"../src/pages/CurrantStudentSignup.js",
-	"../src/pages/AdminProfile.js",
-	"../src/pages/HRprofile.js",
-	"../src/pages/StudentProfile.js",
-	"../src/pages/AlumniProfile.js",
+	"./favicon.ico?time=" + Date.now(),
+	"./icon-192x192.png?time=" + Date.now(),
+	"./manifest.json?time=" + Date.now(),
+	"../src/imgs/Alumni img.png?time=" + Date.now(),
+	"../src/pages/AlumniSignup.js?time=" + Date.now(),
+	"../src/pages/HRSignup.js?time=" + Date.now(),
+	"../src/pages/CurrantStudentSignup.js?time=" + Date.now(),
+	"../src/pages/AdminProfile.js?time=" + Date.now(),
+	"../src/pages/HRprofile.js?time=" + Date.now(),
+	"../src/pages/StudentProfile.js?time=" + Date.now(),
+	"../src/pages/AlumniProfile.js?time=" + Date.now(),
 ];
 
 // add assist in the caches
@@ -28,33 +28,6 @@ self.addEventListener("install", (event) => {
 	);
 });
 
-// // fetch sw
-// self.addEventListener("fetch", (fetchEvent) => {
-// 	console.log("fetch done");
-// 	fetchEvent.respondWith(
-// 		caches
-// 			.match(fetchEvent.request)
-// 			.then((res) => {
-// 				return (
-// 					res ||
-// 					fetch(fetchEvent.request)
-// 						.then((fetchRes) => {
-// 							if (!(fetchEvent.request.url.indexOf("http") === 0)) return;
-// 							return caches.open(CACHE_NAME).then((cache) => {
-// 								cache.put(fetchEvent.request, fetchRes.clone());
-// 								return fetchRes;
-// 							});
-// 						})
-// 						.catch((err) => {
-// 							console.error("Error fetching:", err);
-// 						})
-// 				);
-// 			})
-// 			.catch((err) => {
-// 				console.error("Error caching:", err);
-// 			})
-// 	);
-// });
 self.addEventListener("fetch", function (event) {
 	event.respondWith(
 		caches.match(event.request).then(function (response) {
