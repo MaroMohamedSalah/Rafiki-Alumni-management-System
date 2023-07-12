@@ -2,20 +2,20 @@ import icon4 from "../imgs/sign up 4.svg";
 const EmailInput = ({ emailError, setEmailError }) => {
 	const emailChecker = (emailV) => {
 		fetch(
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/check_email.php",
+			"https://alumni-system-backend.azurewebsites.net/api/users/check_email",
 			{
 				method: "POST",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 				},
 				body: new URLSearchParams({
-					email: emailV,
+					Email: emailV,
 				}),
 			}
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				if (data.error === true) {
+				if (data.success === false) {
 					// yes -> Email is exist in our database
 					console.log(data);
 					setEmailError(data.message);

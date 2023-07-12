@@ -11,21 +11,21 @@ const UsernameInput = ({
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
 		fetch(
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/check_username.php",
+			"https://alumni-system-backend.azurewebsites.net/api/users/check_user_name",
 			{
 				method: "POST",
 				headers: {
 					"Content-Type": "application/x-www-form-urlencoded",
 				},
 				body: new URLSearchParams({
-					username: username,
+					UserName: username,
 				}),
 			}
 		)
 			.then((response) => response.json())
 			.then((data) => {
 				isMain === true && submitBtn.removeAttribute("disabled");
-				if (data.error === true) {
+				if (data.success === false) {
 					setUsernameError(data.message);
 					isMain === true && setSubmitBtnContent("Login");
 				} else {

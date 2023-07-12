@@ -62,7 +62,6 @@ const Login = () => {
 					}
 				);
 				const data = await response.json();
-
 				// Handle response from API here
 				// Example: Check if response indicates success or error
 				submitBtn.removeAttribute("disabled");

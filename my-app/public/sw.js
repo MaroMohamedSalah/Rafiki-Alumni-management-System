@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = "FCAI-v4";
+const CACHE_NAME = "FCAI-v5";
 const assist = [
 	"/",
 	"/index.html",

@@ -10,7 +10,7 @@ const NationalIdInput = ({
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
 		fetch(
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/check_national_id.php",
+			"https://alumni-system-backend.azurewebsites.net/api/users/check_national_id",
 			{
 				method: "POST",
 				headers: {
@@ -24,7 +24,7 @@ const NationalIdInput = ({
 			.then((response) => response.json())
 			.then((data) => {
 				isMain === true && submitBtn.removeAttribute("disabled");
-				if (data.error === true) {
+				if (data.success === false) {
 					// yes -> national ID is exist in our database
 					console.log(data);
 					// setIsNIDexist(true);
