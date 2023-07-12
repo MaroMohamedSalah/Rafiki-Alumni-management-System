@@ -43,7 +43,7 @@ const UsernameInput = ({
 					<img src={icon3} alt="" />
 				</span>
 				<input
-					name="username"
+					name="UserName"
 					id="username"
 					type="text"
 					className="form-control"

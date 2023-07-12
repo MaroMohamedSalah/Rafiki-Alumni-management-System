@@ -45,7 +45,7 @@ const NationalIdInput = ({
 					<img src={icon1} alt="" />
 				</span>
 				<input
-					name="NID"
+					name="National_Id"
 					id="NID"
 					type="text"
 					className="form-control"

@@ -80,7 +80,7 @@ const AlumniSignup = () => {
 			// Form data validation logic here
 			const formData = new FormData(form);
 			// Manually append the National ID to the form data
-			formData.append("NID", nationalID.value);
+			formData.append("National_Id", nationalID.value);
 			let anyInputIsEmpty = validateInputsValues(formData);
 			if (
 				!nationalIDError &&
@@ -93,7 +93,7 @@ const AlumniSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://alumnimanagmentsys12.000webhostapp.com/APIs/alumni_signup.php",
+						"https://alumni-system-backend.azurewebsites.net/api/users/alumni_signup",
 						{
 							method: "POST",
 							body: formData,
@@ -103,7 +103,7 @@ const AlumniSignup = () => {
 
 					// Handle response from API here
 					// Example: Check if response indicates success or error
-					if (response.ok) {
+					if (response.success === true) {
 						// Success
 						Swal.fire({
 							title: "Success!",

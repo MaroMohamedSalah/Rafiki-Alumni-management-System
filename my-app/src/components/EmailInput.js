@@ -38,7 +38,7 @@ const EmailInput = ({ emailError, setEmailError }) => {
 					<img src={icon4} alt="" />
 				</span>
 				<input
-					name="email"
+					name="Email"
 					id="email"
 					type="email"
 					className="form-control"
