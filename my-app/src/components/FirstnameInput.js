@@ -8,7 +8,7 @@ const FirstnameInput = ({ firstNameError }) => {
 					<img src={icon2} alt="" />
 				</span>
 				<input
-					name="fname"
+					name="FirstName"
 					id="fname"
 					type="text"
 					className="form-control"

@@ -103,17 +103,26 @@ const CurrantStudentSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://alumnimanagmentsys12.000webhostapp.com/APIs/student_signup.php",
+						"https://alumni-system-backend.azurewebsites.net/api/users/student_signup",
 						{
 							method: "POST",
-							body: formData,
+							body: JSON.stringify({
+								UserName: formData.get("UserName"),
+								Email: formData.get("Email"),
+								Password: formData.get("Password"),
+								National_Id: formData.get("National_Id"),
+								Academic_Id: formData.get("ID"),
+							}),
+							headers: {
+								"Content-Type": "application/json",
+							},
 						}
 					);
 					const data = await response.json();
 
 					// Handle response from API here
 					// Example: Check if response indicates success or error
-					if (data.success) {
+					if (response.status === 201) {
 						// Success
 						Swal.fire({
 							title: "Success!",
@@ -128,7 +137,12 @@ const CurrantStudentSignup = () => {
 						console.log("Student sign-up successful!");
 					} else {
 						// Error
-						console.error("Error: " + data.error);
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: data.message,
+						});
+						console.error("Error: " + data.message);
 					}
 				} catch (error) {
 					console.error("Error: " + error.message);

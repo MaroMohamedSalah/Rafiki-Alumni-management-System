@@ -4,7 +4,7 @@ import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
 import alumniImg from "../imgs/Alumni img 2.svg";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import UsernameInput from "../components/UsernameInput";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
@@ -96,14 +96,22 @@ const AlumniSignup = () => {
 						"https://alumni-system-backend.azurewebsites.net/api/users/alumni_signup",
 						{
 							method: "POST",
-							body: formData,
+							body: JSON.stringify({
+								UserName: formData.get("UserName"),
+								Email: formData.get("Email"),
+								Password: formData.get("Password"),
+								National_Id: formData.get("National_Id"),
+							}),
+							headers: {
+								"Content-Type": "application/json",
+							},
 						}
 					);
 					const data = await response.json();
 
 					// Handle response from API here
 					// Example: Check if response indicates success or error
-					if (response.success === true) {
+					if (response.status === 201) {
 						// Success
 						Swal.fire({
 							title: "Success!",
@@ -118,7 +126,12 @@ const AlumniSignup = () => {
 						console.log("Alumni sign-up successful!");
 					} else {
 						// Error
-						console.error("Error: " + data.error);
+						console.error("Error: " + data.message);
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: data.message,
+						});
 					}
 				} catch (error) {
 					console.error("Error: " + error.message);
@@ -139,7 +152,7 @@ const AlumniSignup = () => {
 	};
 	return (
 		<div className="Auth AlumniSignup">
-			<div className="container-fluid">
+			<div className="container-fluid" >
 				<Backbtn
 					btnColor={"white"}
 					btnSize={"25px"}

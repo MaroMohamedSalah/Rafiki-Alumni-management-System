@@ -86,7 +86,7 @@ const HRSignup = () => {
 			// Form data validation logic here
 			const formData = new FormData(form);
 			// Manually append the username to the form data
-			formData.append("username", username.value);
+			formData.append("UserName", username.value);
 			let anyInputIsEmpty = validateInputsValues(formData);
 			if (
 				!firstNameError &&
@@ -100,17 +100,26 @@ const HRSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://alumnimanagmentsys12.000webhostapp.com/APIs/hr_signup.php",
+						"https://alumni-system-backend.azurewebsites.net/api/users/hr_signup",
 						{
 							method: "POST",
-							body: formData,
+							body: JSON.stringify({
+								UserName: formData.get("UserName"),
+								Email: formData.get("Email"),
+								Password: formData.get("Password"),
+								FirstName: formData.get("FirstName"),
+								LastName: formData.get("LastName"),
+							}),
+							headers: {
+								"Content-Type": "application/json",
+							},
 						}
 					);
 					const data = await response.json();
 
 					// Handle response from API here
 					// Example: Check if response indicates success or error
-					if (data.success) {
+					if (response.status === 201) {
 						// Success
 						Swal.fire({
 							title: "Success!",
@@ -125,7 +134,12 @@ const HRSignup = () => {
 						console.log("HR sign-up successful!");
 					} else {
 						// Error
-						console.error("Error: " + data.error);
+						Swal.fire({
+							icon: "error",
+							title: "Oops...",
+							text: data.message,
+						});
+						console.error("Error: " + data.message);
 					}
 				} catch (error) {
 					console.error("Error: " + error.message);

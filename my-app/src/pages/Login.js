@@ -55,17 +55,23 @@ const Login = () => {
 			// If no errors exist, send form data to API
 			try {
 				const response = await fetch(
-					"https://alumnimanagmentsys12.000webhostapp.com/APIs/login.php",
+					"https://alumni-system-backend.azurewebsites.net/api/users/alumni_login",
 					{
 						method: "POST",
-						body: formData,
+						body: JSON.stringify({
+							UserName: formData.get("username"),
+							Password: formData.get("password"),
+						}),
+						headers: {
+							"Content-Type": "application/json",
+						},
 					}
 				);
 				const data = await response.json();
 				// Handle response from API here
 				// Example: Check if response indicates success or error
 				submitBtn.removeAttribute("disabled");
-				if (data.status !== "error") {
+				if (response.status === 200) {
 					// record the user id in localStorage
 					localStorage.setItem("UserID", data.user_id);
 					// Success
