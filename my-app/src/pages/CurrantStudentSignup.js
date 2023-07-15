@@ -129,10 +129,8 @@ const CurrantStudentSignup = () => {
 							text: "Student sign-up successful!",
 							icon: "success",
 						});
-						setTimeout(() => {
-							// Redirect to login page after 3 seconds
-							navigate("/login");
-						}, 3000);
+						// Redirect to login page
+						navigate("/login");
 
 						console.log("Student sign-up successful!");
 					} else {

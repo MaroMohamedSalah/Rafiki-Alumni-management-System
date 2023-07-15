@@ -55,7 +55,7 @@ const Login = () => {
 			// If no errors exist, send form data to API
 			try {
 				const response = await fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/alumni_login",
+					"https://alumni-system-backend.azurewebsites.net/api/users/login",
 					{
 						method: "POST",
 						body: JSON.stringify({
@@ -68,6 +68,8 @@ const Login = () => {
 					}
 				);
 				const data = await response.json();
+				const cookies = response.headers.get("Cookie");
+				console.log("Cookies:", cookies);
 				// Handle response from API here
 				// Example: Check if response indicates success or error
 				submitBtn.removeAttribute("disabled");
@@ -90,7 +92,7 @@ const Login = () => {
 							navigate("/hrProfile");
 							displayNotification(data.username);
 							break;
-						case "Current student":
+						case "Student":
 							navigate("/studentProfile");
 							displayNotification(data.username);
 							break;

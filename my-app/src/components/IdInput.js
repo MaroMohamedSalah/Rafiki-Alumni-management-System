@@ -1,3 +1,4 @@
+import { json } from "react-router";
 import icon2 from "../imgs/sign up  2.svg";
 const IdInput = ({
 	setCollageIDError,
@@ -8,21 +9,21 @@ const IdInput = ({
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		submitBtn.setAttribute("disabled", true);
 		fetch(
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/check_collageID.php",
+			"https://alumni-system-backend.azurewebsites.net/api/users/check_academic_id",
 			{
 				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-				body: new URLSearchParams({
-					ID: ID,
+				body: JSON.stringify({
+					Academic_Id: ID,
 				}),
+				headers: {
+					"Content-Type": "application/json",
+				},
 			}
 		)
 			.then((response) => response.json())
 			.then((data) => {
 				submitBtn.removeAttribute("disabled");
-				if (data.error === true) {
+				if (data.success === false) {
 					// yes -> collage ID is exist in our database
 					console.log(data);
 					setCollageIDError(data.message);

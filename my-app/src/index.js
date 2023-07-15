@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 if ("serviceWorker" in navigator) {
 	window.addEventListener("load", function () {
@@ -17,7 +19,9 @@ Notification.requestPermission((status) => {
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
