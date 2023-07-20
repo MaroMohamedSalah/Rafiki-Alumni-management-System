@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Auth.css";
 import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
-import alumniImg from "../imgs/Alumni img 2.svg";
+import alumniImg from "../imgs/alumni-img-2.svg";
 import Swal from "sweetalert2";
 import { json, useNavigate } from "react-router-dom";
 import UsernameInput from "../components/UsernameInput";
@@ -152,7 +152,7 @@ const AlumniSignup = () => {
 	};
 	return (
 		<div className="Auth AlumniSignup">
-			<div className="container-fluid" >
+			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}
 					btnSize={"25px"}

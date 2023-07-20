@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./RoleSelection.css";
-import AlumniImg from "../imgs/Alumni img.png";
+import AlumniImg from "../imgs/alumni-img.png";
 import StudentImg from "../imgs/Student img.svg";
 import HRImg from "../imgs/HR img.svg";
 import ProgressLine from "../components/ProgressLine";

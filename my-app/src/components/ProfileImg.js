@@ -1,16 +1,44 @@
-import Profile from "../imgs/Alumni img.png";
+import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-const ProfileImg = ({ actor }) => {
-	const addImg = () => {
-		// Define file validation function
+import { BeatLoader } from "react-spinners";
+
+const ProfileImg = ({ actor, profileData }) => {
+	const sessionId = localStorage.getItem("sessionId");
+	const [pic, setPic] = useState("");
+	const [loadingPic, setLoadingPic] = useState(false); // Set the initial loading state to false
+	const [uploadEndpoint, setUploadEndpoint] = useState("");
+
+	useEffect(() => {
+		// Set the initial profile picture if available
+		if (profileData.Img !== null) {
+			setPic(
+				"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
+					profileData.Img
+			);
+		}
+
+		// Set the appropriate upload endpoint based on the actor type
+		switch (actor) {
+			case "Alumni":
+				setUploadEndpoint(
+					"https://alumni-system-backend.azurewebsites.net/api/users/upload_alumni_picture"
+				);
+				break;
+			// Add cases for other actors if needed
+			default:
+				break;
+		}
+	}, [actor, profileData.Img]);
+
+	const handleImageUpload = () => {
 		const validateFile = (file) => {
 			// Check if the file is an image
 			if (!file.type.match("image.*")) {
 				return Promise.reject("Please select an image file");
 			}
-			// Check if the file size is less than 5 MB
-			if (file.size > 5 * 1024 * 1024) {
-				return Promise.reject("File size must be less than 5 MB");
+			// Check if the file size is less than 8 MB
+			if (file.size > 8 * 1024 * 1024) {
+				return Promise.reject("File size must be less than 8 MB");
 			}
 			// If all checks pass, return the file data
 			return Promise.resolve(file);
@@ -20,8 +48,8 @@ const ProfileImg = ({ actor }) => {
 		Swal.fire({
 			title: "Add/Edit Profile Picture",
 			html: `
-      <form action="path/to/upload-handler.php" method="POST" enctype="multipart/form-data">
-        <input type="file" name="profile-image" id="file-input">
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="picture" id="file-input">
       </form>
     `,
 			showCancelButton: true,
@@ -37,18 +65,20 @@ const ProfileImg = ({ actor }) => {
 		}).then((result) => {
 			// Check if the user clicked "Save" and the file was successfully uploaded
 			if (result.isConfirmed && result.value) {
-				// You can do any additional processing of the file here
-				// For example, display a preview of the image or update the profile picture in the UI
-				// Then, submit the form to the server to handle the file upload
+				setLoadingPic(true); // Set loading to true when the request starts
 				Swal.showLoading();
 				const form = document.querySelector("form");
 				const formData = new FormData(form);
 				// Use fetch or XMLHttpRequest to send the form data to the server
-				fetch("path/to/upload-handler.php", {
+				fetch(uploadEndpoint, {
 					method: "POST",
 					body: formData,
+					headers: {
+						Authorization: `Bearer ${sessionId}`,
+					},
 				})
 					.then((response) => {
+						setLoadingPic(false); // Set loading to false when the request completes
 						if (!response.ok) {
 							throw new Error("Upload failed");
 						}
@@ -56,13 +86,27 @@ const ProfileImg = ({ actor }) => {
 					})
 					.then((data) => {
 						// Handle the server response
-						Swal.fire({
-							title: "Success",
-							text: "Profile picture updated",
-							icon: "success",
-						});
+						if (data.success === true) {
+							Swal.fire({
+								title: "Success",
+								text: data.message,
+								icon: "success",
+							});
+							setPic(
+								"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
+									profileData.Img
+							);
+						} else {
+							// Handle the case when the server returns an unsuccessful response
+							Swal.fire({
+								title: "Error",
+								text: data.message,
+								icon: "error",
+							});
+						}
 					})
 					.catch((error) => {
+						setLoadingPic(false); // Set loading to false when the request completes with an error
 						// Handle errors
 						Swal.fire({
 							title: "Error",
@@ -73,10 +117,30 @@ const ProfileImg = ({ actor }) => {
 			}
 		});
 	};
+
 	return (
-		<div className="ProfileImg img-fluid" id="profile-image" onClick={addImg}>
+		<div
+			className="ProfileImg img-fluid"
+			id="profile-image"
+			onClick={handleImageUpload}
+		>
 			<div className="userImg">
-				<i className="fa-regular fa-user"></i>
+				<div className="position-relative">
+					{loadingPic ? ( // Show a loading indicator while the image is being uploaded
+						<div className="overlay">
+							<BeatLoader color="var(--Alumni-color)" />
+						</div>
+					) : pic !== "" ? (
+						<img
+							src={pic}
+							className="img-fluid w-100 h-100"
+							alt="Profile Pic"
+							loading="lazy"
+						/>
+					) : (
+						<i className="fa-regular fa-user"></i>
+					)}
+				</div>
 				<h1 className="position-absolute label">
 					<span className="icon"></span> {actor}
 				</h1>

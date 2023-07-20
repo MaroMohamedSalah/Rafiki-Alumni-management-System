@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = "FCAI-v5";
+const CACHE_NAME = "FCAI-v6";
 const assist = [
 	"/",
 	"/index.html",
@@ -7,7 +7,7 @@ const assist = [
 	"./favicon.ico?time=" + Date.now(),
 	"./icon-192x192.png?time=" + Date.now(),
 	"./manifest.json?time=" + Date.now(),
-	"../src/imgs/Alumni img.png?time=" + Date.now(),
+	"../src/imgs/alumni-img.png?time=" + Date.now(),
 	"../src/pages/AlumniSignup.js?time=" + Date.now(),
 	"../src/pages/HRSignup.js?time=" + Date.now(),
 	"../src/pages/CurrantStudentSignup.js?time=" + Date.now(),

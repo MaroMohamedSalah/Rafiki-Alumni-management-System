@@ -64,12 +64,10 @@ const Login = () => {
 				);
 
 				const data = await response.json();
-				const cookies = response.headers.get("Cookie");
-				console.log("Cookies:", cookies);
 
 				submitBtn.removeAttribute("disabled");
 				if (response.status === 200) {
-					localStorage.setItem("UserID", data.user_id);
+					localStorage.setItem("sessionId", data.sessionId);
 
 					Swal.fire({
 						title: "Success!",

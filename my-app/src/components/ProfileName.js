@@ -21,7 +21,7 @@ const ProfileName = () => {
 	}, [first_name]);
 	return (
 		<h1 className="name">
-			{first_name === null || last_name === null ? (
+			{/* {first_name === null || last_name === null ? (
 				<p class="placeholder-glow" style={{ width: "200px" }}>
 					<span class="placeholder w-100"></span>
 				</p>
@@ -29,7 +29,8 @@ const ProfileName = () => {
 				<>
 					<span>{first_name}</span> <span>{last_name}</span>
 				</>
-			)}
+			)} */}
+			<span>Marwan</span> <span>Mohamed</span>
 		</h1>
 	);
 };
