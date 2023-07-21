@@ -1,39 +1,46 @@
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
-	const [integrationsURLs, setIntegrationsURLs] = useState();
+	// const [integrationsURLs, setIntegrationsURLs] = useState();
+	const sessionId = localStorage.getItem("sessionId");
+	const profile = useSelector((state) => state.profile);
 
-	const getURLs = () => {
-		fetch(
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/get_integrations_urls.php",
-			{
-				method: "POST",
-				body: new URLSearchParams({
-					user_id: localStorage.getItem("UserID"),
-				}),
-			}
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-				setIntegrationsURLs(data);
-				setIsEmpty(false);
-				// setCompleteProgress(completeProgress + 10);
-			})
-			.catch((error) => console.error(error));
-	};
+	// const fetchURLsFromServer = () => {
+	// 	fetch(
+	// 		"https://alumnimanagmentsys12.000webhostapp.com/APIs/get_integrations_urls.php",
+	// 		{
+	// 			method: "POST",
+	// 			body: new URLSearchParams({
+	// 				user_id: localStorage.getItem("UserID"),
+	// 			}),
+	// 		}
+	// 	)
+	// 		.then((response) => response.json())
+	// 		.then((data) => {
+	// 			console.log(data);
+	// 			setIntegrationsURLs(data);
+	// 			setIsEmpty(false);
+	// 			// setCompleteProgress(completeProgress + 10);
+	// 		})
+	// 		.catch((error) => console.error(error));
+	// };
 
-	const storeURLs = (requestData) => {
+	const saveURLsToServer = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
 		const apiUrl =
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_integrations_urls.php";
+			"https://alumni-system-backend.azurewebsites.net/api/users/update_social_urls";
 
 		fetch(apiUrl, {
-			method: "POST",
+			method: "PUT",
 			body: JSON.stringify(requestData),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
 		})
 			.then((response) => {
 				if (response.ok) {
@@ -44,7 +51,7 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 						text: "Your URLs have been added to your record.",
 					});
 					setIsEmpty(false);
-					getURLs();
+					// fetchURLsFromServer();
 				} else {
 					// show an error message if the request failed
 					throw new Error("Failed to add URLs. Please try again later.");
@@ -60,42 +67,59 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 			});
 	};
 
-	const addURLs = () => {
+	const showURLsFormPopup = () => {
 		Swal.fire({
 			title: "Add Your Accounts URLs",
-			html: `
-      <form>
-		<div class="input-box">
-			<input type="text" name="linkedin" id="linkedin">
-            <span>Linkedin</span>
-            <i></i>
-        </div>
-		
-		<div class="input-box">
-			<input type="text" name="github" id="github">
-            <span>Github</span>
-            <i></i>
-        </div>
-
-		<div class="input-box">
-			<input type="text" name="behance" id="behance">
-            <span>Behance</span>
-            <i></i>
-        </div>
-      </form>
-    `,
+			html: `<form id="urlsForm">
+			<div class="form-group my-3">
+				<label class="mb-2 text-start w-100" for="linkedin">
+					LinkedIn
+				</label>
+				<input
+					type="url"
+					class="form-control"
+					name="linkedin"
+					id="linkedin"
+					placeholder="https://www.linkedin.com/in/username"
+					required
+				/>
+			</div>
+			<div class="form-group my-3">
+				<label class="mb-2 text-start w-100" for="github">
+					GitHub
+				</label>
+				<input
+					type="url"
+					class="form-control"
+					name="github"
+					id="github"
+					placeholder="https://github.com/username"
+					required
+				/>
+			</div>
+			<div class="form-group my-3">
+				<label class="mb-2 text-start w-100" for="behance">
+					Behance
+				</label>
+				<input
+					type="url"
+					class="form-control"
+					name="behance"
+					id="behance"
+					placeholder="https://www.behance.net/username"
+					required
+				/>
+			</div>
+		</form>`, // HTML code for the form directly here
 			showCancelButton: true,
-			confirmButtonText: "Save",
+			showConfirmButton: true, // Disable the default "Save" button
 			cancelButtonText: "Cancel",
 			focusConfirm: false,
 			preConfirm: () => {
-				const linkedinInput =
-					Swal.getPopup().querySelector('[name="linkedin"]');
-				const githubInput = Swal.getPopup().querySelector('[name="github"]');
-				const behanceInput = Swal.getPopup().querySelector('[name="behance"]');
-				const linkedinValue = linkedinInput.value.trim();
-				const githubValue = githubInput.value.trim();
-				const behanceValue = behanceInput.value.trim();
+				const form = document.getElementById("urlsForm");
+				const linkedinValue = form.linkedin.value.trim();
+				const githubValue = form.github.value.trim();
+				const behanceValue = form.behance.value.trim();
 
 				// Regular expressions for validating URLs
 				const linkedinRegex =
@@ -103,95 +127,84 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 				const githubRegex = /^https:\/\/github\.com\/[a-z0-9_-]+\/?$/i;
 				const behanceRegex = /^https:\/\/www\.behance\.net\/[a-z0-9_-]+\/?$/i;
 
-				// Check if LinkedIn URL is valid
-				if (linkedinValue && !linkedinRegex.test(linkedinValue)) {
-					Swal.showValidationMessage("Invalid LinkedIn URL");
-				}
-
-				// Check if GitHub URL is valid
-				if (githubValue && !githubRegex.test(githubValue)) {
-					Swal.showValidationMessage("Invalid GitHub URL");
-				}
-
-				// Check if Behance URL is valid
-				if (behanceValue && !behanceRegex.test(behanceValue)) {
-					Swal.showValidationMessage("Invalid Behance URL");
-				}
-
-				// If at least one URL is valid, return an object with the values
-				if (linkedinValue || githubValue || behanceValue) {
-					const requestData = {
-						userID: localStorage.getItem("UserID"),
-						linkedinURL: linkedinValue || "",
-						githubURL: githubValue || "",
-						behanceURL: behanceValue || "",
-					};
-					return requestData;
+				// Check if at least one URL is provided
+				if (!linkedinValue && !githubValue && !behanceValue) {
+					Swal.showValidationMessage("Please provide at least one URL");
 				} else {
-					Swal.showValidationMessage("Please enter at least one URL");
+					// Check if URLs are valid
+					const validationErrors = [];
+					if (linkedinValue && !linkedinRegex.test(linkedinValue)) {
+						validationErrors.push("Invalid LinkedIn URL");
+					}
+					if (githubValue && !githubRegex.test(githubValue)) {
+						validationErrors.push("Invalid GitHub URL");
+					}
+					if (behanceValue && !behanceRegex.test(behanceValue)) {
+						validationErrors.push("Invalid Behance URL");
+					}
+
+					if (validationErrors.length > 0) {
+						// Display error messages
+						const errorMessages = validationErrors.join("<br>");
+						Swal.showValidationMessage(errorMessages);
+					} else {
+						// If at least one URL is valid, return an object with the values
+						const requestData = {
+							LinkedIn_URL: linkedinValue || "",
+							GitHub_URL: githubValue || "",
+							Behance_URL: behanceValue || "",
+						};
+						return requestData;
+					}
 				}
 			},
 		}).then((result) => {
 			// If the user clicked "Save" and all URLs are valid, submit the form
 			if (result.isConfirmed && result.value) {
-				storeURLs(result.value);
+				saveURLsToServer(result.value);
 			}
 		});
 	};
 
-	const displayURLs = () => {
-		if (integrationsURLs) {
-			return integrationsURLs.map((u) => {
-				switch (u.url_type) {
-					case "linkedin":
-						return (
-							<li>
-								<span className="icon linkedin">
-									<i className="fa-brands fa-linkedin"></i>
-								</span>{" "}
-								<a href={u.url_value} target="_blank" rel="noreferrer">
-									Linkedin
-								</a>
-							</li>
-						);
-					case "github":
-						return (
-							<li>
-								<span className="icon github">
-									<i className="fa-brands fa-github"></i>
-								</span>{" "}
-								<a href={u.url_value} target="_blank" rel="noreferrer">
-									Github
-								</a>
-							</li>
-						);
-					case "behance":
-						return (
-							<li>
-								<span className="icon behance">
-									<i className="fa-brands fa-square-behance"></i>
-								</span>{" "}
-								<a href={u.url_value} target="_blank" rel="noreferrer">
-									Behance
-								</a>
-							</li>
-						);
-					default:
-						return null;
+	const displayURLsList = () => {
+		if (profile && profile.alumni) {
+			return Object.entries(profile.alumni).map(([key, value]) => {
+				if (key.endsWith("_URL") && value) {
+					const urlType = key.replace("_URL", "").toLowerCase();
+					return (
+						<li key={urlType}>
+							<span className={`icon ${urlType}`}>
+								<i className={`fa-brands fa-${urlType}`}></i>
+							</span>{" "}
+							<a href={value} target="_blank" rel="noreferrer">
+								{urlType.charAt(0).toUpperCase() + urlType.slice(1)}
+							</a>
+						</li>
+					);
 				}
+				return null;
 			});
 		}
 		return null;
 	};
 
 	useEffect(() => {
-		getURLs();
-	}, []);
+		// Check if any of the URLs in profile.alumni is not null
+		if (profile && profile.alumni) {
+			for (const key in profile.alumni) {
+				if (key.endsWith("_URL") && profile.alumni[key] !== null) {
+					setIsEmpty(false);
+					break;
+				}
+			}
+		}
+	}, [profile]);
+
 	return (
 		<section
 			className={isEmpty === true ? "ProfileURLs sec empty" : "ProfileURLs sec"}
 			onClick={() => {
-				if (isEmpty) addURLs();
+				if (isEmpty) showURLsFormPopup();
 			}}
 		>
 			<h1 className="sec-title position-relative">
@@ -213,7 +226,10 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 							overlay={<Tooltip id="my-tooltip">Edit URLs</Tooltip>}
 							placement="bottom"
 						>
-							<div className="add position-absolute" onClick={addURLs}>
+							<div
+								className="add position-absolute"
+								onClick={showURLsFormPopup}
+							>
 								<i className="fa-solid fa-plus"></i>
 							</div>
 						</OverlayTrigger>
@@ -238,7 +254,7 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 					</div>
 				</div>
 			) : (
-				<ul className="url-list">{displayURLs()}</ul>
+				<ul className="url-list">{displayURLsList()}</ul>
 			)}
 		</section>
 	);

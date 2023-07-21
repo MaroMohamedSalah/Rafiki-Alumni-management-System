@@ -88,7 +88,9 @@ const AlumniProfile = () => {
 					</div>
 
 					<div className="row">
-						<div className="col-12 col-md-6">{/* <ProfileURLsSec /> */}</div>
+						<div className="col-12 col-md-6">
+							<ProfileURLsSec />
+						</div>
 
 						<div className="col-12 col-md-6">{/* <ProfileCV /> */}</div>
 					</div>
