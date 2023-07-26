@@ -6,7 +6,6 @@ const ProfileImg = ({ actor, profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
 	const [pic, setPic] = useState("");
 	const [loadingPic, setLoadingPic] = useState(false); // Set the initial loading state to false
-	const [uploadEndpoint, setUploadEndpoint] = useState("");
 
 	useEffect(() => {
 		// Set the initial profile picture if available
@@ -17,22 +16,22 @@ const ProfileImg = ({ actor, profileData }) => {
 			);
 		}
 
-		// Set the appropriate upload endpoint based on the actor type
-		switch (actor) {
-			case "Alumni":
-				setUploadEndpoint(
-					"https://alumni-system-backend.azurewebsites.net/api/users/upload_alumni_picture"
-				);
-				break;
-			case "Student":
-				setUploadEndpoint(
-					"https://alumni-system-backend.azurewebsites.net/api/users/upload_student_picture"
-				);
-				break;
-			// Add cases for other actors if needed
-			default:
-				break;
-		}
+		// // Set the appropriate upload endpoint based on the actor type
+		// switch (actor) {
+		// 	case "Alumni":
+		// 		setUploadEndpoint(
+		// 			"https://alumni-system-backend.azurewebsites.net/api/users/upload_alumni_picture"
+		// 		);
+		// 		break;
+		// 	case "Student":
+		// 		setUploadEndpoint(
+		// 			"https://alumni-system-backend.azurewebsites.net/api/users/upload_student_picture"
+		// 		);
+		// 		break;
+		// 	// Add cases for other actors if needed
+		// 	default:
+		// 		break;
+		// }
 	}, [actor, profileData.Img]);
 
 	const handleImageUpload = () => {
@@ -75,13 +74,16 @@ const ProfileImg = ({ actor, profileData }) => {
 				const form = document.querySelector("form");
 				const formData = new FormData(form);
 				// Use fetch or XMLHttpRequest to send the form data to the server
-				fetch(uploadEndpoint, {
-					method: "POST",
-					body: formData,
-					headers: {
-						Authorization: `Bearer ${sessionId}`,
-					},
-				})
+				fetch(
+					"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
+					{
+						method: "POST",
+						body: formData,
+						headers: {
+							Authorization: `Bearer ${sessionId}`,
+						},
+					}
+				)
 					.then((response) => {
 						setLoadingPic(false); // Set loading to false when the request completes
 						if (!response.ok) {
@@ -92,15 +94,15 @@ const ProfileImg = ({ actor, profileData }) => {
 					.then((data) => {
 						// Handle the server response
 						if (data.success === true) {
+							setPic(
+								"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
+									data.Img
+							);
 							Swal.fire({
 								title: "Success",
 								text: data.message,
 								icon: "success",
 							});
-							setPic(
-								"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
-									profileData.Img
-							);
 						} else {
 							// Handle the case when the server returns an unsuccessful response
 							Swal.fire({

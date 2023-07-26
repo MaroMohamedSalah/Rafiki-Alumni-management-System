@@ -16,9 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 import { setProfile } from "../redux/actions/profileActions";
-import { redirect, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import LoginRedirectNotification from "../components/LoginRedirectNotification";
+import { useNavigate } from "react-router-dom";
+import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 
 const AlumniProfile = () => {
 	const dispatch = useDispatch();
@@ -42,8 +41,9 @@ const AlumniProfile = () => {
 			);
 
 			if (response.status === 401) {
-				// Redirect to the login page
-				<LoginRedirectNotification />;
+				// Redirect to login page
+				RedirectToLoginNotification();
+				navigate("/login");
 			} else {
 				const data = await response.json();
 				if (data.success === true) {
@@ -102,7 +102,7 @@ const AlumniProfile = () => {
 
 					<div className="row">
 						<div className="col-12 col-md-6">
-							<ProfileURLsSec />
+							<ProfileURLsSec profileData={profile.alumni} />
 						</div>
 
 						<div className="col-12 col-md-6">

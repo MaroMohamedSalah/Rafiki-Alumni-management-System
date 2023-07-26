@@ -3,31 +3,10 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
+const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
-	// const [integrationsURLs, setIntegrationsURLs] = useState();
 	const sessionId = localStorage.getItem("sessionId");
 	const profile = useSelector((state) => state.profile);
-
-	// const fetchURLsFromServer = () => {
-	// 	fetch(
-	// 		"https://alumnimanagmentsys12.000webhostapp.com/APIs/get_integrations_urls.php",
-	// 		{
-	// 			method: "POST",
-	// 			body: new URLSearchParams({
-	// 				user_id: localStorage.getItem("UserID"),
-	// 			}),
-	// 		}
-	// 	)
-	// 		.then((response) => response.json())
-	// 		.then((data) => {
-	// 			console.log(data);
-	// 			setIntegrationsURLs(data);
-	// 			setIsEmpty(false);
-	// setCompleteProgress(completeProgress + 10);
-	// 		})
-	// 		.catch((error) => console.error(error));
-	// };
 
 	const saveURLsToServer = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
@@ -68,9 +47,9 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 	};
 
 	const showURLsFormPopup = () => {
-		const linkedinValue = profile.alumni.LinkedIn_URL || "";
-		const githubValue = profile.alumni.GitHub_URL || "";
-		const behanceValue = profile.alumni.Behance_URL || "";
+		const linkedinValue = profileData.LinkedIn_URL || "";
+		const githubValue = profileData.GitHub_URL || "";
+		const behanceValue = profileData.Behance_URL || "";
 
 		Swal.fire({
 			title: "Add Your Accounts URLs",
@@ -174,8 +153,8 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 	};
 
 	const displayURLsList = () => {
-		if (profile && profile.alumni) {
-			return Object.entries(profile.alumni).map(([key, value]) => {
+		if (profileData) {
+			return Object.entries(profileData).map(([key, value]) => {
 				if (key.endsWith("_URL") && value) {
 					const urlType = key.replace("_URL", "").toLowerCase();
 					return (
@@ -197,15 +176,15 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 
 	useEffect(() => {
 		// Check if any of the URLs in profile.alumni is not null
-		if (profile && profile.alumni) {
-			for (const key in profile.alumni) {
-				if (key.endsWith("_URL") && profile.alumni[key] !== null) {
+		if (profile) {
+			for (const key in profileData) {
+				if (key.endsWith("_URL") && profileData[key] !== null) {
 					setIsEmpty(false);
 					break;
 				}
 			}
 		}
-	}, [profile]);
+	}, [profileData]);
 
 	return (
 		<section
