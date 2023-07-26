@@ -1,40 +1,22 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-const ProfileAboutSec = () => {
+const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
-	const [about, setAbout] = useState(null);
-	const [charCount, setCharCount] = useState(0);
+	const [about, setAbout] = useState(aboutContent);
 
-	const getAbout = () => {
-		fetch(
-			`https://alumnimanagmentsys12.000webhostapp.com/APIs/get_about_section.php?UserID=${localStorage.getItem(
-				"UserID"
-			)}`,
-			{
-				method: "GET",
-			}
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-				if (data.error === false) {
-					setAbout(data.message);
-					setIsEmpty(false);
-				}
-			})
-			.catch((error) => console.error(error));
-	};
+	const sessionId = localStorage.getItem("sessionId");
 
 	const submitAboutSection = async () => {
-		const { value: about } = await Swal.fire({
+		const { value: updatedAbout } = await Swal.fire({
 			title: "Inform Yourself",
 			input: "textarea",
+			inputValue: about !== null ? about : "",
 			inputAttributes: {
 				autocapitalize: "off",
-				minlength: 50, // set minimum length requirement
+				minlength: 50,
 				id: "about-textarea",
 			},
 			inputValidator: (value) => {
@@ -45,36 +27,37 @@ const ProfileAboutSec = () => {
 			showCancelButton: true,
 			confirmButtonText: "ADD",
 			showLoaderOnConfirm: true,
-			footer: `<span id="char-count">${charCount}/500</span>`,
 		});
 
-		if (about) {
-			// send POST request to the API to add URLs to the user's record
+		if (updatedAbout) {
+			// send PUT request to update About Section
 			const apiUrl =
-				"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_about_section.php";
+				"https://alumni-system-backend.azurewebsites.net/api/users/update_about";
 
 			fetch(apiUrl, {
-				method: "POST",
+				method: "PUT",
 				body: JSON.stringify({
-					userID: localStorage.getItem("UserID"),
-					About: about,
+					About: updatedAbout,
 				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
 			})
 				.then((response) => {
-					console.log(response);
 					if (response.ok) {
 						// show a success message if the request was successful
 						Swal.fire({
 							icon: "success",
-							title: "About Section Added",
+							title: "About Section Updated",
 							text: response.message,
 						});
 						setIsEmpty(false);
-						setAbout(about);
+						setAbout(updatedAbout);
 					} else {
 						// show an error message if the request failed
 						throw new Error(
-							"Failed to add About Section. Please try again later."
+							"Failed to update About Section. Please try again later."
 						);
 					}
 				})
@@ -90,14 +73,14 @@ const ProfileAboutSec = () => {
 	};
 
 	useEffect(() => {
-		getAbout();
-	}, []);
+		if (about) {
+			setIsEmpty(false);
+		}
+	}, [about]);
 
 	return (
 		<section
-			className={
-				isEmpty === true ? "ProfileAbout sec empty" : "ProfileAbout sec"
-			}
+			className={isEmpty ? "ProfileAbout sec empty" : "ProfileAbout sec"}
 			onClick={() => {
 				if (isEmpty) submitAboutSection();
 			}}
@@ -107,7 +90,7 @@ const ProfileAboutSec = () => {
 					<i className="fa-solid fa-address-card"></i>
 				</span>{" "}
 				About
-				{isEmpty === false && (
+				{!isEmpty && (
 					<>
 						<OverlayTrigger
 							overlay={<Tooltip id="my-tooltip">Visibility</Tooltip>}
@@ -131,7 +114,7 @@ const ProfileAboutSec = () => {
 					</>
 				)}
 			</h1>
-			{isEmpty === true ? (
+			{isEmpty ? (
 				<div className="empty-sec position-relative">
 					<div className="sec-placeholder-2">
 						<span></span>

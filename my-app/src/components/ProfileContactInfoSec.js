@@ -3,10 +3,14 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Keypad from "../imgs/Keypad.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
-const ProfileContactInfoSec = ({ setCompleteProgress, completeProgress }) => {
-	const [email, setEmail] = useState("");
-	const [phone, setPhone] = useState(null);
+const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
+	const profile = useSelector((state) => state.profile);
+	const [email, setEmail] = useState(emailPram);
+	const [phone, setPhone] = useState(phonePram);
+	const sessionId = localStorage.getItem("sessionId");
+
 	const addPhoneNumber = async () => {
 		const { value: num } = await Swal.fire({
 			title: "Please Enter Your Phone Number",
@@ -33,22 +37,33 @@ const ProfileContactInfoSec = ({ setCompleteProgress, completeProgress }) => {
 
 		if (num) {
 			const url =
-				"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_phone.php";
+				"https://alumni-system-backend.azurewebsites.net/api/users/update_phone";
 			const options = {
-				method: "POST",
+				method: "PUT",
 				body: JSON.stringify({
-					userID: localStorage.getItem("UserID"),
-					phone: num,
+					Phone: num,
 				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
 			};
 
 			try {
 				const response = await fetch(url, options);
 				const result = await response.json();
-				Swal.fire({
-					title: result.message,
-				});
-				setPhone(num);
+				if (result.success === true) {
+					setPhone(num);
+					Swal.fire({
+						icon: "success",
+						title: result.message,
+					});
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: result.message,
+					});
+				}
 			} catch (error) {
 				console.error(error);
 				Swal.fire({
@@ -61,32 +76,6 @@ const ProfileContactInfoSec = ({ setCompleteProgress, completeProgress }) => {
 	};
 
 	useEffect(() => {
-		axios
-			.get(
-				`https://alumnimanagmentsys12.000webhostapp.com/APIs/get_email.php?user_id=${localStorage.getItem(
-					"UserID"
-				)}`
-			)
-			.then((response) => {
-				setEmail(response.data.email);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-
-		fetch("https://alumnimanagmentsys12.000webhostapp.com/APIs/get_phone.php", {
-			method: "POST",
-			body: JSON.stringify({
-				userID: localStorage.getItem("UserID"),
-			}),
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setPhone(data.phone);
-				console.log(data.phone);
-			})
-			.catch((error) => console.log(error));
-
 		// if (phone !== null) {
 		// 	console.log(completeProgress);
 		// 	setCompleteProgress(completeProgress + 10);

@@ -16,12 +16,16 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 import { setProfile } from "../redux/actions/profileActions";
+import { redirect, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import LoginRedirectNotification from "../components/LoginRedirectNotification";
 
 const AlumniProfile = () => {
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
 	const profile = useSelector((state) => state.profile);
 	const [profileFetched, setProfileFetched] = useState(false);
+	const navigate = useNavigate();
 
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
@@ -36,14 +40,20 @@ const AlumniProfile = () => {
 					},
 				}
 			);
-			const data = await response.json();
-			if (data.success === true) {
-				// Dispatch the action to update the profile in the Redux store
-				setProfile(dispatch, data);
-				setProfileFetched(true);
+
+			if (response.status === 401) {
+				// Redirect to the login page
+				<LoginRedirectNotification />;
+			} else {
+				const data = await response.json();
+				if (data.success === true) {
+					// Dispatch the action to update the profile in the Redux store
+					setProfile(dispatch, data);
+					setProfileFetched(true);
+				}
 			}
 		} catch (error) {
-			console.log(error);
+			console.log("Error while fetching profile data:", error);
 		}
 	};
 
@@ -75,7 +85,10 @@ const AlumniProfile = () => {
 								<ProfileUsername username={profile.alumni.UserName} />
 							</div>
 							<div className="order-md-2 order-1">
-								<ProfileName />
+								<ProfileName
+									firstName={profile.alumni.FirstName}
+									lastname={profile.alumni.LastName}
+								/>
 							</div>
 							<div className="order-md-3 order-3">
 								<ProfileJobTitle />
@@ -92,33 +105,48 @@ const AlumniProfile = () => {
 							<ProfileURLsSec />
 						</div>
 
-						<div className="col-12 col-md-6">{/* <ProfileCV /> */}</div>
-					</div>
-
-					<div className="row">
-						<div className="col-12">{/* <ProfileAboutSec /> */}</div>
-					</div>
-
-					<div className="row">
-						<div className="col-12">{/* <ProfileContactInfoSec /> */}</div>
-					</div>
-
-					<div className="row">
-						<div className="col-12">{/* <ProfileSkills /> */}</div>
-					</div>
-
-					<div className="row">
-						<div className="col-12">{/* <ProfileExperience /> */}</div>
-					</div>
-
-					<div className="row">
-						<div className="col-12">
-							{/* <ProfileEdu actor={"Alumni"} /> */}
+						<div className="col-12 col-md-6">
+							<ProfileCV />
 						</div>
 					</div>
 
 					<div className="row">
-						<div className="col-12">{/* <ProfilePersonalInfo /> */}</div>
+						<div className="col-12">
+							<ProfileAboutSec aboutContent={profile.alumni.About} />
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-12">
+							<ProfileContactInfoSec
+								phonePram={profile.alumni.Phone}
+								emailPram={profile.alumni.Email}
+							/>
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-12">
+							<ProfileSkills />
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-12">
+							<ProfileExperience />
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-12">
+							<ProfileEdu actor={"Alumni"} />
+						</div>
+					</div>
+
+					<div className="row">
+						<div className="col-12">
+							<ProfilePersonalInfo countryPram={profile.alumni.Country} />
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
-const ProfilePersonalInfo = () => {
+const ProfilePersonalInfo = ({ countryPram }) => {
 	const [birthDay, setBirthDay] = useState("");
-	const [country, setCountry] = useState(null);
+	const profile = useSelector((state) => state.profile);
+	const [country, setCountry] = useState(countryPram);
+	const sessionId = localStorage.getItem("sessionId");
 
 	const addCountry = async () => {
 		// Fetch list of all countries
@@ -19,6 +22,7 @@ const ProfilePersonalInfo = () => {
 			inputOptions: {
 				...countries,
 			},
+			inputValue: country,
 			showCancelButton: true,
 			confirmButtonText: "ADD",
 			allowOutsideClick: () => !Swal.isLoading(),
@@ -27,22 +31,33 @@ const ProfilePersonalInfo = () => {
 		if (selectedCountry) {
 			// Send address to server
 			const url =
-				"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_country.php";
+				"https://alumni-system-backend.azurewebsites.net/api/users/update_country";
 			const options = {
-				method: "POST",
+				method: "PUT",
 				body: JSON.stringify({
-					userID: parseInt(localStorage.getItem("UserID")),
-					country: countries[selectedCountry],
+					Country: countries[selectedCountry],
 				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
 			};
 
 			try {
 				const response = await fetch(url, options);
 				const result = await response.json();
-				Swal.fire({
-					title: result.message,
-				});
-				setCountry(countries[selectedCountry]);
+				if (result.success) {
+					Swal.fire({
+						icon: "success",
+						title: result.message,
+					});
+					setCountry(countries[selectedCountry]);
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: result.message,
+					});
+				}
 			} catch (error) {
 				console.error(error);
 				Swal.fire({
@@ -51,34 +66,8 @@ const ProfilePersonalInfo = () => {
 					icon: "error",
 				});
 			}
-
-			// Add event listener to close popup on back button press
-			// const handlePopstate = () => {
-			// 	console.log("close");
-			// 	Swal.close();
-			// 	window.removeEventListener("popstate", handlePopstate);
-			// };
 		}
 	};
-
-	useEffect(() => {
-		fetch(
-			"https://alumnimanagmentsys12.000webhostapp.com/APIs/get_country.php",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					userID: localStorage.getItem("UserID"),
-				}),
-			}
-		)
-			.then((response) => response.json())
-			.then((data) => {
-				setCountry(data.country);
-				console.log(data);
-			})
-			.catch((error) => console.log(error));
-		console.log(window.location.href);
-	}, []);
 	return (
 		<section className={"PersonalInformation sec"}>
 			<h1 className="sec-title position-relative">

@@ -24,6 +24,11 @@ const ProfileImg = ({ actor, profileData }) => {
 					"https://alumni-system-backend.azurewebsites.net/api/users/upload_alumni_picture"
 				);
 				break;
+			case "Student":
+				setUploadEndpoint(
+					"https://alumni-system-backend.azurewebsites.net/api/users/upload_student_picture"
+				);
+				break;
 			// Add cases for other actors if needed
 			default:
 				break;

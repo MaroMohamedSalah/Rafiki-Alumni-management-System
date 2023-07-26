@@ -24,7 +24,7 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 	// 			console.log(data);
 	// 			setIntegrationsURLs(data);
 	// 			setIsEmpty(false);
-	// 			// setCompleteProgress(completeProgress + 10);
+	// setCompleteProgress(completeProgress + 10);
 	// 		})
 	// 		.catch((error) => console.error(error));
 	// };
@@ -68,49 +68,56 @@ const ProfileURLsSec = ({ setCompleteProgress, completeProgress }) => {
 	};
 
 	const showURLsFormPopup = () => {
+		const linkedinValue = profile.alumni.LinkedIn_URL || "";
+		const githubValue = profile.alumni.GitHub_URL || "";
+		const behanceValue = profile.alumni.Behance_URL || "";
+
 		Swal.fire({
 			title: "Add Your Accounts URLs",
 			html: `<form id="urlsForm">
-			<div class="form-group my-3">
-				<label class="mb-2 text-start w-100" for="linkedin">
-					LinkedIn
-				</label>
-				<input
-					type="url"
-					class="form-control"
-					name="linkedin"
-					id="linkedin"
-					placeholder="https://www.linkedin.com/in/username"
-					required
-				/>
-			</div>
-			<div class="form-group my-3">
-				<label class="mb-2 text-start w-100" for="github">
-					GitHub
-				</label>
-				<input
-					type="url"
-					class="form-control"
-					name="github"
-					id="github"
-					placeholder="https://github.com/username"
-					required
-				/>
-			</div>
-			<div class="form-group my-3">
-				<label class="mb-2 text-start w-100" for="behance">
-					Behance
-				</label>
-				<input
-					type="url"
-					class="form-control"
-					name="behance"
-					id="behance"
-					placeholder="https://www.behance.net/username"
-					required
-				/>
-			</div>
-		</form>`, // HTML code for the form directly here
+      <div class="form-group my-3">
+        <label class="mb-2 text-start w-100" for="linkedin">
+          LinkedIn
+        </label>
+        <input
+          type="url"
+          class="form-control"
+          name="linkedin"
+          id="linkedin"
+          placeholder="https://www.linkedin.com/in/username"
+          value="${linkedinValue}"
+          required
+        />
+      </div>
+      <div class="form-group my-3">
+        <label class="mb-2 text-start w-100" for="github">
+          GitHub
+        </label>
+        <input
+          type="url"
+          class="form-control"
+          name="github"
+          id="github"
+          placeholder="https://github.com/username"
+          value="${githubValue}"
+          required
+        />
+      </div>
+      <div class="form-group my-3">
+        <label class="mb-2 text-start w-100" for="behance">
+          Behance
+        </label>
+        <input
+          type="url"
+          class="form-control"
+          name="behance"
+          id="behance"
+          placeholder="https://www.behance.net/username"
+          value="${behanceValue}"
+          required
+        />
+      </div>
+    </form>`, // HTML code for the form directly here
 			showCancelButton: true,
 			showConfirmButton: true, // Disable the default "Save" button
 			cancelButtonText: "Cancel",

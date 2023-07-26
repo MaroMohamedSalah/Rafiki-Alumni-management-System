@@ -15,7 +15,6 @@ import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 const ProfessorProfile = () => {
 	const [completeProgress, setCompleteProgress] = useState(20);
-	console.log("profile ", completeProgress);
 	return (
 		<div className="ProfessorProfile profile">
 			<div className="container">
@@ -55,10 +54,6 @@ const ProfessorProfile = () => {
 							setCompleteProgress={setCompleteProgress}
 							completeProgress={completeProgress}
 						/>
-					</div>
-
-					<div className="col-12 col-md-6">
-						<ProfileCV progressPercentage={completeProgress} />
 					</div>
 				</div>
 

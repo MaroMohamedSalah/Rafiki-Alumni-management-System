@@ -52,13 +52,6 @@ const AdminProfile = () => {
 							completeProgress={completeProgress}
 						/>
 					</div>
-
-					<div className="col-12 col-md-6">
-						<ProfileCV
-							progressPercentage={completeProgress}
-							setProgressPercentage={setCompleteProgress}
-						/>
-					</div>
 				</div>
 
 				<div className="row">
