@@ -1,33 +1,23 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_NAME = "FCAI-v6";
-const assist = [
-	"/",
-	"/index.html",
-	"../src/components/Backbtn.js",
-	"./favicon.ico?time=" + Date.now(),
-	"./icon-192x192.png?time=" + Date.now(),
-	"./manifest.json?time=" + Date.now(),
-	"../src/imgs/alumni-img.png?time=" + Date.now(),
-	"../src/pages/AlumniSignup.js?time=" + Date.now(),
-	"../src/pages/HRSignup.js?time=" + Date.now(),
-	"../src/pages/CurrantStudentSignup.js?time=" + Date.now(),
-	"../src/pages/AdminProfile.js?time=" + Date.now(),
-	"../src/pages/HRprofile.js?time=" + Date.now(),
-	"../src/pages/StudentProfile.js?time=" + Date.now(),
-	"../src/pages/AlumniProfile.js?time=" + Date.now(),
+const CACHE_VERSION = "FCAI-v7"; // Update the cache version whenever you make changes to the cache
+const CACHE_NAME = CACHE_VERSION + "-static";
+
+const staticAssets = [
+	// Add your static assets here
 ];
 
-// add assist in the caches
+// Precache static assets
 self.addEventListener("install", (event) => {
 	console.log("installed");
 	event.waitUntil(
 		caches
 			.open(CACHE_NAME)
-			.then((cache) => cache.addAll(assist))
+			.then((cache) => cache.addAll(staticAssets))
 			.catch((err) => console.log(err))
 	);
 });
 
+// Fetch event handler
 self.addEventListener("fetch", function (event) {
 	event.respondWith(
 		caches.match(event.request).then(function (response) {
@@ -58,6 +48,7 @@ self.addEventListener("fetch", function (event) {
 	);
 });
 
+// Push event handler for notifications
 self.addEventListener("push", function (event) {
 	if (event.data) {
 		showNotification(event.data.text());
@@ -71,15 +62,15 @@ function showNotification(message) {
 	});
 }
 
-// Activate sw
+// Activate event handler to clean up old caches
 self.addEventListener("activate", function (event) {
 	console.log("activated");
 	event.waitUntil(
-		caches.keys().then((cacheName1s) => {
+		caches.keys().then(function (cacheNames) {
 			return Promise.all(
-				cacheName1s.map((cache) => {
-					if (CACHE_NAME !== cache && cache.startsWith("FCAI")) {
-						// delete any old cache
+				cacheNames.map((cache) => {
+					if (cache.startsWith("FCAI-v") && cache !== CACHE_NAME) {
+						// Delete any old cache
 						return caches.delete(cache);
 					}
 				})
