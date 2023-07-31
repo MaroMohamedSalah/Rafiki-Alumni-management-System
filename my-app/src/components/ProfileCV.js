@@ -1,8 +1,13 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ProfileProgress from "./ProfileProgress";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import { HashLoader } from "react-spinners";
 
-const ProfileCV = () => {
+const ProfileCV = ({ cv }) => {
+	const sessionId = window.localStorage.getItem("sessionId");
+	const [userCv, setUserCv] = useState(cv);
+	const [cvIsLoading, setCvIsLoading] = useState(false);
 	const addCV = () => {
 		// Define file validation function
 		const validateFile = (file) => {
@@ -40,18 +45,20 @@ const ProfileCV = () => {
 			// Check if the user clicked "Upload" and the file was successfully uploaded
 			if (result.isConfirmed && result.value) {
 				// Submit the form to the server to handle the file upload
+				setCvIsLoading(true);
 				Swal.showLoading();
 				const form = new FormData();
 				const fileInput = document.getElementById("file-input");
-				form.append("UserID", 1); // Set the UserID to 1 (or change this to a variable as needed)
 				form.append("cv", fileInput.files[0]); // Add the selected file to the form data
-				console.log(fileInput.files[0]);
 				// Use fetch or XMLHttpRequest to send the form data to the server
 				fetch(
-					"https://alumnimanagmentsys12.000webhostapp.com/APIs/set_cv.php",
+					"https://alumni-system-backend.azurewebsites.net/api/users/upload_cv",
 					{
 						method: "POST",
 						body: form,
+						headers: {
+							Authorization: `Bearer ${sessionId}`,
+						},
 					}
 				)
 					.then((response) => {
@@ -62,17 +69,27 @@ const ProfileCV = () => {
 					})
 					.then((data) => {
 						// Handle the server response
-						Swal.fire({
-							title: "Success",
-							text: "CV uploaded",
-							icon: "success",
-						});
+						if (data.success === true) {
+							Swal.fire({
+								title: "Success",
+								text: "CV uploaded",
+								icon: "success",
+							});
+							setUserCv(data.CV);
+							setCvIsLoading(false);
+						} else {
+							Swal.fire({
+								title: "Error",
+								text: data.message,
+								icon: "error",
+							});
+						}
 					})
 					.catch((error) => {
 						// Handle errors
 						Swal.fire({
 							title: "Error",
-							text: "Upload failed",
+							text: error,
 							icon: "error",
 						});
 					});
@@ -98,13 +115,38 @@ const ProfileCV = () => {
 				</OverlayTrigger>
 			</h1>
 			<div>
-				<button className="btn uploadCV fw-bold" onClick={addCV}>
-					<span className="icon me-2">
-						<i className="fa-solid fa-arrow-up-from-bracket"></i>
-					</span>{" "}
-					Upload CV..
-				</button>
-
+				{userCv ? (
+					<a
+						href={
+							"https://alumni-system-backend.azurewebsites.net/uploads/cvs/" +
+							userCv
+						}
+						target="_blank"
+						className="previewCV fw-bold"
+						rel="noreferrer"
+					>
+						<span className="icon me-2">
+							<i class="fa-solid fa-file me-2"></i>
+						</span>
+						Preview CV
+					</a>
+				) : (
+					<button className="btn uploadCV fw-bold" onClick={addCV}>
+						<span className="icon me-2">
+							<i class="fa-solid fa-file me-2"></i>
+						</span>
+						{cvIsLoading ? (
+							<>
+								Uploading...{" "}
+								<span className="ms-3">
+									<HashLoader size={15} color="#36d7b7" />{" "}
+								</span>
+							</>
+						) : (
+							"Upload CV"
+						)}
+					</button>
+				)}
 				<ProfileProgress />
 			</div>
 		</section>

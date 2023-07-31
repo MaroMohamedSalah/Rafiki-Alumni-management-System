@@ -106,7 +106,7 @@ const AlumniProfile = () => {
 						</div>
 
 						<div className="col-12 col-md-6">
-							<ProfileCV />
+							<ProfileCV cv={profile.alumni.CV} />
 						</div>
 					</div>
 

@@ -407,4 +407,11 @@
 	border: 1px solid;
 	border-radius: 19px;
 }
+.ProfileCV .previewCV .icon {
+	color: rgb(71, 153, 104);
+}
+.ProfileCV .previewCV {
+	text-decoration: none;
+	color: #000000;
+}
 /* ---  */
