@@ -118,11 +118,8 @@ const AlumniSignup = () => {
 							text: "Alumni sign-up successful!",
 							icon: "success",
 						});
-						setTimeout(() => {
-							// Redirect to login page after 3 seconds
-							navigate("/login");
-						}, 3000);
-
+						// Redirect to login page
+						navigate("/login");
 						console.log("Alumni sign-up successful!");
 					} else {
 						// Error

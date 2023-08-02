@@ -126,10 +126,8 @@ const HRSignup = () => {
 							text: "HR sign-up successful!",
 							icon: "success",
 						});
-						setTimeout(() => {
-							// Redirect to login page after 3 seconds
-							navigate("/login");
-						}, 3000);
+						// Redirect to login page
+						navigate("/login");
 
 						console.log("HR sign-up successful!");
 					} else {
