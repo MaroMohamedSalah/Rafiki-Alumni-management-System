@@ -1,9 +1,14 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_VERSION = "FCAI-v8"; // Update the cache version whenever you make changes to the cache
+const CACHE_VERSION = "FCAI-v9"; // Update the cache version whenever you make changes to the cache
 const CACHE_NAME = CACHE_VERSION + "-static";
 
 const staticAssets = [
-	// Add your static assets here
+	"./icon-192x192.png",
+	"./icon-256x256.png",
+	"./icon-384x384.png",
+	"./icon-512x512.png",
+	"./index.html",
+	"./manifest.json",
 ];
 
 // Precache static assets
@@ -38,6 +43,7 @@ self.addEventListener("fetch", function (event) {
 				// Clone the response
 				var responseToCache = response.clone();
 
+				// Open the cache and store the response
 				caches.open(CACHE_NAME).then(function (cache) {
 					cache.put(event.request, responseToCache);
 				});
