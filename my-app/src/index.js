@@ -7,8 +7,15 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 if ("serviceWorker" in navigator) {
-	window.addEventListener("load", function () {
-		navigator.serviceWorker.register("/sw.js");
+	window.addEventListener("load", () => {
+		navigator.serviceWorker
+			.register("/sw.js")
+			.then((registration) => {
+				console.log("Service worker registered:", registration);
+			})
+			.catch((error) => {
+				console.log("Service worker registration failed:", error);
+			});
 	});
 }
 

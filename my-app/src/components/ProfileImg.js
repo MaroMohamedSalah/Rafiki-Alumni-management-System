@@ -19,9 +19,17 @@ const ProfileImg = ({ actor, profileData }) => {
 
 	const handleImageUpload = () => {
 		const validateFile = (file) => {
-			// Check if the file is an image
-			if (!file.type.match("image.*")) {
+			// Check if a file is selected
+			if (!file) {
 				return Promise.reject("Please select an image file");
+			}
+			// Check if the file is an image with allowed extensions
+			const allowedExtensions = ["jpg", "jpeg", "png"];
+			const fileExtension = file.name.split(".").pop().toLowerCase();
+			if (!allowedExtensions.includes(fileExtension)) {
+				return Promise.reject(
+					"Please select a valid image file (JPG, JPEG or PNG)"
+				);
 			}
 			// Check if the file size is less than 8 MB
 			if (file.size > 8 * 1024 * 1024) {
@@ -31,7 +39,6 @@ const ProfileImg = ({ actor, profileData }) => {
 			return Promise.resolve(file);
 		};
 
-		// Display SweetAlert2 pop-up
 		Swal.fire({
 			title: "Add/Edit Profile Picture",
 			html: `
@@ -46,14 +53,16 @@ const ProfileImg = ({ actor, profileData }) => {
 				// Get the uploaded file
 				const file = document.getElementById("file-input").files[0];
 				// Validate the file and return a promise with the file data or an error message
-				return validateFile(file);
+				return validateFile(file).catch((error) => {
+					// Handle the validation error and show an error message
+					Swal.showValidationMessage(error);
+				});
 			},
 			allowOutsideClick: () => !Swal.isLoading(),
 		}).then((result) => {
 			// Check if the user clicked "Save" and the file was successfully uploaded
 			if (result.isConfirmed && result.value) {
 				setLoadingPic(true); // Set loading to true when the request starts
-				Swal.showLoading();
 				const form = document.querySelector("form");
 				const formData = new FormData(form);
 				// Use fetch or XMLHttpRequest to send the form data to the server
@@ -81,6 +90,7 @@ const ProfileImg = ({ actor, profileData }) => {
 								"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
 									data.Img
 							);
+
 							Swal.fire({
 								title: "Success",
 								text: data.message,
@@ -116,19 +126,23 @@ const ProfileImg = ({ actor, profileData }) => {
 		>
 			<div className="userImg">
 				<div className="position-relative">
-					{loadingPic ? ( // Show a loading indicator while the image is being uploaded
+					{loadingPic ? (
+						// Show a loading indicator while the image is being uploaded
 						<div className="overlay">
 							<BeatLoader color="var(--Alumni-color)" />
 						</div>
-					) : pic !== "" ? (
+					) : pic ? (
+						// Display the uploaded image if available
 						<img
 							src={pic}
 							className="img-fluid w-100 h-100"
 							alt="Profile Pic"
-							loading="lazy"
 						/>
 					) : (
-						<i className="fa-regular fa-user"></i>
+						// If no image is available, display a default placeholder image
+						<div className="default-placeholder">
+							<i className="fa-regular fa-user"></i>
+						</div>
 					)}
 				</div>
 				<h1 className="position-absolute label">
