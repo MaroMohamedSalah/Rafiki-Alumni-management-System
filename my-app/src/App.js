@@ -16,6 +16,7 @@ import HRprofile from "./pages/HRprofile";
 import StudentProfile from "./pages/StudentProfile";
 import AdminProfile from "./pages/AdminProfile";
 import ProfessorProfile from "./pages/ProfessorProfile";
+import ImgCropper from "./components/img-cropper/ImgCropper";
 
 function App() {
 	return (

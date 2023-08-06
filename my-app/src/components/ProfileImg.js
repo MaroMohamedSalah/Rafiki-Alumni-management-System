@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { BeatLoader } from "react-spinners";
+import Modal from "react-modal";
+import ImgCropper from "./img-cropper/ImgCropper";
 
 const ProfileImg = ({ actor, profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
 	const [pic, setPic] = useState("");
-	const [loadingPic, setLoadingPic] = useState(false); // Set the initial loading state to false
+	const [loadingPic, setLoadingPic] = useState(false);
+	const [croppedImg, setCroppedImg] = useState("");
+	const [loadingCroppedImg, setLoadingCroppedImg] = useState(false);
+	const [showCropper, setShowCropper] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	useEffect(() => {
 		// Set the initial profile picture if available
@@ -19,11 +25,9 @@ const ProfileImg = ({ actor, profileData }) => {
 
 	const handleImageUpload = () => {
 		const validateFile = (file) => {
-			// Check if a file is selected
 			if (!file) {
 				return Promise.reject("Please select an image file");
 			}
-			// Check if the file is an image with allowed extensions
 			const allowedExtensions = ["jpg", "jpeg", "png"];
 			const fileExtension = file.name.split(".").pop().toLowerCase();
 			if (!allowedExtensions.includes(fileExtension)) {
@@ -31,11 +35,9 @@ const ProfileImg = ({ actor, profileData }) => {
 					"Please select a valid image file (JPG, JPEG or PNG)"
 				);
 			}
-			// Check if the file size is less than 8 MB
 			if (file.size > 8 * 1024 * 1024) {
 				return Promise.reject("File size must be less than 8 MB");
 			}
-			// If all checks pass, return the file data
 			return Promise.resolve(file);
 		};
 
@@ -47,25 +49,25 @@ const ProfileImg = ({ actor, profileData }) => {
       </form>
     `,
 			showCancelButton: true,
-			confirmButtonText: "Save",
+			confirmButtonText: "Next",
 			showLoaderOnConfirm: true,
-			preConfirm: () => {
-				// Get the uploaded file
+			preConfirm: async () => {
 				const file = document.getElementById("file-input").files[0];
-				// Validate the file and return a promise with the file data or an error message
-				return validateFile(file).catch((error) => {
-					// Handle the validation error and show an error message
+				try {
+					const validatedFile = await validateFile(file);
+					// setShowCropper(true);
+					// setIsModalOpen(true);
+					return validatedFile;
+				} catch (error) {
 					Swal.showValidationMessage(error);
-				});
+				}
 			},
 			allowOutsideClick: () => !Swal.isLoading(),
 		}).then((result) => {
-			// Check if the user clicked "Save" and the file was successfully uploaded
 			if (result.isConfirmed && result.value) {
-				setLoadingPic(true); // Set loading to true when the request starts
+				setLoadingPic(true);
 				const form = document.querySelector("form");
 				const formData = new FormData(form);
-				// Use fetch or XMLHttpRequest to send the form data to the server
 				fetch(
 					"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
 					{
@@ -77,14 +79,13 @@ const ProfileImg = ({ actor, profileData }) => {
 					}
 				)
 					.then((response) => {
-						setLoadingPic(false); // Set loading to false when the request completes
+						setLoadingPic(false);
 						if (!response.ok) {
 							throw new Error("Upload failed");
 						}
 						return response.json();
 					})
 					.then((data) => {
-						// Handle the server response
 						if (data.success === true) {
 							setPic(
 								"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
@@ -97,7 +98,6 @@ const ProfileImg = ({ actor, profileData }) => {
 								icon: "success",
 							});
 						} else {
-							// Handle the case when the server returns an unsuccessful response
 							Swal.fire({
 								title: "Error",
 								text: data.message,
@@ -106,8 +106,7 @@ const ProfileImg = ({ actor, profileData }) => {
 						}
 					})
 					.catch((error) => {
-						setLoadingPic(false); // Set loading to false when the request completes with an error
-						// Handle errors
+						setLoadingPic(false);
 						Swal.fire({
 							title: "Error",
 							text: "Upload failed",
@@ -116,6 +115,15 @@ const ProfileImg = ({ actor, profileData }) => {
 					});
 			}
 		});
+	};
+
+	const handleSaveCroppedImage = (croppedImage) => {
+		setLoadingCroppedImg(true);
+		// Perform any action needed with the cropped image data, e.g., upload it to the server.
+		// In this example, we'll just update the state to show the cropped image on the profile picture.
+		setCroppedImg(croppedImage);
+		setLoadingCroppedImg(false);
+		setIsModalOpen(false);
 	};
 
 	return (
@@ -127,19 +135,22 @@ const ProfileImg = ({ actor, profileData }) => {
 			<div className="userImg">
 				<div className="position-relative">
 					{loadingPic ? (
-						// Show a loading indicator while the image is being uploaded
 						<div className="overlay">
 							<BeatLoader color="var(--Alumni-color)" />
 						</div>
+					) : croppedImg ? (
+						<img
+							src={croppedImg}
+							className="img-fluid w-100 h-100"
+							alt="Profile Pic"
+						/>
 					) : pic ? (
-						// Display the uploaded image if available
 						<img
 							src={pic}
 							className="img-fluid w-100 h-100"
 							alt="Profile Pic"
 						/>
 					) : (
-						// If no image is available, display a default placeholder image
 						<div className="default-placeholder">
 							<i className="fa-regular fa-user"></i>
 						</div>
@@ -152,6 +163,25 @@ const ProfileImg = ({ actor, profileData }) => {
 			<div className="addImg position-absolute">
 				<i className="fa-solid fa-plus"></i>
 			</div>
+
+			{showCropper && (
+				<Modal
+					isOpen={isModalOpen}
+					onRequestClose={() => setIsModalOpen(false)}
+					contentLabel="Crop Image"
+					ariaHideApp={false}
+				>
+					{loadingCroppedImg ? (
+						<div>Loading...</div>
+					) : (
+						<ImgCropper
+							onClose={() => setIsModalOpen(false)}
+							imgSrc={pic}
+							onSave={handleSaveCroppedImage}
+						/>
+					)}
+				</Modal>
+			)}
 		</div>
 	);
 };
