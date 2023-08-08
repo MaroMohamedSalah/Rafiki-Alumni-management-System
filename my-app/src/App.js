@@ -8,7 +8,6 @@ import OTPVerification from "./pages/OTPVerification";
 import CurrantStudentSignup from "./pages/CurrantStudentSignup";
 import HRSignup from "./pages/HRSignup";
 import ProgressLine from "./components/ProgressLine";
-import Login from "./pages/Login";
 import ForgetPass from "./pages/ForgetPass";
 import SendEmail from "./pages/SendEmail";
 import AlumniProfile from "./pages/AlumniProfile";
@@ -17,6 +16,7 @@ import StudentProfile from "./pages/StudentProfile";
 import AdminProfile from "./pages/AdminProfile";
 import ProfessorProfile from "./pages/ProfessorProfile";
 import ImgCropper from "./components/img-cropper/ImgCropper";
+import LoginLayout from "./layouts/Login-layout";
 
 function App() {
 	return (
@@ -28,7 +28,7 @@ function App() {
 					<Route path="/alumniSignup" element={<AlumniSignup />} />
 					<Route path="/studentSignup" element={<CurrantStudentSignup />} />
 					<Route path="/hrSignup" element={<HRSignup />} />
-					<Route path="/login" element={<Login />} />
+					<Route path="/login" element={<LoginLayout />} />
 					<Route path="/resetPass" element={<ForgetPass />} />
 					<Route path="/sendEmail" element={<SendEmail />} />
 					<Route path="/alumniProfile" element={<AlumniProfile />} />
