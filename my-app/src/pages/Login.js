@@ -10,7 +10,6 @@ import hide from "../imgs/hide password.svg";
 import "./Auth.css";
 
 const Login = () => {
-	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [usernameError, setUsernameError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
@@ -75,30 +74,32 @@ const Login = () => {
 						icon: "success",
 					});
 
-					switch (data.actor) {
-						case "Alumni":
-							navigate("/alumniProfile");
-							displayNotification(data.username);
-							break;
-						case "HR":
-							navigate("/hrProfile");
-							displayNotification(data.username);
-							break;
-						case "Student":
-							navigate("/studentProfile");
-							displayNotification(data.username);
-							break;
-						case "Admin":
-							navigate("/adminProfile");
-							displayNotification(data.username);
-							break;
-						case "Professors":
-							navigate("/professorProfile");
-							displayNotification(data.username);
-							break;
-						default:
-							break;
-					}
+					// switch (data.actor) {
+					// 	case "Alumni":
+					// 		navigate("/alumniProfile");
+					// 		displayNotification(data.username);
+					// 		break;
+					// 	case "HR":
+					// 		navigate("/hrProfile");
+					// 		displayNotification(data.username);
+					// 		break;
+					// 	case "Student":
+					// 		navigate("/studentProfile");
+					// 		displayNotification(data.username);
+					// 		break;
+					// 	case "Admin":
+					// 		navigate("/adminProfile");
+					// 		displayNotification(data.username);
+					// 		break;
+					// 	case "Professors":
+					// 		navigate("/professorProfile");
+					// 		displayNotification(data.username);
+					// 		break;
+					// 	default:
+					// 		break;
+					// }
+
+					navigate(`/dashboard?username=${data.user_name}`);
 
 					console.log("Logged in successfully!", data);
 				} else {

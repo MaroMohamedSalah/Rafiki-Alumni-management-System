@@ -18,26 +18,37 @@ import ProfessorProfile from "./pages/ProfessorProfile";
 import ImgCropper from "./components/img-cropper/ImgCropper";
 import LoginLayout from "./layouts/Login-layout";
 import GetStarted from "./pages/GetStarted";
+import DashboardLayout from "./layouts/Dashboard-layout";
 
 function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
 				<Routes>
-					<Route exact={true} path="/" element={<LandingPage />} />
+					{/* Public Routes */}
+					<Route path="/" element={<LandingPage />} />
 					<Route path="/roleSelection" element={<RoleSelection />} />
-					<Route path="/alumniSignup" element={<AlumniSignup />} />
-					<Route path="/studentSignup" element={<CurrantStudentSignup />} />
-					<Route path="/hrSignup" element={<HRSignup />} />
 					<Route path="/login" element={<LoginLayout />} />
 					<Route path="/resetPass" element={<ForgetPass />} />
 					<Route path="/sendEmail" element={<SendEmail />} />
+
+					{/* Private Routes */}
+					{/* Private routes are routes that require the user to be authenticated or
+					logged in to access them. */}
+					<Route path="/dashboard" element={<DashboardLayout />} />
+					<Route path="/getStarted" element={<GetStarted />} />
+
+					{/* Signup Routes */}
+					<Route path="/alumniSignup" element={<AlumniSignup />} />
+					<Route path="/studentSignup" element={<CurrantStudentSignup />} />
+					<Route path="/hrSignup" element={<HRSignup />} />
+
+					{/* Profile Routes */}
 					<Route path="/alumniProfile" element={<AlumniProfile />} />
 					<Route path="/hrProfile" element={<HRprofile />} />
 					<Route path="/studentProfile" element={<StudentProfile />} />
 					<Route path="/adminProfile" element={<AdminProfile />} />
 					<Route path="/professorProfile" element={<ProfessorProfile />} />
-					<Route path="/getStarted" element={<GetStarted />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
