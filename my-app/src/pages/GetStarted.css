@@ -140,12 +140,33 @@
 	}
 }
 
-/* iPad Landscape Styles */
-@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
-	/* Your CSS styles for iPad in landscape orientation here */
-}
+/* Styles for tablets with a minimum width of 768 pixels and maximum width of 1100 pixels */
+@media (min-width: 768px) and (max-width: 1200px) {
+	/* Styles for the normal view of the tablet */
+	@media (orientation: portrait) {
+		/* Add your styles for the normal view (portrait orientation) here */
+		.GetStartedSwiper .swiper-button-next {
+			right: 0;
+			left: auto;
+			bottom: 0;
+			font-weight: 400;
+		}
+	}
 
-/* iPad Portrait Styles */
-@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
-	/* Your CSS styles for iPad in portrait orientation here */
+	/* Styles for the rotated view of the tablet */
+	@media (orientation: landscape) {
+		/* Add your styles for the rotated view (landscape orientation) here */
+		.GetStartedSwiper .actorName {
+			font-size: 44px;
+		}
+		.GetStartedSwiper .actorDescription {
+			font-size: 25px;
+		}
+		.GetStartedSwiper .swiper-button-next {
+			right: 0;
+			left: auto;
+			bottom: 0;
+			font-weight: 400;
+		}
+	}
 }

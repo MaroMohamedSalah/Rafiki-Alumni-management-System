@@ -58,8 +58,8 @@ const GetStarted = () => {
 				<div className="swiper-wrapper h-100">
 					<div className="swiper-slide pt-5 alumni">
 						{/* Content for Slide 1 */}
-						<div className="container">
-							<div className="row p-md-3">
+						<div className="container h-75 d-flex justify-content-center align-items-center">
+							<div className="row p-md-3 w-100">
 								<div className="col-12 col-md-8  d-flex justify-content-center align-items-start flex-column order-2 order-md-1">
 									<h2 className="actorName mb-3 mb-md-5">Alumni</h2>
 									<p className="actorDescription">
@@ -69,7 +69,7 @@ const GetStarted = () => {
 										to foster a robust professional network.
 									</p>
 								</div>
-								<div className="col-12 col-md-4  order-1 order-md-2">
+								<div className="col-12 col-md-4 order-1 order-md-2">
 									<img
 										className="w-100"
 										src={alumniImg}
@@ -88,8 +88,8 @@ const GetStarted = () => {
 					</div>
 					<div className="swiper-slide pt-5 student">
 						{/* Content for Slide 2 */}
-						<div className="container">
-							<div className="row p-md-3">
+						<div className="container h-75 d-flex justify-content-center align-items-center">
+							<div className="row p-md-3 w-100">
 								<div className="col-12 col-md-8 d-flex justify-content-center align-items-start flex-column order-2 order-md-1">
 									<h2 className="actorName mb-3 mb-md-5">Student</h2>
 									<p className="actorDescription">
@@ -115,8 +115,8 @@ const GetStarted = () => {
 					</div>
 					<div className="swiper-slide pt-5 hr">
 						{/* Content for Slide 3 */}
-						<div className="container">
-							<div className="row p-md-3">
+						<div className="container h-75 d-flex justify-content-center align-items-center">
+							<div className="row p-md-3 w-100">
 								<div className="col-12 col-md-8 d-flex justify-content-center align-items-start flex-column order-2 order-md-1">
 									<h2 className="actorName mb-3 mb-md-5">HR</h2>
 									<p className="actorDescription">
