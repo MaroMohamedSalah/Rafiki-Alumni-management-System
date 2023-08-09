@@ -17,6 +17,7 @@ import AdminProfile from "./pages/AdminProfile";
 import ProfessorProfile from "./pages/ProfessorProfile";
 import ImgCropper from "./components/img-cropper/ImgCropper";
 import LoginLayout from "./layouts/Login-layout";
+import GetStarted from "./pages/GetStarted";
 
 function App() {
 	return (
@@ -36,6 +37,7 @@ function App() {
 					<Route path="/studentProfile" element={<StudentProfile />} />
 					<Route path="/adminProfile" element={<AdminProfile />} />
 					<Route path="/professorProfile" element={<ProfessorProfile />} />
+					<Route path="/getStarted" element={<GetStarted />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

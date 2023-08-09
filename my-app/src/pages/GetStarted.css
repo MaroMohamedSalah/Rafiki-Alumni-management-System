@@ -1,0 +1,151 @@
+.GetStartedSwiper .swiper-nav {
+	left: 0;
+	right: 0;
+}
+.GetStartedSwiper .alumni {
+	background-color: var(--Alumni-color);
+	position: relative;
+}
+.GetStartedSwiper .after {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+.GetStartedSwiper .alumni .after {
+	background-color: white;
+	left: -2%;
+	bottom: 94px;
+}
+.GetStartedSwiper .student {
+	background-color: var(--Student-color);
+}
+.GetStartedSwiper .student .after {
+	background-color: #5a82a8;
+	right: -2%;
+	left: auto;
+}
+.GetStartedSwiper .hr {
+	background-color: var(--HR-color);
+}
+.GetStartedSwiper .hr .after {
+	background-color: #f29935;
+	right: -2%;
+	left: auto;
+	bottom: 0;
+}
+
+.GetStartedSwiper .actorName {
+	color: white;
+	font-weight: 600;
+	font-size: 64px;
+}
+.GetStartedSwiper .actorDescription {
+	color: white;
+	font-size: 32px;
+	font-weight: 700;
+}
+.GetStartedSwiper .swiper-pagination {
+	display: flex;
+}
+.pagination-wrapper {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.swiper-pagination-clickable .swiper-pagination-bullet {
+	cursor: pointer;
+	background-color: white;
+	width: 16px;
+	height: 16px;
+}
+.GetStartedSwiper .swiper-button-next::after,
+.GetStartedSwiper .swiper-button-prev::after {
+	display: none;
+}
+.GetStartedSwiper .swiper-button-next {
+	width: fit-content;
+	height: fit-content;
+	display: unset;
+	top: unset;
+	background-color: white;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+	color: #222222;
+	font-size: 22px;
+	font-weight: 400;
+}
+.GetStartedSwiper .swiper-button-prev {
+	position: relative;
+	width: fit-content;
+	height: fit-content;
+	display: unset;
+	top: unset;
+	right: unset;
+	left: unset;
+	color: white;
+	font-size: 40px;
+	margin-top: auto;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.GetStartedSwiper .actorName {
+		color: white;
+		font-weight: 600;
+		font-size: 34px;
+	}
+	.GetStartedSwiper .actorDescription {
+		color: white;
+		font-size: 12px;
+		font-weight: 700;
+	}
+	.swiper-pagination-clickable .swiper-pagination-bullet {
+		width: 12px;
+		height: 12px;
+	}
+	.GetStartedSwiper .swiper-button-next {
+		right: 0;
+		left: auto;
+		bottom: 0;
+		color: #222222;
+		font-size: 12px;
+		font-weight: 400;
+	}
+	.GetStartedSwiper .swiper-button-prev {
+		color: white;
+		font-size: 25px;
+	}
+	.GetStartedSwiper .alumni .after {
+		background-color: white;
+		left: -10%;
+		bottom: auto;
+		top: 60px;
+	}
+	.GetStartedSwiper .student .after {
+		background-color: #5a82a8;
+		right: -5%;
+		left: auto;
+		top: 50%;
+	}
+	.GetStartedSwiper .hr .after {
+		background-color: #f29935;
+		right: -5%;
+		left: auto;
+		bottom: auto;
+		top: -3%;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+}

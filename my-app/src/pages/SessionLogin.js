@@ -101,7 +101,7 @@ const SessionLogin = () => {
 							</button>
 
 							<div className="createNew mt-5 w-100 text-center">
-								<Link to={"#"}>Create New Account</Link>
+								<Link to={"/getStarted"}>Create New Account</Link>
 							</div>
 						</div>
 					</div>

@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-const CACHE_VERSION = "FCAI-v9"; // Update the cache version whenever you make changes to the cache
+const CACHE_VERSION = "FCAI-v10"; // Update the cache version whenever you make changes to the cache
 const CACHE_NAME = CACHE_VERSION + "-static";
 
 const staticAssets = [
