@@ -20,9 +20,9 @@ const ProfileName = ({ firstName, lastname }) => {
 	// 		.catch((error) => console.log(error));
 	// }, [first_name]);
 	return (
-		<h1 className="name">
+		<h1 className="name text-center">
 			{firstName === null || lastname === null ? (
-				<p class="placeholder-glow" style={{ width: "200px" }}>
+				<p class="placeholder-glow w-100" style={{ width: "200px" }}>
 					<span class="placeholder w-100"></span>
 				</p>
 			) : (

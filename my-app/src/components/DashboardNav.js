@@ -1,27 +1,48 @@
+import { Link } from "react-router-dom";
 import logo from "../imgs/dashboard-img.png";
 const DashboardNav = ({ profileData }) => {
 	const pic = `https://alumni-system-backend.azurewebsites.net/uploads/pictures/${profileData.Img}`;
 	return (
-		<div className="nav py-3">
+		<div className="nav py-2">
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-2">
 						<div className="logo">
-							<img src={logo} alt="" className="img-fluid" />
+							<img src={logo} alt="" className="img-fluid h-100" />
 						</div>
 					</div>
-					<div className="col-6">
-						<div className="search"></div>
+					<div className="col-6  d-flex justify-content-center align-items-center">
+						<form class="d-flex w-75" role="search">
+							<input
+								class="form-control me-2"
+								type="search"
+								placeholder="Search"
+								aria-label="Search"
+							/>
+							<button class="btn btn-outline-success" type="submit">
+								Search
+							</button>
+						</form>
 					</div>
 					<div className="col-4 d-flex align-items-center justify-content-end">
-						<div className="notification me-2" id="dashboard-notification">
+						<div className="notification me" id="dashboard-notification">
 							<i class="fa-solid fa-bell"></i>
 						</div>
 						<div className="dashProfile d-flex ms-3 align-items-center">
-							<div className="profileImage rounded-5">
-								<img src={pic} alt="pic" className="img-fluid" />
-							</div>
-							<div className="username ms-3">
+							{profileData && (
+								<Link
+									to={`/${profileData.Role.Role_Name.toLowerCase()}Profile`}
+									className="profileImage rounded-5"
+								>
+									{profileData.Img ? (
+										<img src={pic} alt="pic" className="img-fluid" />
+									) : (
+										<i class="fa-solid fa-user"></i>
+									)}
+								</Link>
+							)}
+
+							<div className="username ms-1">
 								<h2>
 									<div className="d-inline icon">👋</div> Hi,{" "}
 									{profileData.UserName}

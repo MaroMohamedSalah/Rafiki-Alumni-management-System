@@ -265,6 +265,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-size: 97px;
+	color: #392e67;
 }
 .sessionLogin .profileImg img {
 	min-height: 100%;
@@ -273,6 +275,7 @@
 	font-size: 3em;
 	font-weight: 600;
 	color: #392e67;
+	min-width: 400px;
 }
 .sessionLogin .loginBtn {
 	background-color: #dfdde5;

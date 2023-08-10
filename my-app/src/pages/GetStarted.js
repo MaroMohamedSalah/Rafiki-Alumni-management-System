@@ -33,7 +33,6 @@ const GetStarted = () => {
 			},
 			on: {
 				slideChange: () => {
-					AOS.refresh();
 					const activeIndex = swiperRef.current.activeIndex;
 					const slidesCount = swiperRef.current.slides.length;
 					setIsLastSlide(activeIndex === slidesCount - 1);
@@ -154,20 +153,23 @@ const GetStarted = () => {
 				</div>
 
 				{/* Render button or link based on the active slide */}
-				{isLastSlide ? (
-					<Link to="/roleSelection">
-						<button className="swiper-button-next btn rounded-5 px-4 px-md-5 mb-5">
-							Get Started
-						</button>
-					</Link>
-				) : (
-					<div
-						className="swiper-button-next btn rounded-5 px-4 px-md-5 mb-5"
-						onClick={() => swiperRef.current.slideNext()}
-					>
-						Next
-					</div>
-				)}
+
+				<Link
+					to="/roleSelection"
+					className={`getStartBtn btn rounded-5 px-4 px-md-5 mb-5 ${
+						isLastSlide ? "d-block" : "d-none"
+					}`}
+				>
+					Get Started
+				</Link>
+
+				<div
+					className={`swiper-button-next btn rounded-5 px-4 px-md-5 mb-5 ${
+						isLastSlide ? "d-none" : "d-block"
+					} `}
+				>
+					Next
+				</div>
 			</div>
 		</div>
 	);

@@ -70,7 +70,7 @@ const SessionLogin = () => {
 						<div className="profileImg shadow-lg mb-4">
 							{loading === true ? (
 								<h1>Loading..</h1>
-							) : (
+							) : userInfo.Img ? (
 								<img
 									src={
 										"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
@@ -79,6 +79,8 @@ const SessionLogin = () => {
 									alt="profile img"
 									className="img-fluid"
 								/>
+							) : (
+								<i class="fa-solid fa-user"></i>
 							)}
 						</div>
 						<div>
@@ -88,7 +90,7 @@ const SessionLogin = () => {
 							/>
 
 							<Link
-								to={`/${userInfo.user.Role.Role_Name.toLowerCase()}Profile`} // Use dynamic value for the URL
+								to={`/dashboard?username=${userInfo.user_name}`}
 								className="btn rounded-5 loginBtn mt-4 w-100"
 							>
 								Log In

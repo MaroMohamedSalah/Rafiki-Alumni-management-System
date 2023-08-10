@@ -17,24 +17,32 @@
 }
 /* Nav  */
 .Dashboard .nav {
-	height: 85px;
+	/* height: 85px; */
 }
 .Dashboard .logo {
-	width: 70px;
+	height: 50px;
 }
 .Dashboard .nav .profileImage {
-	width: 60px;
-	height: 60px;
+	width: 45px;
+	height: 45px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
 	cursor: pointer;
+	background-color: #9b9a9a;
+	color: #1e1934;
+	font-size: 25px;
 }
 .Dashboard .nav .notification {
 	color: white;
-	font-size: 22px;
+	font-size: 20px;
 	cursor: pointer;
+	width: 45px;
+	height: 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .Dashboard .nav .notification:hover {
 	animation: headShake;
@@ -42,8 +50,8 @@
 }
 .Dashboard .nav .username h2 {
 	color: white;
-	font-size: 26px;
-	font-weight: 700;
+	font-size: 16px;
+	font-weight: 400;
 	margin-bottom: 0;
 }
 .Dashboard .nav .username:hover .icon {
@@ -53,7 +61,7 @@
 
 /* Slider */
 .Dashboard .slider {
-	height: calc(100vh - 85px);
+	height: calc(100vh - 66px);
 	transition: all ease-in-out var(--main-transition);
 }
 .Dashboard .slider:not(.open) .slider-container {
@@ -66,3 +74,5 @@
 	color: white;
 	cursor: pointer;
 }
+
+/* search */

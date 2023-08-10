@@ -64,7 +64,7 @@ const HRprofile = () => {
 
 				<div className="row mt-5">
 					<div className="col-12 col-md-2">
-						<ProfileImg actor={"HR"} />
+						<ProfileImg actor={"HR"} profileData={profile.hr} />
 					</div>
 					<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
 						<div className="order-md-1 order-2 w-100">

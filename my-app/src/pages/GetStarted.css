@@ -64,7 +64,9 @@
 .GetStartedSwiper .swiper-button-prev::after {
 	display: none;
 }
-.GetStartedSwiper .swiper-button-next {
+.GetStartedSwiper .swiper-button-next,
+.GetStartedSwiper .getStartBtn {
+	position: absolute;
 	width: fit-content;
 	height: fit-content;
 	display: unset;
@@ -76,6 +78,7 @@
 	color: #222222;
 	font-size: 22px;
 	font-weight: 400;
+	z-index: 55;
 }
 .GetStartedSwiper .swiper-button-prev {
 	position: relative;
@@ -107,7 +110,8 @@
 		width: 12px;
 		height: 12px;
 	}
-	.GetStartedSwiper .swiper-button-next {
+	.GetStartedSwiper .swiper-button-next,
+	.GetStartedSwiper .getStartBtn {
 		right: 0;
 		left: auto;
 		bottom: 0;
@@ -145,7 +149,8 @@
 	/* Styles for the normal view of the tablet */
 	@media (orientation: portrait) {
 		/* Add your styles for the normal view (portrait orientation) here */
-		.GetStartedSwiper .swiper-button-next {
+		.GetStartedSwiper .swiper-button-next,
+		.GetStartedSwiper .getStartBtn {
 			right: 0;
 			left: auto;
 			bottom: 0;
@@ -162,7 +167,8 @@
 		.GetStartedSwiper .actorDescription {
 			font-size: 25px;
 		}
-		.GetStartedSwiper .swiper-button-next {
+		.GetStartedSwiper .swiper-button-next,
+		.GetStartedSwiper .getStartBtn {
 			right: 0;
 			left: auto;
 			bottom: 0;
