@@ -8,12 +8,15 @@ import icon2 from "../imgs/sign up 5.svg";
 import show from "../imgs/show password.svg";
 import hide from "../imgs/hide password.svg";
 import "./Auth.css";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../redux/actions/profileActions";
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [usernameError, setUsernameError] = useState("");
 	const [passwordError, setPasswordError] = useState("");
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const validateInputsValues = (inputs) => {
 		let error = false;
@@ -68,36 +71,13 @@ const Login = () => {
 				if (response.status === 200) {
 					localStorage.setItem("sessionId", data.sessionId);
 
+					fetchUserData(data.sessionId);
+
 					Swal.fire({
 						title: "Success!",
 						text: `You Logged in successfully, as ${data.actor}!`,
 						icon: "success",
 					});
-
-					// switch (data.actor) {
-					// 	case "Alumni":
-					// 		navigate("/alumniProfile");
-					// 		displayNotification(data.username);
-					// 		break;
-					// 	case "HR":
-					// 		navigate("/hrProfile");
-					// 		displayNotification(data.username);
-					// 		break;
-					// 	case "Student":
-					// 		navigate("/studentProfile");
-					// 		displayNotification(data.username);
-					// 		break;
-					// 	case "Admin":
-					// 		navigate("/adminProfile");
-					// 		displayNotification(data.username);
-					// 		break;
-					// 	case "Professors":
-					// 		navigate("/professorProfile");
-					// 		displayNotification(data.username);
-					// 		break;
-					// 	default:
-					// 		break;
-					// }
 
 					navigate(`/dashboard?username=${data.user_name}`);
 
@@ -124,6 +104,36 @@ const Login = () => {
 			} else {
 				console.log("Vibration not supported on this device.");
 			}
+		}
+	};
+
+	// Make API request and set userinfo in the Redux store
+	const fetchUserData = async (sessionId) => {
+		try {
+			const response = await fetch(
+				"https://alumni-system-backend.azurewebsites.net/api/users/",
+				{
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${sessionId}`,
+					},
+				}
+			);
+
+			if (response.status === 401) {
+				// Redirect to login page
+				// RedirectToLoginNotification();
+				// navigate("/login");
+			} else {
+				const data = await response.json();
+				if (data.success === true) {
+					// Dispatch the action to update the profile in the Redux store
+					setUserInfo(dispatch, data);
+				}
+			}
+		} catch (error) {
+			console.log("Error while fetching profile data:", error);
 		}
 	};
 

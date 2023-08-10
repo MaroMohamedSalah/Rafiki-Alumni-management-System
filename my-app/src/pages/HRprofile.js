@@ -13,19 +13,22 @@ import ProfileSkills from "../components/ProfileSkills";
 import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
-import { setProfile } from "../redux/actions/profileActions";
+import { updateUserInfo } from "../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
+import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
+import { useNavigate } from "react-router-dom";
 const HRprofile = () => {
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
 	const profile = useSelector((state) => state.profile);
 	const [profileFetched, setProfileFetched] = useState(false);
+	const navigate = useNavigate();
 
 	// Make API request and update profile in the Redux store
-	const fetchProfileData = async () => {
+	const fetchUserData = async () => {
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/get_hr",
+				"https://alumni-system-backend.azurewebsites.net/api/users",
 				{
 					method: "GET",
 					headers: {
@@ -34,20 +37,26 @@ const HRprofile = () => {
 					},
 				}
 			);
-			const data = await response.json();
-			if (data.success === true) {
-				// Dispatch the action to update the profile in the Redux store
-				setProfile(dispatch, data);
-				setProfileFetched(true);
+
+			if (response.status === 401) {
+				// Redirect to login page
+				RedirectToLoginNotification();
+				navigate("/login");
+			} else {
+				const data = await response.json();
+				if (data.success === true) {
+					updateUserInfo(dispatch, data);
+					setProfileFetched(true);
+				}
 			}
 		} catch (error) {
-			console.log(error);
+			console.log("Error while fetching profile data:", error);
 		}
 	};
 
 	useEffect(() => {
 		if (!profileFetched) {
-			fetchProfileData();
+			fetchUserData();
 		}
 	}, [profileFetched]);
 	return (

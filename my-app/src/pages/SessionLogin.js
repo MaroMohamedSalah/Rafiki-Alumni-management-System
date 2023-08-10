@@ -70,7 +70,7 @@ const SessionLogin = () => {
 						<div className="profileImg shadow-lg mb-4">
 							{loading === true ? (
 								<h1>Loading..</h1>
-							) : userInfo.Img ? (
+							) : userInfo.user.Img ? (
 								<img
 									src={
 										"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +

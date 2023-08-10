@@ -16,7 +16,7 @@ import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setProfile } from "../redux/actions/profileActions";
+import { updateUserInfo } from "../redux/actions/profileActions";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 const AdminProfile = () => {
 	const dispatch = useDispatch();
@@ -26,10 +26,10 @@ const AdminProfile = () => {
 	const navigate = useNavigate();
 
 	// Make API request and update profile in the Redux store
-	const fetchProfileData = async () => {
+	const fetchUserData = async () => {
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/admin/get",
+				"https://alumni-system-backend.azurewebsites.net/api/users",
 				{
 					method: "GET",
 					headers: {
@@ -46,8 +46,7 @@ const AdminProfile = () => {
 			} else {
 				const data = await response.json();
 				if (data.success === true) {
-					// Dispatch the action to update the profile in the Redux store
-					setProfile(dispatch, data);
+					updateUserInfo(dispatch, data);
 					setProfileFetched(true);
 				}
 			}
@@ -58,7 +57,7 @@ const AdminProfile = () => {
 
 	useEffect(() => {
 		if (!profileFetched) {
-			fetchProfileData();
+			fetchUserData();
 		}
 	}, [profileFetched]);
 	return (

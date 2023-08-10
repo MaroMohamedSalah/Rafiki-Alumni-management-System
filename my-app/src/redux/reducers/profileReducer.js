@@ -1,14 +1,19 @@
-import { SET_PROFILE } from "../actions/types";
+import { SET_USER_INFO, UPDATE_USER_INFO } from "../actions/types";
 
 const initialState = {
-	profile: null,
+	userInfo: null,
 };
 const profileReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case SET_PROFILE:
+		case SET_USER_INFO:
 			return {
 				...state,
-				profile: action.payload,
+				userInfo: action.payload,
+			};
+		case UPDATE_USER_INFO:
+			return {
+				...state,
+				userInfo: action.payload,
 			};
 		// handle other actions and state updates here
 		default:

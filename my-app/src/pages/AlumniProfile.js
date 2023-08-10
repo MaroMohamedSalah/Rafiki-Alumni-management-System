@@ -15,22 +15,23 @@ import ProfileUsername from "../components/ProfileUsername";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
-import { setProfile } from "../redux/actions/profileActions";
+import { updateUserInfo } from "../redux/actions/profileActions";
 import { useNavigate } from "react-router-dom";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
+import fetchUserData from "../utils/fetchUserData";
 
 const AlumniProfile = () => {
-	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
-	const profile = useSelector((state) => state.profile);
+	const userInfo = useSelector((state) => state.userInfo);
 	const [profileFetched, setProfileFetched] = useState(false);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	// Make API request and update profile in the Redux store
-	const fetchProfileData = async () => {
+	// Make API request and update user Info in the Redux store
+	const fetchUserData = async () => {
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/get_alumni",
+				"https://alumni-system-backend.azurewebsites.net/api/users",
 				{
 					method: "GET",
 					headers: {
@@ -47,8 +48,7 @@ const AlumniProfile = () => {
 			} else {
 				const data = await response.json();
 				if (data.success === true) {
-					// Dispatch the action to update the profile in the Redux store
-					setProfile(dispatch, data);
+					updateUserInfo(dispatch, data);
 					setProfileFetched(true);
 				}
 			}
@@ -56,15 +56,17 @@ const AlumniProfile = () => {
 			console.log("Error while fetching profile data:", error);
 		}
 	};
+	// fetchUserData(sessionId, dispatch, navigate, setProfileFetched);
 
 	useEffect(() => {
 		if (!profileFetched) {
-			fetchProfileData();
+			fetchUserData();
+			// fetchUserData(sessionId, dispatch, navigate, setProfileFetched);
 		}
 	}, [profileFetched]);
 	return (
-		profile &&
-		profile.alumni && (
+		userInfo &&
+		userInfo.user && (
 			<div className="AlumniProfile profile">
 				<div className="container">
 					<Backbtn
@@ -78,16 +80,16 @@ const AlumniProfile = () => {
 
 					<div className="row mt-5">
 						<div className="col-12 col-md-2">
-							<ProfileImg actor={"Alumni"} profileData={profile.alumni} />
+							<ProfileImg actor={"Alumni"} profileData={userInfo.user} />
 						</div>
 						<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
 							<div className="order-md-1 order-2 w-100">
-								<ProfileUsername username={profile.alumni.UserName} />
+								<ProfileUsername username={userInfo.user.UserName} />
 							</div>
 							<div className="order-md-2 order-1">
 								<ProfileName
-									firstName={profile.alumni.FirstName}
-									lastname={profile.alumni.LastName}
+									firstName={userInfo.user.FirstName}
+									lastname={userInfo.user.LastName}
 								/>
 							</div>
 							<div className="order-md-3 order-3">
@@ -102,25 +104,25 @@ const AlumniProfile = () => {
 
 					<div className="row">
 						<div className="col-12 col-md-6">
-							<ProfileURLsSec profileData={profile.alumni} />
+							<ProfileURLsSec profileData={userInfo.user} />
 						</div>
 
 						<div className="col-12 col-md-6">
-							<ProfileCV cv={profile.alumni.CV} />
+							<ProfileCV cv={userInfo.user.CV} />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
-							<ProfileAboutSec aboutContent={profile.alumni.About} />
+							<ProfileAboutSec aboutContent={userInfo.user.About} />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
 							<ProfileContactInfoSec
-								phonePram={profile.alumni.Phone}
-								emailPram={profile.alumni.Email}
+								phonePram={userInfo.user.Phone}
+								emailPram={userInfo.user.Email}
 							/>
 						</div>
 					</div>
@@ -145,7 +147,7 @@ const AlumniProfile = () => {
 
 					<div className="row">
 						<div className="col-12">
-							<ProfilePersonalInfo countryPram={profile.alumni.Country} />
+							<ProfilePersonalInfo countryPram={userInfo.user.Country} />
 						</div>
 					</div>
 				</div>

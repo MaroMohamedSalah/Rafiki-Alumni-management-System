@@ -15,22 +15,22 @@ import ProfileURLsSec from "../components/ProfileURLsSec";
 import ProfileUsername from "../components/ProfileUsername";
 import "./Profile.css";
 import GenerateCV from "../components/GenerateCV";
-import { setProfile } from "../redux/actions/profileActions";
+import { setProfile, updateUserInfo } from "../redux/actions/profileActions";
 import { useDispatch, useSelector } from "react-redux";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import { useNavigate } from "react-router-dom";
 const StudentProfile = () => {
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
-	const profile = useSelector((state) => state.profile);
+	const userInfo = useSelector((state) => state.userInfo);
 	const [profileFetched, setProfileFetched] = useState(false);
 	const navigate = useNavigate();
 
 	// Make API request and update profile in the Redux store
-	const fetchProfileData = async () => {
+	const fetchUserData = async () => {
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/get_student",
+				"https://alumni-system-backend.azurewebsites.net/api/users",
 				{
 					method: "GET",
 					headers: {
@@ -39,31 +39,31 @@ const StudentProfile = () => {
 					},
 				}
 			);
+
 			if (response.status === 401) {
-				// Redirect to the login page
+				// Redirect to login page
 				RedirectToLoginNotification();
 				navigate("/login");
 			} else {
 				const data = await response.json();
 				if (data.success === true) {
-					// Dispatch the action to update the profile in the Redux store
-					setProfile(dispatch, data);
+					updateUserInfo(dispatch, data);
 					setProfileFetched(true);
 				}
 			}
 		} catch (error) {
-			console.log(error);
+			console.log("Error while fetching profile data:", error);
 		}
 	};
 
 	useEffect(() => {
 		if (!profileFetched) {
-			fetchProfileData();
+			fetchUserData();
 		}
 	}, [profileFetched]);
 	return (
-		profile &&
-		profile.student && (
+		userInfo &&
+		userInfo.user && (
 			<div className="StudentProfile profile">
 				<div className="container">
 					<Backbtn
@@ -77,16 +77,16 @@ const StudentProfile = () => {
 
 					<div className="row mt-5">
 						<div className="col-12 col-md-2">
-							<ProfileImg actor={"Student"} profileData={profile.student} />
+							<ProfileImg actor={"Student"} profileData={userInfo.user} />
 						</div>
 						<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
 							<div className="order-md-1 order-2 w-100">
-								<ProfileUsername username={profile.student.UserName} />
+								<ProfileUsername username={userInfo.user.UserName} />
 							</div>
 							<div className="order-md-2 order-1">
 								<ProfileName
-									firstName={profile.student.FirstName}
-									lastname={profile.student.LastName}
+									firstName={userInfo.user.FirstName}
+									lastname={userInfo.user.LastName}
 								/>
 							</div>
 							<div className="order-md-3 order-3">
@@ -101,25 +101,25 @@ const StudentProfile = () => {
 
 					<div className="row">
 						<div className="col-12 col-md-6">
-							<ProfileURLsSec profileData={profile.student} />
+							<ProfileURLsSec profileData={userInfo.user} />
 						</div>
 
 						<div className="col-12 col-md-6">
-							<ProfileCV cv={profile.student.CV} />
+							<ProfileCV cv={userInfo.user.CV} />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
-							<ProfileAboutSec aboutContent={profile.student.About} />
+							<ProfileAboutSec aboutContent={userInfo.user.About} />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
 							<ProfileContactInfoSec
-								phonePram={profile.student.Phone}
-								emailPram={profile.student.Email}
+								phonePram={userInfo.user.Phone}
+								emailPram={userInfo.user.Email}
 							/>
 						</div>
 					</div>
@@ -144,7 +144,7 @@ const StudentProfile = () => {
 
 					<div className="row">
 						<div className="col-12">
-							<ProfilePersonalInfo countryPram={profile.student.Country} />
+							<ProfilePersonalInfo countryPram={userInfo.user.Country} />
 						</div>
 					</div>
 				</div>
