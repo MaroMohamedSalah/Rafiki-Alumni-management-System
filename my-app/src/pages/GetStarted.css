@@ -1,6 +1,22 @@
+.GetStartedSwiper .swiper-container .after {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	background-color: white;
+	left: -2%;
+	bottom: 94px;
+	z-index: 200;
+	transition: all 1s ease-in-out;
+}
 .GetStartedSwiper .swiper-nav {
 	left: 0;
 	right: 0;
+}
+.GetStartedSwiper .actorImg {
+	transform: translateY(50px);
+	opacity: 0;
+	transition: all var(--main-transition) ease-in-out;
 }
 .GetStartedSwiper .alumni {
 	background-color: var(--Alumni-color);
@@ -20,19 +36,8 @@
 .GetStartedSwiper .student {
 	background-color: var(--Student-color);
 }
-.GetStartedSwiper .student .after {
-	background-color: #5a82a8;
-	right: -2%;
-	left: auto;
-}
 .GetStartedSwiper .hr {
 	background-color: var(--HR-color);
-}
-.GetStartedSwiper .hr .after {
-	background-color: #f29935;
-	right: -2%;
-	left: auto;
-	bottom: 0;
 }
 
 .GetStartedSwiper .actorName {
@@ -100,11 +105,13 @@
 		color: white;
 		font-weight: 600;
 		font-size: 34px;
+		z-index: 400;
 	}
 	.GetStartedSwiper .actorDescription {
 		color: white;
-		font-size: 12px;
-		font-weight: 700;
+		font-size: 15px;
+		font-weight: 500;
+		z-index: 400;
 	}
 	.swiper-pagination-clickable .swiper-pagination-bullet {
 		width: 12px;
@@ -123,24 +130,12 @@
 		color: white;
 		font-size: 25px;
 	}
-	.GetStartedSwiper .alumni .after {
-		background-color: white;
-		left: -10%;
-		bottom: auto;
-		top: 60px;
-	}
-	.GetStartedSwiper .student .after {
-		background-color: #5a82a8;
-		right: -5%;
-		left: auto;
-		top: 50%;
-	}
-	.GetStartedSwiper .hr .after {
-		background-color: #f29935;
-		right: -5%;
-		left: auto;
-		bottom: auto;
-		top: -3%;
+	.GetStartedSwiper .swiper-container .after {
+		position: absolute;
+		width: 70px;
+		height: 70px;
+		left: -2%;
+		bottom: 80%;
 	}
 }
 
@@ -175,4 +170,11 @@
 			font-weight: 400;
 		}
 	}
+}
+
+/* animations */
+.fade-up {
+	transform: translateY(0) !important;
+	opacity: 1 !important;
+	transition: opacity 0.6s 0.3s ease-in-out, transform 0.9s 0.2s ease-in-out !important;
 }

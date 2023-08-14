@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./dashboard.css";
-import DashboardSlider from "../components/DashboardSlider";
 import DashboardNav from "../components/DashboardNav";
 import "animate.css";
+import DashboardSidebar from "../components/DashboardSidebar";
 
 const DashboardLayout = () => {
 	const [userInfo, setUserInfo] = useState();
@@ -48,9 +48,9 @@ const DashboardLayout = () => {
 						)}
 					</div>
 
-					<DashboardSlider />
+					<DashboardSidebar />
 
-					<div className="col pt-4 px-2 content">
+					<div className="col px-2 content">
 						<div className="content-container"></div>
 					</div>
 				</div>

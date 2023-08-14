@@ -3,7 +3,7 @@
 }
 
 /* General  */
-.Dashboard .slider-container {
+.Dashboard .sidebar-container {
 	border-radius: 20px;
 	background-color: #392e67;
 	height: 100%;
@@ -60,16 +60,16 @@
 }
 
 /* Slider */
-.Dashboard .slider {
+.Dashboard .sidebar {
 	height: calc(100vh - 66px);
 	transition: all ease-in-out var(--main-transition);
 }
-.Dashboard .slider:not(.open) .slider-container {
+.Dashboard .sidebar:not(.open) .sidebar-container {
 	display: flex;
 	justify-content: center;
 	border-radius: 0;
 }
-.Dashboard .slider .sliderTrigger {
+.Dashboard .sidebar .sidebarTrigger {
 	font-size: 30px;
 	color: white;
 	cursor: pointer;

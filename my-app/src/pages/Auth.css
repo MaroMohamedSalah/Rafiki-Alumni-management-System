@@ -291,6 +291,7 @@
 	/* Your CSS styles for mobile devices here */
 	.sessionLogin .name {
 		font-size: 2.5em;
+		min-width: 100%;
 	}
 }
 

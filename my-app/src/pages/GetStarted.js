@@ -14,12 +14,16 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 const GetStarted = () => {
 	const [isLastSlide, setIsLastSlide] = useState(false);
 	const swiperRef = useRef(null); // Create a ref for swiper instance
-
 	useEffect(() => {
 		AOS.init({
 			duration: 1000,
 			once: true,
 		});
+
+		const swiperAfter = document.querySelector(
+			".GetStartedSwiper .swiper-container .after"
+		);
+
 		swiperRef.current = new Swiper(".swiper-container", {
 			slidesPerView: 1,
 			modules: [Navigation, Pagination],
@@ -33,9 +37,41 @@ const GetStarted = () => {
 			},
 			on: {
 				slideChange: () => {
+					const isMobileScreen = window.innerWidth <= 767; // Example breakpoint
+
 					const activeIndex = swiperRef.current.activeIndex;
 					const slidesCount = swiperRef.current.slides.length;
 					setIsLastSlide(activeIndex === slidesCount - 1);
+
+					// Apply fade-up animation to the image in the current slide
+					const currentSlide = swiperRef.current.slides[activeIndex];
+					const image = currentSlide.querySelector(".actorImg");
+					if (image) {
+						image.classList.add("fade-up");
+					}
+					// change the circle position
+					switch (activeIndex) {
+						case 0:
+							isMobileScreen
+								? setCirclePosition(swiperAfter, "-2%", "80%", "white")
+								: setCirclePosition(swiperAfter, "-2%", "17%", "white");
+							break;
+
+						case 1:
+							isMobileScreen
+								? setCirclePosition(swiperAfter, "85%", "56%", "#5a82a8")
+								: setCirclePosition(swiperAfter, "95%", "56%", "#5a82a8");
+							break;
+
+						case 2:
+							isMobileScreen
+								? setCirclePosition(swiperAfter, "85%", "85%", "#f29935")
+								: setCirclePosition(swiperAfter, "95%", "18%", "#f29935");
+							break;
+
+						default:
+							break;
+					}
 				},
 			},
 		});
@@ -45,9 +81,16 @@ const GetStarted = () => {
 			AOS.refresh();
 		};
 	}, []);
+
+	// Helper function to set the circle position and color
+	const setCirclePosition = (element, left, bottom, background) => {
+		element.style.left = left;
+		element.style.bottom = bottom;
+		element.style.background = background;
+	};
 	return (
 		<div className="GetStartedSwiper">
-			<div className="swiper-container overflow-hidden vh-100">
+			<div className="swiper-container overflow-hidden vh-100 position-relative">
 				<div className="swiper-nav container position-relative d-flex justify-content-between align-items-center position-absolute">
 					<h1 className="z-2 d-none d-md-block">Logo</h1>
 					<div className="swiper-button-prev">
@@ -70,19 +113,12 @@ const GetStarted = () => {
 								</div>
 								<div className="col-12 col-md-4 order-1 order-md-2">
 									<img
-										className="w-100"
+										className="w-100 actorImg fade-up"
 										src={alumniImg}
 										alt=""
-										data-aos="fade-up"
-										data-aos-delay="600"
 									/>
 								</div>
 							</div>
-							<div
-								className="after"
-								data-aos="zoom-out-up"
-								data-aos-delay="600"
-							></div>
 						</div>
 					</div>
 					<div className="swiper-slide pt-5 student">
@@ -96,20 +132,9 @@ const GetStarted = () => {
 									</p>
 								</div>
 								<div className="col-12 col-md-4 order-1 order-md-2">
-									<img
-										className="w-100"
-										src={studentImg}
-										alt=""
-										// data-aos="fade-up"
-										// data-aos-delay="600"
-									/>
+									<img className="w-100 actorImg" src={studentImg} alt="" />
 								</div>
 							</div>
-							<div
-								className="after"
-								// data-aos="zoom-out-up"
-								// data-aos-delay="600"
-							></div>
 						</div>
 					</div>
 					<div className="swiper-slide pt-5 hr">
@@ -126,20 +151,9 @@ const GetStarted = () => {
 									</p>
 								</div>
 								<div className="col-12 col-md-4 order-1 order-md-2">
-									<img
-										className="w-100"
-										src={hrImg}
-										alt=""
-										// data-aos="fade-up"
-										// data-aos-delay="600"
-									/>
+									<img className="w-100 actorImg" src={hrImg} alt="" />
 								</div>
 							</div>
-							<div
-								className="after"
-								// data-aos="zoom-out-up"
-								// data-aos-delay="600"
-							></div>
 						</div>
 					</div>
 				</div>
@@ -170,6 +184,8 @@ const GetStarted = () => {
 				>
 					Next
 				</div>
+
+				<div className="after"></div>
 			</div>
 		</div>
 	);
