@@ -7,9 +7,12 @@ const DashboardNav = ({ profileData }) => {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-2">
-						<div className="logo">
+						<Link
+							to={`/dashboard?username=${profileData.UserName}`}
+							className="logo"
+						>
 							<img src={logo} alt="" className="img-fluid h-100" />
-						</div>
+						</Link>
 					</div>
 					<div className="col-6  d-flex justify-content-center align-items-center">
 						<form class="d-flex w-75" role="search">
@@ -29,18 +32,16 @@ const DashboardNav = ({ profileData }) => {
 							<i class="fa-solid fa-bell"></i>
 						</div>
 						<div className="dashProfile d-flex ms-3 align-items-center">
-							{profileData && (
-								<Link
-									to={`/${profileData.Role.Role_Name.toLowerCase()}Profile`}
-									className="profileImage rounded-5"
-								>
-									{profileData.Img ? (
-										<img src={pic} alt="pic" className="img-fluid" />
-									) : (
-										<i class="fa-solid fa-user"></i>
-									)}
-								</Link>
-							)}
+							<Link
+								to={`/${profileData.Role.Role_Name.toLowerCase()}Profile`}
+								className="profileImage rounded-5"
+							>
+								{profileData.Img ? (
+									<img src={pic} alt="pic" className="img-fluid" />
+								) : (
+									<i class="fa-solid fa-user"></i>
+								)}
+							</Link>
 
 							<div className="username ms-1">
 								<h2>

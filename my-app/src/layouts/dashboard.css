@@ -20,7 +20,8 @@
 	/* height: 85px; */
 }
 .Dashboard .logo {
-	height: 50px;
+	display: block;
+	height: 50px !important;
 }
 .Dashboard .nav .profileImage {
 	width: 45px;

@@ -1,4 +1,10 @@
-import { SET_USER_INFO, UPDATE_USER_INFO } from "../actions/types";
+import {
+	SET_USER_INFO,
+	UPDATE_SOCIAL_URLS,
+	UPDATE_USER_IMG,
+	UPDATE_USER_INFO,
+	UUPDATE_USER_IMG,
+} from "../actions/types";
 
 const initialState = {
 	userInfo: null,
@@ -15,6 +21,29 @@ const profileReducer = (state = initialState, action) => {
 				...state,
 				userInfo: action.payload,
 			};
+		case UPDATE_USER_IMG:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						...action.payload,
+					},
+				},
+			};
+		case UPDATE_SOCIAL_URLS:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						...action.payload,
+					},
+				},
+			};
+
 		// handle other actions and state updates here
 		default:
 			return state;

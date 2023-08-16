@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
+import {
+	updateSocialURLs,
+	updateUserInfo,
+} from "../redux/actions/profileActions";
 
 const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const sessionId = localStorage.getItem("sessionId");
-	const profile = useSelector((state) => state.profile);
+	const dispatch = useDispatch();
 
 	const saveURLsToServer = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
@@ -30,6 +34,7 @@ const ProfileURLsSec = ({ profileData }) => {
 						text: "Your URLs have been added to your record.",
 					});
 					setIsEmpty(false);
+					updateSocialURLs(dispatch, requestData);
 					// fetchURLsFromServer();
 				} else {
 					// show an error message if the request failed
@@ -176,7 +181,7 @@ const ProfileURLsSec = ({ profileData }) => {
 
 	useEffect(() => {
 		// Check if any of the URLs in profile.alumni is not null
-		if (profile) {
+		if (profileData) {
 			for (const key in profileData) {
 				if (key.endsWith("_URL") && profileData[key] !== null) {
 					setIsEmpty(false);
