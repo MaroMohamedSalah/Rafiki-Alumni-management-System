@@ -54,7 +54,7 @@ const UsernameInput = ({
 						const regex = /^[a-zA-Z0-9_]{3,20}$/;
 						if (!regex.test(e.target.value)) {
 							setUsernameError(
-								"Username must be 3-20 characters long and can only contain letters, numbers, and underscores."
+								"Username must be 3-20 English characters long and can only contain letters, numbers, and underscores."
 							);
 						} else {
 							usernameChecker(e.target.value);

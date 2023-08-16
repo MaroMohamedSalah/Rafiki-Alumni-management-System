@@ -90,11 +90,6 @@ const ProfileImg = ({ actor, profileData }) => {
 					})
 					.then((data) => {
 						if (data.success === true) {
-							// setPic(
-							// 	"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
-							// 		data.Img
-							// );
-							// console.log(data.Img);
 							updateProfileImg(dispatch, data.Img);
 
 							Swal.fire({
