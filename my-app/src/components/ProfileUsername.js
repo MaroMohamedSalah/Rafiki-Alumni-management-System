@@ -6,7 +6,7 @@ const ProfileUsername = ({ username }) => {
 			@<span class="placeholder w-25"></span>
 		</p>
 	) : (
-		<h5 className="text-center text-md-start">@{username}</h5>
+		<h5 className="text-center text-md-start text-white">@{username}</h5>
 	);
 };
 

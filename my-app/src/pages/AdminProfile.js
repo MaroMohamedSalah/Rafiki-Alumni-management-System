@@ -18,10 +18,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { updateUserInfo } from "../redux/actions/profileActions";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
+import Logo from "../components/Logo";
 const AdminProfile = () => {
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
-	const profile = useSelector((state) => state.profile);
+	const userInfo = useSelector((state) => state.userInfo);
 	const [profileFetched, setProfileFetched] = useState(false);
 	const navigate = useNavigate();
 
@@ -61,34 +62,26 @@ const AdminProfile = () => {
 		}
 	}, [profileFetched]);
 	return (
-		profile &&
-		profile.admin && (
+		userInfo &&
+		userInfo.user && (
 			<div className="AdminProfile profile">
 				<div className="container">
-					<Backbtn
-						btnColor={"var(--Alumni-color)"}
-						btnSize={"19px"}
-						btnTop={"10px"}
-						btnColorMobile={"var(--Alumni-color)"}
-						btnSizeMobile={"19px"}
-						btnTopMobile={"10px"}
-					/>
-
-					<div className="row mt-5">
-						<div className="col-12 col-md-2">
-							<ProfileImg actor={"Admin"} profileData={profile.admin} />
+					<Logo to={`/dashboard?username=${userInfo.user.UserName}`} />
+					<div className="my-5 d-flex justify-content-center align-items-center">
+						<div>
+							<ProfileImg profileData={userInfo.user} />
 						</div>
-						<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
+						<div className="d-flex flex-column justify-content-center align-items-center ms-5">
 							<div className="order-md-1 order-2 w-100">
-								<ProfileUsername username={profile.admin.UserName} />
+								<ProfileUsername username={userInfo.user.UserName} />
 							</div>
 							<div className="order-md-2 order-1">
 								<ProfileName
-									firstName={profile.admin.FirstName}
-									lastname={profile.admin.LastName}
+									firstName={userInfo.user.FirstName}
+									lastname={userInfo.user.LastName}
 								/>
 							</div>
-							<div className="order-md-3 order-3">
+							<div className="order-md-3 order-3 w-100">
 								<ProfileJobTitle />
 							</div>
 						</div>
@@ -96,21 +89,21 @@ const AdminProfile = () => {
 
 					<div className="row">
 						<div className="col-12 col-md-6">
-							<ProfileURLsSec profileData={profile.admin} />
+							<ProfileURLsSec profileData={userInfo.user} />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
-							<ProfileAboutSec aboutContent={profile.admin.About} />
+							<ProfileAboutSec aboutContent={userInfo.user.About} />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
 							<ProfileContactInfoSec
-								phonePram={profile.admin.Phone}
-								emailPram={profile.admin.Email}
+								phonePram={userInfo.user.Phone}
+								emailPram={userInfo.user.Email}
 							/>
 						</div>
 					</div>
@@ -129,7 +122,7 @@ const AdminProfile = () => {
 
 					<div className="row">
 						<div className="col-12">
-							<ProfilePersonalInfo countryPram={profile.admin.Country} />
+							<ProfilePersonalInfo countryPram={userInfo.user.Country} />
 						</div>
 					</div>
 				</div>

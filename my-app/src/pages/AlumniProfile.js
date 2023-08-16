@@ -19,6 +19,7 @@ import { updateUserInfo } from "../redux/actions/profileActions";
 import { useNavigate } from "react-router-dom";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import fetchUserData from "../utils/fetchUserData";
+import Logo from "../components/Logo";
 
 const AlumniProfile = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -69,20 +70,12 @@ const AlumniProfile = () => {
 		userInfo.user && (
 			<div className="AlumniProfile profile">
 				<div className="container">
-					<Backbtn
-						btnColor={"var(--Alumni-color)"}
-						btnSize={"19px"}
-						btnTop={"10px"}
-						btnColorMobile={"var(--Alumni-color)"}
-						btnSizeMobile={"19px"}
-						btnTopMobile={"10px"}
-					/>
-
-					<div className="row mt-5">
-						<div className="col-12 col-md-2">
-							<ProfileImg actor={"Alumni"} profileData={userInfo.user} />
+					<Logo to={`/dashboard?username=${userInfo.user.UserName}`} />
+					<div className="my-5 d-flex justify-content-center align-items-center">
+						<div>
+							<ProfileImg profileData={userInfo.user} />
 						</div>
-						<div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center align-items-md-start">
+						<div className="d-flex flex-column justify-content-center align-items-center ms-5">
 							<div className="order-md-1 order-2 w-100">
 								<ProfileUsername username={userInfo.user.UserName} />
 							</div>
@@ -92,13 +85,9 @@ const AlumniProfile = () => {
 									lastname={userInfo.user.LastName}
 								/>
 							</div>
-							<div className="order-md-3 order-3">
+							<div className="order-md-3 order-3 w-100">
 								<ProfileJobTitle />
 							</div>
-						</div>
-						<div className="col-0 col-md-3 d-none d-md-block"></div>
-						<div className="col-md-3 d-flex flex-row justify-content-end align-items-center">
-							<GenerateCV />
 						</div>
 					</div>
 

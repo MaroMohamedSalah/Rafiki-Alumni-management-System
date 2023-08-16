@@ -1,7 +1,33 @@
 /* Profile in general */
 .profile {
 	min-height: 100vh;
-	padding: 35px 0px;
+	/* padding: 35px 0px; */
+}
+.profile::after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 342px;
+	top: 0;
+	z-index: -1;
+	border-bottom-left-radius: 30%;
+	border-bottom-right-radius: 30%;
+	z-index: -1;
+}
+.AlumniProfile::after {
+	background-color: var(--Alumni-color);
+}
+.StudentProfile::after {
+	background-color: var(--Student-color);
+}
+.HRprofile::after {
+	background-color: var(--HR-color);
+}
+.AdminProfile::after {
+	background-color: var(--Admin-color);
+}
+.ProfessorProfile::after {
+	background-color: var(--Professor-color);
 }
 .profile ::selection {
 	color: white;
@@ -27,6 +53,10 @@
 /* ---  */
 
 /* Profile img and general info  */
+.profile .logo {
+	position: absolute;
+	top: 8px;
+}
 .profile .name {
 	font-size: 48px;
 	font-weight: 600;
@@ -37,12 +67,13 @@
 	width: 150px;
 	height: 150px;
 	border: 1px solid #000000;
-	border-radius: var(--main-border-radius);
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
 	cursor: pointer;
 	position: relative;
+	border-radius: 50%;
+	border: 3px solid white;
 }
 .profile .ProfileImg .overlay {
 	width: 100%;

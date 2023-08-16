@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../imgs/dashboard-img.png";
+import Logo from "./Logo";
 const DashboardNav = ({ profileData }) => {
 	const pic = `https://alumni-system-backend.azurewebsites.net/uploads/pictures/${profileData.Img}`;
 	return (
@@ -7,12 +7,7 @@ const DashboardNav = ({ profileData }) => {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-2">
-						<Link
-							to={`/dashboard?username=${profileData.UserName}`}
-							className="logo"
-						>
-							<img src={logo} alt="" className="img-fluid h-100" />
-						</Link>
+						<Logo to={`/dashboard?username=${profileData.UserName}`} />
 					</div>
 					<div className="col-6  d-flex justify-content-center align-items-center">
 						<form class="d-flex w-75" role="search">

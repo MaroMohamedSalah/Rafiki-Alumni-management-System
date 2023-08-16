@@ -6,10 +6,9 @@ import ImgCropper from "./img-cropper/ImgCropper";
 import { updateProfileImg } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
 
-const ProfileImg = ({ actor, profileData }) => {
+const ProfileImg = ({ profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
 	const [pic, setPic] = useState("");
-	const [loadingPic, setLoadingPic] = useState(false);
 	const [croppedImg, setCroppedImg] = useState("");
 	const [loadingCroppedImg, setLoadingCroppedImg] = useState(false);
 	const [showCropper, setShowCropper] = useState(false);
@@ -24,9 +23,10 @@ const ProfileImg = ({ actor, profileData }) => {
 					profileData.Img
 			);
 		}
-	}, [profileData.Img]);
+	}, []);
 
 	const handleImageUpload = () => {
+		let selectedFile; // Declare the file variable in a higher scope
 		const validateFile = (file) => {
 			if (!file) {
 				return Promise.reject("Please select an image file");
@@ -48,16 +48,16 @@ const ProfileImg = ({ actor, profileData }) => {
 			title: "Add/Edit Profile Picture",
 			html: `
       <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="picture" id="file-input">
+	  <input type="file" name="picture" id="file-input">
       </form>
-    `,
+	  `,
 			showCancelButton: true,
 			confirmButtonText: "Next",
 			showLoaderOnConfirm: true,
 			preConfirm: async () => {
-				const file = document.getElementById("file-input").files[0];
+				selectedFile = document.getElementById("file-input").files[0];
 				try {
-					const validatedFile = await validateFile(file);
+					const validatedFile = await validateFile(selectedFile);
 					// setShowCropper(true);
 					// setIsModalOpen(true);
 					return validatedFile;
@@ -68,7 +68,11 @@ const ProfileImg = ({ actor, profileData }) => {
 			allowOutsideClick: () => !Swal.isLoading(),
 		}).then((result) => {
 			if (result.isConfirmed && result.value) {
-				setLoadingPic(true);
+				// setLoadingPic(true);
+				// Create a temporary URL for the uploaded image
+				const uploadedImageURL = URL.createObjectURL(selectedFile);
+				setPic(uploadedImageURL); // Update the state to display the image locally
+
 				const form = document.querySelector("form");
 				const formData = new FormData(form);
 				fetch(
@@ -82,7 +86,6 @@ const ProfileImg = ({ actor, profileData }) => {
 					}
 				)
 					.then((response) => {
-						setLoadingPic(false);
 						if (!response.ok) {
 							throw new Error("Upload failed");
 						}
@@ -91,12 +94,6 @@ const ProfileImg = ({ actor, profileData }) => {
 					.then((data) => {
 						if (data.success === true) {
 							updateProfileImg(dispatch, data.Img);
-
-							Swal.fire({
-								title: "Success",
-								text: data.message,
-								icon: "success",
-							});
 						} else {
 							Swal.fire({
 								title: "Error",
@@ -106,7 +103,7 @@ const ProfileImg = ({ actor, profileData }) => {
 						}
 					})
 					.catch((error) => {
-						setLoadingPic(false);
+						console.error(error);
 						Swal.fire({
 							title: "Error",
 							text: "Upload failed",
@@ -134,11 +131,7 @@ const ProfileImg = ({ actor, profileData }) => {
 		>
 			<div className="userImg">
 				<div className="position-relative">
-					{loadingPic ? (
-						<div className="overlay">
-							<BeatLoader color="var(--Alumni-color)" />
-						</div>
-					) : croppedImg ? (
+					{croppedImg ? (
 						<img
 							src={croppedImg}
 							className="img-fluid w-100 h-100"
@@ -156,9 +149,6 @@ const ProfileImg = ({ actor, profileData }) => {
 						</div>
 					)}
 				</div>
-				<h1 className="position-absolute label">
-					<span className="icon"></span> {actor}
-				</h1>
 			</div>
 			<div className="addImg position-absolute">
 				<i className="fa-solid fa-plus"></i>

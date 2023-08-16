@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import Backbtn from "../components/Backbtn";
-import loginImg from "../imgs/login img.svg";
+import loginImg from "../imgs/login-img.svg";
 import icon1 from "../imgs/sign up 3.svg";
 import icon2 from "../imgs/sign up 5.svg";
 import show from "../imgs/show password.svg";
