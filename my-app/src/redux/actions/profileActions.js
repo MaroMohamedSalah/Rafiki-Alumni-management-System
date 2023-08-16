@@ -1,4 +1,9 @@
-import { SET_USER_INFO, UPDATE_SOCIAL_URLS, UPDATE_USER_INFO } from "./types";
+import {
+	SET_USER_INFO,
+	UPDATE_SOCIAL_URLS,
+	UPDATE_USER_IMG,
+	UPDATE_USER_INFO,
+} from "./types";
 
 export const setUserInfo = async (dispatch, userData) => {
 	return dispatch({
@@ -20,7 +25,7 @@ export const updateSocialURLs = async (dispatch, newURL) => {
 };
 export const updateProfileImg = async (dispatch, newImg) => {
 	return dispatch({
-		type: UPDATE_SOCIAL_URLS,
+		type: UPDATE_USER_IMG,
 		payload: newImg,
 	});
 };

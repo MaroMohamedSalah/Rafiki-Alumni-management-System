@@ -28,7 +28,7 @@ const profileReducer = (state = initialState, action) => {
 					...state.userInfo,
 					user: {
 						...state.userInfo.user,
-						...action.payload,
+						Img: action.payload,
 					},
 				},
 			};

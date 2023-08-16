@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import { BeatLoader } from "react-spinners";
 import Modal from "react-modal";
 import ImgCropper from "./img-cropper/ImgCropper";
+import { updateProfileImg } from "../redux/actions/profileActions";
+import { useDispatch } from "react-redux";
 
 const ProfileImg = ({ actor, profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -12,6 +14,7 @@ const ProfileImg = ({ actor, profileData }) => {
 	const [loadingCroppedImg, setLoadingCroppedImg] = useState(false);
 	const [showCropper, setShowCropper] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// Set the initial profile picture if available
@@ -87,10 +90,12 @@ const ProfileImg = ({ actor, profileData }) => {
 					})
 					.then((data) => {
 						if (data.success === true) {
-							setPic(
-								"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
-									data.Img
-							);
+							// setPic(
+							// 	"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
+							// 		data.Img
+							// );
+							// console.log(data.Img);
+							updateProfileImg(dispatch, data.Img);
 
 							Swal.fire({
 								title: "Success",
