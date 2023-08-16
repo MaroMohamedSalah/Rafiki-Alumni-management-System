@@ -3,6 +3,7 @@ import "./dashboard.css";
 import DashboardNav from "../components/DashboardNav";
 import "animate.css";
 import DashboardSidebar from "../components/DashboardSidebar";
+import Loading from "../components/Loading";
 
 const DashboardLayout = () => {
 	const [userInfo, setUserInfo] = useState();
@@ -40,21 +41,23 @@ const DashboardLayout = () => {
 	}, []);
 	return (
 		<div className="Dashboard">
-			<div className="container-fluid">
-				<div className="row">
-					<div className="col-12">
-						{userInfo && userInfo.user && (
+			{userInfo && userInfo.user ? (
+				<div className="container-fluid">
+					<div className="row">
+						<div className="col-12">
 							<DashboardNav profileData={userInfo.user} />
-						)}
-					</div>
+						</div>
 
-					<DashboardSidebar />
+						<DashboardSidebar />
 
-					<div className="col px-2 content">
-						<div className="content-container"></div>
+						<div className="col px-2 content">
+							<div className="content-container"></div>
+						</div>
 					</div>
 				</div>
-			</div>
+			) : (
+				<Loading />
+			)}
 		</div>
 	);
 };

@@ -20,8 +20,9 @@ const ProfileAboutSec = ({ aboutContent }) => {
 				id: "about-textarea",
 			},
 			inputValidator: (value) => {
-				if (!value || value.length < 50) {
-					return "Please enter at least 50 characters";
+				const regex = /[a-zA-Z0-9\s.,]/;
+				if (!regex.test(value) || value.length < 50) {
+					return "Please enter at least 50 English characters";
 				}
 			},
 			showCancelButton: true,

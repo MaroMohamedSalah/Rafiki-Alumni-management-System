@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SessionLogin from "../pages/SessionLogin";
 import Login from "../pages/Login";
 import { PuffLoader } from "react-spinners";
+import Loading from "../components/Loading";
 
 const LoginLayout = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -46,15 +47,7 @@ const LoginLayout = () => {
 	}, []);
 	return (
 		<div className="LoginLayout">
-			{isLoading ? (
-				<div className="overlay">
-					<PuffLoader color="rgb(54 181 215)" size={112} />
-				</div>
-			) : isLoggedIn ? (
-				<SessionLogin />
-			) : (
-				<Login />
-			)}
+			{isLoading ? <Loading /> : isLoggedIn ? <SessionLogin /> : <Login />}
 		</div>
 	);
 };
