@@ -1,6 +1,7 @@
 import {
 	SET_USER_INFO,
 	UPDATE_SOCIAL_URLS,
+	UPDATE_USER_CV,
 	UPDATE_USER_IMG,
 	UPDATE_USER_INFO,
 	UUPDATE_USER_IMG,
@@ -40,6 +41,17 @@ const profileReducer = (state = initialState, action) => {
 					user: {
 						...state.userInfo.user,
 						...action.payload,
+					},
+				},
+			};
+		case UPDATE_USER_CV:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						CV: action.payload,
 					},
 				},
 			};

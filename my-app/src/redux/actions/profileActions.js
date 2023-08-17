@@ -1,6 +1,7 @@
 import {
 	SET_USER_INFO,
 	UPDATE_SOCIAL_URLS,
+	UPDATE_USER_CV,
 	UPDATE_USER_IMG,
 	UPDATE_USER_INFO,
 } from "./types";
@@ -27,5 +28,11 @@ export const updateProfileImg = async (dispatch, newImg) => {
 	return dispatch({
 		type: UPDATE_USER_IMG,
 		payload: newImg,
+	});
+};
+export const updateProfileCV = async (dispatch, newCV) => {
+	return dispatch({
+		type: UPDATE_USER_CV,
+		payload: newCV,
 	});
 };

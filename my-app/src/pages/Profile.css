@@ -3,39 +3,43 @@
 	min-height: 100vh;
 	/* padding: 35px 0px; */
 }
-.profile::after {
+.profile .profile-overlay {
 	position: absolute;
 	content: "";
 	width: 100%;
-	height: 342px;
+	height: 0;
 	top: 0;
 	z-index: -1;
 	border-bottom-left-radius: 30%;
 	border-bottom-right-radius: 30%;
 	z-index: -1;
+	transition: all 0.5s 0.2s ease-in-out !important;
 }
-.AlumniProfile::after {
+.AlumniProfile .profile-overlay {
 	background-color: var(--Alumni-color);
 }
-.StudentProfile::after {
+.StudentProfile .profile-overlay {
 	background-color: var(--Student-color);
 }
-.HRprofile::after {
+.HRProfile .profile-overlay {
 	background-color: var(--HR-color);
 }
-.AdminProfile::after {
+.AdminProfile .profile-overlay {
 	background-color: var(--Admin-color);
 }
-.ProfessorProfile::after {
+.ProfessorProfile .profile-overlay {
 	background-color: var(--Professor-color);
 }
 .profile ::selection {
 	color: white;
 }
+.profileInfoContainer {
+	transform: translateY(50px);
+}
 .AlumniProfile ::selection {
 	background-color: var(--Alumni-color);
 }
-.HRprofile ::selection {
+.HRProfile ::selection {
 	background-color: var(--HR-color);
 }
 .StudentProfile ::selection {
@@ -96,7 +100,7 @@
 .AlumniProfile .ProfileImg .label {
 	background: var(--Alumni-color);
 }
-.HRprofile .ProfileImg .label {
+.HRProfile .ProfileImg .label {
 	background: var(--HR-color);
 }
 .StudentProfile .ProfileImg .label {
@@ -170,6 +174,7 @@
 	width: 100%;
 	padding: 19px;
 	min-height: calc(100% - 20px);
+	background-color: white;
 }
 .profile .sec .visibility {
 	cursor: pointer;
@@ -283,7 +288,7 @@
 .AlumniProfile .url-list a:hover {
 	color: var(--Alumni-color);
 }
-.HRprofile .url-list a:hover {
+.HRProfile .url-list a:hover {
 	color: var(--HR-color);
 }
 .StudentProfile .url-list a:hover {
@@ -340,12 +345,20 @@
 .AlumniProfile .PersonalInformation .not-empty-sec h1 .edit {
 	color: var(--Alumni-color);
 }
-.HRprofile .ProfileContactInfo .not-empty-sec .phone-number .edit,
-.HRprofile .PersonalInformation .not-empty-sec h1 .edit {
+.HRProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
+.HRProfile .PersonalInformation .not-empty-sec h1 .edit {
 	color: var(--HR-color);
 }
-.StudentProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
-.StudentProfile .PersonalInformation .not-empty-sec h1 .edit {
+.StudentProfile
+	.ProfileContactInfo
+	.not-empty-sec
+	.phone-number
+	.edit
+	.StudentProfile
+	.PersonalInformation
+	.not-empty-sec
+	h1
+	.edit {
 	color: var(--Student-color);
 }
 .AdminProfile .ProfileContactInfo .not-empty-sec .phone-number .edit,
@@ -360,8 +373,8 @@
 .AlumniProfile .PersonalInformation .not-empty-sec .add-address:hover {
 	color: var(--Alumni-color) !important;
 }
-.HRprofile .ProfileContactInfo .not-empty-sec .add-phone:hover,
-.HRprofile .PersonalInformation .not-empty-sec .add-address:hover {
+.HRProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
+.HRProfile .PersonalInformation .not-empty-sec .add-address:hover {
 	color: var(--HR-color) !important;
 }
 .StudentProfile .ProfileContactInfo .not-empty-sec .add-phone:hover,
@@ -419,7 +432,7 @@
 .AlumniProfile .ProfileEdu .status div:nth-of-type(2) h5 {
 	background-color: var(--Alumni-color);
 }
-.HRprofile .ProfileEdu .status div:nth-of-type(2) h5 {
+.HRProfile .ProfileEdu .status div:nth-of-type(2) h5 {
 	background-color: var(--HR-color);
 }
 .StudentProfile .ProfileEdu .status div:nth-of-type(2) h5 {

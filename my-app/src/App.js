@@ -19,6 +19,7 @@ import ImgCropper from "./components/img-cropper/ImgCropper";
 import LoginLayout from "./layouts/Login-layout";
 import GetStarted from "./pages/GetStarted";
 import DashboardLayout from "./layouts/Dashboard-layout";
+import Profile from "./pages/Profile";
 
 function App() {
 	return (
@@ -44,11 +45,12 @@ function App() {
 					<Route path="/hrSignup" element={<HRSignup />} />
 
 					{/* Profile Routes */}
-					<Route path="/alumniProfile" element={<AlumniProfile />} />
+					<Route path="/profile" element={<Profile />} />
+					{/* <Route path="/alumniProfile" element={<AlumniProfile />} />
 					<Route path="/hrProfile" element={<HRprofile />} />
 					<Route path="/studentProfile" element={<StudentProfile />} />
 					<Route path="/adminProfile" element={<AdminProfile />} />
-					<Route path="/professorProfile" element={<ProfessorProfile />} />
+					<Route path="/professorProfile" element={<ProfessorProfile />} /> */}
 				</Routes>
 			</BrowserRouter>
 		</div>

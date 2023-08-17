@@ -112,6 +112,12 @@ const ProfileURLsSec = ({ profileData }) => {
 				const githubValue = form.github.value.trim();
 				const behanceValue = form.behance.value.trim();
 
+				// Set empty values to null
+				const cleanedLinkedinValue =
+					linkedinValue === "" ? null : linkedinValue;
+				const cleanedGithubValue = githubValue === "" ? null : githubValue;
+				const cleanedBehanceValue = behanceValue === "" ? null : behanceValue;
+
 				// Regular expressions for validating URLs
 				const linkedinRegex =
 					/^https:\/\/www\.linkedin\.com\/in\/[a-z0-9_-]+\/?$/i;
@@ -119,18 +125,25 @@ const ProfileURLsSec = ({ profileData }) => {
 				const behanceRegex = /^https:\/\/www\.behance\.net\/[a-z0-9_-]+\/?$/i;
 
 				// Check if at least one URL is provided
-				if (!linkedinValue && !githubValue && !behanceValue) {
+				if (
+					!cleanedLinkedinValue &&
+					!cleanedGithubValue &&
+					!cleanedBehanceValue
+				) {
 					Swal.showValidationMessage("Please provide at least one URL");
 				} else {
 					// Check if URLs are valid
 					const validationErrors = [];
-					if (linkedinValue && !linkedinRegex.test(linkedinValue)) {
+					if (
+						cleanedLinkedinValue &&
+						!linkedinRegex.test(cleanedLinkedinValue)
+					) {
 						validationErrors.push("Invalid LinkedIn URL");
 					}
-					if (githubValue && !githubRegex.test(githubValue)) {
+					if (cleanedGithubValue && !githubRegex.test(cleanedGithubValue)) {
 						validationErrors.push("Invalid GitHub URL");
 					}
-					if (behanceValue && !behanceRegex.test(behanceValue)) {
+					if (cleanedBehanceValue && !behanceRegex.test(cleanedBehanceValue)) {
 						validationErrors.push("Invalid Behance URL");
 					}
 
@@ -141,9 +154,9 @@ const ProfileURLsSec = ({ profileData }) => {
 					} else {
 						// If at least one URL is valid, return an object with the values
 						const requestData = {
-							LinkedIn_URL: linkedinValue || "",
-							GitHub_URL: githubValue || "",
-							Behance_URL: behanceValue || "",
+							LinkedIn_URL: cleanedLinkedinValue || null,
+							GitHub_URL: cleanedGithubValue || null,
+							Behance_URL: cleanedBehanceValue || null,
 						};
 						return requestData;
 					}

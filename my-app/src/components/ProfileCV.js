@@ -3,11 +3,14 @@ import ProfileProgress from "./ProfileProgress";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import { HashLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+import { updateProfileCV } from "../redux/actions/profileActions";
 
 const ProfileCV = ({ cv }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
 	const [userCv, setUserCv] = useState(cv);
 	const [cvIsLoading, setCvIsLoading] = useState(false);
+	const dispatch = useDispatch();
 	const addCV = () => {
 		// Define file validation function
 		const validateFile = (file) => {
@@ -76,6 +79,7 @@ const ProfileCV = ({ cv }) => {
 								icon: "success",
 							});
 							setUserCv(data.CV);
+							updateProfileCV(dispatch, data.CV);
 							setCvIsLoading(false);
 						} else {
 							Swal.fire({
@@ -115,6 +119,7 @@ const ProfileCV = ({ cv }) => {
 				</OverlayTrigger>
 			</h1>
 			<div>
+				<ProfileProgress />
 				{userCv ? (
 					<a
 						href={
@@ -147,7 +152,6 @@ const ProfileCV = ({ cv }) => {
 						)}
 					</button>
 				)}
-				<ProfileProgress />
 			</div>
 		</section>
 	);

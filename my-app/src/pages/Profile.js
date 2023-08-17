@@ -20,13 +20,15 @@ import { useNavigate } from "react-router-dom";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import fetchUserData from "../utils/fetchUserData";
 import Logo from "../components/Logo";
+import ProfileProgress from "../components/ProfileProgress";
 
-const AlumniProfile = () => {
+const Profile = () => {
 	const sessionId = localStorage.getItem("sessionId");
 	const userInfo = useSelector((state) => state.userInfo);
 	const [profileFetched, setProfileFetched] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [actorName, setActorName] = useState("");
 
 	// Make API request and update user Info in the Redux store
 	const fetchUserData = async () => {
@@ -51,27 +53,44 @@ const AlumniProfile = () => {
 				if (data.success === true) {
 					updateUserInfo(dispatch, data);
 					setProfileFetched(true);
+					setActorName(data.user.Role.Role_Name);
 				}
 			}
 		} catch (error) {
 			console.log("Error while fetching profile data:", error);
 		}
 	};
-	// fetchUserData(sessionId, dispatch, navigate, setProfileFetched);
 
 	useEffect(() => {
 		if (!profileFetched) {
 			fetchUserData();
-			// fetchUserData(sessionId, dispatch, navigate, setProfileFetched);
 		}
 	}, [profileFetched]);
+
+	useEffect(() => {
+		if (profileFetched) {
+			const profileOverlay = document.querySelector(
+				".profile .profile-overlay"
+			);
+			if (profileOverlay) {
+				setTimeout(() => {
+					profileOverlay.style.height = "342px";
+					document
+						.querySelector(".profileInfoContainer")
+						.classList.add("fade-up");
+				}, 300);
+			}
+		}
+	}, [profileFetched]);
+
 	return (
 		userInfo &&
 		userInfo.user && (
-			<div className="AlumniProfile profile">
-				<div className="container">
+			<div className={`${actorName}Profile profile`}>
+				<div className="profile-overlay"></div>
+				<div className="container pb-5">
 					<Logo to={`/dashboard?username=${userInfo.user.UserName}`} />
-					<div className="my-5 d-flex justify-content-center align-items-center fade-up">
+					<div className="profileInfoContainer text-black my-5 d-flex justify-content-center align-items-center">
 						<div>
 							<ProfileImg profileData={userInfo.user} />
 						</div>
@@ -86,7 +105,10 @@ const AlumniProfile = () => {
 								/>
 							</div>
 							<div className="order-md-3 order-3 w-100">
-								<ProfileJobTitle />
+								<ProfileJobTitle
+									userInfo={userInfo.user}
+									actorName={actorName}
+								/>
 							</div>
 						</div>
 					</div>
@@ -128,11 +150,13 @@ const AlumniProfile = () => {
 						</div>
 					</div>
 
-					<div className="row">
-						<div className="col-12">
-							<ProfileEdu actor={"Alumni"} />
+					{actorName !== "HR" && (
+						<div className="row">
+							<div className="col-12">
+								<ProfileEdu actor={"Alumni"} />
+							</div>
 						</div>
-					</div>
+					)}
 
 					<div className="row">
 						<div className="col-12">
@@ -145,4 +169,4 @@ const AlumniProfile = () => {
 	);
 };
 
-export default AlumniProfile;
+export default Profile;

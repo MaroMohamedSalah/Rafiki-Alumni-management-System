@@ -27,10 +27,7 @@ const DashboardNav = ({ profileData }) => {
 							<i class="fa-solid fa-bell"></i>
 						</div>
 						<div className="dashProfile d-flex ms-3 align-items-center">
-							<Link
-								to={`/${profileData.Role.Role_Name.toLowerCase()}Profile`}
-								className="profileImage rounded-5"
-							>
+							<Link to={"/profile"} className="profileImage rounded-5">
 								{profileData.Img ? (
 									<img src={pic} alt="pic" className="img-fluid" />
 								) : (

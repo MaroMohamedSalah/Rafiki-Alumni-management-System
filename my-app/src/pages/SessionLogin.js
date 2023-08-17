@@ -35,6 +35,7 @@ const SessionLogin = () => {
 				const data = await response.json();
 				if (data.success === true) {
 					setUserInfo(data);
+					console.log("data", data);
 					setLoading(false);
 				}
 			}
@@ -58,7 +59,6 @@ const SessionLogin = () => {
 	};
 	useEffect(() => {
 		fetchProfileData();
-		console.log(userInfo);
 	}, []);
 	return (
 		<div className="sessionLogin">
@@ -90,7 +90,7 @@ const SessionLogin = () => {
 							/>
 
 							<Link
-								to={`/dashboard?username=${userInfo.user_name}`}
+								to={`/dashboard?username=${userInfo.user.UserName}`}
 								className="btn rounded-5 loginBtn mt-4 w-100"
 							>
 								Log In

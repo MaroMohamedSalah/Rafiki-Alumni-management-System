@@ -4,10 +4,13 @@ import DashboardNav from "../components/DashboardNav";
 import "animate.css";
 import DashboardSidebar from "../components/DashboardSidebar";
 import Loading from "../components/Loading";
+import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
+import { useNavigate } from "react-router-dom";
 
 const DashboardLayout = () => {
 	const [userInfo, setUserInfo] = useState();
 	const sessionId = localStorage.getItem("sessionId");
+	const navigate = useNavigate();
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
 		try {
@@ -24,8 +27,8 @@ const DashboardLayout = () => {
 
 			if (response.status === 401) {
 				// Redirect to login page
-				// RedirectToLoginNotification();
-				// navigate("/login");
+				RedirectToLoginNotification();
+				navigate("/login");
 			} else {
 				const data = await response.json();
 				if (data.success === true) {
