@@ -3,6 +3,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import {
+	deleteSocialURL,
 	updateSocialURLs,
 	updateUserInfo,
 } from "../redux/actions/profileActions";
@@ -11,7 +12,9 @@ const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const sessionId = localStorage.getItem("sessionId");
 	const dispatch = useDispatch();
-
+	function capitalizeFirstLetter(word) {
+		return word.charAt(0).toUpperCase() + word.slice(1);
+	}
 	const saveURLsToServer = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
 		const apiUrl =
@@ -169,6 +172,54 @@ const ProfileURLsSec = ({ profileData }) => {
 			}
 		});
 	};
+	const handelDeleteUrl = (urlType, serverKey) => {
+		Swal.fire({
+			title: `Do you want to delete the ${capitalizeFirstLetter(urlType)} URL?`,
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: "Yes",
+			denyButtonText: `Cancel`,
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				fetch(
+					`https://alumni-system-backend.azurewebsites.net/api/users/delete_${urlType}_url`,
+					{
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${sessionId}`,
+						},
+					}
+				)
+					.then((response) => {
+						if (response.ok) {
+							// show a success message if the request was successful
+							Swal.fire({
+								icon: "success",
+								title: `${capitalizeFirstLetter(urlType)} URL Deleted`,
+								text: "Your URL have been deleted from your profile.",
+							});
+							deleteSocialURL(dispatch, serverKey);
+							setIsEmpty(false);
+						} else {
+							// show an error message if the request failed
+							throw new Error("Failed to delete URL. Please try again later.");
+						}
+					})
+					.catch((error) => {
+						// show an error message if the request failed due to a network error
+						Swal.fire({
+							icon: "error",
+							title: "Request failed",
+							text: error.message,
+						});
+					});
+			} else if (result.isDenied) {
+				Swal.fire("Changes are not saved", "", "info");
+			}
+		});
+	};
 
 	const displayURLsList = () => {
 		if (profileData) {
@@ -176,13 +227,24 @@ const ProfileURLsSec = ({ profileData }) => {
 				if (key.endsWith("_URL") && value) {
 					const urlType = key.replace("_URL", "").toLowerCase();
 					return (
-						<li key={urlType}>
-							<span className={`icon ${urlType}`}>
-								<i className={`fa-brands fa-${urlType}`}></i>
-							</span>{" "}
-							<a href={value} target="_blank" rel="noreferrer">
-								{urlType.charAt(0).toUpperCase() + urlType.slice(1)}
-							</a>
+						<li
+							key={urlType}
+							className="d-flex justify-content-between align-items-center py-2 border-bottom"
+						>
+							<div>
+								<span className={`icon ${urlType}`}>
+									<i className={`fa-brands fa-${urlType}`}></i>
+								</span>{" "}
+								<a href={value} target="_blank" rel="noreferrer">
+									{urlType.charAt(0).toUpperCase() + urlType.slice(1)}
+								</a>
+							</div>
+							<div
+								className="deleteUrl"
+								onClick={() => handelDeleteUrl(urlType, key)}
+							>
+								<i class="fa-solid fa-x"></i>
+							</div>
 						</li>
 					);
 				}
@@ -193,13 +255,20 @@ const ProfileURLsSec = ({ profileData }) => {
 	};
 
 	useEffect(() => {
-		// Check if any of the URLs in profile.alumni is not null
 		if (profileData) {
+			let countOfEmpty = 0;
+
 			for (const key in profileData) {
 				if (key.endsWith("_URL") && profileData[key] !== null) {
 					setIsEmpty(false);
 					break;
+				} else if (key.endsWith("_URL") && profileData[key] === null) {
+					countOfEmpty++;
 				}
+			}
+
+			if (countOfEmpty === 3) {
+				setIsEmpty(true);
 			}
 		}
 	}, [profileData]);
@@ -258,7 +327,7 @@ const ProfileURLsSec = ({ profileData }) => {
 					</div>
 				</div>
 			) : (
-				<ul className="url-list">{displayURLsList()}</ul>
+				<ul className="url-list ps-0">{displayURLsList()}</ul>
 			)}
 		</section>
 	);

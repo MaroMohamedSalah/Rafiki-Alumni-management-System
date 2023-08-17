@@ -276,6 +276,22 @@
 .ProfileURLs .form-control:focus {
 	border-color: #7066e0 !important;
 }
+.ProfileURLs .deleteUrl {
+	transition: all var(--main-transition) ease-in-out;
+	cursor: pointer;
+}
+.AlumniProfile .ProfileURLs .deleteUrl:hover {
+	color: var(--Alumni-color);
+}
+.StudentProfile .ProfileURLs .deleteUrl:hover {
+	color: var(--Student-color);
+}
+.HRProfile .ProfileURLs .deleteUrl:hover {
+	color: var(--HR-color);
+}
+.ProfessorProfile .ProfileURLs .deleteUrl:hover {
+	color: var(--Professor-color);
+}
 .ProfileURLs .url-list {
 	list-style: none;
 }

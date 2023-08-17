@@ -13,7 +13,6 @@ const ProfileProgress = () => {
 		setProgress(progress);
 	};
 	useEffect(() => {
-		console.log(profileStructure);
 		calculateProgress(profileStructure);
 	}, [profileStructure]);
 

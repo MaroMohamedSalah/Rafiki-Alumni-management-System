@@ -1,4 +1,5 @@
 import {
+	DELETE_SOCIAL_URL,
 	SET_USER_INFO,
 	UPDATE_SOCIAL_URLS,
 	UPDATE_USER_CV,
@@ -52,6 +53,17 @@ const profileReducer = (state = initialState, action) => {
 					user: {
 						...state.userInfo.user,
 						CV: action.payload,
+					},
+				},
+			};
+		case DELETE_SOCIAL_URL:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						[action.payload]: null,
 					},
 				},
 			};
