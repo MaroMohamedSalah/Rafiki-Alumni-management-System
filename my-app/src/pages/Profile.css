@@ -67,6 +67,7 @@
 }
 .profile .ProfileImg {
 	display: flex;
+	position: relative;
 	background-color: #e4e4e4;
 	width: 150px;
 	height: 150px;
@@ -75,7 +76,6 @@
 	align-items: center;
 	overflow: hidden;
 	cursor: pointer;
-	position: relative;
 	border-radius: 50%;
 	border: 3px solid white;
 }
@@ -112,20 +112,30 @@
 .ProfessorProfile .ProfileImg .label {
 	background: var(--Professor-color);
 }
+.profile .ProfileImg .userImg,
+.profile .imgContainer .editImg {
+	transition: all var(--main-transition) ease-in-out;
+}
 .profile .ProfileImg .userImg {
-	font-size: 4em;
-	transition: all var(--main-transition) ease-in-out;
+	font-size: 5em;
 }
-.profile .ProfileImg .addImg {
-	z-index: -1;
-	transition: all var(--main-transition) ease-in-out;
+.profile .imgContainer .editImg {
+	width: 29px;
+	height: 29px;
+	background-color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	border: black 1px solid;
+	font-size: 12px;
+	bottom: 0;
+	right: 6px;
+	cursor: pointer;
 }
-.profile .ProfileImg:hover .userImg {
-	opacity: 0.25;
-}
-.profile .ProfileImg:hover .addImg {
-	z-index: 1;
-	font-size: 3em;
+.profile .imgContainer:hover .ProfileImg .userImg {
+	opacity: 0.75;
 }
 .profile .sec-title .add {
 	right: 27px;

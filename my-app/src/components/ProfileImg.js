@@ -3,7 +3,10 @@ import Swal from "sweetalert2";
 import { BeatLoader } from "react-spinners";
 import Modal from "react-modal";
 import ImgCropper from "./img-cropper/ImgCropper";
-import { updateProfileImg } from "../redux/actions/profileActions";
+import {
+	deleteUserImg,
+	updateProfileImg,
+} from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
 
 const ProfileImg = ({ profileData }) => {
@@ -123,54 +126,116 @@ const ProfileImg = ({ profileData }) => {
 		setIsModalOpen(false);
 	};
 
-	return (
-		<div
-			className="ProfileImg img-fluid"
-			id="profile-image"
-			onClick={handleImageUpload}
-		>
-			<div className="userImg">
-				<div className="position-relative">
-					{croppedImg ? (
-						<img
-							src={croppedImg}
-							className="img-fluid w-100 h-100"
-							alt="Profile Pic"
-						/>
-					) : pic ? (
-						<img
-							src={pic}
-							className="img-fluid w-100 h-100"
-							alt="Profile Pic"
-						/>
-					) : (
-						<div className="default-placeholder">
-							<i className="fa-regular fa-user"></i>
-						</div>
-					)}
-				</div>
-			</div>
-			<div className="addImg position-absolute">
-				<i className="fa-solid fa-plus"></i>
-			</div>
+	const handelImageDelete = () => {
+		Swal.fire({
+			title: `Do you want to delete your profile Image?`,
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: "Yes",
+			denyButtonText: `Cancel`,
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				fetch(
+					`https://alumni-system-backend.azurewebsites.net/api/users/delete_profile_picture`,
+					{
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${sessionId}`,
+						},
+					}
+				)
+					.then((response) => {
+						if (response.ok) {
+							// show a success message if the request was successful
+							Swal.fire({
+								icon: "success",
+								title: `Image Deleted`,
+								text: "Your image have been deleted from your profile.",
+							});
+							setPic(null);
+							deleteUserImg(dispatch);
+						} else {
+							// show an error message if the request failed
+							throw new Error("Failed to delete img. Please try again later.");
+						}
+					})
+					.catch((error) => {
+						// show an error message if the request failed due to a network error
+						Swal.fire({
+							icon: "error",
+							title: "Request failed",
+							text: error.message,
+						});
+					});
+			} else if (result.isDenied) {
+				Swal.fire("Changes are not saved", "", "info");
+			}
+		});
+	};
 
-			{showCropper && (
-				<Modal
-					isOpen={isModalOpen}
-					onRequestClose={() => setIsModalOpen(false)}
-					contentLabel="Crop Image"
-					ariaHideApp={false}
+	return (
+		<div className="imgContainer position-relative">
+			<div
+				className="ProfileImg img-fluid"
+				id="profile-image"
+				onClick={handleImageUpload}
+			>
+				<div className="userImg">
+					<div className="position-relative">
+						{croppedImg ? (
+							<img
+								src={croppedImg}
+								className="img-fluid w-100 h-100"
+								alt="Profile Pic"
+							/>
+						) : pic ? (
+							<img
+								src={pic}
+								className="img-fluid w-100 h-100"
+								alt="Profile Pic"
+							/>
+						) : (
+							<div className="default-placeholder">
+								<i className="fa-regular fa-user"></i>
+							</div>
+						)}
+					</div>
+				</div>
+				{showCropper && (
+					<Modal
+						isOpen={isModalOpen}
+						onRequestClose={() => setIsModalOpen(false)}
+						contentLabel="Crop Image"
+						ariaHideApp={false}
+					>
+						{loadingCroppedImg ? (
+							<div>Loading...</div>
+						) : (
+							<ImgCropper
+								onClose={() => setIsModalOpen(false)}
+								imgSrc={pic}
+								onSave={handleSaveCroppedImage}
+							/>
+						)}
+					</Modal>
+				)}
+			</div>
+			{pic ? (
+				<div
+					className="editImg delImg position-absolute"
+					onClick={handelImageDelete}
 				>
-					{loadingCroppedImg ? (
-						<div>Loading...</div>
-					) : (
-						<ImgCropper
-							onClose={() => setIsModalOpen(false)}
-							imgSrc={pic}
-							onSave={handleSaveCroppedImage}
-						/>
-					)}
-				</Modal>
+					<i class="fa-regular fa-trash-can"></i>
+				</div>
+			) : (
+				<div
+					className="editImg addImg position-absolute"
+					onClick={handleImageUpload}
+				>
+					<i class="fa-solid fa-camera"></i>
+				</div>
 			)}
 		</div>
 	);

@@ -5,3 +5,4 @@ export const UPDATE_USER_IMG = "UPDATE_USER_IMG";
 export const UPDATE_USER_CV = "UPDATE_USER_CV";
 
 export const DELETE_SOCIAL_URL = "DELETE_SOCIAL_URL";
+export const DELETE_USER_IMG = "DELETE_USER_IMG";

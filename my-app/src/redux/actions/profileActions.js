@@ -1,5 +1,6 @@
 import {
 	DELETE_SOCIAL_URL,
+	DELETE_USER_IMG,
 	SET_USER_INFO,
 	UPDATE_SOCIAL_URLS,
 	UPDATE_USER_CV,
@@ -37,9 +38,15 @@ export const updateProfileCV = async (dispatch, newCV) => {
 		payload: newCV,
 	});
 };
+
 export const deleteSocialURL = async (dispatch, urlType) => {
 	return dispatch({
 		type: DELETE_SOCIAL_URL,
 		payload: urlType,
+	});
+};
+export const deleteUserImg = async (dispatch) => {
+	return dispatch({
+		type: DELETE_USER_IMG,
 	});
 };
