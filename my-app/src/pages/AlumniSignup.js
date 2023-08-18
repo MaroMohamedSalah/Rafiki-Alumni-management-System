@@ -32,16 +32,16 @@ const AlumniSignup = () => {
 				console.error(`Error: ${input[0]} is required`); // Log error message for empty input
 				// Set error message for empty input using state setter functions
 				switch (input[0]) {
-					case "NID":
+					case "National_Id":
 						setNationalIDError(`${input[0]} is required`);
 						break;
-					case "username":
+					case "UserName":
 						setUsernameError(`${input[0]} is required`);
 						break;
-					case "email":
+					case "Email":
 						setEmailError(`${input[0]} is required`);
 						break;
-					case "password":
+					case "Password":
 						setPasswordError(`${input[0]} is required`);
 						break;
 					default:
@@ -137,7 +137,6 @@ const AlumniSignup = () => {
 		} else {
 			if (nationalID.value.length !== 0) {
 				// go to login
-				console.log("login");
 				navigate("/login");
 			}
 		}
@@ -212,7 +211,6 @@ const AlumniSignup = () => {
 						</div>
 					</div>
 				</div>
-				<ProgressLine />
 			</div>
 		</div>
 	);

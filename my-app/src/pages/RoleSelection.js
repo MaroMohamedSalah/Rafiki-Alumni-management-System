@@ -45,7 +45,6 @@ function RoleSelection() {
 						</Link>
 					</div>
 				</div>
-				<ProgressLine />
 			</div>
 		</div>
 	);

@@ -1,10 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
-import { setProfile } from "../redux/actions/profileActions";
 import { useEffect, useState } from "react";
-import ProfileUsername from "../components/ProfileUsername";
 import ProfileName from "../components/ProfileName";
 import { Link, useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
 
 const SessionLogin = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -28,9 +25,6 @@ const SessionLogin = () => {
 			);
 
 			if (response.status === 401) {
-				// Redirect to login page
-				// RedirectToLoginNotification();
-				// navigate("/login");
 			} else {
 				const data = await response.json();
 				if (data.success === true) {
@@ -63,7 +57,9 @@ const SessionLogin = () => {
 	return (
 		<div className="sessionLogin">
 			<div className="container">
-				<h1 className="position-absolute py-3">logo</h1>
+				<h1 className="position-absolute py-3">
+					<Logo />
+				</h1>
 
 				{userInfo && userInfo.user && (
 					<div className="main py-4 py-md-5 d-flex justify-content-center align-items-center flex-column">
@@ -83,7 +79,7 @@ const SessionLogin = () => {
 								<i class="fa-solid fa-user"></i>
 							)}
 						</div>
-						<div>
+						<div className="userInfoContainer">
 							<ProfileName
 								firstName={userInfo.user.FirstName}
 								lastname={userInfo.user.LastName}

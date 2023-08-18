@@ -35,19 +35,19 @@ const HRSignup = () => {
 				console.error(`Error: ${input[0]} is required`); // Log error message for empty input
 				// Set error message for empty input using state setter functions
 				switch (input[0]) {
-					case "username":
+					case "Username":
 						setUsernameError(`${input[0]} is required`);
 						break;
-					case "email":
+					case "Email":
 						setEmailError(`${input[0]} is required`);
 						break;
-					case "password":
+					case "Password":
 						setPasswordError(`${input[0]} is required`);
 						break;
-					case "fname":
+					case "FirstName":
 						setFirstNameError(`firstName is required`);
 						break;
-					case "lname":
+					case "LastName":
 						setLastNameError(`lastName is required`);
 						break;
 					default:
@@ -146,7 +146,6 @@ const HRSignup = () => {
 		} else {
 			if (usernameError.length !== 0) {
 				// go to login
-				console.log("login");
 				navigate("/login");
 			}
 		}
@@ -211,7 +210,6 @@ const HRSignup = () => {
 						</div>
 					</div>
 				</div>
-				<ProgressLine />
 			</div>
 		</div>
 	);
