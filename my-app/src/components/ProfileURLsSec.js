@@ -7,6 +7,7 @@ import {
 	updateSocialURLs,
 	updateUserInfo,
 } from "../redux/actions/profileActions";
+import Toast from "./Toast";
 
 const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -31,16 +32,19 @@ const ProfileURLsSec = ({ profileData }) => {
 			.then((response) => {
 				if (response.ok) {
 					// show a success message if the request was successful
-					Swal.fire({
+					Toast({
+						title: "Your URLs have been added to your record.",
 						icon: "success",
-						title: "URLs added",
-						text: "Your URLs have been added to your record.",
 					});
 					setIsEmpty(false);
 					updateSocialURLs(dispatch, requestData);
 					// fetchURLsFromServer();
 				} else {
 					// show an error message if the request failed
+					Toast({
+						title: "Failed to add URLs. Please try again later.",
+						icon: "error",
+					});
 					throw new Error("Failed to add URLs. Please try again later.");
 				}
 			})

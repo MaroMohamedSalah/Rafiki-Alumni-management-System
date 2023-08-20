@@ -8,6 +8,7 @@ import {
 	updateProfileImg,
 } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
+import Toast from "./Toast";
 
 const ProfileImg = ({ profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -71,7 +72,6 @@ const ProfileImg = ({ profileData }) => {
 			allowOutsideClick: () => !Swal.isLoading(),
 		}).then((result) => {
 			if (result.isConfirmed && result.value) {
-				// setLoadingPic(true);
 				// Create a temporary URL for the uploaded image
 				const uploadedImageURL = URL.createObjectURL(selectedFile);
 				setPic(uploadedImageURL); // Update the state to display the image locally
@@ -98,18 +98,16 @@ const ProfileImg = ({ profileData }) => {
 						if (data.success === true) {
 							updateProfileImg(dispatch, data.Img);
 						} else {
-							Swal.fire({
-								title: "Error",
-								text: data.message,
+							Toast({
+								title: data.message,
 								icon: "error",
 							});
 						}
 					})
 					.catch((error) => {
 						console.error(error);
-						Swal.fire({
-							title: "Error",
-							text: "Upload failed",
+						Toast({
+							title: "Upload failed",
 							icon: "error",
 						});
 					});
@@ -149,24 +147,28 @@ const ProfileImg = ({ profileData }) => {
 					.then((response) => {
 						if (response.ok) {
 							// show a success message if the request was successful
-							Swal.fire({
-								icon: "success",
-								title: `Image Deleted`,
-								text: "Your image have been deleted from your profile.",
-							});
+							// Swal.fire({
+							// 	icon: "success",
+							// 	title: `Image Deleted`,
+							// 	text: "Your image have been deleted from your profile.",
+							// });
+							Toast({ title: "Image Deleted", icon: "success" });
 							setPic(null);
 							deleteUserImg(dispatch);
 						} else {
 							// show an error message if the request failed
+							Toast({
+								title: "Failed to delete img. Please try again later.",
+								icon: "error",
+							});
 							throw new Error("Failed to delete img. Please try again later.");
 						}
 					})
 					.catch((error) => {
 						// show an error message if the request failed due to a network error
-						Swal.fire({
-							icon: "error",
+						Toast({
 							title: "Request failed",
-							text: error.message,
+							icon: "error",
 						});
 					});
 			} else if (result.isDenied) {
@@ -176,7 +178,10 @@ const ProfileImg = ({ profileData }) => {
 	};
 
 	return (
-		<div className="imgContainer position-relative">
+		<div
+			className="imgContainer position-relative"
+			onClick={pic ? handelImageDelete : handleImageUpload}
+		>
 			<div
 				className="ProfileImg img-fluid"
 				id="profile-image"
@@ -223,18 +228,12 @@ const ProfileImg = ({ profileData }) => {
 				)}
 			</div>
 			{pic ? (
-				<div
-					className="editImg delImg position-absolute"
-					onClick={handelImageDelete}
-				>
-					<i class="fa-regular fa-trash-can"></i>
+				<div className="editImg delImg position-absolute">
+					<i class="fa-regular fa-trash-can "></i>
 				</div>
 			) : (
-				<div
-					className="editImg addImg position-absolute"
-					onClick={handleImageUpload}
-				>
-					<i class="fa-solid fa-camera"></i>
+				<div className="editImg addImg position-absolute">
+					<i class="fa-solid fa-camera "></i>
 				</div>
 			)}
 		</div>

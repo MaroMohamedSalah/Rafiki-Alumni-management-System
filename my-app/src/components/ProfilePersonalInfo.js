@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Toast from "./Toast";
 
 const ProfilePersonalInfo = ({ countryPram }) => {
 	const [birthDay, setBirthDay] = useState("");
@@ -47,24 +48,14 @@ const ProfilePersonalInfo = ({ countryPram }) => {
 				const response = await fetch(url, options);
 				const result = await response.json();
 				if (result.success) {
-					Swal.fire({
-						icon: "success",
-						title: result.message,
-					});
+					Toast({ title: result.message, icon: "success" });
 					setCountry(countries[selectedCountry]);
 				} else {
-					Swal.fire({
-						icon: "error",
-						title: result.message,
-					});
+					Toast({ title: result.message, icon: "error" });
 				}
 			} catch (error) {
 				console.error(error);
-				Swal.fire({
-					title: "Error occurred",
-					text: "Failed to add address",
-					icon: "error",
-				});
+				Toast({ title: "Failed to add country", icon: "error" });
 			}
 		}
 	};

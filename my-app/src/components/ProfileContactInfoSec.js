@@ -4,6 +4,7 @@ import Keypad from "../imgs/Keypad.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import Toast from "./Toast";
 
 const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 	const profile = useSelector((state) => state.profile);
@@ -54,33 +55,16 @@ const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 				const result = await response.json();
 				if (result.success === true) {
 					setPhone(num);
-					Swal.fire({
-						icon: "success",
-						title: result.message,
-					});
+					Toast({ title: result.message, icon: "success" });
 				} else {
-					Swal.fire({
-						icon: "error",
-						title: result.message,
-					});
+					Toast({ title: result.message, icon: "error" });
 				}
 			} catch (error) {
 				console.error(error);
-				Swal.fire({
-					title: "Error occurred",
-					text: "Failed to add phone number",
-					icon: "error",
-				});
+				Toast({ title: "Failed to add phone number", icon: "error" });
 			}
 		}
 	};
-
-	useEffect(() => {
-		// if (phone !== null) {
-		// 	console.log(completeProgress);
-		// 	setCompleteProgress(completeProgress + 10);
-		// }
-	}, [phone]);
 
 	return (
 		<section className={"ProfileContactInfo sec"}>

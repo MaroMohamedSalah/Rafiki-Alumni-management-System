@@ -5,6 +5,7 @@ import { useState } from "react";
 import { HashLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { updateProfileCV } from "../redux/actions/profileActions";
+import Toast from "./Toast";
 
 const ProfileCV = ({ cv }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
@@ -73,29 +74,17 @@ const ProfileCV = ({ cv }) => {
 					.then((data) => {
 						// Handle the server response
 						if (data.success === true) {
-							Swal.fire({
-								title: "Success",
-								text: "CV uploaded",
-								icon: "success",
-							});
+							Toast({ title: "CV uploaded", icon: "success" });
 							setUserCv(data.CV);
 							updateProfileCV(dispatch, data.CV);
 							setCvIsLoading(false);
 						} else {
-							Swal.fire({
-								title: "Error",
-								text: data.message,
-								icon: "error",
-							});
+							Toast({ title: data.message, icon: "error" });
 						}
 					})
 					.catch((error) => {
 						// Handle errors
-						Swal.fire({
-							title: "Error",
-							text: error,
-							icon: "error",
-						});
+						Toast({ title: error, icon: "error" });
 					});
 			}
 		});

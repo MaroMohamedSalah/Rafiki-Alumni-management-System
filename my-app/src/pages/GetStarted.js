@@ -10,6 +10,7 @@ import studentImg from "../imgs/Student img.svg";
 import hrImg from "../imgs/HR img.svg";
 import AOS from "aos";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import Logo from "../components/Logo";
 
 const GetStarted = () => {
 	const [isLastSlide, setIsLastSlide] = useState(false);
@@ -92,7 +93,9 @@ const GetStarted = () => {
 		<div className="GetStartedSwiper">
 			<div className="swiper-container overflow-hidden vh-100 position-relative">
 				<div className="swiper-nav container position-relative d-flex justify-content-between align-items-center position-absolute">
-					<h1 className="z-2 d-none d-md-block">Logo</h1>
+					<h1 className="z-2 d-none d-md-block">
+						<Logo />
+					</h1>
 					<div className="swiper-button-prev">
 						<i className="fa-solid fa-arrow-left"></i>
 					</div>

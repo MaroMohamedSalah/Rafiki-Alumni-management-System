@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import Toast from "./Toast";
 
 const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -48,15 +49,16 @@ const ProfileAboutSec = ({ aboutContent }) => {
 				.then((response) => {
 					if (response.ok) {
 						// show a success message if the request was successful
-						Swal.fire({
-							icon: "success",
-							title: "About Section Updated",
-							text: response.message,
-						});
+
+						Toast({ title: "About updated", icon: "success" });
 						setIsEmpty(false);
 						setAbout(updatedAbout);
 					} else {
 						// show an error message if the request failed
+						Toast({
+							title: "Failed to update About Section. Please try again later.",
+							icon: "error",
+						});
 						throw new Error(
 							"Failed to update About Section. Please try again later."
 						);
@@ -64,10 +66,9 @@ const ProfileAboutSec = ({ aboutContent }) => {
 				})
 				.catch((error) => {
 					// show an error message if the request failed due to a network error
-					Swal.fire({
+					Toast({
+						title: "Technical Error",
 						icon: "error",
-						title: "Request failed",
-						text: error.message,
 					});
 				});
 		}
