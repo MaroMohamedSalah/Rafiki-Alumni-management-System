@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Toast from "./Toast";
+import { updateProfileAbout } from "../redux/actions/profileActions";
 
 const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
 	const [about, setAbout] = useState(aboutContent);
 
 	const sessionId = localStorage.getItem("sessionId");
+	const dispatch = useDispatch();
 
 	const submitAboutSection = async () => {
 		const { value: updatedAbout } = await Swal.fire({
@@ -53,6 +55,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 						Toast({ title: "About updated", icon: "success" });
 						setIsEmpty(false);
 						setAbout(updatedAbout);
+						updateProfileAbout(dispatch, updatedAbout);
 					} else {
 						// show an error message if the request failed
 						Toast({

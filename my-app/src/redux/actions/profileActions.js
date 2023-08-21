@@ -3,9 +3,12 @@ import {
 	DELETE_USER_IMG,
 	SET_USER_INFO,
 	UPDATE_SOCIAL_URLS,
+	UPDATE_USER_ABOUT,
+	UPDATE_USER_COUNTRY,
 	UPDATE_USER_CV,
 	UPDATE_USER_IMG,
 	UPDATE_USER_INFO,
+	UPDATE_USER_PHONE,
 } from "./types";
 
 export const setUserInfo = async (dispatch, userData) => {
@@ -36,6 +39,24 @@ export const updateProfileCV = async (dispatch, newCV) => {
 	return dispatch({
 		type: UPDATE_USER_CV,
 		payload: newCV,
+	});
+};
+export const updateProfileAbout = async (dispatch, newAbout) => {
+	return dispatch({
+		type: UPDATE_USER_ABOUT,
+		payload: newAbout,
+	});
+};
+export const updateProfileCountry = async (dispatch, newCountry) => {
+	return dispatch({
+		type: UPDATE_USER_COUNTRY,
+		payload: newCountry,
+	});
+};
+export const updateProfilePhone = async (dispatch, newNum) => {
+	return dispatch({
+		type: UPDATE_USER_PHONE,
+		payload: newNum,
 	});
 };
 

@@ -1,15 +1,28 @@
 .progress-bar {
-	height: 16px;
-	background: #007e9e;
-	border: 1px solid #000000;
+	height: 5px;
 	border-radius: 20px;
+}
+.AlumniProfile .progress-bar {
+	background-color: var(--Alumni-color);
+}
+.StudentProfile .progress-bar {
+	background-color: var(--Student-color);
+}
+.HRProfile .progress-bar {
+	background-color: var(--HR-color);
+}
+.ProfessorProfile .progress-bar {
+	background-color: var(--Professor-color);
+}
+.AdminProfile .progress-bar {
+	background-color: var(--Admin-color);
 }
 .progress {
 	height: 100%;
-	border: 1px;
+	border: 1px solid black;
 	border-radius: 20px;
-	background-color: #eb5d61;
-	width: 0; /* Initial width is 0% */
+	background-color: white;
+	width: 90%;
 	transition: all var(--main-transition) ease-in-out;
 }
 .Auth .progress-bar {

@@ -6,6 +6,7 @@ import { HashLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { updateProfileCV } from "../redux/actions/profileActions";
 import Toast from "./Toast";
+import GenerateCV from "./GenerateCV";
 
 const ProfileCV = ({ cv }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
@@ -107,40 +108,43 @@ const ProfileCV = ({ cv }) => {
 					</div>
 				</OverlayTrigger>
 			</h1>
-			<div>
+			<div className="pt-3">
 				<ProfileProgress />
-				{userCv ? (
-					<a
-						href={
-							"https://alumni-system-backend.azurewebsites.net/uploads/cvs/" +
-							userCv
-						}
-						target="_blank"
-						className="previewCV fw-bold"
-						rel="noreferrer"
-					>
-						<span className="icon me-2">
-							<i class="fa-solid fa-file me-2"></i>
-						</span>
-						Preview CV
-					</a>
-				) : (
-					<button className="btn uploadCV fw-bold" onClick={addCV}>
-						<span className="icon me-2">
-							<i class="fa-solid fa-file me-2"></i>
-						</span>
-						{cvIsLoading ? (
-							<>
-								Uploading...{" "}
-								<span className="ms-3">
-									<HashLoader size={15} color="#36d7b7" />{" "}
-								</span>
-							</>
-						) : (
-							"Upload CV"
-						)}
-					</button>
-				)}
+				<div className="d-flex justify-content-between align-items-center flex-column flex-md-row">
+					{userCv ? (
+						<a
+							href={
+								"https://alumni-system-backend.azurewebsites.net/uploads/cvs/" +
+								userCv
+							}
+							target="_blank"
+							className="previewCV fw-bold py-2 px-3 btn"
+							rel="noreferrer"
+						>
+							<span className="icon me-2">
+								<i class="fa-solid fa-file me-2"></i>
+							</span>
+							Preview CV
+						</a>
+					) : (
+						<button className="btn uploadCV fw-bold" onClick={addCV}>
+							<span className="icon me-2">
+								<i class="fa-solid fa-file me-2"></i>
+							</span>
+							{cvIsLoading ? (
+								<>
+									Uploading...{" "}
+									<span className="ms-3">
+										<HashLoader size={15} color="#36d7b7" />{" "}
+									</span>
+								</>
+							) : (
+								"Upload CV"
+							)}
+						</button>
+					)}
+					<GenerateCV />
+				</div>
 			</div>
 		</section>
 	);

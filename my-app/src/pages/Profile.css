@@ -1,7 +1,6 @@
 /* Profile in general */
 .profile {
 	min-height: 100vh;
-	/* padding: 35px 0px; */
 }
 .profile .profile-overlay {
 	position: absolute;
@@ -60,6 +59,10 @@
 .profile .logo {
 	position: absolute;
 	top: 8px;
+}
+.profile .username,
+.profile .fullName {
+	color: white !important;
 }
 .profile .name {
 	font-size: 48px;
@@ -155,6 +158,14 @@
 		font-size: 30px;
 		margin-top: 10px;
 	}
+	.profile .username,
+	.profile .fullName {
+		color: black !important;
+	}
+	.profile .jobTitle {
+		color: black !important;
+		opacity: 50%;
+	}
 }
 /* ---  */
 
@@ -170,8 +181,8 @@
 }
 @media (max-width: 767px) {
 	.profile .GenerateCV {
-		position: absolute;
-		top: 10px;
+		margin-top: 20px;
+		width: 70%;
 	}
 }
 /* ---  */
@@ -197,6 +208,9 @@
 	justify-content: start;
 	align-items: center;
 	gap: 10px;
+}
+.profile .sec.ProfileCV .sec-title {
+	border: none;
 }
 .profile .sec .sec-title .visibility {
 	right: 0;
@@ -472,7 +486,8 @@
 }
 /* ---  */
 /* Profile cv */
-.ProfileCV .uploadCV {
+.ProfileCV .uploadCV,
+.ProfileCV .previewCV {
 	background-color: #bbbbbb;
 	border: 1px solid;
 	border-radius: 19px;
@@ -483,5 +498,11 @@
 .ProfileCV .previewCV {
 	text-decoration: none;
 	color: #000000;
+}
+@media (max-width: 767px) {
+	.ProfileCV .uploadCV,
+	.ProfileCV .previewCV {
+		width: 70% !important;
+	}
 }
 /* ---  */

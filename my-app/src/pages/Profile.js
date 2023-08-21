@@ -68,13 +68,16 @@ const Profile = () => {
 	}, [profileFetched]);
 
 	useEffect(() => {
+		const isMobile = window.innerWidth <= 768;
 		if (profileFetched) {
 			const profileOverlay = document.querySelector(
 				".profile .profile-overlay"
 			);
 			if (profileOverlay) {
 				setTimeout(() => {
-					profileOverlay.style.height = "342px";
+					isMobile
+						? (profileOverlay.style.height = "230px")
+						: (profileOverlay.style.height = "342px");
 					document
 						.querySelector(".profileInfoContainer")
 						.classList.add("fade-up");
@@ -90,11 +93,15 @@ const Profile = () => {
 				<div className="profile-overlay"></div>
 				<div className="container pb-5">
 					<Logo to={`/dashboard?username=${userInfo.user.UserName}`} />
-					<div className="profileInfoContainer text-black my-5 d-flex justify-content-center align-items-center">
+					<h2 className="profileName d-md-none text-end text-white py-3">
+						{actorName} Profile
+					</h2>
+
+					<div className="profileInfoContainer text-black my-5 d-flex justify-content-center align-items-center flex-column flex-md-row">
 						<div>
 							<ProfileImg profileData={userInfo.user} />
 						</div>
-						<div className="d-flex flex-column justify-content-center align-items-center ms-5">
+						<div className="d-flex flex-column justify-content-center align-items-center ms-md-5 ms-0">
 							<div className="order-md-1 order-2 w-100">
 								<ProfileUsername username={userInfo.user.UserName} />
 							</div>

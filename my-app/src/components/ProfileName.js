@@ -26,9 +26,9 @@ const ProfileName = ({ firstName, lastname }) => {
 					<span class="placeholder w-100"></span>
 				</p>
 			) : (
-				<>
+				<div className="w-100 text-black text-center text-md-start fullName">
 					<span>{firstName}</span> <span>{lastname}</span>
-				</>
+				</div>
 			)}
 		</h1>
 	);

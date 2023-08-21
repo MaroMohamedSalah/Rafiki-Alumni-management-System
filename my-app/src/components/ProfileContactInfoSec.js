@@ -3,14 +3,16 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import Keypad from "../imgs/Keypad.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
+import { updateProfilePhone } from "../redux/actions/profileActions";
 
 const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 	const profile = useSelector((state) => state.profile);
 	const [email, setEmail] = useState(emailPram);
 	const [phone, setPhone] = useState(phonePram);
 	const sessionId = localStorage.getItem("sessionId");
+	const dispatch = useDispatch();
 
 	const addPhoneNumber = async () => {
 		const { value: num } = await Swal.fire({
@@ -56,6 +58,7 @@ const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 				if (result.success === true) {
 					setPhone(num);
 					Toast({ title: result.message, icon: "success" });
+					updateProfilePhone(dispatch, num);
 				} else {
 					Toast({ title: result.message, icon: "error" });
 				}

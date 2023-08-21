@@ -3,9 +3,11 @@ import {
 	DELETE_USER_IMG,
 	SET_USER_INFO,
 	UPDATE_SOCIAL_URLS,
+	UPDATE_USER_ABOUT,
 	UPDATE_USER_CV,
 	UPDATE_USER_IMG,
 	UPDATE_USER_INFO,
+	UPDATE_USER_PHONE,
 	UUPDATE_USER_IMG,
 } from "../actions/types";
 
@@ -54,6 +56,28 @@ const profileReducer = (state = initialState, action) => {
 					user: {
 						...state.userInfo.user,
 						CV: action.payload,
+					},
+				},
+			};
+		case UPDATE_USER_ABOUT:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						About: action.payload,
+					},
+				},
+			};
+		case UPDATE_USER_PHONE:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						Phone: action.payload,
 					},
 				},
 			};
