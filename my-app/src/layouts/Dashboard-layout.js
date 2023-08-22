@@ -6,11 +6,15 @@ import DashboardSidebar from "../components/DashboardSidebar";
 import Loading from "../components/Loading";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DashboardLayout = () => {
 	const [userInfo, setUserInfo] = useState();
 	const sessionId = localStorage.getItem("sessionId");
 	const navigate = useNavigate();
+	const sideBarIsOpen = useSelector(
+		(state) => state.dashboard.sidebar.sideBarIsOpen
+	);
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
 		try {
@@ -48,7 +52,9 @@ const DashboardLayout = () => {
 				<div className="container-fluid hv-100">
 					<DashboardSidebar profileData={userInfo.user} />
 
-					<div className="dashboard-wrapper ">
+					<div
+						className={`dashboard-wrapper ${sideBarIsOpen && "sidebar-open"}`}
+					>
 						<DashboardNav profileData={userInfo.user} />
 						<div className="content">
 							<div className="content-container">Content goes here</div>

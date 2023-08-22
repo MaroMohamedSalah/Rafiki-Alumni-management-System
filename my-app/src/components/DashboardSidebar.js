@@ -1,15 +1,14 @@
 import { useState } from "react";
 import Logo from "./Logo";
+import { useSelector } from "react-redux";
 
 const DashboardSidebar = ({ profileData }) => {
-	const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
-
-	const handleTriggerClick = () => {
-		setSidebarIsOpen(!sidebarIsOpen);
-	};
+	const sideBarIsOpen = useSelector(
+		(state) => state.dashboard.sidebar.sideBarIsOpen
+	);
 
 	return (
-		<div className={"sidebar"}>
+		<div className={`sidebar ${sideBarIsOpen && "open"}`}>
 			<div className="sidebar-container position-relative container-fluid py-3">
 				<Logo to={`/dashboard?username=${profileData.UserName}`} />
 			</div>
