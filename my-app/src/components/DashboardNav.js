@@ -1,12 +1,35 @@
 import { Link } from "react-router-dom";
+import { updateDashboardSidebar } from "../redux/actions/dashboardActions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 const DashboardNav = ({ profileData }) => {
 	const pic = `https://alumni-system-backend.azurewebsites.net/uploads/pictures/${profileData.Img}`;
+	const dispatch = useDispatch();
+	const sideBarIsOpen = useSelector(
+		(state) => state.dashboard.sidebar.sideBarIsOpen
+	);
+
+	const handelSidebarTrigger = () => {
+		if (sideBarIsOpen) {
+			updateDashboardSidebar(dispatch, false);
+		} else {
+			updateDashboardSidebar(dispatch, true);
+		}
+	};
+
+	useEffect(() => {
+		const burgerIcon = document.querySelector(".burgerIcon");
+
+		sideBarIsOpen
+			? burgerIcon.classList.add("open")
+			: burgerIcon.classList.remove("open");
+	}, [sideBarIsOpen]);
 	return (
 		<div className="nav py-2">
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-2 d-flex align-items-center">
-						<div className="burgerIcon open">
+						<div className="burgerIcon open" onClick={handelSidebarTrigger}>
 							<div></div>
 							<div></div>
 							<div></div>

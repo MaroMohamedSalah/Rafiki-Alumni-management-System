@@ -1,3 +1,4 @@
+// General types
 export const SET_USER_INFO = "SET_USER_INFO";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const UPDATE_SOCIAL_URLS = "UPDATE_SOCIAL_URLS";
@@ -9,3 +10,6 @@ export const UPDATE_USER_COUNTRY = "UPDATE_USER_COUNTRY";
 
 export const DELETE_SOCIAL_URL = "DELETE_SOCIAL_URL";
 export const DELETE_USER_IMG = "DELETE_USER_IMG";
+
+// Dashboard
+export const UPDATE_DASHBOARD_SIDEBAR = "UPDATE_DASHBOARD_SIDEBAR";

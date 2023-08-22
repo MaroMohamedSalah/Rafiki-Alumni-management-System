@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const ProfileProgress = () => {
-	const userInfo = useSelector((state) => state.userInfo);
+	const userInfo = useSelector((state) => state.profile.userInfo);
 	const [profileStructure, setProfileStructure] = useState([]);
 	const [progress, setProgress] = useState(0);
 	const calculateProgress = (profileStructure) => {

@@ -24,7 +24,7 @@ import ProfileProgress from "../components/ProfileProgress";
 
 const Profile = () => {
 	const sessionId = localStorage.getItem("sessionId");
-	const userInfo = useSelector((state) => state.userInfo);
+	const userInfo = useSelector((state) => state.profile.userInfo);
 	const [profileFetched, setProfileFetched] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
