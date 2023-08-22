@@ -45,16 +45,13 @@ const DashboardLayout = () => {
 	return (
 		<div className="Dashboard">
 			{userInfo && userInfo.user ? (
-				<div className="container-fluid">
-					<div className="row">
-						<div className="col-12">
-							<DashboardNav profileData={userInfo.user} />
-						</div>
+				<div className="container-fluid hv-100">
+					<DashboardSidebar profileData={userInfo.user} />
 
-						<DashboardSidebar />
-
-						<div className="col px-2 content">
-							<div className="content-container"></div>
+					<div className="dashboard-wrapper ">
+						<DashboardNav profileData={userInfo.user} />
+						<div className="content">
+							<div className="content-container">Content goes here</div>
 						</div>
 					</div>
 				</div>

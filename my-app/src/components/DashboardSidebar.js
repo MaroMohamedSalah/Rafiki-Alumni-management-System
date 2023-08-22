@@ -1,6 +1,7 @@
 import { useState } from "react";
+import Logo from "./Logo";
 
-const DashboardSidebar = () => {
+const DashboardSidebar = ({ profileData }) => {
 	const [sidebarIsOpen, setSidebarIsOpen] = useState(true);
 
 	const handleTriggerClick = () => {
@@ -8,16 +9,9 @@ const DashboardSidebar = () => {
 	};
 
 	return (
-		<div
-			className={`px-2 pb-3 sidebar ${sidebarIsOpen ? "open col-2" : "col-1"}`}
-		>
+		<div className={"sidebar"}>
 			<div className="sidebar-container position-relative container-fluid py-3">
-				<div
-					className="sidebarTrigger position-absolute"
-					onClick={handleTriggerClick}
-				>
-					<i className="fa-solid fa-bars"></i>
-				</div>
+				<Logo to={`/dashboard?username=${profileData.UserName}`} />
 			</div>
 		</div>
 	);

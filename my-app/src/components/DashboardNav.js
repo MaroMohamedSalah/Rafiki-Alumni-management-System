@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
 const DashboardNav = ({ profileData }) => {
 	const pic = `https://alumni-system-backend.azurewebsites.net/uploads/pictures/${profileData.Img}`;
 	return (
 		<div className="nav py-2">
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-2">
-						<Logo to={`/dashboard?username=${profileData.UserName}`} />
+					<div className="col-2 d-flex align-items-center">
+						<div className="burgerIcon open">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
 					</div>
-					<div className="col-6  d-flex justify-content-center align-items-center">
+					<div className="col-6 d-md-flex d-none justify-content-center align-items-center">
 						<form class="d-flex w-75" role="search">
 							<input
 								class="form-control me-2"
@@ -22,7 +25,7 @@ const DashboardNav = ({ profileData }) => {
 							</button>
 						</form>
 					</div>
-					<div className="col-4 d-flex align-items-center justify-content-end">
+					<div className="col d-flex align-items-center justify-content-end">
 						<div className="notification me" id="dashboard-notification">
 							<i class="fa-solid fa-bell"></i>
 						</div>

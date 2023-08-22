@@ -1,23 +1,76 @@
+/* General  */
 .Dashboard {
 	background-color: #1e1934;
 }
-
-/* General  */
-.Dashboard .sidebar-container {
-	border-radius: 20px;
-	background-color: #392e67;
-	height: 100%;
-	transition: all var(--main-transition) var(--main-transition) ease-in-out;
+.Dashboard .burgerIcon {
+	position: relative;
+	width: 35px;
+	height: 28px;
+	cursor: pointer;
+	transition: all ease-in-out var(--main-transition);
 }
-.Dashboard .content-container {
+.Dashboard .burgerIcon div {
+	position: absolute;
+	width: 100%;
+	height: 2px;
 	background-color: white;
-	min-height: 100%;
-	border-top-right-radius: 20px;
-	border-top-left-radius: 20px;
+	z-index: 200;
+	border-radius: 10px;
+	left: 0;
+	transition: all ease-in-out 0.2s;
 }
+
+.Dashboard .burgerIcon div:nth-child(1) {
+	transform: rotate(45deg);
+	top: 5px;
+	width: 39%;
+	left: 22px;
+}
+.Dashboard .burgerIcon div:nth-child(2) {
+	width: 62%;
+	left: 13px;
+	top: 10px;
+}
+.Dashboard .burgerIcon div:nth-child(3) {
+	transform: rotate(-45deg);
+	top: 15px;
+	width: 39%;
+	left: 22px;
+}
+.Dashboard .burgerIcon.open div:nth-child(1) {
+	top: 0;
+	transform: rotate(0deg);
+	width: 100%;
+	left: 0;
+}
+
+.Dashboard .burgerIcon.open div:nth-child(2) {
+	top: 10px;
+	transform: rotate(0deg);
+	width: 75%;
+	left: 0;
+}
+
+.Dashboard .burgerIcon.open div:nth-child(3) {
+	top: 20px;
+	transform: rotate(0deg);
+	width: 100%;
+	left: 0;
+}
+
 /* Nav  */
 .Dashboard .nav {
-	/* height: 85px; */
+	position: fixed;
+	height: fit-content;
+	width: inherit;
+	background-color: #1e1934;
+	top: 0;
+	right: 0;
+	width: calc(100% - (64px + 1rem));
+	transition: all ease-in-out var(--main-transition);
+}
+.Dashboard .dashboard-wrapper.sidebar-open .nav {
+	width: calc(100% - 370px);
 }
 .Dashboard .logo {
 	display: block;
@@ -62,13 +115,34 @@
 
 /* Slider */
 .Dashboard .sidebar {
-	height: calc(100vh - 66px);
 	transition: all ease-in-out var(--main-transition);
+	position: fixed;
+	height: 100%; /* Take full height of the viewport */
+	overflow-y: auto; /* Allow scrolling for the sidebar */
+	background-color: #1e1934;
+	top: 0;
+	left: 0;
+	z-index: 100; /* Make sure sidebar and nav are above content */
+	width: 80px;
 }
-.Dashboard .sidebar:not(.open) .sidebar-container {
+.Dashboard .sidebar.open {
+	width: 370px;
+}
+.Dashboard .sidebar-container {
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: #392e67;
+	height: 100%;
+	transition: all var(--main-transition) var(--main-transition) ease-in-out;
 	display: flex;
 	justify-content: center;
-	border-radius: 0;
+}
+.Dashboard .sidebar .sidebar-container .logo {
+	height: 82px !important;
+	transition: all ease-in-out var(--main-transition);
+}
+.Dashboard .sidebar:not(.open) .sidebar-container .logo {
+	height: 46px !important;
 }
 .Dashboard .sidebar .sidebarTrigger {
 	font-size: 30px;
@@ -76,4 +150,24 @@
 	cursor: pointer;
 }
 
-/* search */
+/* content */
+.Dashboard .dashboard-wrapper {
+	padding-left: calc(64px + 1rem);
+	transition: all ease-in-out var(--main-transition);
+}
+.Dashboard .dashboard-wrapper.sidebar-open {
+	padding-left: 370px;
+}
+.Dashboard .content {
+	padding-top: 66px;
+}
+.Dashboard .content-container {
+	background-color: white;
+	min-height: 100vh;
+	border-top-right-radius: 20px;
+	border-top-left-radius: 0px;
+	padding: 10px;
+}
+.Dashboard .dashboard-wrapper.sidebar-open .content-container {
+	border-top-left-radius: 20px;
+}
