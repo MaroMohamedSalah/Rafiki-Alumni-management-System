@@ -1,6 +1,13 @@
+:root {
+	--sideBar-width: 366px;
+}
+
 /* General  */
 .Dashboard {
 	background-color: #1e1934;
+}
+.Dashboard a {
+	text-decoration: none;
 }
 .Dashboard .burgerIcon {
 	position: relative;
@@ -11,7 +18,6 @@
 }
 .Dashboard .burgerIcon div {
 	position: absolute;
-	width: 100%;
 	height: 2px;
 	background-color: white;
 	z-index: 200;
@@ -40,21 +46,21 @@
 .Dashboard .burgerIcon.open div:nth-child(1) {
 	top: 0;
 	transform: rotate(0deg);
-	width: 100%;
+	width: 75%;
 	left: 0;
 }
 
 .Dashboard .burgerIcon.open div:nth-child(2) {
 	top: 10px;
 	transform: rotate(0deg);
-	width: 75%;
+	width: 100%;
 	left: 0;
 }
 
 .Dashboard .burgerIcon.open div:nth-child(3) {
 	top: 20px;
 	transform: rotate(0deg);
-	width: 100%;
+	width: 75%;
 	left: 0;
 }
 
@@ -93,7 +99,7 @@
 	transition: all ease-in-out var(--main-transition);
 }
 .Dashboard .dashboard-wrapper.sidebar-open .nav {
-	width: calc(100% - 370px);
+	width: calc(100% - var(--sideBar-width));
 }
 .Dashboard .logo {
 	display: block;
@@ -164,7 +170,7 @@
 	width: 80px;
 }
 .Dashboard .sidebar.open {
-	width: 370px;
+	width: var(--sideBar-width);
 }
 .Dashboard .sidebar-container {
 	border-top-right-radius: 20px;
@@ -190,6 +196,48 @@
 	color: white;
 	cursor: pointer;
 }
+.Dashboard .sidebar .sidebarList {
+	list-style: none;
+}
+.Dashboard .sidebar .sidebarList.close {
+	padding: 0;
+}
+.Dashboard .sidebar .sidebarList .icon {
+	font-size: 15px;
+}
+.Dashboard .sidebarList li {
+	transition: all ease-in-out var(--main-transition);
+	font-size: 18px;
+	color: #979797;
+	cursor: pointer;
+}
+.Dashboard .sidebarList.close li .icon {
+	font-size: 20px;
+}
+.Dashboard .sidebar .sidebarList li.active {
+	color: white;
+	position: relative;
+}
+.Dashboard .sidebar .sidebarList:not(.close) li.active::after {
+	position: absolute;
+	content: "";
+	width: 5px;
+	height: 5px;
+	background-color: white;
+	right: 0;
+	border-radius: 50%;
+}
+.Dashboard .logout {
+	bottom: 29px;
+	color: white;
+	font-size: 25px;
+	transition: all ease-in-out var(--main-transition);
+	cursor: pointer;
+}
+.Dashboard .sidebar:not(.open) .logout {
+	font-size: 20px !important;
+}
+
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */
 	.Dashboard .sidebar.open {
@@ -216,7 +264,7 @@
 	transition: all ease-in-out var(--main-transition);
 }
 .Dashboard .dashboard-wrapper.sidebar-open {
-	padding-left: 370px;
+	padding-left: var(--sideBar-width);
 }
 .Dashboard .content {
 	padding-top: 66px;

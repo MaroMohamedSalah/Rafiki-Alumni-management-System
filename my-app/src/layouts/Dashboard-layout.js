@@ -5,7 +5,7 @@ import "animate.css";
 import DashboardSidebar from "../components/DashboardSidebar";
 import Loading from "../components/Loading";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const DashboardLayout = () => {
@@ -57,7 +57,7 @@ const DashboardLayout = () => {
 					>
 						<DashboardNav profileData={userInfo.user} />
 						<div className="content">
-							<div className="content-container">Content goes here</div>
+							<div className="content-container">{<Outlet />}</div>
 						</div>
 					</div>
 				</div>
