@@ -1,21 +1,13 @@
 import { Link } from "react-router-dom";
-import { updateDashboardSidebar } from "../redux/actions/dashboardActions";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import DashboardSidebarBurgerIcon from "./DashboardSidebarBurgerIcon";
 const DashboardNav = ({ profileData }) => {
 	const pic = `https://alumni-system-backend.azurewebsites.net/uploads/pictures/${profileData.Img}`;
-	const dispatch = useDispatch();
 	const sideBarIsOpen = useSelector(
 		(state) => state.dashboard.sidebar.sideBarIsOpen
 	);
-
-	const handelSidebarTrigger = () => {
-		if (sideBarIsOpen) {
-			updateDashboardSidebar(dispatch, false);
-		} else {
-			updateDashboardSidebar(dispatch, true);
-		}
-	};
+	const isMobile = window.innerWidth <= 768;
 
 	useEffect(() => {
 		const burgerIcon = document.querySelector(".burgerIcon");
@@ -29,11 +21,7 @@ const DashboardNav = ({ profileData }) => {
 			<div className="container-fluid">
 				<div className="row">
 					<div className="col-2 d-flex align-items-center">
-						<div className="burgerIcon open" onClick={handelSidebarTrigger}>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
+						{(!isMobile || !sideBarIsOpen) && <DashboardSidebarBurgerIcon />}
 					</div>
 					<div className="col-6 d-md-flex d-none justify-content-center align-items-center">
 						<form class="d-flex w-75" role="search">

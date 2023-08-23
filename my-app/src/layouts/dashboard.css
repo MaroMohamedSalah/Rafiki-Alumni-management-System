@@ -58,6 +58,29 @@
 	left: 0;
 }
 
+/* Mobile Styles */
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.Dashboard .burgerIcon div:nth-child(1) {
+		width: 50%;
+	}
+	.Dashboard .burgerIcon div:nth-child(2) {
+		width: 80%;
+	}
+	.Dashboard .burgerIcon div:nth-child(3) {
+		width: 50%;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+}
 /* Nav  */
 .Dashboard .nav {
 	position: fixed;
@@ -112,7 +135,22 @@
 	animation: headShake;
 	animation-duration: 0.5s;
 }
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.Dashboard .dashboard-wrapper.sidebar-open .nav {
+		width: calc(100% - (64px + 1rem));
+	}
+}
 
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+}
 /* Slider */
 .Dashboard .sidebar {
 	transition: all ease-in-out var(--main-transition);
@@ -135,11 +173,14 @@
 	height: 100%;
 	transition: all var(--main-transition) var(--main-transition) ease-in-out;
 	display: flex;
-	justify-content: center;
+	justify-content: start;
+	align-items: center;
+	flex-direction: column;
 }
 .Dashboard .sidebar .sidebar-container .logo {
 	height: 82px !important;
 	transition: all ease-in-out var(--main-transition);
+	margin-bottom: 20px;
 }
 .Dashboard .sidebar:not(.open) .sidebar-container .logo {
 	height: 46px !important;
@@ -148,6 +189,25 @@
 	font-size: 30px;
 	color: white;
 	cursor: pointer;
+}
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.Dashboard .sidebar.open {
+		width: 238px;
+	}
+	.Dashboard .sidebar .sidebar-container .logo {
+		height: 58px !important;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
 }
 
 /* content */
@@ -170,4 +230,21 @@
 }
 .Dashboard .dashboard-wrapper.sidebar-open .content-container {
 	border-top-left-radius: 20px;
+}
+
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.Dashboard .dashboard-wrapper.sidebar-open {
+		padding-left: calc(64px + 1rem);
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
 }
