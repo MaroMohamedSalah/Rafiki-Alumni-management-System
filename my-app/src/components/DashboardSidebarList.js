@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { updateDashboardSidebar } from "../redux/actions/dashboardActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 	const [activeItem, setActiveItem] = useState("");
 	const [showSuperFSubItems, setShowSuperFSubItems] = useState(false);
+	const actorName = useSelector(
+		(state) => state.profile.userInfo.user.Role.Role_Name
+	);
 	const dispatch = useDispatch();
 
-	const sidebarItems = [
+	const alumniFeatures = [
 		{
-			title: "Test",
-			icon: "fa-solid fa-laptop",
+			title: "Discussion",
+			icon: "fa-solid fa-comment",
 			link: "#",
 		},
 		{
@@ -21,21 +24,119 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 			type: "super",
 			subItems: [
 				{
-					title: "Post Job",
-					icon: "fa-solid fa-plus",
-					link: "#",
-				},
-				{
 					title: "Apply For A Job",
 					icon: "fa-regular fa-share-from-square",
-					link: "#",
+					link: "applyJob",
 				},
 				{
 					title: "Application State",
 					icon: "fa-regular fa-handshake",
-					link: "#",
+					link: "jobsApplications",
 				},
 			],
+		},
+		{
+			title: "Professors Profiles",
+			icon: "fa-solid fa-circle-user",
+			link: "#",
+		},
+		{
+			title: "FAQ",
+			icon: "fa-solid fa-question",
+			link: "#",
+		},
+		{
+			title: "Ask Admin",
+			icon: "fa-solid fa-paper-plane",
+			link: "#",
+		},
+		{
+			title: "Feedback",
+			icon: "fa-solid fa-face-grin-wide",
+			link: "#",
+		},
+		// Add more items as needed
+	];
+	const studentFeatures = [
+		{
+			title: "Discussion",
+			icon: "fa-solid fa-comment",
+			link: "#",
+		},
+		{
+			title: "Jobs",
+			icon: "fa-solid fa-laptop",
+			link: "#",
+			type: "super",
+			subItems: [
+				{
+					title: "Apply For A Job",
+					icon: "fa-regular fa-share-from-square",
+					link: "applyJob",
+				},
+				{
+					title: "Application State",
+					icon: "fa-regular fa-handshake",
+					link: "jobsApplications",
+				},
+			],
+		},
+		{
+			title: "Materials",
+			icon: "fa-solid fa-file-pdf",
+			link: "#",
+		},
+		{
+			title: "Professors Profiles",
+			icon: "fa-solid fa-circle-user",
+			link: "#",
+		},
+		{
+			title: "FAQ",
+			icon: "fa-solid fa-question",
+			link: "#",
+		},
+		{
+			title: "Ask Admin",
+			icon: "fa-solid fa-paper-plane",
+			link: "#",
+		},
+		{
+			title: "Feedback",
+			icon: "fa-solid fa-face-grin-wide",
+			link: "#",
+		},
+		// Add more items as needed
+	];
+
+	const hrFeatures = [
+		{
+			title: "Jobs",
+			icon: "fa-solid fa-laptop",
+			link: "#",
+			type: "super",
+			subItems: [
+				{
+					title: "Post Job",
+					icon: "fa-solid fa-plus",
+					link: "postJob",
+				},
+				{
+					title: "Jobs Applications",
+					icon: "fa-regular fa-handshake",
+					link: "jobsApplications",
+				},
+			],
+		},
+		{
+			title: "FAQ",
+			icon: "fa-solid fa-question",
+			link: "#",
+		},
+		{
+			title: "Feedback",
+			icon: "fa-solid fa-face-grin-wide",
+			link: "#",
 		},
 		// Add more items as needed
 	];
@@ -51,6 +152,24 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 			setShowSuperFSubItems(false);
 		}
 	};
+
+	let features = [];
+	if (actorName) {
+		switch (actorName) {
+			case "Alumni":
+				features = alumniFeatures;
+				break;
+			case "HR":
+				features = hrFeatures;
+				break;
+			case "Student":
+				features = studentFeatures;
+				break;
+
+			default:
+				break;
+		}
+	}
 
 	const generateSidebarItems = (items) => {
 		return items.map((item, index) => (
@@ -99,7 +218,7 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 				!isSidebarOpen && "close"
 			}`}
 		>
-			{generateSidebarItems(sidebarItems)}
+			{generateSidebarItems(features)}
 		</ul>
 	);
 };

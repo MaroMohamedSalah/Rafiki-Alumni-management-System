@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import RoleSelection from "./pages/RoleSelection";
 import AlumniSignup from "./pages/AlumniSignup";
@@ -36,7 +36,12 @@ function App() {
 					{/* Private Routes */}
 					{/* Private routes are routes that require the user to be authenticated or
 					logged in to access them. */}
-					<Route path="/dashboard" element={<DashboardLayout />} />
+					<Route path="/dashboard" element={<DashboardLayout />}>
+						<Route index element={<h1>User will see this first</h1>} />
+						<Route path="postJob" element={<h1>Post Jobs</h1>} />
+						<Route path="applyJob" element={<h1>Apply Jobs</h1>} />
+						<Route path="jobsApplications" element={<h1>Applications</h1>} />
+					</Route>
 					<Route path="/getStarted" element={<GetStarted />} />
 
 					{/* Signup Routes */}
@@ -46,11 +51,6 @@ function App() {
 
 					{/* Profile Routes */}
 					<Route path="/profile" element={<Profile />} />
-					{/* <Route path="/alumniProfile" element={<AlumniProfile />} />
-					<Route path="/hrProfile" element={<HRprofile />} />
-					<Route path="/studentProfile" element={<StudentProfile />} />
-					<Route path="/adminProfile" element={<AdminProfile />} />
-					<Route path="/professorProfile" element={<ProfessorProfile />} /> */}
 				</Routes>
 			</BrowserRouter>
 		</div>

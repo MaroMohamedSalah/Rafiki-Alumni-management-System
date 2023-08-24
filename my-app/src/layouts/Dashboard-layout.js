@@ -6,7 +6,8 @@ import DashboardSidebar from "../components/DashboardSidebar";
 import Loading from "../components/Loading";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUserInfo } from "../redux/actions/profileActions";
 
 const DashboardLayout = () => {
 	const [userInfo, setUserInfo] = useState();
@@ -15,6 +16,7 @@ const DashboardLayout = () => {
 	const sideBarIsOpen = useSelector(
 		(state) => state.dashboard.sidebar.sideBarIsOpen
 	);
+	const dispatch = useDispatch();
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
 		try {
@@ -37,6 +39,7 @@ const DashboardLayout = () => {
 				const data = await response.json();
 				if (data.success === true) {
 					setUserInfo(data);
+					updateUserInfo(dispatch, data);
 				}
 			}
 		} catch (error) {

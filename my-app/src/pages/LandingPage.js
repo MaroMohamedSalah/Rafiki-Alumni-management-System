@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./LandingPage.css";
-import ProgressLine from "../components/ProgressLine";
 const LandingPage = () => {
 	return (
 		<div className="LandingPage vh-100">
@@ -9,7 +8,7 @@ const LandingPage = () => {
 					<Link to={"./login"}>
 						<button className="btn p-3 m-5">Login</button>
 					</Link>
-					<Link to={"./roleSelection"}>
+					<Link to={"./getStarted"}>
 						<button className="btn p-3 m-5">Signup</button>
 					</Link>
 				</div>
