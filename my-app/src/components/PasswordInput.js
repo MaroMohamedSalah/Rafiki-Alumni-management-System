@@ -41,6 +41,7 @@ const PasswordInput = ({
 					</span>
 					<input
 						name="Password"
+						onCopy={(e) => e.preventDefault()}
 						id="password"
 						type={showPassword === true ? "text" : "password"}
 						className="form-control"

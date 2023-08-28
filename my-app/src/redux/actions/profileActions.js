@@ -1,4 +1,5 @@
 import {
+	DELETE_PHONE,
 	DELETE_SOCIAL_URL,
 	DELETE_USER_IMG,
 	SET_USER_INFO,
@@ -69,5 +70,10 @@ export const deleteSocialURL = async (dispatch, urlType) => {
 export const deleteUserImg = async (dispatch) => {
 	return dispatch({
 		type: DELETE_USER_IMG,
+	});
+};
+export const deletePhone = async (dispatch) => {
+	return dispatch({
+		type: DELETE_PHONE,
 	});
 };

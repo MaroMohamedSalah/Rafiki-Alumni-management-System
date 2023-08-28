@@ -376,7 +376,6 @@
 .profile .ProfileContactInfo .not-empty-sec .phone-number .edit,
 .profile .PersonalInformation .not-empty-sec h1 .edit {
 	font-size: 19px;
-	margin: auto;
 	height: 100%;
 	margin-left: 10px;
 	cursor: pointer;
@@ -451,6 +450,34 @@
 	right: 27px;
 	font-size: 20px;
 	cursor: pointer;
+}
+.profile .ProfileSkills .skillsList {
+	list-style: none;
+}
+.profile .ProfileSkills .skillsList .skill {
+	border-radius: var(--main-border-radius);
+}
+.AlumniProfile .ProfileSkills .skillsList .skill {
+	background-color: var(--Alumni-color);
+}
+.HRProfile .ProfileSkills .skillsList .skill {
+	background-color: var(--HR-color);
+}
+.AdminProfile .ProfileSkills .skillsList .skill {
+	background-color: var(--Admin-color);
+}
+.StudentProfile .ProfileSkills .skillsList .skill {
+	background-color: var(--Student-color);
+}
+.ProfessorProfile .ProfileSkills .skillsList .skill {
+	background-color: var(--Professor-color);
+}
+.profile .skill .star {
+	color: #fbc02d;
+}
+.profile .skill .title {
+	color: white;
+	font-weight: 500;
 }
 /* ---  */
 

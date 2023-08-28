@@ -10,48 +10,47 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUserInfo } from "../redux/actions/profileActions";
 
 const DashboardLayout = () => {
-	const [userInfo, setUserInfo] = useState();
+	// const [userInfo, setUserInfo] = useState(null);
 	const sessionId = localStorage.getItem("sessionId");
 	const navigate = useNavigate();
 	const sideBarIsOpen = useSelector(
 		(state) => state.dashboard.sidebar.sideBarIsOpen
 	);
+	const profile = useSelector((state) => state.profile);
+	const userInfo = profile.userInfo;
 	const dispatch = useDispatch();
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
-		try {
-			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/",
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${sessionId}`,
-					},
+		fetch("https://alumni-system-backend.azurewebsites.net/api/users/", {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
+			.then((res) => {
+				if (res.status === 401) {
+					// Redirect to login page
+					RedirectToLoginNotification();
+					navigate("/login");
 				}
-			);
-
-			if (response.status === 401) {
-				// Redirect to login page
-				RedirectToLoginNotification();
-				navigate("/login");
-			} else {
-				const data = await response.json();
+			})
+			.then((data) => {
 				if (data.success === true) {
-					setUserInfo(data);
 					updateUserInfo(dispatch, data);
 				}
-			}
-		} catch (error) {
-			console.log("Error while fetching profile data:", error);
-		}
+			})
+			.catch((error) => {
+				console.log("Error while fetching profile data:", error);
+			});
 	};
 	useEffect(() => {
 		fetchProfileData();
 	}, []);
+
 	return (
 		<div className="Dashboard">
-			{userInfo && userInfo.user ? (
+			{userInfo && userInfo.user && profile ? (
 				<div className="container-fluid hv-100">
 					<DashboardSidebar profileData={userInfo.user} />
 
@@ -60,7 +59,9 @@ const DashboardLayout = () => {
 					>
 						<DashboardNav profileData={userInfo.user} />
 						<div className="content">
-							<div className="content-container">{<Outlet />}</div>
+							<div className="content-container">
+								<Outlet />
+							</div>
 						</div>
 					</div>
 				</div>

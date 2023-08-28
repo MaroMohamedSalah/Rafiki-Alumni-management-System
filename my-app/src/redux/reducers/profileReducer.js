@@ -1,4 +1,5 @@
 import {
+	DELETE_PHONE,
 	DELETE_SOCIAL_URL,
 	DELETE_USER_IMG,
 	SET_USER_INFO,
@@ -100,6 +101,17 @@ const profileReducer = (state = initialState, action) => {
 					user: {
 						...state.userInfo.user,
 						Img: null,
+					},
+				},
+			};
+		case DELETE_PHONE:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						Phone: null,
 					},
 				},
 			};

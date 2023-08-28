@@ -5,12 +5,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import Toast from "./Toast";
-import { updateProfilePhone } from "../redux/actions/profileActions";
+import {
+	deletePhone,
+	updateProfilePhone,
+} from "../redux/actions/profileActions";
 
-const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
-	const profile = useSelector((state) => state.profile);
-	const [email, setEmail] = useState(emailPram);
-	const [phone, setPhone] = useState(phonePram);
+const ProfileContactInfoSec = () => {
+	const userInfo = useSelector((state) => state.profile.userInfo);
 	const sessionId = localStorage.getItem("sessionId");
 	const dispatch = useDispatch();
 
@@ -56,7 +57,6 @@ const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 				const response = await fetch(url, options);
 				const result = await response.json();
 				if (result.success === true) {
-					setPhone(num);
 					Toast({ title: result.message, icon: "success" });
 					updateProfilePhone(dispatch, num);
 				} else {
@@ -67,6 +67,54 @@ const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 				Toast({ title: "Failed to add phone number", icon: "error" });
 			}
 		}
+	};
+
+	const handelDelete = async () => {
+		Swal.fire({
+			title: `Do you want to delete your phone number?`,
+			showDenyButton: true,
+			showCancelButton: false,
+			confirmButtonText: "Yes",
+			denyButtonText: `Cancel`,
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				fetch(
+					"https://alumni-system-backend.azurewebsites.net/api/users/delete_phone",
+					{
+						method: "DELETE",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: `Bearer ${sessionId}`,
+						},
+					}
+				)
+					.then((response) => {
+						if (response.ok) {
+							// show a success message if the request was successful
+							Swal.fire({
+								icon: "success",
+								title: `Your phone deleted`,
+								text: "Your phone have been deleted from your profile.",
+							});
+							deletePhone(dispatch);
+						} else {
+							// show an error message if the request failed
+							throw new Error("Failed to delete URL. Please try again later.");
+						}
+					})
+					.catch((error) => {
+						// show an error message if the request failed due to a network error
+						Swal.fire({
+							icon: "error",
+							title: "Request failed",
+							text: error.message,
+						});
+					});
+			} else if (result.isDenied) {
+				Swal.fire("Changes are not saved", "", "info");
+			}
+		});
 	};
 
 	return (
@@ -91,19 +139,29 @@ const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 			</h1>
 			<div className="not-empty-sec row">
 				<div className="col-12 col-md-6">
-					<h1 className="phone-number" onClick={addPhoneNumber}>
+					<h1 className="phone-number">
 						<span className="icon">
 							<img src={Keypad} alt="" />
 						</span>
-						{phone === null ? (
-							<span className="text-black-50 add-phone">
+						{userInfo.user.Phone === null ? (
+							<span
+								className="text-black-50 add-phone"
+								onClick={addPhoneNumber}
+							>
 								Add Your Phone Number
 							</span>
 						) : (
 							<>
-								<span>{phone}</span>
-								<span className="edit" onClick={addPhoneNumber}>
+								<span>{userInfo.user.Phone}</span>
+								<span title="Edit" className="edit" onClick={addPhoneNumber}>
 									<i className="fa-solid fa-pen-to-square"></i>
+								</span>
+								<span
+									title="Delete"
+									className="delete edit ps-2"
+									onClick={handelDelete}
+								>
+									<i class="fa-solid fa-trash"></i>
 								</span>
 							</>
 						)}
@@ -114,13 +172,9 @@ const ProfileContactInfoSec = ({ phonePram, emailPram }) => {
 						<span className="icon">
 							<i className="fa-regular fa-envelope"></i>
 						</span>{" "}
-						{email === "" ? (
-							<p class="placeholder-glow w-50 m-0 d-flex align-items-center">
-								<span class="placeholder w-100"></span>
-							</p>
-						) : (
-							<a className="email" href={`mailto:${email}`}>
-								{email}
+						{userInfo.user.Email && (
+							<a className="email" href={`mailto:${userInfo.user.Email}`}>
+								{userInfo.user.Email}
 							</a>
 						)}
 					</h1>

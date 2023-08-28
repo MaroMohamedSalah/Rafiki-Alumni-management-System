@@ -138,16 +138,13 @@ const Profile = () => {
 
 					<div className="row">
 						<div className="col-12">
-							<ProfileContactInfoSec
-								phonePram={userInfo.user.Phone}
-								emailPram={userInfo.user.Email}
-							/>
+							<ProfileContactInfoSec />
 						</div>
 					</div>
 
 					<div className="row">
 						<div className="col-12">
-							<ProfileSkills />
+							<ProfileSkills skills={userInfo.user.UserSkills} />
 						</div>
 					</div>
 
