@@ -3,8 +3,13 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import skillIcon from "../imgs/skills icon.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const ProfileSkills = ({ skills }) => {
+	const navigate = useNavigate();
+	const handelAddSkills = () => {
+		navigate("addSkills");
+	};
 	const displaySkills = () => {
 		return skills.map((skill) => (
 			<li key={skill.Skill_Name} className="col-12 col-md-6">
@@ -50,7 +55,7 @@ const ProfileSkills = ({ skills }) => {
 						overlay={<Tooltip id="my-tooltip">Add skills</Tooltip>}
 						placement="bottom"
 					>
-						<div className="add position-absolute">
+						<div className="add position-absolute" onClick={handelAddSkills}>
 							<i className="fa-solid fa-plus"></i>
 						</div>
 					</OverlayTrigger>
@@ -70,7 +75,10 @@ const ProfileSkills = ({ skills }) => {
 						<span></span>
 						<span></span>
 					</div>
-					<div className="add position-absolute d-flex justify-content-center align-items-center flex-column">
+					<div
+						className="add position-absolute d-flex justify-content-center align-items-center flex-column"
+						onClick={handelAddSkills}
+					>
 						<div className="addIcon">
 							<i className="fa-solid fa-plus"></i>
 						</div>

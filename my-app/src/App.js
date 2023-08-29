@@ -7,19 +7,17 @@ import AlumniSignup from "./pages/AlumniSignup";
 import OTPVerification from "./pages/OTPVerification";
 import CurrantStudentSignup from "./pages/CurrantStudentSignup";
 import HRSignup from "./pages/HRSignup";
-import ProgressLine from "./components/ProgressLine";
 import ForgetPass from "./pages/ForgetPass";
 import SendEmail from "./pages/SendEmail";
-import AlumniProfile from "./pages/AlumniProfile";
-import HRprofile from "./pages/HRprofile";
-import StudentProfile from "./pages/StudentProfile";
-import AdminProfile from "./pages/AdminProfile";
-import ProfessorProfile from "./pages/ProfessorProfile";
 import ImgCropper from "./components/img-cropper/ImgCropper";
 import LoginLayout from "./layouts/Login-layout";
 import GetStarted from "./pages/GetStarted";
 import DashboardLayout from "./layouts/Dashboard-layout";
 import Profile from "./pages/Profile";
+import UploadProfileImg from "./components/UploadProfileImg";
+import ProfileLayout from "./layouts/Profile-layout";
+import ProfileContent from "./pages/Profile";
+import AddSkills from "./pages/AddSkills";
 
 function App() {
 	return (
@@ -38,6 +36,7 @@ function App() {
 					logged in to access them. */}
 					<Route path="/dashboard" element={<DashboardLayout />}>
 						<Route index element={<h1>User will see this first</h1>} />
+
 						<Route path="postJob" element={<h1>Post Jobs</h1>} />
 						<Route path="applyJob" element={<h1>Apply Jobs</h1>} />
 						<Route path="jobsApplications" element={<h1>Applications</h1>} />
@@ -50,7 +49,11 @@ function App() {
 					<Route path="/hrSignup" element={<HRSignup />} />
 
 					{/* Profile Routes */}
-					<Route path="/profile" element={<Profile />} />
+					{/* <Route path="/profile" element={<Profile />} /> */}
+					<Route path="/profile" element={<ProfileLayout />}>
+						<Route index element={<ProfileContent />} />
+						<Route path="addSkills" element={<AddSkills />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</div>

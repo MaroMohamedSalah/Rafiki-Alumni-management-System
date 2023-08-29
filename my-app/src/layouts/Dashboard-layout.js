@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUserInfo } from "../redux/actions/profileActions";
 
 const DashboardLayout = () => {
-	// const [userInfo, setUserInfo] = useState(null);
 	const sessionId = localStorage.getItem("sessionId");
 	const navigate = useNavigate();
 	const sideBarIsOpen = useSelector(
@@ -33,9 +32,12 @@ const DashboardLayout = () => {
 					// Redirect to login page
 					RedirectToLoginNotification();
 					navigate("/login");
+				} else {
+					return res.json();
 				}
 			})
 			.then((data) => {
+				console.log(data);
 				if (data.success === true) {
 					updateUserInfo(dispatch, data);
 				}

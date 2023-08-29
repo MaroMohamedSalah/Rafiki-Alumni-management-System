@@ -208,7 +208,7 @@ const ProfileImg = ({ profileData }) => {
 						)}
 					</div>
 				</div>
-				{showCropper && (
+				{/* {showCropper && (
 					<Modal
 						isOpen={isModalOpen}
 						onRequestClose={() => setIsModalOpen(false)}
@@ -225,7 +225,7 @@ const ProfileImg = ({ profileData }) => {
 							/>
 						)}
 					</Modal>
-				)}
+				)} */}
 			</div>
 			{pic ? (
 				<div className="editImg delImg position-absolute">
