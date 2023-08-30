@@ -9,14 +9,11 @@ import {
 } from "../redux/actions/profileActions";
 import { useDispatch } from "react-redux";
 import Toast from "./Toast";
+import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
 
 const ProfileImg = ({ profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
 	const [pic, setPic] = useState("");
-	const [croppedImg, setCroppedImg] = useState("");
-	const [loadingCroppedImg, setLoadingCroppedImg] = useState(false);
-	const [showCropper, setShowCropper] = useState(false);
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -29,99 +26,65 @@ const ProfileImg = ({ profileData }) => {
 		}
 	}, []);
 
-	const handleImageUpload = () => {
-		let selectedFile; // Declare the file variable in a higher scope
-		const validateFile = (file) => {
-			if (!file) {
-				return Promise.reject("Please select an image file");
-			}
-			const allowedExtensions = ["jpg", "jpeg", "png"];
-			const fileExtension = file.name.split(".").pop().toLowerCase();
-			if (!allowedExtensions.includes(fileExtension)) {
-				return Promise.reject(
-					"Please select a valid image file (JPG, JPEG or PNG)"
-				);
-			}
-			if (file.size > 8 * 1024 * 1024) {
-				return Promise.reject("File size must be less than 8 MB");
-			}
-			return Promise.resolve(file);
-		};
+	const handleUploadSuccess = (info) => {
+		console.log("Upload success:", info);
+		// const uploadedImageURL = URL.createObjectURL(selectedFile);
+		// setPic(info.secure_url); // Update the state to display the image locally
+		updateProfileImg(dispatch, info.secure_url);
+		setPic(info.secure_url);
 
-		Swal.fire({
-			title: "Add/Edit Profile Picture",
-			html: `
-      <form method="POST" enctype="multipart/form-data">
-	  <input type="file" name="picture" id="file-input">
-      </form>
-	  `,
-			showCancelButton: true,
-			confirmButtonText: "Next",
-			showLoaderOnConfirm: true,
-			preConfirm: async () => {
-				selectedFile = document.getElementById("file-input").files[0];
-				try {
-					const validatedFile = await validateFile(selectedFile);
-					// setShowCropper(true);
-					// setIsModalOpen(true);
-					return validatedFile;
-				} catch (error) {
-					Swal.showValidationMessage(error);
-				}
-			},
-			allowOutsideClick: () => !Swal.isLoading(),
-		}).then((result) => {
-			if (result.isConfirmed && result.value) {
-				// Create a temporary URL for the uploaded image
-				const uploadedImageURL = URL.createObjectURL(selectedFile);
-				setPic(uploadedImageURL); // Update the state to display the image locally
-
-				const form = document.querySelector("form");
-				const formData = new FormData(form);
-				fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
-					{
-						method: "POST",
-						body: formData,
-						headers: {
-							Authorization: `Bearer ${sessionId}`,
-						},
-					}
-				)
-					.then((response) => {
-						if (!response.ok) {
-							throw new Error("Upload failed");
-						}
-						return response.json();
-					})
-					.then((data) => {
-						if (data.success === true) {
-							updateProfileImg(dispatch, data.Img);
-						} else {
-							Toast({
-								title: data.message,
-								icon: "error",
-							});
-						}
-					})
-					.catch((error) => {
-						console.error(error);
-						Toast({
-							title: "Upload failed",
-							icon: "error",
-						});
-					});
-			}
-		});
+		// const form = document.querySelector("form");
+		// const formData = new FormData(form);
+		// fetch(
+		// 	"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
+		// 	{
+		// 		method: "POST",
+		// 		body: formData,
+		// 		headers: {
+		// 			Authorization: `Bearer ${sessionId}`,
+		// 		},
+		// 	}
+		// )
+		// 	.then((response) => {
+		// 		if (!response.ok) {
+		// 			throw new Error("Upload failed");
+		// 		}
+		// 		return response.json();
+		// 	})
+		// 	.then((data) => {
+		// 		if (data.success === true) {
+		// 			updateProfileImg(dispatch, data.Img);
+		// 		} else {
+		// 			Toast({
+		// 				title: data.message,
+		// 				icon: "error",
+		// 			});
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		console.error(error);
+		// 		Toast({
+		// 			title: "Upload failed",
+		// 			icon: "error",
+		// 		});
+		// 	});
 	};
 
-	const handleSaveCroppedImage = (croppedImage) => {
-		setLoadingCroppedImg(true);
-		// Perform any action needed with the cropped image data, e.g., upload it to the server.
-		// In this example, we'll just update the state to show the cropped image on the profile picture.
-		setCroppedImg(croppedImage);
-		setLoadingCroppedImg(false);
-		setIsModalOpen(false);
+	const handleUploadFailure = (error) => {
+		console.error("Upload error:", error);
+		Toast({ title: "Upload Error", icon: "error" });
+	};
+
+	const pictureUploaderOptions = {
+		clientAllowedFormats: ["jpg", "jpeg", "png", "gif"], // allowed file formats
+		resourceType: "image", // resource type, either 'image' or 'video'
+		cropping: true, // cropping is enabled
+		croppingAspectRatio: 1, // square aspect ratio
+		croppingShowDimensions: true, // show cropping dimensions
+		croppingValidateDimensions: true, // validate image dimensions after cropping
+		maxFileSize: 10000000, // max file size in bytes (10 MB)
+		folder: "images", // Cloudinary folder to upload to
+		sources: ["local", "url", "camera", "google_drive"], // upload sources, either 'local', 'url', 'camera' or 'google_drive'
 	};
 
 	const handelImageDelete = () => {
@@ -180,22 +143,12 @@ const ProfileImg = ({ profileData }) => {
 	return (
 		<div
 			className="imgContainer position-relative"
-			onClick={pic ? handelImageDelete : handleImageUpload}
+			// onClick={pic ? handelImageDelete() : null}
 		>
-			<div
-				className="ProfileImg img-fluid"
-				id="profile-image"
-				onClick={handleImageUpload}
-			>
+			<div className="ProfileImg img-fluid" id="profile-image">
 				<div className="userImg">
 					<div className="position-relative">
-						{croppedImg ? (
-							<img
-								src={croppedImg}
-								className="img-fluid w-100 h-100"
-								alt="Profile Pic"
-							/>
-						) : pic ? (
+						{pic ? (
 							<img
 								src={pic}
 								className="img-fluid w-100 h-100"
@@ -208,32 +161,36 @@ const ProfileImg = ({ profileData }) => {
 						)}
 					</div>
 				</div>
-				{/* {showCropper && (
-					<Modal
-						isOpen={isModalOpen}
-						onRequestClose={() => setIsModalOpen(false)}
-						contentLabel="Crop Image"
-						ariaHideApp={false}
-					>
-						{loadingCroppedImg ? (
-							<div>Loading...</div>
-						) : (
-							<ImgCropper
-								onClose={() => setIsModalOpen(false)}
-								imgSrc={pic}
-								onSave={handleSaveCroppedImage}
-							/>
-						)}
-					</Modal>
-				)} */}
 			</div>
 			{pic ? (
-				<div className="editImg delImg position-absolute">
-					<i class="fa-regular fa-trash-can "></i>
+				// Render delete icon
+				<div
+					className="editImg delImg position-absolute"
+					onClick={handelImageDelete}
+				>
+					<i className="fa-regular fa-trash-can "></i>
 				</div>
 			) : (
+				// Render upload widget and add icon
 				<div className="editImg addImg position-absolute">
-					<i class="fa-solid fa-camera "></i>
+					<i className="fa-solid fa-camera "></i>
+					<CloudinaryUploadWidget
+						cloudName="do6oz83pz"
+						uploadPreset="ggdkuker"
+						buttonStyle={{
+							position: "absolute",
+							height: "130px",
+							top: "-103px",
+							left: "-96px",
+							width: "130px",
+							opacity: "0",
+						}}
+						buttonClass="add"
+						buttonText="Choose Image"
+						onUploadSuccess={handleUploadSuccess}
+						onUploadFailure={handleUploadFailure}
+						options={pictureUploaderOptions}
+					/>
 				</div>
 			)}
 		</div>
