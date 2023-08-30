@@ -18,6 +18,7 @@ import UploadProfileImg from "./components/UploadProfileImg";
 import ProfileLayout from "./layouts/Profile-layout";
 import ProfileContent from "./pages/Profile";
 import AddSkills from "./pages/AddSkills";
+import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
 
 function App() {
 	return (
@@ -36,7 +37,6 @@ function App() {
 					logged in to access them. */}
 					<Route path="/dashboard" element={<DashboardLayout />}>
 						<Route index element={<h1>User will see this first</h1>} />
-
 						<Route path="postJob" element={<h1>Post Jobs</h1>} />
 						<Route path="applyJob" element={<h1>Apply Jobs</h1>} />
 						<Route path="jobsApplications" element={<h1>Applications</h1>} />
