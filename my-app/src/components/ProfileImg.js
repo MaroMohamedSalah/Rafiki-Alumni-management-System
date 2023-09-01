@@ -28,46 +28,45 @@ const ProfileImg = ({ profileData }) => {
 
 	const handleUploadSuccess = (info) => {
 		console.log("Upload success:", info);
-		// const uploadedImageURL = URL.createObjectURL(selectedFile);
-		// setPic(info.secure_url); // Update the state to display the image locally
 		updateProfileImg(dispatch, info.secure_url);
-		setPic(info.secure_url);
+		setPic(info.secure_url); // Update the state to display the image locally
 
-		// const form = document.querySelector("form");
-		// const formData = new FormData(form);
-		// fetch(
-		// 	"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
-		// 	{
-		// 		method: "POST",
-		// 		body: formData,
-		// 		headers: {
-		// 			Authorization: `Bearer ${sessionId}`,
-		// 		},
-		// 	}
-		// )
-		// 	.then((response) => {
-		// 		if (!response.ok) {
-		// 			throw new Error("Upload failed");
-		// 		}
-		// 		return response.json();
-		// 	})
-		// 	.then((data) => {
-		// 		if (data.success === true) {
-		// 			updateProfileImg(dispatch, data.Img);
-		// 		} else {
-		// 			Toast({
-		// 				title: data.message,
-		// 				icon: "error",
-		// 			});
-		// 		}
-		// 	})
-		// 	.catch((error) => {
-		// 		console.error(error);
-		// 		Toast({
-		// 			title: "Upload failed",
-		// 			icon: "error",
-		// 		});
-		// 	});
+		fetch(
+			"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
+			{
+				method: "POST",
+				body: JSON.stringify({
+					pictureUrl: info.secure_url,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Upload failed");
+				}
+				return response.json();
+			})
+			.then((data) => {
+				if (data.success === true) {
+					updateProfileImg(dispatch, data.Img);
+				} else {
+					Toast({
+						title: data.message,
+						icon: "error",
+					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Toast({
+					title: "Upload failed",
+					icon: "error",
+				});
+			});
 	};
 
 	const handleUploadFailure = (error) => {
