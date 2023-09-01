@@ -4,19 +4,22 @@ import skillIcon from "../imgs/skills icon.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Rating } from "@mui/material";
 
-const ProfileSkills = ({ skills }) => {
+const ProfileSkills = () => {
+	const skills = useSelector((state) => state.profile.userInfo.user.UserSkills);
 	const navigate = useNavigate();
 	const handelAddSkills = () => {
 		navigate("addSkills");
 	};
 	const displaySkills = () => {
 		return skills.map((skill) => (
-			<li key={skill.Skill_Name} className="col-12 col-md-4">
+			<li key={skill.Skill_Name} className="col-12 col-md-3">
 				<div className="skill px-3 py-1 d-flex justify-content-between align-items-center mt-2">
 					<span className="title">{skill.Skill_Name}</span>
 					<div className="stars">
-						{Array.from({ length: skill.Rate }).map((_, index) => (
+						{/* {Array.from({ length: skill.Rate }).map((_, index) => (
 							<span key={index} className="star pe-1">
 								<i class="fa-solid fa-star"></i>
 							</span>
@@ -26,7 +29,8 @@ const ProfileSkills = ({ skills }) => {
 								<span key={index} className="star empty pe-1">
 									<i class="fa-regular fa-star"></i>
 								</span>
-							))}
+							))} */}
+						<Rating name="disabled" value={skill.Rate} readOnly />
 					</div>
 				</div>
 			</li>

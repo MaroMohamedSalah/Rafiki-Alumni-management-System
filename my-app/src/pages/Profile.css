@@ -14,6 +14,19 @@
 	z-index: -1;
 	transition: all 0.5s 0.2s ease-in-out !important;
 }
+.profile .backToProfile {
+	position: absolute;
+	top: -32px;
+	right: 0px;
+	transition: all var(--main-transition) ease-in-out;
+	color: white;
+	font-size: 20px;
+	font-weight: 700;
+}
+.profile .backToProfile .icon {
+	color: #292d32;
+}
+
 .AlumniProfile .profile-overlay {
 	background-color: var(--Alumni-color);
 }
@@ -478,6 +491,10 @@
 .profile .skill .title {
 	color: white;
 	font-weight: 500;
+	white-space: nowrap; /* Prevent line breaks */
+	width: 100px;
+	overflow: hidden; /* Hide overflowing content */
+	text-overflow: ellipsis; /* Display ellipsis (...) for truncated content */
 }
 /* ---  */
 

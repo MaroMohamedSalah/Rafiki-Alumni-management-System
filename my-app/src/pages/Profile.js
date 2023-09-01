@@ -38,7 +38,7 @@ const ProfileContent = () => {
 
 			<div className="row">
 				<div className="col-12">
-					<ProfileSkills skills={userInfo.user.UserSkills} />
+					<ProfileSkills />
 				</div>
 			</div>
 
