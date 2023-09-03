@@ -1,94 +1,71 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ProfileProgress from "./ProfileProgress";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HashLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { updateProfileCV } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import GenerateCV from "./GenerateCV";
+import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
 
 const ProfileCV = ({ cv }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
 	const [userCv, setUserCv] = useState(cv);
 	const [cvIsLoading, setCvIsLoading] = useState(false);
 	const dispatch = useDispatch();
-	const addCV = () => {
-		// Define file validation function
-		const validateFile = (file) => {
-			// Check if the file is a PDF
-			if (!file.type.match("application/pdf")) {
-				return Promise.reject("Please select a PDF file");
-			}
-			// Check if the file size is less than 5 MB
-			if (file.size > 5 * 1024 * 1024) {
-				return Promise.reject("File size must be less than 5 MB");
-			}
-			// If all checks pass, return the file data
-			return Promise.resolve(file);
-		};
 
-		// Display SweetAlert2 pop-up
-		Swal.fire({
-			title: "Upload CV",
-			html: `
-      <form>
-        <input type="file" name="cv" id="file-input">
-      </form>
-    `,
-			showCancelButton: true,
-			confirmButtonText: "Upload",
-			showLoaderOnConfirm: true,
-			preConfirm: () => {
-				// Get the uploaded file
-				const file = document.getElementById("file-input").files[0];
-				// Validate the file and return a promise with the file data or an error message
-				return validateFile(file);
-			},
-			allowOutsideClick: () => !Swal.isLoading(),
-		}).then((result) => {
-			// Check if the user clicked "Upload" and the file was successfully uploaded
-			if (result.isConfirmed && result.value) {
-				// Submit the form to the server to handle the file upload
-				setCvIsLoading(true);
-				Swal.showLoading();
-				const form = new FormData();
-				const fileInput = document.getElementById("file-input");
-				form.append("cv", fileInput.files[0]); // Add the selected file to the form data
-				// Use fetch or XMLHttpRequest to send the form data to the server
-				fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/upload_cv",
-					{
-						method: "POST",
-						body: form,
-						headers: {
-							Authorization: `Bearer ${sessionId}`,
-						},
-					}
-				)
-					.then((response) => {
-						if (!response.ok) {
-							throw new Error("Upload failed");
-						}
-						return response.json();
-					})
-					.then((data) => {
-						// Handle the server response
-						if (data.success === true) {
-							Toast({ title: "CV uploaded", icon: "success" });
-							setUserCv(data.CV);
-							updateProfileCV(dispatch, data.CV);
-							setCvIsLoading(false);
-						} else {
-							Toast({ title: data.message, icon: "error" });
-						}
-					})
-					.catch((error) => {
-						// Handle errors
-						Toast({ title: error, icon: "error" });
-					});
+	const handleUploadSuccess = (info) => {
+		setCvIsLoading(true);
+		fetch(
+			"https://alumni-system-backend.azurewebsites.net/api/users/upload_cv",
+			{
+				method: "POST",
+				body: JSON.stringify({
+					cvUrl: info.secure_url,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
 			}
-		});
+		)
+			.then((response) => {
+				if (!response.ok) {
+					Toast({ title: "Upload failed", icon: "error" });
+					throw new Error("Upload failed");
+				}
+				return response.json();
+			})
+			.then((data) => {
+				// Handle the server response
+				if (data.success === true) {
+					Toast({ title: "CV uploaded", icon: "success" });
+					updateProfileCV(dispatch, data.CV);
+					setCvIsLoading(false);
+					setUserCv(data.CV);
+				} else {
+					Toast({ title: data.message, icon: "error" });
+				}
+			})
+			.catch((error) => {
+				// Handle errors
+				Toast({ title: error, icon: "error" });
+			});
+	};
+
+	const handleUploadFailure = (error) => {
+		console.error("Upload error:", error);
+		Toast({ title: "Upload Error", icon: "error" });
+	};
+
+	const cvUploaderOptions = {
+		clientAllowedFormats: ["pdf"],
+		// max file size is 10MB
+		maxFileSize: 10000000,
+		// foler to upload to is cvs
+		folder: "cvs",
+		sources: ["local", "url", "google_drive"],
 	};
 
 	return (
@@ -127,21 +104,15 @@ const ProfileCV = ({ cv }) => {
 							Preview CV
 						</a>
 					) : (
-						<button className="btn uploadCV fw-bold" onClick={addCV}>
-							<span className="icon me-2">
-								<i class="fa-solid fa-file me-2"></i>
-							</span>
-							{cvIsLoading ? (
-								<>
-									Uploading...{" "}
-									<span className="ms-3">
-										<HashLoader size={15} color="#36d7b7" />{" "}
-									</span>
-								</>
-							) : (
-								"Upload CV"
-							)}
-						</button>
+						<CloudinaryUploadWidget
+							cloudName="do6oz83pz"
+							uploadPreset="ggdkuker"
+							buttonClass="btn uploadCV fw-bold px-5"
+							buttonText="Upload CV"
+							onUploadSuccess={handleUploadSuccess}
+							onUploadFailure={handleUploadFailure}
+							options={cvUploaderOptions}
+						/>
 					)}
 					<GenerateCV />
 				</div>

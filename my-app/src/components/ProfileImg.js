@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { BeatLoader } from "react-spinners";
-import Modal from "react-modal";
-import ImgCropper from "./img-cropper/ImgCropper";
 import {
 	deleteUserImg,
 	updateProfileImg,
@@ -19,54 +17,51 @@ const ProfileImg = ({ profileData }) => {
 	useEffect(() => {
 		// Set the initial profile picture if available
 		if (profileData.Img !== null) {
-			setPic(
-				"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
-					profileData.Img
-			);
+			setPic(profileData.Img);
 		}
 	}, []);
 
 	const handleUploadSuccess = (info) => {
-		console.log("Upload success:", info);
-		updateProfileImg(dispatch, info.secure_url);
 		setPic(info.secure_url); // Update the state to display the image locally
+		console.log("Upload success:", info);
 
-		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					pictureUrl: info.secure_url,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error("Upload failed");
+		!pic &&
+			fetch(
+				"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
+				{
+					method: "POST",
+					body: JSON.stringify({
+						pictureUrl: info.secure_url,
+					}),
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${sessionId}`,
+					},
 				}
-				return response.json();
-			})
-			.then((data) => {
-				if (data.success === true) {
-					updateProfileImg(dispatch, data.Img);
-				} else {
+			)
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error("Upload failed");
+					}
+					return response.json();
+				})
+				.then((data) => {
+					if (data.success === true) {
+						updateProfileImg(dispatch, data.Img);
+					} else {
+						Toast({
+							title: data.message,
+							icon: "error",
+						});
+					}
+				})
+				.catch((error) => {
+					console.error(error);
 					Toast({
-						title: data.message,
+						title: "Upload failed",
 						icon: "error",
 					});
-				}
-			})
-			.catch((error) => {
-				console.error(error);
-				Toast({
-					title: "Upload failed",
-					icon: "error",
 				});
-			});
 	};
 
 	const handleUploadFailure = (error) => {

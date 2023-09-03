@@ -464,25 +464,72 @@
 	font-size: 20px;
 	cursor: pointer;
 }
+.profile .addSkills .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+	border: none;
+}
+.profile .addSkills .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+	color: white !important;
+}
+.profile
+	.addSkills
+	.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+	color: rgb(250 175 0) !important;
+}
+.profile .addSkills .save {
+	color: black;
+	background-color: white;
+	border: none;
+}
+.profile .addSkills .save:hover {
+	background: rgb(250, 175, 0);
+	background: -moz-linear-gradient(
+		90deg,
+		rgba(250, 175, 0, 0.9417016806722689) 47%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		90deg,
+		rgba(250, 175, 0, 0.9417016806722689) 47%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	background: linear-gradient(
+		90deg,
+		rgba(250, 175, 0, 0.9417016806722689) 47%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#faaf00",endColorstr="#ffffff",GradientType=1);
+	color: white;
+}
+.profile
+	.addSkills
+	.css-2y464i-MuiInputBase-root-MuiFilledInput-root.Mui-focused:after {
+	border-bottom-color: rgb(250 175 0);
+}
 .profile .ProfileSkills .skillsList {
 	list-style: none;
 }
-.profile .ProfileSkills .skillsList .skill {
+.profile .ProfileSkills .skillsList .skill,
+.profile .addSkills .skill {
 	border-radius: var(--main-border-radius);
 }
-.AlumniProfile .ProfileSkills .skillsList .skill {
+.AlumniProfile .ProfileSkills .skillsList .skill,
+.AlumniProfile .addSkills .skill {
 	background-color: var(--Alumni-color);
 }
-.HRProfile .ProfileSkills .skillsList .skill {
+.HRProfile .ProfileSkills .skillsList .skill,
+.HRProfile .addSkills .skill {
 	background-color: var(--HR-color);
 }
-.AdminProfile .ProfileSkills .skillsList .skill {
+.AdminProfile .ProfileSkills .skillsList .skill,
+.AdminProfile .addSkills .skill {
 	background-color: var(--Admin-color);
 }
-.StudentProfile .ProfileSkills .skillsList .skill {
+.StudentProfile .ProfileSkills .skillsList .skill,
+.StudentProfile .addSkills .skill {
 	background-color: var(--Student-color);
 }
-.ProfessorProfile .ProfileSkills .skillsList .skill {
+.ProfessorProfile .ProfileSkills .skillsList .skill,
+.ProfessorProfile .addSkills .skill {
 	background-color: var(--Professor-color);
 }
 .profile .skill .star {
@@ -535,9 +582,7 @@
 	background-color: #bbbbbb;
 	border: 1px solid;
 	border-radius: 19px;
-}
-.ProfileCV .previewCV .icon {
-	color: rgb(71, 153, 104);
+	position: relative;
 }
 .ProfileCV .previewCV {
 	text-decoration: none;

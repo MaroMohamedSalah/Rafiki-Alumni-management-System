@@ -68,10 +68,7 @@ const SessionLogin = () => {
 								<h1>Loading..</h1>
 							) : userInfo.user.Img ? (
 								<img
-									src={
-										"https://alumni-system-backend.azurewebsites.net/uploads/pictures/" +
-										userInfo.user.Img
-									}
+									src={userInfo.user.Img}
 									alt="profile img"
 									className="img-fluid"
 								/>

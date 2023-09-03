@@ -9,6 +9,7 @@ import {
 	UPDATE_USER_IMG,
 	UPDATE_USER_INFO,
 	UPDATE_USER_PHONE,
+	UPDATE_USER_SKILLS,
 	UUPDATE_USER_IMG,
 } from "../actions/types";
 
@@ -79,6 +80,17 @@ const profileReducer = (state = initialState, action) => {
 					user: {
 						...state.userInfo.user,
 						Phone: action.payload,
+					},
+				},
+			};
+		case UPDATE_USER_SKILLS:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						UserSkills: action.payload,
 					},
 				},
 			};

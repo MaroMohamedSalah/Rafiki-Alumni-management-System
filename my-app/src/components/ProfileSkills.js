@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import skillIcon from "../imgs/skills icon.svg";
-import axios from "axios";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Rating } from "@mui/material";
+import { IconButton, Rating } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ProfileSkills = () => {
 	const skills = useSelector((state) => state.profile.userInfo.user.UserSkills);
@@ -19,19 +17,11 @@ const ProfileSkills = () => {
 				<div className="skill px-3 py-1 d-flex justify-content-between align-items-center mt-2">
 					<span className="title">{skill.Skill_Name}</span>
 					<div className="stars">
-						{/* {Array.from({ length: skill.Rate }).map((_, index) => (
-							<span key={index} className="star pe-1">
-								<i class="fa-solid fa-star"></i>
-							</span>
-						))}
-						{skill.Rate < 5 &&
-							Array.from({ length: 5 - skill.Rate }).map((_, index) => (
-								<span key={index} className="star empty pe-1">
-									<i class="fa-regular fa-star"></i>
-								</span>
-							))} */}
 						<Rating name="disabled" value={skill.Rate} readOnly />
 					</div>
+					<IconButton aria-label="delete" size="small">
+						<DeleteIcon fontSize="inherit" />
+					</IconButton>
 				</div>
 			</li>
 		));

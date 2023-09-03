@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import DashboardSidebarBurgerIcon from "./DashboardSidebarBurgerIcon";
 const DashboardNav = ({ profileData }) => {
-	const pic = `https://alumni-system-backend.azurewebsites.net/uploads/pictures/${profileData.Img}`;
+	const pic = profileData.Img;
 	const sideBarIsOpen = useSelector(
 		(state) => state.dashboard.sidebar.sideBarIsOpen
 	);

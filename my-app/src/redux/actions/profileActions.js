@@ -10,6 +10,7 @@ import {
 	UPDATE_USER_IMG,
 	UPDATE_USER_INFO,
 	UPDATE_USER_PHONE,
+	UPDATE_USER_SKILLS,
 } from "./types";
 
 export const setUserInfo = async (dispatch, userData) => {
@@ -58,6 +59,12 @@ export const updateProfilePhone = async (dispatch, newNum) => {
 	return dispatch({
 		type: UPDATE_USER_PHONE,
 		payload: newNum,
+	});
+};
+export const updateProfileSkills = async (dispatch, newSkills) => {
+	return dispatch({
+		type: UPDATE_USER_SKILLS,
+		payload: newSkills,
 	});
 };
 

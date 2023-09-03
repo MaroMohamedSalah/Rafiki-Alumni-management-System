@@ -9,7 +9,6 @@ import CurrantStudentSignup from "./pages/CurrantStudentSignup";
 import HRSignup from "./pages/HRSignup";
 import ForgetPass from "./pages/ForgetPass";
 import SendEmail from "./pages/SendEmail";
-import ImgCropper from "./components/img-cropper/ImgCropper";
 import LoginLayout from "./layouts/Login-layout";
 import GetStarted from "./pages/GetStarted";
 import DashboardLayout from "./layouts/Dashboard-layout";
