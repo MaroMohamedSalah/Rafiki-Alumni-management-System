@@ -26,6 +26,7 @@ const ProfileProgress = () => {
 			userInfo.user.Behance_URL,
 			userInfo.user.GitHub_URL,
 			userInfo.user.About,
+			userInfo.user.UserSkills,
 		]);
 	}, [userInfo]);
 

@@ -18,7 +18,7 @@ const ProfileSkills = () => {
 	};
 	const displaySkills = () => {
 		return skills.map((skill) => (
-			<li key={skill.Skill_Name} className="col-12 col-md-3">
+			<li key={skill.Skill_Name} className="col-12 col-md-6 col-xl-3">
 				<div className="skill px-3 py-1 d-flex justify-content-between align-items-center mt-2">
 					<span className="title">{skill.Skill_Name}</span>
 					<div className="stars">

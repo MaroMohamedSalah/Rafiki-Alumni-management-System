@@ -79,7 +79,11 @@ const AddSkills = () => {
 					Toast({ title: "Your Skill Added", icon: "success" });
 					const updatedUserSkills = [
 						...userSkills,
-						{ Skill_Name: selectedSkill, Rate: skillRate },
+						{
+							Skill_Name: selectedSkill,
+							Rate: skillRate,
+							id: data.User_Skill_Id,
+						},
 					];
 					updateProfileSkills(dispatch, updatedUserSkills);
 					// Clear the selected skill and input
@@ -160,15 +164,15 @@ const AddSkills = () => {
 
 			<ProfileSkills />
 
-			<div className="skill pt-3 d-flex justify-content-between align-items-center mt-2">
+			<div className="skill pt-3 d-flex justify-content-between align-items-center mt-2 row">
 				<Autocomplete
+					className="col-6 col-md-8"
 					disablePortal
 					id="combo-box-demo"
 					options={options}
 					renderInput={(params) => (
 						<TextField {...params} label="Select Skill" />
 					)}
-					fullWidth
 					onInputChange={(event, newInputValue) => {
 						setSelectedSkill(newInputValue);
 					}}
@@ -190,7 +194,7 @@ const AddSkills = () => {
 					}}
 				/>
 
-				<div className="stars px-4">
+				<div className="stars px-4 col-6 col-md-2">
 					<Rating
 						name="simple-controlled"
 						value={skillRate}
@@ -201,9 +205,14 @@ const AddSkills = () => {
 					/>
 				</div>
 
-				<button className="btn save px-4 m-1 fw-bold" onClick={handleSaveSkill}>
-					Save
-				</button>
+				<div className=" col-12 col-md">
+					<button
+						className="btn save px-4 m-1 fw-bold w-100"
+						onClick={handleSaveSkill}
+					>
+						Save
+					</button>
+				</div>
 			</div>
 		</div>
 	);
