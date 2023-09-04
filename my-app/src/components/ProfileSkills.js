@@ -1,7 +1,7 @@
 import skillIcon from "../imgs/skills icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { IconButton, Rating, Tooltip } from "@mui/material";
+import { IconButton, Rating, Skeleton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Toast from "./Toast";
 import { deleteSkill } from "../redux/actions/profileActions";
@@ -89,16 +89,11 @@ const ProfileSkills = () => {
 			{skills.length === 0 || !skills ? (
 				<div className="empty-sec position-relative">
 					<div className="skill-placeholder">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
+						<Skeleton animation="wave" width={"250px"} height={"50px"} />
+						<Skeleton animation="wave" width={"250px"} height={"50px"} />
+						<Skeleton animation="wave" width={"250px"} height={"50px"} />
+						<Skeleton animation="wave" width={"250px"} height={"50px"} />
+						<Skeleton animation="wave" width={"250px"} height={"50px"} />
 					</div>
 					<div
 						className="add position-absolute d-flex justify-content-center align-items-center flex-column"

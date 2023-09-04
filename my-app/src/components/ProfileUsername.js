@@ -1,10 +1,10 @@
-const ProfileUsername = ({ username }) => {
-	// const [username, setUsername] = useState("");
+import { Skeleton } from "@mui/material";
 
+const ProfileUsername = ({ username }) => {
 	return !username ? (
-		<p class="placeholder-glow w-100 text-center text-md-start">
-			@<span class="placeholder w-25"></span>
-		</p>
+		<>
+			"@" <Skeleton animation="wave" />
+		</>
 	) : (
 		<h5 className="text-center text-md-start w-100 username">@{username}</h5>
 	);

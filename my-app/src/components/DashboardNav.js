@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import DashboardSidebarBurgerIcon from "./DashboardSidebarBurgerIcon";
+import SearchBar from "./SearchBar";
+import { Badge } from "@mui/material";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 const DashboardNav = ({ profileData }) => {
 	const pic = profileData.Img;
 	const sideBarIsOpen = useSelector(
@@ -24,22 +27,17 @@ const DashboardNav = ({ profileData }) => {
 						{(!isMobile || !sideBarIsOpen) && <DashboardSidebarBurgerIcon />}
 					</div>
 					<div className="col-6 d-md-flex d-none justify-content-center align-items-center">
-						<form class="d-flex w-75" role="search">
-							<input
-								class="form-control me-2"
-								type="search"
-								placeholder="Search"
-								aria-label="Search"
-							/>
-							<button class="btn btn-outline-success" type="submit">
-								Search
-							</button>
-						</form>
+						<SearchBar />
 					</div>
 					<div className="col d-flex align-items-center justify-content-end">
-						<div className="notification me" id="dashboard-notification">
-							<i class="fa-solid fa-bell"></i>
-						</div>
+						<Badge
+							badgeContent={4}
+							color="primary"
+							invisible={false}
+							size="small"
+						>
+							<NotificationsIcon fontSize="small" className="notification me" />
+						</Badge>
 						<div className="dashProfile d-flex ms-3 align-items-center">
 							<Link to={"/profile"} className="profileImage rounded-5">
 								{profileData.Img ? (

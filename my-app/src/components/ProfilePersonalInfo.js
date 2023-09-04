@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Toast from "./Toast";
 import { useState } from "react";
-import { Tooltip } from "@mui/material";
+import { Skeleton, Tooltip } from "@mui/material";
 
 const ProfilePersonalInfo = ({ countryPram }) => {
 	const [birthDay, setBirthDay] = useState("");
@@ -98,9 +98,7 @@ const ProfilePersonalInfo = ({ countryPram }) => {
 							<i className="fa-solid fa-cake-candles"></i>
 						</span>{" "}
 						{birthDay === "" ? (
-							<p class="placeholder-glow w-50 m-0 d-flex align-items-center">
-								<span class="placeholder w-100"></span>
-							</p>
+							<Skeleton width={"50%"} animation="wave" />
 						) : null}
 					</h1>
 				</div>

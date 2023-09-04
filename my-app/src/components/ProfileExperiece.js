@@ -1,5 +1,5 @@
+import { Skeleton, Tooltip } from "@mui/material";
 import { useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const ProfileExperience = () => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -16,31 +16,17 @@ const ProfileExperience = () => {
 					<i className="fa-solid fa-briefcase"></i>
 				</span>{" "}
 				Experience
-				{/* <OverlayTrigger
-					overlay={
-						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
-							Visibility
-						</Tooltip>
-					}
-					placement="left"
-				>
+				<Tooltip title="Visibility">
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-earth-americas"></i>
 					</div>
-				</OverlayTrigger> */}
+				</Tooltip>
 			</h1>
 			{isEmpty === true ? (
 				<div className="empty-sec position-relative">
-					<div className="sec-placeholder-2">
-						<span></span>
-						<span></span>
-						<span className="half"></span>
-					</div>
-					<div className="sec-placeholder-2">
-						<span></span>
-						<span></span>
-						<span className="half"></span>
-					</div>
+					<Skeleton animation="wave" />
+					<Skeleton animation="wave" />
+					<Skeleton animation="wave" />
 					<div className="add position-absolute d-flex justify-content-center align-items-center flex-column">
 						<div className="addIcon">
 							<i className="fa-solid fa-plus"></i>

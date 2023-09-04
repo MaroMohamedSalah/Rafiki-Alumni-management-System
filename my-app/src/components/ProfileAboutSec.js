@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Toast from "./Toast";
 import { updateProfileAbout } from "../redux/actions/profileActions";
-import { Tooltip } from "@mui/material";
+import { Skeleton, Tooltip } from "@mui/material";
 
 const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -116,11 +116,9 @@ const ProfileAboutSec = ({ aboutContent }) => {
 			</h1>
 			{isEmpty ? (
 				<div className="empty-sec position-relative">
-					<div className="sec-placeholder-2">
-						<span></span>
-						<span></span>
-						<span className="half"></span>
-					</div>
+					<Skeleton animation="wave" />
+					<Skeleton animation="wave" />
+					<Skeleton animation="wave" />
 					<div className="add position-absolute d-flex justify-content-center align-items-center flex-column">
 						<div className="addIcon">
 							<i className="fa-solid fa-plus"></i>

@@ -8,7 +8,7 @@ import {
 } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import ClearIcon from "@mui/icons-material/Clear";
-import { IconButton, Tooltip } from "@mui/material";
+import { IconButton, Skeleton, Tooltip } from "@mui/material";
 
 const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -313,14 +313,9 @@ const ProfileURLsSec = ({ profileData }) => {
 			</h1>
 			{isEmpty === true ? (
 				<div className="empty-sec position-relative">
-					<div className="sec-placeholder">
-						<span></span>
-						<span></span>
-					</div>
-					<div className="sec-placeholder">
-						<span></span>
-						<span></span>
-					</div>
+					<Skeleton animation="wave" />
+					<Skeleton animation="wave" />
+					<Skeleton animation="wave" />
 					<div className="add position-absolute d-flex justify-content-center align-items-center flex-column">
 						<div className="addIcon">
 							<i className="fa-solid fa-plus"></i>
