@@ -8,6 +8,8 @@ import {
 	updateUserInfo,
 } from "../redux/actions/profileActions";
 import Toast from "./Toast";
+import ClearIcon from "@mui/icons-material/Clear";
+import { IconButton } from "@mui/material";
 
 const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -247,7 +249,11 @@ const ProfileURLsSec = ({ profileData }) => {
 								className="deleteUrl"
 								onClick={() => handelDeleteUrl(urlType, key)}
 							>
-								<i class="fa-solid fa-x"></i>
+								{/* <i class="fa-solid fa-x"></i> */}
+
+								<IconButton aria-label="delete" size="small">
+									<ClearIcon fontSize="inherit" />
+								</IconButton>
 							</div>
 						</li>
 					);

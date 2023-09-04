@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { OverlayTrigger } from "react-bootstrap";
 import Keypad from "../imgs/Keypad.svg";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -9,6 +9,9 @@ import {
 	deletePhone,
 	updateProfilePhone,
 } from "../redux/actions/profileActions";
+import { IconButton, Tooltip } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
 
 const ProfileContactInfoSec = () => {
 	const userInfo = useSelector((state) => state.profile.userInfo);
@@ -124,10 +127,10 @@ const ProfileContactInfoSec = () => {
 					<i className="fa-solid fa-phone"></i>
 				</span>{" "}
 				Contact
-				<OverlayTrigger
+				{/* <OverlayTrigger
 					overlay={
 						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
-							Visibility
+							<Tooltip>Visibility</Tooltip>
 						</Tooltip>
 					}
 					placement="left"
@@ -135,7 +138,7 @@ const ProfileContactInfoSec = () => {
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-user-tie"></i>
 					</div>
-				</OverlayTrigger>
+				</OverlayTrigger> */}
 			</h1>
 			<div className="not-empty-sec row">
 				<div className="col-12 col-md-6">
@@ -153,15 +156,26 @@ const ProfileContactInfoSec = () => {
 						) : (
 							<>
 								<span>{userInfo.user.Phone}</span>
-								<span title="Edit" className="edit" onClick={addPhoneNumber}>
-									<i className="fa-solid fa-pen-to-square"></i>
-								</span>
-								<span
-									title="Delete"
-									className="delete edit ps-2"
-									onClick={handelDelete}
-								>
-									<i class="fa-solid fa-trash"></i>
+								<Tooltip title="Edit">
+									<IconButton
+										onClick={addPhoneNumber}
+										aria-label="delete"
+										className="edit"
+									>
+										<AppRegistrationIcon fontSize="medium" />
+									</IconButton>
+								</Tooltip>
+
+								<span>
+									<Tooltip title="Delete">
+										<IconButton
+											onClick={handelDelete}
+											aria-label="delete"
+											className="delete edit ps-2"
+										>
+											<DeleteIcon fontSize="medium" />
+										</IconButton>
+									</Tooltip>
 								</span>
 							</>
 						)}

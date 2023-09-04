@@ -27,6 +27,8 @@ const ProfileSkills = () => {
 		));
 	};
 
+	const handelDeleteSkill = () => {};
+
 	return (
 		<section
 			className={skills ? "ProfileSkills sec " : "ProfileSkills sec empty"}
