@@ -1,5 +1,6 @@
 import {
 	DELETE_PHONE,
+	DELETE_SKILL,
 	DELETE_SOCIAL_URL,
 	DELETE_USER_IMG,
 	SET_USER_INFO,
@@ -124,6 +125,22 @@ const profileReducer = (state = initialState, action) => {
 					user: {
 						...state.userInfo.user,
 						Phone: null,
+					},
+				},
+			};
+		case DELETE_SKILL:
+			const skillIdToDelete = action.payload;
+			const updatedUserSkills = state.userInfo.user.UserSkills.filter(
+				(skill) => skill.id !== skillIdToDelete
+			);
+
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						UserSkills: updatedUserSkills, // Update UserSkills array without the deleted skill
 					},
 				},
 			};

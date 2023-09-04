@@ -1,5 +1,6 @@
 import {
 	DELETE_PHONE,
+	DELETE_SKILL,
 	DELETE_SOCIAL_URL,
 	DELETE_USER_IMG,
 	SET_USER_INFO,
@@ -82,5 +83,11 @@ export const deleteUserImg = async (dispatch) => {
 export const deletePhone = async (dispatch) => {
 	return dispatch({
 		type: DELETE_PHONE,
+	});
+};
+export const deleteSkill = async (dispatch, userSkillId) => {
+	return dispatch({
+		type: DELETE_SKILL,
+		payload: userSkillId,
 	});
 };

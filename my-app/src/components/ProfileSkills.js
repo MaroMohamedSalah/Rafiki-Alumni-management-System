@@ -1,13 +1,18 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import skillIcon from "../imgs/skills icon.svg";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IconButton, Rating } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Toast from "./Toast";
+import { deleteSkill } from "../redux/actions/profileActions";
 
 const ProfileSkills = () => {
 	const skills = useSelector((state) => state.profile.userInfo.user.UserSkills);
+	const dispatch = useDispatch(); // Get the dispatch function
 	const navigate = useNavigate();
+	const sessionId = localStorage.getItem("sessionId");
+
 	const handelAddSkills = () => {
 		navigate("addSkills");
 	};
@@ -19,7 +24,11 @@ const ProfileSkills = () => {
 					<div className="stars">
 						<Rating name="disabled" value={skill.Rate} readOnly />
 					</div>
-					<IconButton aria-label="delete" size="small">
+					<IconButton
+						aria-label="delete"
+						size="small"
+						onClick={() => handelDeleteSkill(skill.id)}
+					>
 						<DeleteIcon fontSize="inherit" />
 					</IconButton>
 				</div>
@@ -27,7 +36,33 @@ const ProfileSkills = () => {
 		));
 	};
 
-	const handelDeleteSkill = () => {};
+	const handelDeleteSkill = (skillId) => {
+		fetch(
+			`https://alumni-system-backend.azurewebsites.net/api/user_skills/${skillId}`,
+
+			{
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			}
+		)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error("Delete Skill failed");
+				} else if (res.ok) {
+					Toast({ title: "Skill Deleted", icon: "success" });
+
+					// Dispatch the action to remove the skill from the Redux store
+					deleteSkill(dispatch, skillId);
+				}
+				return res.json();
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	};
 
 	return (
 		<section
