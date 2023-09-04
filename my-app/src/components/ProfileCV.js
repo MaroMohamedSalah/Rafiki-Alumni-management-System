@@ -15,7 +15,7 @@ const ProfileCV = ({ cv }) => {
 	const [cvIsLoading, setCvIsLoading] = useState(false);
 	const dispatch = useDispatch();
 
-	const handleUploadSuccess = (info) => {
+	const handleCvUploadSuccess = (info) => {
 		setCvIsLoading(true);
 		fetch(
 			"https://alumni-system-backend.azurewebsites.net/api/users/upload_cv",
@@ -54,7 +54,7 @@ const ProfileCV = ({ cv }) => {
 			});
 	};
 
-	const handleUploadFailure = (error) => {
+	const handleCvUploadFailure = (error) => {
 		console.error("Upload error:", error);
 		Toast({ title: "Upload Error", icon: "error" });
 	};
@@ -83,10 +83,7 @@ const ProfileCV = ({ cv }) => {
 				<div className="d-flex justify-content-between align-items-center flex-column flex-md-row">
 					{userCv ? (
 						<a
-							href={
-								"https://alumni-system-backend.azurewebsites.net/uploads/cvs/" +
-								userCv
-							}
+							href={userCv}
 							target="_blank"
 							className="previewCV fw-bold py-2 px-3 btn"
 							rel="noreferrer"
@@ -102,8 +99,8 @@ const ProfileCV = ({ cv }) => {
 							uploadPreset="ggdkuker"
 							buttonClass="btn uploadCV fw-bold px-5"
 							buttonText="Upload CV"
-							onUploadSuccess={handleUploadSuccess}
-							onUploadFailure={handleUploadFailure}
+							onUploadSuccess={handleCvUploadSuccess}
+							onUploadFailure={handleCvUploadFailure}
 							options={cvUploaderOptions}
 						/>
 					)}

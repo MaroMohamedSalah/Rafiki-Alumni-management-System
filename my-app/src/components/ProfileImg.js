@@ -22,50 +22,49 @@ const ProfileImg = ({ profileData }) => {
 		}
 	}, []);
 
-	const handleUploadSuccess = (info) => {
+	const handleImgUploadSuccess = (info) => {
 		setPic(info.secure_url); // Update the state to display the image locally
 		console.log("Upload success:", info);
 
-		!pic &&
-			fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
-				{
-					method: "POST",
-					body: JSON.stringify({
-						pictureUrl: info.secure_url,
-					}),
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${sessionId}`,
-					},
+		fetch(
+			"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
+			{
+				method: "POST",
+				body: JSON.stringify({
+					pictureUrl: info.secure_url,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Upload failed");
 				}
-			)
-				.then((response) => {
-					if (!response.ok) {
-						throw new Error("Upload failed");
-					}
-					return response.json();
-				})
-				.then((data) => {
-					if (data.success === true) {
-						updateProfileImg(dispatch, data.Img);
-					} else {
-						Toast({
-							title: data.message,
-							icon: "error",
-						});
-					}
-				})
-				.catch((error) => {
-					console.error(error);
+				return response.json();
+			})
+			.then((data) => {
+				if (data.success === true) {
+					updateProfileImg(dispatch, data.Img);
+				} else {
 					Toast({
-						title: "Upload failed",
+						title: data.message,
 						icon: "error",
 					});
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+				Toast({
+					title: "Upload failed",
+					icon: "error",
 				});
+			});
 	};
 
-	const handleUploadFailure = (error) => {
+	const handleImgUploadFailure = (error) => {
 		console.error("Upload error:", error);
 		Toast({ title: "Upload Error", icon: "error" });
 	};
@@ -184,8 +183,8 @@ const ProfileImg = ({ profileData }) => {
 						}}
 						buttonClass="add"
 						buttonText="Choose Image"
-						onUploadSuccess={handleUploadSuccess}
-						onUploadFailure={handleUploadFailure}
+						onUploadSuccess={handleImgUploadSuccess}
+						onUploadFailure={handleImgUploadFailure}
 						options={pictureUploaderOptions}
 					/>
 				</div>
