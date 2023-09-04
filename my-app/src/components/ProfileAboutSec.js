@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Toast from "./Toast";
 import { updateProfileAbout } from "../redux/actions/profileActions";
+import { Tooltip } from "@mui/material";
 
 const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -97,25 +97,20 @@ const ProfileAboutSec = ({ aboutContent }) => {
 				About
 				{!isEmpty && (
 					<>
-						<OverlayTrigger
-							overlay={<Tooltip id="my-tooltip">Visibility</Tooltip>}
-							placement="bottom"
-						>
+						<Tooltip title="Visibility">
 							<div className="visibility position-absolute">
 								<i className="fa-solid fa-user-tie"></i>
 							</div>
-						</OverlayTrigger>
-						<OverlayTrigger
-							overlay={<Tooltip id="my-tooltip">Edit Bio</Tooltip>}
-							placement="bottom"
-						>
+						</Tooltip>
+
+						<Tooltip title="Edit Bio">
 							<div
 								className="add position-absolute"
 								onClick={submitAboutSection}
 							>
 								<i className="fa-solid fa-pen-to-square"></i>
 							</div>
-						</OverlayTrigger>
+						</Tooltip>
 					</>
 				)}
 			</h1>

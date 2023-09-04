@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import {
@@ -9,7 +8,7 @@ import {
 } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import ClearIcon from "@mui/icons-material/Clear";
-import { IconButton } from "@mui/material";
+import { IconButton, Tooltip } from "@mui/material";
 
 const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -249,8 +248,6 @@ const ProfileURLsSec = ({ profileData }) => {
 								className="deleteUrl"
 								onClick={() => handelDeleteUrl(urlType, key)}
 							>
-								{/* <i class="fa-solid fa-x"></i> */}
-
 								<IconButton aria-label="delete" size="small">
 									<ClearIcon fontSize="inherit" />
 								</IconButton>
@@ -297,25 +294,20 @@ const ProfileURLsSec = ({ profileData }) => {
 				Links & websites
 				{isEmpty === false && (
 					<>
-						<OverlayTrigger
-							overlay={<Tooltip id="my-tooltip">Visibility</Tooltip>}
-							placement="bottom"
-						>
+						<Tooltip title="Visibility">
 							<div className="visibility position-absolute">
 								<i className="fa-solid fa-user-tie"></i>
 							</div>
-						</OverlayTrigger>
-						<OverlayTrigger
-							overlay={<Tooltip id="my-tooltip">Edit URLs</Tooltip>}
-							placement="bottom"
-						>
+						</Tooltip>
+
+						<Tooltip title="Edit URLs">
 							<div
 								className="add position-absolute"
 								onClick={showURLsFormPopup}
 							>
 								<i className="fa-solid fa-plus"></i>
 							</div>
-						</OverlayTrigger>
+						</Tooltip>
 					</>
 				)}
 			</h1>

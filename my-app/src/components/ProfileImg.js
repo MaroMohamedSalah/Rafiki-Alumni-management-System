@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import Toast from "./Toast";
 import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
+import { Tooltip } from "@mui/material";
 
 const ProfileImg = ({ profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -158,12 +159,14 @@ const ProfileImg = ({ profileData }) => {
 			</div>
 			{pic ? (
 				// Render delete icon
-				<div
-					className="editImg delImg position-absolute"
-					onClick={handelImageDelete}
-				>
-					<i className="fa-regular fa-trash-can "></i>
-				</div>
+				<Tooltip title="Delete">
+					<div
+						className="editImg delImg position-absolute"
+						onClick={handelImageDelete}
+					>
+						<i className="fa-regular fa-trash-can "></i>
+					</div>
+				</Tooltip>
 			) : (
 				// Render upload widget and add icon
 				<div className="editImg addImg position-absolute">

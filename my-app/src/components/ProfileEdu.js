@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Tooltip } from "@mui/material";
 
 const ProfileEdu = ({ actor }) => {
 	return (
@@ -9,18 +8,11 @@ const ProfileEdu = ({ actor }) => {
 					<i className="fa-solid fa-graduation-cap"></i>
 				</span>{" "}
 				Education
-				<OverlayTrigger
-					overlay={
-						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
-							Visibility
-						</Tooltip>
-					}
-					placement="left"
-				>
+				<Tooltip title="Visibility">
 					<div className="visibility position-absolute">
-						<i className="fa-solid fa-earth-americas"></i>
+						<i className="fa-solid fa-user-tie"></i>
 					</div>
-				</OverlayTrigger>
+				</Tooltip>
 			</h1>
 			<div>
 				<ul className="edu-list">

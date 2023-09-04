@@ -1,8 +1,7 @@
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import skillIcon from "../imgs/skills icon.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { IconButton, Rating } from "@mui/material";
+import { IconButton, Rating, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Toast from "./Toast";
 import { deleteSkill } from "../redux/actions/profileActions";
@@ -74,22 +73,17 @@ const ProfileSkills = () => {
 				</span>{" "}
 				Skills
 				<>
-					<OverlayTrigger
-						overlay={<Tooltip id="my-tooltip">Visibility</Tooltip>}
-						placement="bottom"
-					>
+					<Tooltip title="Visibility">
 						<div className="visibility position-absolute">
 							<i className="fa-solid fa-user-tie"></i>
 						</div>
-					</OverlayTrigger>
-					<OverlayTrigger
-						overlay={<Tooltip id="my-tooltip">Add skills</Tooltip>}
-						placement="bottom"
-					>
+					</Tooltip>
+
+					<Tooltip title="Add skills">
 						<div className="add position-absolute" onClick={handelAddSkills}>
 							<i className="fa-solid fa-plus"></i>
 						</div>
-					</OverlayTrigger>
+					</Tooltip>
 				</>
 			</h1>
 			{skills.length === 0 || !skills ? (

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Toast from "./Toast";
+import { useState } from "react";
+import { Tooltip } from "@mui/material";
 
 const ProfilePersonalInfo = ({ countryPram }) => {
 	const [birthDay, setBirthDay] = useState("");
@@ -66,18 +66,11 @@ const ProfilePersonalInfo = ({ countryPram }) => {
 					<i class="fa-solid fa-circle-info"></i>
 				</span>{" "}
 				Personal Information
-				<OverlayTrigger
-					overlay={
-						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
-							Visibility
-						</Tooltip>
-					}
-					placement="left"
-				>
+				<Tooltip title="Visibility">
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-user-tie"></i>
 					</div>
-				</OverlayTrigger>
+				</Tooltip>
 			</h1>
 			<div className="row not-empty-sec p-3">
 				<div className="col-12 col-md-6">

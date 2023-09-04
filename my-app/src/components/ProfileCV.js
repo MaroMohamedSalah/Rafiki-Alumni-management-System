@@ -1,4 +1,3 @@
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ProfileProgress from "./ProfileProgress";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
@@ -8,6 +7,7 @@ import { updateProfileCV } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import GenerateCV from "./GenerateCV";
 import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
+import { Tooltip } from "@mui/material";
 
 const ProfileCV = ({ cv }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
@@ -72,18 +72,11 @@ const ProfileCV = ({ cv }) => {
 		<section className={"ProfileCV sec"}>
 			<h1 className="sec-title position-relative">
 				Profile & CV
-				<OverlayTrigger
-					overlay={
-						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
-							Visibility
-						</Tooltip>
-					}
-					placement="left"
-				>
+				<Tooltip title="Visibility">
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-earth-americas"></i>
 					</div>
-				</OverlayTrigger>
+				</Tooltip>
 			</h1>
 			<div className="pt-3">
 				<ProfileProgress />

@@ -12,10 +12,9 @@ import SendEmail from "./pages/SendEmail";
 import LoginLayout from "./layouts/Login-layout";
 import GetStarted from "./pages/GetStarted";
 import DashboardLayout from "./layouts/Dashboard-layout";
-import Profile from "./pages/Profile";
 import UploadProfileImg from "./components/UploadProfileImg";
 import ProfileLayout from "./layouts/Profile-layout";
-import ProfileContent from "./pages/Profile";
+import ProfileContent from "./pages/ProfileContent";
 import AddSkills from "./pages/AddSkills";
 import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
 
