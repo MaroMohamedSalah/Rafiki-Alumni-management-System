@@ -1,13 +1,12 @@
+import React, { useState } from "react";
 import ProfileProgress from "./ProfileProgress";
-import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
-import { HashLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { updateProfileCV } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import GenerateCV from "./GenerateCV";
-import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
-import { Tooltip } from "@mui/material";
+import { CircularProgress, Tooltip } from "@mui/material";
+import { HashLoader } from "react-spinners";
+import axios from "axios"; // Import axios for making API requests
 
 const ProfileCV = ({ cv }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
@@ -15,14 +14,48 @@ const ProfileCV = ({ cv }) => {
 	const [cvIsLoading, setCvIsLoading] = useState(false);
 	const dispatch = useDispatch();
 
-	const handleCvUploadSuccess = (info) => {
-		setCvIsLoading(true);
+	const handleCvUpload = async (event) => {
+		const file = event.target.files[0];
+
+		if (file) {
+			setCvIsLoading(true);
+
+			try {
+				const formData = new FormData();
+				formData.append("file", file);
+				formData.append("upload_preset", "ggdkuker"); // Replace with your Cloudinary upload preset
+
+				const response = await axios.post(
+					`https://api.cloudinary.com/v1_1/do6oz83pz/upload`, // Replace with your Cloudinary cloud name
+					formData
+				);
+
+				if (response.status === 200) {
+					const { secure_url } = response.data;
+					Toast({ title: "CV uploaded", icon: "success" });
+					updateProfileCV(dispatch, secure_url);
+					setUserCv(secure_url);
+					saveCv(secure_url);
+				} else {
+					console.error("File upload failed:", response.data);
+					Toast({ title: "Upload failed", icon: "error" });
+				}
+			} catch (error) {
+				console.error("Error uploading file:", error);
+				Toast({ title: "Upload Error", icon: "error" });
+			} finally {
+				setCvIsLoading(false);
+			}
+		}
+	};
+
+	const saveCv = (cvUrl) => {
 		fetch(
 			"https://alumni-system-backend.azurewebsites.net/api/users/upload_cv",
 			{
 				method: "POST",
 				body: JSON.stringify({
-					cvUrl: info.secure_url,
+					cvUrl: cvUrl,
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -32,40 +65,27 @@ const ProfileCV = ({ cv }) => {
 		)
 			.then((response) => {
 				if (!response.ok) {
-					Toast({ title: "Upload failed", icon: "error" });
 					throw new Error("Upload failed");
 				}
 				return response.json();
 			})
 			.then((data) => {
-				// Handle the server response
 				if (data.success === true) {
-					Toast({ title: "CV uploaded", icon: "success" });
-					updateProfileCV(dispatch, data.CV);
-					setCvIsLoading(false);
-					setUserCv(data.CV);
+					console.log("upload done");
 				} else {
-					Toast({ title: data.message, icon: "error" });
+					Toast({
+						title: data.message,
+						icon: "error",
+					});
 				}
 			})
 			.catch((error) => {
-				// Handle errors
-				Toast({ title: error, icon: "error" });
+				console.error(error);
+				Toast({
+					title: "Upload failed",
+					icon: "error",
+				});
 			});
-	};
-
-	const handleCvUploadFailure = (error) => {
-		console.error("Upload error:", error);
-		Toast({ title: "Upload Error", icon: "error" });
-	};
-
-	const cvUploaderOptions = {
-		clientAllowedFormats: ["pdf"],
-		// max file size is 10MB
-		maxFileSize: 10000000,
-		// foler to upload to is cvs
-		folder: "cvs",
-		sources: ["local", "url", "google_drive"],
 	};
 
 	return (
@@ -82,27 +102,38 @@ const ProfileCV = ({ cv }) => {
 				<ProfileProgress />
 				<div className="d-flex justify-content-between align-items-center flex-column flex-md-row">
 					{userCv ? (
-						<a
-							href={userCv}
-							target="_blank"
-							className="previewCV fw-bold py-2 px-3 btn"
-							rel="noreferrer"
-						>
-							<span className="icon me-2">
-								<i class="fa-solid fa-file me-2"></i>
-							</span>
-							Preview CV
-						</a>
+						<>
+							<a
+								href={userCv}
+								target="_blank"
+								className="previewCV fw-bold py-2 px-3 btn"
+								rel="noreferrer"
+							>
+								<span className="icon me-2">
+									<i class="fa-solid fa-file me-2"></i>
+								</span>
+								Preview CV
+							</a>
+						</>
 					) : (
-						<CloudinaryUploadWidget
-							cloudName="do6oz83pz"
-							uploadPreset="ggdkuker"
-							buttonClass="btn uploadCV fw-bold px-5"
-							buttonText="Upload CV"
-							onUploadSuccess={handleCvUploadSuccess}
-							onUploadFailure={handleCvUploadFailure}
-							options={cvUploaderOptions}
-						/>
+						<>
+							<input
+								type="file"
+								accept=".pdf" // Specify the allowed file types
+								className="cvFileInput" // Apply your desired CSS class for styling
+								onChange={handleCvUpload}
+							/>
+							{cvIsLoading ? (
+								<div className="loading-spinner">
+									{/* <HashLoader color={"#007BFF"} loading={true} size={50} /> */}
+									<CircularProgress color="inherit" />
+								</div>
+							) : (
+								<label htmlFor="cvFileInput" className="uploadCVLabel">
+									Upload CV
+								</label>
+							)}
+						</>
 					)}
 					<GenerateCV />
 				</div>
