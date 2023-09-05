@@ -8,7 +8,7 @@ import { CircularProgress, Tooltip } from "@mui/material";
 import { HashLoader } from "react-spinners";
 import axios from "axios"; // Import axios for making API requests
 
-const ProfileCV = ({ cv }) => {
+const ProfileCV = ({ cv, actorName }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
 	const [userCv, setUserCv] = useState(cv);
 	const [cvIsLoading, setCvIsLoading] = useState(false);
@@ -91,7 +91,8 @@ const ProfileCV = ({ cv }) => {
 	return (
 		<section className={"ProfileCV sec"}>
 			<h1 className="sec-title position-relative">
-				Profile & CV
+				{actorName === "HR" ? "Profile Progress" : "Profile & CV"}
+
 				<Tooltip title="Visibility">
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-earth-americas"></i>
@@ -100,43 +101,45 @@ const ProfileCV = ({ cv }) => {
 			</h1>
 			<div className="pt-3">
 				<ProfileProgress />
-				<div className="d-flex justify-content-between align-items-center flex-column flex-md-row">
-					{userCv ? (
-						<>
-							<a
-								href={userCv}
-								target="_blank"
-								className="previewCV fw-bold py-2 px-3 btn"
-								rel="noreferrer"
-							>
-								<span className="icon me-2">
-									<i class="fa-solid fa-file me-2"></i>
-								</span>
-								Preview CV
-							</a>
-						</>
-					) : (
-						<>
-							<input
-								type="file"
-								accept=".pdf" // Specify the allowed file types
-								className="cvFileInput" // Apply your desired CSS class for styling
-								onChange={handleCvUpload}
-							/>
-							{cvIsLoading ? (
-								<div className="loading-spinner">
-									{/* <HashLoader color={"#007BFF"} loading={true} size={50} /> */}
-									<CircularProgress color="inherit" />
-								</div>
-							) : (
-								<label htmlFor="cvFileInput" className="uploadCVLabel">
-									Upload CV
-								</label>
-							)}
-						</>
-					)}
-					<GenerateCV />
-				</div>
+				{actorName !== "HR" && (
+					<div className="d-flex justify-content-between align-items-center flex-column flex-md-row">
+						{userCv ? (
+							<>
+								<a
+									href={userCv}
+									target="_blank"
+									className="previewCV fw-bold py-2 px-3 btn"
+									rel="noreferrer"
+								>
+									<span className="icon me-2">
+										<i class="fa-solid fa-file me-2"></i>
+									</span>
+									Preview CV
+								</a>
+							</>
+						) : (
+							<>
+								<input
+									type="file"
+									accept=".pdf" // Specify the allowed file types
+									className="cvFileInput" // Apply your desired CSS class for styling
+									onChange={handleCvUpload}
+								/>
+								{cvIsLoading ? (
+									<div className="loading-spinner">
+										{/* <HashLoader color={"#007BFF"} loading={true} size={50} /> */}
+										<CircularProgress color="inherit" />
+									</div>
+								) : (
+									<label htmlFor="cvFileInput" className="uploadCVLabel">
+										Upload CV
+									</label>
+								)}
+							</>
+						)}
+						<GenerateCV />
+					</div>
+				)}
 			</div>
 		</section>
 	);

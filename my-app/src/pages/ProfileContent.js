@@ -20,7 +20,7 @@ const ProfileContent = () => {
 				</div>
 
 				<div className="col-12 col-md-6">
-					<ProfileCV cv={userInfo.user.CV} />
+					<ProfileCV cv={userInfo.user.CV} actorName={actorName} />
 				</div>
 			</div>
 
