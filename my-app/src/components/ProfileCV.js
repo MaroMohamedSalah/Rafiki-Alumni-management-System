@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import ProfileProgress from "./ProfileProgress";
 import { useDispatch } from "react-redux";
-import { updateProfileCV } from "../redux/actions/profileActions";
+import { deleteUserCv, updateProfileCV } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import GenerateCV from "./GenerateCV";
-import { CircularProgress, Tooltip } from "@mui/material";
-import { HashLoader } from "react-spinners";
+import { CircularProgress, IconButton, Tooltip } from "@mui/material";
+import FolderDeleteRoundedIcon from "@mui/icons-material/FolderDeleteRounded";
 import axios from "axios"; // Import axios for making API requests
 
 const ProfileCV = ({ cv, actorName }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
-	const [userCv, setUserCv] = useState(cv);
+	const [userCv, setUserCv] = useState(null);
 	const [cvIsLoading, setCvIsLoading] = useState(false);
 	const dispatch = useDispatch();
 
@@ -88,6 +88,37 @@ const ProfileCV = ({ cv, actorName }) => {
 			});
 	};
 
+	const handelDeleteCv = () => {
+		fetch(
+			"https://alumni-system-backend.azurewebsites.net/api/users/delete_cv",
+			{
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			}
+		)
+			.then((response) => {
+				if (!response.ok) {
+					throw new Error("Upload failed");
+				}
+				return response.json();
+			})
+			.then((data) => {
+				if (data.success) {
+					Toast({ title: data.message, icon: "success" });
+					deleteUserCv(dispatch);
+				} else {
+					Toast({ title: data.message, icon: "error" });
+				}
+			})
+			.catch((err) => {
+				Toast({ title: "Server error", icon: "error" });
+				console.log(err);
+			});
+	};
+
 	return (
 		<section className={"ProfileCV sec"}>
 			<h1 className="sec-title position-relative">
@@ -103,8 +134,8 @@ const ProfileCV = ({ cv, actorName }) => {
 				<ProfileProgress />
 				{actorName !== "HR" && (
 					<div className="d-flex justify-content-between align-items-center flex-column flex-md-row">
-						{userCv ? (
-							<>
+						{cv ? (
+							<div className="d-flex align-items-center  w-50">
 								<a
 									href={userCv}
 									target="_blank"
@@ -116,9 +147,14 @@ const ProfileCV = ({ cv, actorName }) => {
 									</span>
 									Preview CV
 								</a>
-							</>
+								<div className="deleteCV ms-3" onClick={() => handelDeleteCv()}>
+									<IconButton aria-label="delete" size="medium">
+										<FolderDeleteRoundedIcon fontSize="medium" />
+									</IconButton>
+								</div>
+							</div>
 						) : (
-							<>
+							<div className="d-flex justify-content-between align-items-center">
 								<input
 									type="file"
 									accept=".pdf" // Specify the allowed file types
@@ -131,11 +167,11 @@ const ProfileCV = ({ cv, actorName }) => {
 										<CircularProgress color="inherit" />
 									</div>
 								) : (
-									<label htmlFor="cvFileInput" className="uploadCVLabel">
+									<label htmlFor="cvFileInput w-25" className="uploadCVLabel">
 										Upload CV
 									</label>
 								)}
-							</>
+							</div>
 						)}
 						<GenerateCV />
 					</div>

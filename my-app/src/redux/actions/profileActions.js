@@ -1,6 +1,6 @@
 import {
-	DELETE_PHONE,
-	DELETE_SKILL,
+	DELETE_USER_PHONE,
+	DELETE_USER_SKILL,
 	DELETE_SOCIAL_URL,
 	DELETE_USER_IMG,
 	SET_USER_INFO,
@@ -12,6 +12,7 @@ import {
 	UPDATE_USER_INFO,
 	UPDATE_USER_PHONE,
 	UPDATE_USER_SKILLS,
+	DELETE_USER_CV,
 } from "./types";
 
 export const setUserInfo = async (dispatch, userData) => {
@@ -80,14 +81,19 @@ export const deleteUserImg = async (dispatch) => {
 		type: DELETE_USER_IMG,
 	});
 };
+export const deleteUserCv = async (dispatch) => {
+	return dispatch({
+		type: DELETE_USER_CV,
+	});
+};
 export const deletePhone = async (dispatch) => {
 	return dispatch({
-		type: DELETE_PHONE,
+		type: DELETE_USER_PHONE,
 	});
 };
 export const deleteSkill = async (dispatch, userSkillId) => {
 	return dispatch({
-		type: DELETE_SKILL,
+		type: DELETE_USER_SKILL,
 		payload: userSkillId,
 	});
 };

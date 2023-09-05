@@ -83,7 +83,7 @@ const ProfileContactInfoSec = () => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/delete_phone",
+					"https://alumni-system-backend.azurewebsites.net/api/users/DELETE_USER_PHONE",
 					{
 						method: "DELETE",
 						headers: {

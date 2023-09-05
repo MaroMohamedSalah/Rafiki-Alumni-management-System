@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import {
 	deleteSocialURL,
 	updateSocialURLs,
-	updateUserInfo,
 } from "../redux/actions/profileActions";
 import Toast from "./Toast";
 import ClearIcon from "@mui/icons-material/Clear";

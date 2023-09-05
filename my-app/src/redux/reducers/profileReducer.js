@@ -1,6 +1,6 @@
 import {
-	DELETE_PHONE,
-	DELETE_SKILL,
+	DELETE_USER_PHONE,
+	DELETE_USER_SKILL,
 	DELETE_SOCIAL_URL,
 	DELETE_USER_IMG,
 	SET_USER_INFO,
@@ -12,6 +12,7 @@ import {
 	UPDATE_USER_PHONE,
 	UPDATE_USER_SKILLS,
 	UUPDATE_USER_IMG,
+	DELETE_USER_CV,
 } from "../actions/types";
 
 const initialState = {
@@ -117,7 +118,18 @@ const profileReducer = (state = initialState, action) => {
 					},
 				},
 			};
-		case DELETE_PHONE:
+		case DELETE_USER_CV:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						CV: null,
+					},
+				},
+			};
+		case DELETE_USER_PHONE:
 			return {
 				...state,
 				userInfo: {
@@ -128,7 +140,7 @@ const profileReducer = (state = initialState, action) => {
 					},
 				},
 			};
-		case DELETE_SKILL:
+		case DELETE_USER_SKILL:
 			const skillIdToDelete = action.payload;
 			const updatedUserSkills = state.userInfo.user.UserSkills.filter(
 				(skill) => skill.id !== skillIdToDelete
