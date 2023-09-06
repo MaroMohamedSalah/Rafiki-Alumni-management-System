@@ -10,7 +10,7 @@ import axios from "axios"; // Import axios for making API requests
 
 const ProfileCV = ({ cv, actorName }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
-	const [userCv, setUserCv] = useState(null);
+	const [userCv, setUserCv] = useState(cv);
 	const [cvIsLoading, setCvIsLoading] = useState(false);
 	const dispatch = useDispatch();
 

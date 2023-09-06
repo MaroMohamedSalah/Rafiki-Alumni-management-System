@@ -8,10 +8,13 @@ const ProfileProgress = () => {
 	const calculateProgress = (profileStructure) => {
 		let progress = 0;
 		profileStructure.forEach((el) => {
-			if (el !== null) progress += 10;
+			if (el !== null && (!Array.isArray(el) || el.length !== 0)) {
+				progress += 10;
+			}
 		});
 		setProgress(progress);
 	};
+
 	useEffect(() => {
 		calculateProgress(profileStructure);
 	}, [profileStructure]);
