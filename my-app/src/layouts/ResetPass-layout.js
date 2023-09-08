@@ -1,51 +1,13 @@
 import { Outlet } from "react-router-dom";
 import "./resetPass.css";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import Swiper from "swiper";
 import forgetPassImg from "../imgs/forget-pass-img.png";
 import Logo from "../components/Logo";
-import { useEffect, useRef } from "react";
-import { Navigation, Pagination } from "swiper/modules";
-import ResetPassEmail from "../pages/ResetPassEmail";
+import { Backdrop, CircularProgress } from "@mui/material";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const ResetPassLayout = () => {
-	// const swiperRef = useRef(null); // Create a ref for swiper instance
-
-	// useEffect(() => {
-	// 	swiperRef.current = new Swiper(".swiper-container", {
-	// 		slidesPerView: 1,
-	// 		modules: [Navigation, Pagination],
-	// 		pagination: {
-	// 			el: ".swiper-pagination",
-	// 			clickable: true,
-	// 		},
-	// 		navigation: {
-	// 			nextEl: ".swiper-button-next",
-	// 			prevEl: ".swiper-button-prev",
-	// 		},
-	// 		on: {
-	// 			// slideChange: () => {
-	// 			// 	const isMobileScreen = window.innerWidth <= 767; // Example breakpoint
-	// 			// 	const activeIndex = swiperRef.current.activeIndex;
-	// 			// 	const slidesCount = swiperRef.current.slides.length;
-	// 			// 	// setIsLastSlide(activeIndex === slidesCount - 1);
-	// 			// 	// Apply fade-up animation to the image in the current slide
-	// 			// 	const currentSlide = swiperRef.current.slides[activeIndex];
-	// 			// 	// const image = currentSlide.querySelector(".actorImg");
-	// 			// 	// if (image) {
-	// 			// 	// 	image.classList.add("fade-up");
-	// 			// 	// }
-	// 			// },
-	// 		},
-	// 	});
-
-	// 	return () => {
-	// 		swiperRef.current.destroy();
-	// 	};
-	// }, []);
-
+	const isLoading = useSelector((state) => state.passwordReset.loading);
 	return (
 		<div className="Auth ResetPass">
 			<div className="container-fluid">
@@ -63,29 +25,18 @@ const ResetPassLayout = () => {
 						<div className="container d-flex justify-content-center align-items-center flex-column">
 							<Outlet />
 						</div>
+						<Backdrop
+							sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+							open={isLoading}
+							className="w-100"
+							style={{ position: "absolute" }} // Set the position to absolute
+						>
+							<CircularProgress color="inherit" />
+						</Backdrop>
 					</div>
 				</div>
 			</div>
 		</div>
-		/* Slider main container */
-		// <div className="swiper-container w-100 overflow-hidden position-relative">
-		// 	{/* Additional required wrapper */}
-		// 	<div className="swiper-wrapper">
-		// 		{/* Slides */}
-		// 		<div class="swiper-slide">
-		// 			<ResetPassEmail />
-		// 		</div>
-		// 		<div class="swiper-slide">Slide 2</div>
-		// 		<div class="swiper-slide">Slide 3</div>
-		// 		{/* Add more slides as needed */}
-		// 	</div>
-		// 	{/* If we need pagination */}
-		// 	<div className="swiper-pagination"></div>
-
-		// 	{/* If we need navigation buttons */}
-		// 	<div className="swiper-button-prev"></div>
-		// 	<div className="swiper-button-next"></div>
-		// </div>
 	);
 };
 

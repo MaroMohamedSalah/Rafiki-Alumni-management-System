@@ -6,7 +6,7 @@ import resetPassReducer from "./resetPassReducer";
 const rootReducer = combineReducers({
 	dashboard: dashboardReducer,
 	profile: profileReducer,
-	resetPass: resetPassReducer,
+	passwordReset: resetPassReducer,
 });
 
 export default rootReducer;

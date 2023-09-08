@@ -1,11 +1,13 @@
-import { REQUEST_PASSWORD_RESET } from "../actions/types";
+import {
+	REQUEST_PASSWORD_RESET,
+	UPDATE_PASSWORD_RESET_LOADING,
+} from "../actions/types";
 
 const initialState = {
-	passwordReset: {
-		email: null,
-		loading: false,
-		error: null,
-	},
+	isEmailSent: false,
+	email: null,
+	loading: false,
+	error: null,
 };
 const resetPassReducer = (state = initialState, action) => {
 	switch (action.type) {
@@ -13,10 +15,13 @@ const resetPassReducer = (state = initialState, action) => {
 			return {
 				...state,
 
-				passwordReset: {
-					...state.passwordReset,
-					email: action.payload,
-				},
+				...action.payload,
+			};
+		case UPDATE_PASSWORD_RESET_LOADING:
+			return {
+				...state,
+
+				loading: action.payload,
 			};
 
 		// handle other actions and state updates here

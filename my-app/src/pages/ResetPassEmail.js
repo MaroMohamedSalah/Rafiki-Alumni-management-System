@@ -16,11 +16,16 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Toast from "../components/Toast";
+import {
+	requestPasswordReset,
+	updateResetPassLoading,
+} from "../redux/actions/passwordResetActions";
+import { useDispatch } from "react-redux";
 
 const ResetPassEmail = () => {
 	const [emailError, setEmailError] = useState("");
 	const [email, setEmail] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handelFormSubmit = async (e) => {
@@ -29,7 +34,7 @@ const ResetPassEmail = () => {
 			const form = document.querySelector(".ResetPassEmail form");
 
 			const formData = new FormData(form);
-			setIsLoading(true);
+			updateResetPassLoading(dispatch, true);
 
 			try {
 				const response = await fetch(
@@ -49,15 +54,15 @@ const ResetPassEmail = () => {
 					// Handle non-200 HTTP status codes
 					if (response.status === 404) {
 						setEmailError("Cant find user with this email"); // 404
-						setIsLoading(false);
+						updateResetPassLoading(dispatch, false);
 					} else {
 						Toast({
 							title: "Server Error, Please try again later",
 							icon: "error",
 						});
-						setIsLoading(false);
+						updateResetPassLoading(dispatch, false);
+						throw new Error(`Request failed with status ${response.status}`);
 					}
-					throw new Error(`Request failed with status ${response.status}`);
 				}
 
 				const data = await response.json();
@@ -65,7 +70,14 @@ const ResetPassEmail = () => {
 				if (data.success) {
 					// Password reset request was successful
 					navigate("/resetPass/checkYourEmail");
-					setIsLoading(false);
+					const passwordResetRequest = {
+						isEmailSent: true,
+						email: email,
+						loading: false,
+						error: null,
+					};
+					requestPasswordReset(dispatch, passwordResetRequest);
+					updateResetPassLoading(dispatch, false);
 					return true;
 				}
 			} catch (error) {
@@ -74,10 +86,9 @@ const ResetPassEmail = () => {
 					"An error occurred during the password reset request:",
 					error
 				);
-				setIsLoading(false);
 				return false;
 			}
-		} else {
+		} else if (email === "") {
 			setEmailError("Can't Be Empty!");
 		}
 	};
@@ -180,14 +191,6 @@ const ResetPassEmail = () => {
 					</div>
 				</form>
 			</div>
-			<Backdrop
-				sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-				open={isLoading}
-				className="w-100"
-				style={{ position: "absolute" }} // Set the position to absolute
-			>
-				<CircularProgress color="inherit" />
-			</Backdrop>
 		</div>
 	);
 };
