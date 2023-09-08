@@ -4,7 +4,7 @@ import "./Auth.css";
 import forgetPassImg from "../imgs/forget-pass-img.png";
 import emailIcon from "../imgs/Send Email img.svg";
 
-const SendEmail = () => {
+const CheckYourEmail = () => {
 	return (
 		<div className="Auth ForgetPass SendEmail">
 			<div className="container-fluid">
@@ -55,4 +55,4 @@ const SendEmail = () => {
 		</div>
 	);
 };
-export default SendEmail;
+export default CheckYourEmail;

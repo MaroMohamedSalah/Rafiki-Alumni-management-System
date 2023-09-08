@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
@@ -6,7 +5,6 @@ import RoleSelection from "./pages/RoleSelection";
 import AlumniSignup from "./pages/AlumniSignup";
 import CurrantStudentSignup from "./pages/CurrantStudentSignup";
 import HRSignup from "./pages/HRSignup";
-import SendEmail from "./pages/SendEmail";
 import LoginLayout from "./layouts/Login-layout";
 import GetStarted from "./pages/GetStarted";
 import DashboardLayout from "./layouts/Dashboard-layout";
@@ -15,6 +13,7 @@ import ProfileContent from "./pages/ProfileContent";
 import AddSkills from "./pages/AddSkills";
 import ResetPassLayout from "./layouts/ResetPass-layout";
 import ResetPassEmail from "./pages/ResetPassEmail";
+import CheckYourEmail from "./pages/CheckYourEmail";
 
 function App() {
 	return (
@@ -27,7 +26,7 @@ function App() {
 					<Route path="/login" element={<LoginLayout />} />
 					<Route path="/resetPass" element={<ResetPassLayout />}>
 						<Route index element={<ResetPassEmail />} />
-						<Route path="sendEmail" element={<SendEmail />} />
+						<Route path="checkYourEmail" element={<CheckYourEmail />} />
 					</Route>
 
 					{/* Private Routes */}

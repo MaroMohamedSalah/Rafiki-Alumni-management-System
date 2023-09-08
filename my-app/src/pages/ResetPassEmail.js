@@ -64,7 +64,7 @@ const ResetPassEmail = () => {
 
 				if (data.success) {
 					// Password reset request was successful
-					navigate("/resetPass/sendEmail");
+					navigate("/resetPass/checkYourEmail");
 					setIsLoading(false);
 					return true;
 				}
