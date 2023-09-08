@@ -43,7 +43,7 @@ const Login = () => {
 	const handelSubmit = async (e) => {
 		e.preventDefault();
 		const submitBtn = document.querySelector(".Auth form .submit button");
-		const form = document.querySelector(".Auth form");
+		const form = document.querySelector(".Login form");
 
 		const formData = new FormData(form);
 		let anyInputIsEmpty = validateInputsValues(formData);

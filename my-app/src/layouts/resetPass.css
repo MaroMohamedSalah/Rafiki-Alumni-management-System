@@ -1,0 +1,48 @@
+/* General  */
+.ResetPass {
+	background-color: var(--Reset-pass-color);
+}
+.ResetPass form {
+	min-height: initial;
+}
+/* Left Side  */
+.ResetPass .leftSide img {
+	max-width: initial !important;
+	max-height: initial !important;
+	animation: up-Down 5s both linear infinite;
+}
+
+/* Right Side */
+.ResetPass .rightSide {
+	background-color: white;
+	border-top-left-radius: var(--large-border-radius);
+	border-bottom-left-radius: var(--large-border-radius);
+}
+.ResetPass .rightSide .introText h1 {
+	font-size: 55px;
+	font-weight: 700;
+	color: var(--Reset-pass-color);
+}
+.ResetPass .rightSide .introText p {
+	font-size: 24px;
+	font-weight: 500;
+	color: var(--Reset-pass-color);
+}
+
+/* Reset Pass Email */
+.ResetPass .ResetPassEmail .email {
+	border: 2px var(--Reset-pass-color) var(--main-border-radius) solid;
+}
+
+.ResetPass .ResetPassEmail form button {
+	background-color: var(--login-color-2);
+	border: 1px solid #23032e !important;
+}
+@media (max-width: 767px) {
+	.ResetPass .ResetPassEmail form button {
+		width: 75% !important;
+	}
+}
+.ResetPass .ResetPassEmail button:hover {
+	background-color: var(--login-color-2) !important;
+}

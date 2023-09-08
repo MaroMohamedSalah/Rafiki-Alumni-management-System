@@ -173,8 +173,8 @@
 	width: var(--sideBar-width);
 }
 .Dashboard .sidebar-container {
-	border-top-right-radius: 20px;
-	border-bottom-right-radius: 20px;
+	border-top-right-radius: var(--large-border-radius);
+	border-bottom-right-radius: var(--large-border-radius);
 	background-color: #392e67;
 	height: 100%;
 	transition: all var(--main-transition) var(--main-transition) ease-in-out;

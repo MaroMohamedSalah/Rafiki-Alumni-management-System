@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Backbtn from "../components/Backbtn";
 import "./Auth.css";
-import forgetPassImg from "../imgs/forget pass img.svg";
+import forgetPassImg from "../imgs/forget-pass-img.png";
 import emailIcon from "../imgs/Send Email img.svg";
 
 const SendEmail = () => {

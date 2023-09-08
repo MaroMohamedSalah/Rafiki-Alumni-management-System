@@ -23,10 +23,10 @@ const ProfileCV = ({ cv, actorName }) => {
 			try {
 				const formData = new FormData();
 				formData.append("file", file);
-				formData.append("upload_preset", "ggdkuker"); // Replace with your Cloudinary upload preset
+				formData.append("upload_preset", "ggdkuker");
 
 				const response = await axios.post(
-					`https://api.cloudinary.com/v1_1/do6oz83pz/upload`, // Replace with your Cloudinary cloud name
+					`https://api.cloudinary.com/v1_1/do6oz83pz/upload`,
 					formData
 				);
 
@@ -163,7 +163,6 @@ const ProfileCV = ({ cv, actorName }) => {
 								/>
 								{cvIsLoading ? (
 									<div className="loading-spinner">
-										{/* <HashLoader color={"#007BFF"} loading={true} size={50} /> */}
 										<CircularProgress color="inherit" />
 									</div>
 								) : (
