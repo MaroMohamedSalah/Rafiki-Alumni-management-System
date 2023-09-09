@@ -69,7 +69,6 @@ const ResetPassEmail = () => {
 
 				if (data.success) {
 					// Password reset request was successful
-					navigate("/resetPass/checkYourEmail");
 					const passwordResetRequest = {
 						isEmailSent: true,
 						email: email,
@@ -78,6 +77,7 @@ const ResetPassEmail = () => {
 					};
 					requestPasswordReset(dispatch, passwordResetRequest);
 					updateResetPassLoading(dispatch, false);
+					navigate("/resetPass/checkYourEmail");
 					return true;
 				}
 			} catch (error) {

@@ -4,7 +4,7 @@ import ProgressLine from "../components/ProgressLine";
 import Backbtn from "../components/Backbtn";
 import alumniImg from "../imgs/alumni-img-2.svg";
 import Swal from "sweetalert2";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UsernameInput from "../components/UsernameInput";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
