@@ -98,7 +98,7 @@ const CreateNewPass = () => {
 				if (data.success) {
 					// Password reset was successful
 					updateResetPassLoading(dispatch, false);
-					// navigate("/resetPass/checkYourEmail");
+					navigate("/resetPass/createNewPasswordSuccess");
 					return true;
 				} else {
 					Toast({ title: data.message, icon: "error" });
