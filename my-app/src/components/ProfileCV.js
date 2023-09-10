@@ -50,19 +50,16 @@ const ProfileCV = ({ cv, actorName }) => {
 	};
 
 	const saveCv = (cvUrl) => {
-		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/upload_cv",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					cvUrl: cvUrl,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/upload_cv", {
+			method: "POST",
+			body: JSON.stringify({
+				cvUrl: cvUrl,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error("Upload failed");
@@ -89,16 +86,13 @@ const ProfileCV = ({ cv, actorName }) => {
 	};
 
 	const handelDeleteCv = () => {
-		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/delete_cv",
-			{
-				method: "DELETE",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/delete_cv", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error("Upload failed");

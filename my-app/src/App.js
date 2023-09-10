@@ -14,6 +14,7 @@ import AddSkills from "./pages/AddSkills";
 import ResetPassLayout from "./layouts/ResetPass-layout";
 import ResetPassEmail from "./pages/ResetPassEmail";
 import CheckYourEmail from "./pages/CheckYourEmail";
+import CreateNewPassword from "./pages/CreateNewPass";
 
 function App() {
 	return (
@@ -27,6 +28,14 @@ function App() {
 					<Route path="/resetPass" element={<ResetPassLayout />}>
 						<Route index element={<ResetPassEmail />} />
 						<Route path="checkYourEmail" element={<CheckYourEmail />} />
+						{/* <Route
+							path="createNewPassword/:token"
+							element={<CreateNewPassword />}
+						/> */}
+						<Route
+							path="changePassword/:token"
+							element={<CreateNewPassword />}
+						/>
 					</Route>
 
 					{/* Private Routes */}

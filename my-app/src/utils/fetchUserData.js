@@ -9,7 +9,7 @@ const fetchUserData = async (
 ) => {
 	try {
 		const response = await fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users",
+			"https://rafiki-backend.azurewebsites.net/api/users",
 			{
 				method: "GET",
 				headers: {

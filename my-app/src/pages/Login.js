@@ -52,7 +52,7 @@ const Login = () => {
 
 			try {
 				const response = await fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/login",
+					"https://rafiki-backend.azurewebsites.net/api/users/login",
 					{
 						method: "POST",
 						body: JSON.stringify({
@@ -111,7 +111,7 @@ const Login = () => {
 	const fetchUserData = async (sessionId) => {
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/",
+				"https://rafiki-backend.azurewebsites.net/api/users/",
 				{
 					method: "GET",
 					headers: {

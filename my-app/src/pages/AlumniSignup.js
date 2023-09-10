@@ -93,7 +93,7 @@ const AlumniSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://alumni-system-backend.azurewebsites.net/api/users/alumni_signup",
+						"https://rafiki-backend.azurewebsites.net/api/users/alumni_signup",
 						{
 							method: "POST",
 							body: JSON.stringify({
@@ -147,7 +147,7 @@ const AlumniSignup = () => {
 		}
 	};
 	return (
-		<div className="Auth AlumniSignup">
+		<div className="Auth AlumniSignup Signup">
 			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}

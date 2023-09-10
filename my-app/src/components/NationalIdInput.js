@@ -10,7 +10,7 @@ const NationalIdInput = ({
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
 		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/check_national_id",
+			"https://rafiki-backend.azurewebsites.net/api/users/check_national_id",
 			{
 				method: "POST",
 				headers: {

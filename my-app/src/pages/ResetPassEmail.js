@@ -38,7 +38,7 @@ const ResetPassEmail = () => {
 
 			try {
 				const response = await fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/reset_password",
+					"https://rafiki-backend.azurewebsites.net/api/users/reset_password",
 					{
 						method: "POST",
 						body: JSON.stringify({

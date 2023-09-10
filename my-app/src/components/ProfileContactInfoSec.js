@@ -44,7 +44,7 @@ const ProfileContactInfoSec = () => {
 
 		if (num) {
 			const url =
-				"https://alumni-system-backend.azurewebsites.net/api/users/update_phone";
+				"https://rafiki-backend.azurewebsites.net/api/users/update_phone";
 			const options = {
 				method: "PUT",
 				body: JSON.stringify({
@@ -83,7 +83,7 @@ const ProfileContactInfoSec = () => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/DELETE_USER_PHONE",
+					"https://rafiki-backend.azurewebsites.net/api/users/DELETE_USER_PHONE",
 					{
 						method: "DELETE",
 						headers: {

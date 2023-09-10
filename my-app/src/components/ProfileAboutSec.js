@@ -36,7 +36,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 		if (updatedAbout) {
 			// send PUT request to update About Section
 			const apiUrl =
-				"https://alumni-system-backend.azurewebsites.net/api/users/update_about";
+				"https://rafiki-backend.azurewebsites.net/api/users/update_about";
 
 			fetch(apiUrl, {
 				method: "PUT",

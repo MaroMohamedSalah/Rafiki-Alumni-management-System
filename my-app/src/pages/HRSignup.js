@@ -100,7 +100,7 @@ const HRSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://alumni-system-backend.azurewebsites.net/api/users/hr_signup",
+						"https://rafiki-backend.azurewebsites.net/api/users/hr_signup",
 						{
 							method: "POST",
 							body: JSON.stringify({
@@ -152,7 +152,7 @@ const HRSignup = () => {
 	};
 
 	return (
-		<div className="Auth HRSignup">
+		<div className="Auth HRSignup Signup">
 			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}

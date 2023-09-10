@@ -1,18 +1,15 @@
 import icon4 from "../imgs/sign up 4.svg";
 const EmailInput = ({ emailError, setEmailError }) => {
 	const emailChecker = (emailV) => {
-		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/check_email",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-				body: new URLSearchParams({
-					Email: emailV,
-				}),
-			}
-		)
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/check_email", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				Email: emailV,
+			}),
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				if (data.success === false) {

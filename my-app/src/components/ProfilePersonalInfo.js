@@ -32,7 +32,7 @@ const ProfilePersonalInfo = ({ countryPram }) => {
 		if (selectedCountry) {
 			// Send address to server
 			const url =
-				"https://alumni-system-backend.azurewebsites.net/api/users/update_country";
+				"https://rafiki-backend.azurewebsites.net/api/users/update_country";
 			const options = {
 				method: "PUT",
 				body: JSON.stringify({

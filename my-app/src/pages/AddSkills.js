@@ -25,7 +25,7 @@ const AddSkills = () => {
 	const dispatch = useDispatch();
 
 	const getSkills = () => {
-		fetch("https://alumni-system-backend.azurewebsites.net/api/skills/", {
+		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -53,7 +53,7 @@ const AddSkills = () => {
 	};
 
 	const addSkillToUser = (skill_id, rate) => {
-		fetch("https://alumni-system-backend.azurewebsites.net/api/user_skills/", {
+		fetch("https://rafiki-backend.azurewebsites.net/api/user_skills/", {
 			method: "POST",
 			body: JSON.stringify({
 				Skill_Id: skill_id,
@@ -97,7 +97,7 @@ const AddSkills = () => {
 	};
 
 	const addUnExistingSkill = () => {
-		fetch("https://alumni-system-backend.azurewebsites.net/api/skills/", {
+		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
 			method: "POST",
 			body: JSON.stringify({
 				Skill_Name: selectedSkill,

@@ -103,7 +103,7 @@ const CurrantStudentSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://alumni-system-backend.azurewebsites.net/api/users/student_signup",
+						"https://rafiki-backend.azurewebsites.net/api/users/student_signup",
 						{
 							method: "POST",
 							body: JSON.stringify({
@@ -157,7 +157,7 @@ const CurrantStudentSignup = () => {
 		}
 	};
 	return (
-		<div className="Auth StudentSignup">
+		<div className="Auth StudentSignup Signup">
 			<div className="container-fluid">
 				<Backbtn
 					btnColor={"white"}

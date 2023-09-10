@@ -37,7 +37,7 @@ const ProfileSkills = () => {
 
 	const handelDeleteSkill = (skillId) => {
 		fetch(
-			`https://alumni-system-backend.azurewebsites.net/api/user_skills/${skillId}`,
+			`https://rafiki-backend.azurewebsites.net/api/user_skills/${skillId}`,
 
 			{
 				method: "DELETE",

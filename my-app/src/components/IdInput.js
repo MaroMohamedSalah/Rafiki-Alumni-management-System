@@ -9,7 +9,7 @@ const IdInput = ({
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		submitBtn.setAttribute("disabled", true);
 		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/check_academic_id",
+			"https://rafiki-backend.azurewebsites.net/api/users/check_academic_id",
 			{
 				method: "POST",
 				body: JSON.stringify({

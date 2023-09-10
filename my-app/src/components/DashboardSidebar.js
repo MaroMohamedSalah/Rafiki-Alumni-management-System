@@ -22,16 +22,13 @@ const DashboardSidebar = ({ profileData }) => {
 		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				fetch(
-					"https://alumni-system-backend.azurewebsites.net/api/users/logout",
-					{
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${sessionId}`,
-						},
-					}
-				)
+				fetch("https://rafiki-backend.azurewebsites.net/api/users/logout", {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${sessionId}`,
+					},
+				})
 					.then((res) => res.json())
 					.then((res) => console.log(res))
 					.catch((error) => console.log(error));

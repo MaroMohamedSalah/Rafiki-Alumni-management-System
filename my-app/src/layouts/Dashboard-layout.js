@@ -20,7 +20,7 @@ const DashboardLayout = () => {
 	const dispatch = useDispatch();
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
-		fetch("https://alumni-system-backend.azurewebsites.net/api/users/", {
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

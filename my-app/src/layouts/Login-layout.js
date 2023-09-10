@@ -10,15 +10,12 @@ const LoginLayout = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const checkSession = () => {
-		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/is_logged_in",
-			{
-				method: "GET",
-				headers: {
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/is_logged_in", {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((res) => {
 				if (res.status === 200) {
 					// The user is logged in

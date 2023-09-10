@@ -80,7 +80,7 @@
 	top: 69px;
 }
 .Auth form .input-group,
-.Auth form button,
+.Auth.Login form button,
 .Login .toSignup button {
 	border: 2px solid var(--color-tow);
 	border-radius: var(--main-border-radius);
@@ -96,7 +96,8 @@
 	top: 68%;
 	transition: all var(--main-transition) ease-in-out;
 }
-.Auth form button {
+.Auth.Login form button,
+.Auth.Signup form button {
 	color: #ffffff;
 	font-family: 600;
 	transition: all 0.2s ease-in-out !important;
@@ -123,7 +124,8 @@
 .Login .toSignup button:hover {
 	opacity: 0.75;
 }
-.Auth form button:hover {
+.Auth.Login form button:hover,
+.Auth.Signup form button:hover {
 	color: #ffffff !important;
 	opacity: 0.75;
 }

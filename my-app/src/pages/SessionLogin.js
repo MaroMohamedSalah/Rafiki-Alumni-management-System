@@ -14,7 +14,7 @@ const SessionLogin = () => {
 		setLoading(true);
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/",
+				"https://rafiki-backend.azurewebsites.net/api/users/",
 				{
 					method: "GET",
 					headers: {
@@ -39,7 +39,7 @@ const SessionLogin = () => {
 	};
 	const handelLogin = () => {};
 	const handelLogout = () => {
-		fetch("https://alumni-system-backend.azurewebsites.net/api/users/logout", {
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/logout", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

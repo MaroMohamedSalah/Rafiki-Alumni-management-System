@@ -13,7 +13,7 @@ const CheckYourEmail = () => {
 	const isEmailSend = useSelector((state) => state.passwordReset.isEmailSent);
 	const email = useSelector((state) => state.passwordReset.email);
 	const [isTimerEnded, setIsTimerEnded] = useState(false);
-	const [expirationTime, setExpirationTime] = useState(Date.now() + 5000); // 3 minutes in milliseconds
+	const [expirationTime, setExpirationTime] = useState(Date.now() + 180000); // 3 minutes in milliseconds
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const CheckYourEmail = () => {
 		updateResetPassLoading(dispatch, true);
 		try {
 			const response = await fetch(
-				"https://alumni-system-backend.azurewebsites.net/api/users/reset_password",
+				"https://rafiki-backend.azurewebsites.net/api/users/reset_password",
 				{
 					method: "POST",
 					body: JSON.stringify({

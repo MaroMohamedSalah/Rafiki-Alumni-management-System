@@ -19,7 +19,7 @@ const ProfileURLsSec = ({ profileData }) => {
 	const saveURLsToServer = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
 		const apiUrl =
-			"https://alumni-system-backend.azurewebsites.net/api/users/update_social_urls";
+			"https://rafiki-backend.azurewebsites.net/api/users/update_social_urls";
 
 		fetch(apiUrl, {
 			method: "PUT",
@@ -187,7 +187,7 @@ const ProfileURLsSec = ({ profileData }) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				fetch(
-					`https://alumni-system-backend.azurewebsites.net/api/users/delete_${urlType}_url`,
+					`https://rafiki-backend.azurewebsites.net/api/users/delete_${urlType}_url`,
 					{
 						method: "DELETE",
 						headers: {

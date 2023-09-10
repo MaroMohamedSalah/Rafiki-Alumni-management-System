@@ -11,7 +11,7 @@ const UsernameInput = ({
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
 		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/check_user_name",
+			"https://rafiki-backend.azurewebsites.net/api/users/check_user_name",
 			{
 				method: "POST",
 				headers: {

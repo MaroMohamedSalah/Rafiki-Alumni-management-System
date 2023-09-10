@@ -26,19 +26,16 @@ const ProfileImg = ({ profileData }) => {
 		setPic(info.secure_url); // Update the state to display the image locally
 		console.log("Upload success:", info);
 
-		fetch(
-			"https://alumni-system-backend.azurewebsites.net/api/users/upload_picture",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					pictureUrl: info.secure_url,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch("https://rafiki-backend.azurewebsites.net/api/users/upload_picture", {
+			method: "POST",
+			body: JSON.stringify({
+				pictureUrl: info.secure_url,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((response) => {
 				if (!response.ok) {
 					throw new Error("Upload failed");
@@ -92,7 +89,7 @@ const ProfileImg = ({ profileData }) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				fetch(
-					`https://alumni-system-backend.azurewebsites.net/api/users/delete_profile_picture`,
+					`https://rafiki-backend.azurewebsites.net/api/users/delete_profile_picture`,
 					{
 						method: "DELETE",
 						headers: {

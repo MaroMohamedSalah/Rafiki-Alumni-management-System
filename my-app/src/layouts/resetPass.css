@@ -5,6 +5,18 @@
 .ResetPass form {
 	min-height: initial;
 }
+.ResetPass form .submit button {
+	color: white;
+	font-family: 600;
+	transition: all 0.2s ease-in-out !important;
+	margin-bottom: initial;
+	border-radius: var(--main-border-radius);
+}
+
+.ResetPass form .submit button {
+	background-color: var(--Reset-pass-color);
+	border: initial;
+}
 /* Left Side  */
 .ResetPass .leftSide img {
 	max-width: initial !important;
@@ -33,16 +45,10 @@
 .ResetPass .ResetPassEmail .email {
 	border: 2px var(--Reset-pass-color) var(--main-border-radius) solid;
 }
-
-.ResetPass .ResetPassEmail form button {
-	background-color: var(--login-color-2);
-	border: 1px solid #23032e !important;
-}
 @media (max-width: 767px) {
 	.ResetPass .ResetPassEmail form button {
 		width: 75% !important;
 	}
 }
-.ResetPass .ResetPassEmail button:hover {
-	background-color: var(--login-color-2) !important;
-}
+
+/* Create New Password */
