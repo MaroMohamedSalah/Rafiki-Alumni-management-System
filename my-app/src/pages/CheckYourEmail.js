@@ -14,6 +14,9 @@ const CheckYourEmail = () => {
 	const email = useSelector((state) => state.passwordReset.email);
 	const [isTimerEnded, setIsTimerEnded] = useState(false);
 	const [expirationTime, setExpirationTime] = useState(Date.now() + 180000); // 3 minutes in milliseconds
+	const [resetSuccess, setResetSuccess] = useState(
+		localStorage.getItem("passwordResetSuccess")
+	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -69,9 +72,24 @@ const CheckYourEmail = () => {
 	}, [isEmailSend, navigate]);
 
 	useEffect(() => {
-		if (isTimerEnded) {
-		}
-	}, [isTimerEnded]);
+		// Function to handle storage event
+		const handleStorageChange = (e) => {
+			if (e.key === "passwordResetSuccess" && e.newValue === "true") {
+				console.log("Status updated");
+				// Navigate to the login page
+				navigate("/Login");
+			}
+		};
+
+		// Add event listener
+		window.addEventListener("storage", handleStorageChange);
+
+		// Clean up the event listener when the component unmounts
+		return () => {
+			window.removeEventListener("storage", handleStorageChange);
+		};
+	}, [navigate]);
+
 	return (
 		isEmailSend === true && (
 			<div className="CheckYourEmail pt-5">

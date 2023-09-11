@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Lottie from "lottie-react";
@@ -29,6 +29,9 @@ const CreateNewPass = () => {
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [resetSuccess, setResetSuccess] = useState(
+		localStorage.getItem("passwordResetSuccess")
+	);
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { token } = useParams();
@@ -102,6 +105,7 @@ const CreateNewPass = () => {
 					// Password reset was successful
 					updateResetPassLoading(dispatch, false);
 					updateResetPassStatus(dispatch, true);
+					localStorage.setItem("passwordResetSuccess", "true");
 					navigate("/resetPass/createNewPasswordSuccess");
 					return true;
 				} else {
@@ -151,6 +155,11 @@ const CreateNewPass = () => {
 			},
 		});
 	const outerTheme = useTheme();
+	useEffect(() => {
+		if (resetSuccess === "true") {
+			navigate("/Login");
+		}
+	}, []);
 	return (
 		<div className="CreateNewPass pt-5">
 			<div className="row">

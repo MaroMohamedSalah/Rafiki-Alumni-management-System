@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import forgetPassImg from "../imgs/forget-pass-img.png";
 import {
 	Button,
@@ -27,6 +27,9 @@ const ResetPassEmail = () => {
 	const [email, setEmail] = useState("");
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [resetSuccess, setResetSuccess] = useState(
+		localStorage.getItem("passwordResetSuccess")
+	);
 
 	const handelFormSubmit = async (e) => {
 		e.preventDefault();
@@ -118,7 +121,11 @@ const ResetPassEmail = () => {
 			},
 		});
 	const outerTheme = useTheme();
-
+	useEffect(() => {
+		if (resetSuccess) {
+			localStorage.setItem("passwordResetSuccess", "false");
+		}
+	}, []);
 	return (
 		<div className="ResetPassEmail pt-5">
 			<div className="row">
