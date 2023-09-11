@@ -75,14 +75,6 @@ const CheckYourEmail = () => {
 	return (
 		isEmailSend === true && (
 			<div className="CheckYourEmail pt-5">
-				{/* <Backbtn
-				btnColor={"white"}
-				btnSize={"25px"}
-				btnTop={"10px"}
-				btnColorMobile={"var(--Alumni-color)"}
-				btnSizeMobile={"15px"}
-				btnTopMobile={"10px"}
-			/> */}
 				<div className="introText p-4 w-100 text-center">
 					<div className="row">
 						<div className="col-12 col-md-6 introText p-4 d-flex justify-content-center align-items-center flex-column">
@@ -99,6 +91,7 @@ const CheckYourEmail = () => {
 								autoplay
 								animationData={animationData}
 								style={{ height: "190px" }}
+								className="resetPassAnimation"
 							/>
 						</div>
 					</div>

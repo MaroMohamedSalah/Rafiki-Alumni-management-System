@@ -2,6 +2,17 @@
 .ResetPass {
 	background-color: var(--Reset-pass-color);
 }
+.ResetPass .logo {
+	height: 197px !important;
+}
+.ResetPass .backBtn {
+	color: white;
+}
+.ResetPass .backBtnMobile {
+	top: 0;
+	left: 20px;
+	z-index: 555;
+}
 .ResetPass form {
 	min-height: initial;
 }
@@ -48,6 +59,11 @@
 @media (max-width: 767px) {
 	.ResetPass .ResetPassEmail form button {
 		width: 75% !important;
+	}
+	/* CSS for mobile devices */
+
+	.ResetPass .resetPassAnimation {
+		height: 200px !important; /* Set the height to 150px for mobile */
 	}
 }
 

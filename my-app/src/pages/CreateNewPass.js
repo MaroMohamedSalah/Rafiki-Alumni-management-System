@@ -18,7 +18,10 @@ import {
 import { outlinedInputClasses } from "@mui/material/node/OutlinedInput";
 import { useTheme } from "@mui/material";
 import Toast from "../components/Toast";
-import { updateResetPassLoading } from "../redux/actions/passwordResetActions";
+import {
+	updateResetPassLoading,
+	updateResetPassStatus,
+} from "../redux/actions/passwordResetActions";
 
 const CreateNewPass = () => {
 	const [passwordError, setPasswordError] = useState("");
@@ -98,6 +101,7 @@ const CreateNewPass = () => {
 				if (data.success) {
 					// Password reset was successful
 					updateResetPassLoading(dispatch, false);
+					updateResetPassStatus(dispatch, true);
 					navigate("/resetPass/createNewPasswordSuccess");
 					return true;
 				} else {
@@ -113,8 +117,10 @@ const CreateNewPass = () => {
 				);
 				return false;
 			}
-		} else {
+		} else if (confirmPassword === "") {
 			setConfirmPasswordError("Can't Be Empty");
+			Toast({ title: "Fix All Felids Error Please", icon: "error" });
+		} else {
 			setPasswordError("Can't Be Empty");
 			Toast({ title: "Fix All Felids Error Please", icon: "error" });
 		}
@@ -161,6 +167,7 @@ const CreateNewPass = () => {
 						autoplay
 						animationData={animationData}
 						style={{ height: "190px" }}
+						className="resetPassAnimation"
 					/>
 				</div>
 			</div>

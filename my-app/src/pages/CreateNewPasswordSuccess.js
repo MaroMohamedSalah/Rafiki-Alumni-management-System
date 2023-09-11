@@ -20,6 +20,7 @@ const CreateNewPassSuccess = () => {
 						autoplay
 						animationData={animationData}
 						style={{ height: "250px" }}
+						className="resetPassAnimation"
 					/>
 				</div>
 			</div>

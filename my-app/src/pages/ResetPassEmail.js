@@ -1,9 +1,7 @@
 import { useState } from "react";
 import forgetPassImg from "../imgs/forget-pass-img.png";
 import {
-	Backdrop,
 	Button,
-	CircularProgress,
 	FormControl,
 	FormHelperText,
 	InputAdornment,
@@ -21,6 +19,8 @@ import {
 	updateResetPassLoading,
 } from "../redux/actions/passwordResetActions";
 import { useDispatch } from "react-redux";
+import animationData from "../animations/animation_lmdvoyj3.json";
+import Lottie from "lottie-react";
 
 const ResetPassEmail = () => {
 	const [emailError, setEmailError] = useState("");
@@ -129,7 +129,13 @@ const ResetPassEmail = () => {
 					</p>
 				</div>
 				<div className="col-12 col-md-6">
-					<img src={forgetPassImg} alt="reset pass img" className="img-fluid" />
+					<Lottie
+						loop={true}
+						autoplay
+						animationData={animationData}
+						style={{ height: "250px" }}
+						className="resetPassAnimation"
+					/>
 				</div>
 			</div>
 			<div className="form pt-5">
@@ -184,7 +190,7 @@ const ResetPassEmail = () => {
 							</FormControl>
 						</ThemeProvider>
 					</div>
-					<div className="submit text-center w-100 mt-5">
+					<div className="submit text-center w-100 mt-2 mt-md-5">
 						<Button variant="contained" className="w-50 px-5" type="submit">
 							Send
 						</Button>

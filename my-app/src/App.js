@@ -34,7 +34,7 @@ function App() {
 							element={<CreateNewPassword />}
 						/>
 						<Route
-							path="createNewPasswordSuccess/"
+							path="createNewPasswordSuccess"
 							element={<CreateNewPassSuccess />}
 						/>
 					</Route>

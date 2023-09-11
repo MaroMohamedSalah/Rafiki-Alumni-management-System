@@ -1,28 +1,44 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import "./resetPass.css";
-import forgetPassImg from "../imgs/forget-pass-img.png";
 import Logo from "../components/Logo";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import ArrowBackSharpIcon from "@mui/icons-material/ArrowBackSharp";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { IconButton } from "@mui/material/node";
 
 const ResetPassLayout = () => {
 	const isLoading = useSelector((state) => state.passwordReset.loading);
+	const navigate = useNavigate();
 	return (
 		<div className="Auth ResetPass">
 			<div className="container-fluid">
 				<div className="position-absolute pt-2">
-					<Logo />
+					<IconButton
+						color="inherit"
+						className="backBtn"
+						onClick={() => navigate("../")}
+					>
+						<ArrowBackSharpIcon />
+					</IconButton>
 				</div>
 
 				<div className="row">
-					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center leftSide">
-						<div className="image overflow-hidden w-100 d-flex justify-content-center">
-							<img className="img-fluid" src={forgetPassImg} alt="" />
+					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center leftSide overflow-hidden">
+						<div
+							className="image overflow-hidden w-100 d-flex justify-content-center"
+							style={{ height: "250px" }}
+						>
+							<Logo />
 						</div>
 					</div>
-					<div className="col-12 col-md-6 d-flex rightSide position-relative">
+					<div className="col-12 col-md-6 d-flex rightSide position-relative overflow-hidden">
 						<div className="container d-flex justify-content-center align-items-center flex-column">
+							<div className="position-absolute pt-2 backBtnMobile d-block d-md-none">
+								<IconButton color="inherit" onClick={() => navigate("../")}>
+									<KeyboardBackspaceIcon fontSize="large" />
+								</IconButton>
+							</div>
 							<Outlet />
 						</div>
 						<Backdrop
