@@ -24,7 +24,7 @@ const ResetPassLayout = () => {
 				</div>
 
 				<div className="row">
-					<div className="col-12 col-md-6 d-none d-md-flex justify-content-center align-items-center leftSide overflow-hidden">
+					<div className="col-12 col-lg-6 d-none d-md-flex justify-content-center align-items-center leftSide overflow-hidden">
 						<div
 							className="image overflow-hidden w-100 d-flex justify-content-center"
 							style={{ height: "250px" }}
@@ -32,7 +32,7 @@ const ResetPassLayout = () => {
 							<Logo />
 						</div>
 					</div>
-					<div className="col-12 col-md-6 d-flex rightSide position-relative overflow-hidden">
+					<div className="col-12 col-lg-6 d-flex rightSide position-relative overflow-hidden">
 						<div className="container d-flex justify-content-center align-items-center flex-column">
 							<div className="position-absolute pt-2 backBtnMobile d-block d-md-none">
 								<IconButton color="inherit" onClick={() => navigate("../")}>

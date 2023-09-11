@@ -77,6 +77,7 @@ const CheckYourEmail = () => {
 			if (e.key === "passwordResetSuccess" && e.newValue === "true") {
 				console.log("Status updated");
 				// Navigate to the login page
+
 				navigate("/Login");
 			}
 		};
