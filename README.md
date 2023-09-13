@@ -1,4 +1,4 @@
-# Alumni Software
+# Rafiki
 
 ## Description
 Alumni Software is a web application that enables alumni of Faculty of Computers and Artificial Intelligence at Helwan University to connect with each other and stay up-to-date with university news and events. 
