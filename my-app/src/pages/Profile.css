@@ -158,6 +158,11 @@
 	font-size: 20px;
 	cursor: pointer;
 }
+.profile .sec-title .del {
+	right: 56px;
+	font-size: 20px;
+	cursor: pointer;
+}
 @media (max-width: 767px) {
 	.profile .ProfileImg {
 		margin: auto;

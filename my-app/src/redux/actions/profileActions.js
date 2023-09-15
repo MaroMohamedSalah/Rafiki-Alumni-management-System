@@ -13,6 +13,7 @@ import {
 	UPDATE_USER_PHONE,
 	UPDATE_USER_SKILLS,
 	DELETE_USER_CV,
+	DELETE_USER_ABOUT,
 } from "./types";
 
 export const setUserInfo = async (dispatch, userData) => {
@@ -95,5 +96,10 @@ export const deleteSkill = async (dispatch, userSkillId) => {
 	return dispatch({
 		type: DELETE_USER_SKILL,
 		payload: userSkillId,
+	});
+};
+export const deleteAbout = async (dispatch) => {
+	return dispatch({
+		type: DELETE_USER_ABOUT,
 	});
 };

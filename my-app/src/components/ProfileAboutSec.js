@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import Toast from "./Toast";
-import { updateProfileAbout } from "../redux/actions/profileActions";
+import {
+	deleteAbout,
+	updateProfileAbout,
+} from "../redux/actions/profileActions";
 import { Skeleton, Tooltip } from "@mui/material";
 
 const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
-	const [about, setAbout] = useState(aboutContent);
+	// const [about, setAbout] = useState(aboutContent);
 
 	const sessionId = localStorage.getItem("sessionId");
 	const dispatch = useDispatch();
@@ -16,7 +19,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 		const { value: updatedAbout } = await Swal.fire({
 			title: "Inform Yourself",
 			input: "textarea",
-			inputValue: about !== null ? about : "",
+			inputValue: aboutContent !== null ? aboutContent : "",
 			inputAttributes: {
 				autocapitalize: "off",
 				minlength: 50,
@@ -54,7 +57,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 
 						Toast({ title: "About updated", icon: "success" });
 						setIsEmpty(false);
-						setAbout(updatedAbout);
+						// setAbout(updatedAbout);
 						updateProfileAbout(dispatch, updatedAbout);
 					} else {
 						// show an error message if the request failed
@@ -77,11 +80,51 @@ const ProfileAboutSec = ({ aboutContent }) => {
 		}
 	};
 
-	useEffect(() => {
-		if (about) {
-			setIsEmpty(false);
+	const deleteAboutSection = async () => {
+		try {
+			const response = await fetch(
+				"https://rafiki-backend.azurewebsites.net/api/users/delete_about",
+				{
+					method: "DELETE",
+					headers: {
+						Authorization: `Bearer ${sessionId}`,
+					},
+				}
+			);
+
+			if (!response.ok) {
+				console.error(`Request failed with status ${response.status}`);
+				Toast({
+					title: "Deleting failed. Please try again.",
+					icon: "error",
+				});
+			}
+
+			const data = await response.json();
+
+			if (data.success === true) {
+				// delete about was successful
+				Toast({ title: data.message, icon: "success" });
+				deleteAbout(dispatch);
+			} else {
+				Toast({ title: "Deleted Error, please try again", icon: "error" });
+			}
+		} catch (error) {
+			console.error("Error while deleting about:", error);
+			Toast({
+				title: "An unexpected error occurred. Please try again later.",
+				icon: "error",
+			});
 		}
-	}, [about]);
+	};
+
+	useEffect(() => {
+		if (aboutContent) {
+			setIsEmpty(false);
+		} else {
+			setIsEmpty(true);
+		}
+	}, [aboutContent]);
 
 	return (
 		<section
@@ -111,6 +154,14 @@ const ProfileAboutSec = ({ aboutContent }) => {
 								<i className="fa-solid fa-pen-to-square"></i>
 							</div>
 						</Tooltip>
+						<Tooltip title="Delete Bio">
+							<div
+								className="del position-absolute"
+								onClick={deleteAboutSection}
+							>
+								<i class="fa-solid fa-trash"></i>
+							</div>
+						</Tooltip>
 					</>
 				)}
 			</h1>
@@ -127,7 +178,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 					</div>
 				</div>
 			) : (
-				<p>{about}</p>
+				<p>{aboutContent}</p>
 			)}
 		</section>
 	);

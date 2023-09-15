@@ -13,6 +13,7 @@ import {
 	UPDATE_USER_SKILLS,
 	UUPDATE_USER_IMG,
 	DELETE_USER_CV,
+	DELETE_USER_ABOUT,
 } from "../actions/types";
 
 const initialState = {
@@ -157,6 +158,17 @@ const profileReducer = (state = initialState, action) => {
 				},
 			};
 
+		case DELETE_USER_ABOUT:
+			return {
+				...state,
+				userInfo: {
+					...state.userInfo,
+					user: {
+						...state.userInfo.user,
+						About: null,
+					},
+				},
+			};
 		// handle other actions and state updates here
 		default:
 			return state;
