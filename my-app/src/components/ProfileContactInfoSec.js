@@ -83,7 +83,7 @@ const ProfileContactInfoSec = () => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				fetch(
-					"https://rafiki-backend.azurewebsites.net/api/users/DELETE_USER_PHONE",
+					"https://rafiki-backend.azurewebsites.net/api/users/delete_phone",
 					{
 						method: "DELETE",
 						headers: {
@@ -103,7 +103,9 @@ const ProfileContactInfoSec = () => {
 							deletePhone(dispatch);
 						} else {
 							// show an error message if the request failed
-							throw new Error("Failed to delete URL. Please try again later.");
+							throw new Error(
+								"Failed to delete Phone. Please try again later."
+							);
 						}
 					})
 					.catch((error) => {
@@ -127,18 +129,11 @@ const ProfileContactInfoSec = () => {
 					<i className="fa-solid fa-phone"></i>
 				</span>{" "}
 				Contact
-				{/* <OverlayTrigger
-					overlay={
-						<Tooltip id="my-tooltip" style={{ marginRight: "10px" }}>
-							<Tooltip>Visibility</Tooltip>
-						</Tooltip>
-					}
-					placement="left"
-				>
+				<Tooltip title="Visibility">
 					<div className="visibility position-absolute">
 						<i className="fa-solid fa-user-tie"></i>
 					</div>
-				</OverlayTrigger> */}
+				</Tooltip>
 			</h1>
 			<div className="not-empty-sec row">
 				<div className="col-12 col-md-6">

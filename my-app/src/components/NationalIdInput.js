@@ -7,7 +7,7 @@ const NationalIdInput = ({
 }) => {
 	// check if national id is exist in database
 	const NIDchecker = (national_ID) => {
-		const submitBtn = document.querySelector(".Auth form .submit button");
+		const submitBtn = document.querySelector(".Signup form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
 		fetch(
 			"https://rafiki-backend.azurewebsites.net/api/users/check_national_id",
