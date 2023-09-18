@@ -122,6 +122,11 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 					link: "postJob",
 				},
 				{
+					title: "Post Internship",
+					icon: "fa-solid fa-plus",
+					link: "postIntern",
+				},
+				{
 					title: "Jobs Applications",
 					icon: "fa-regular fa-handshake",
 					link: "jobsApplications",

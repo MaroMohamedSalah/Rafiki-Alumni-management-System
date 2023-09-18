@@ -13,23 +13,23 @@ import "./jobs.css";
 import { DesktopDatePicker, MobileDatePicker } from "@mui/x-date-pickers";
 import { useState } from "react";
 
-const PostJobs = () => {
+const PostIntern = () => {
 	const [applyWith, setApplyWith] = useState("");
 
 	const jobTypes = ["Remote", "Onsite", "Hybrid", "Full time", "Part time"];
-	const careerLevels = ["Senior", "Mid-senior", "Junior", "Team Lead"];
+	const studyLevels = ["Grad", "UnderGrad"];
 	const skills = ["php", "React", "CSS", "HTML", "Node"];
 
 	return (
-		<div className="PostJobs jobs">
-			<div className="title mb-4">Post Job</div>
+		<div className="PostIntern jobs">
+			<div className="title mb-4">Post Internship</div>
 			<form action="#">
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<TextField
 							id="outlined-textarea"
-							label="Job Title"
-							placeholder="Enter the job title"
+							label="Internship Title"
+							placeholder="Enter the internship title"
 							fullWidth
 						/>
 					</div>
@@ -37,7 +37,7 @@ const PostJobs = () => {
 						<TextField
 							id="outlined-select"
 							select
-							label="Job Type"
+							label="Internship Type"
 							defaultValue="Remote"
 							fullWidth
 						>
@@ -52,7 +52,7 @@ const PostJobs = () => {
 						<TextField
 							id="outlined-select"
 							select
-							label="Job Category"
+							label="Internship Category"
 							defaultValue="Front End"
 							fullWidth
 						>
@@ -67,11 +67,11 @@ const PostJobs = () => {
 						<TextField
 							id="outlined-select"
 							select
-							label="Career Level"
-							defaultValue="Junior"
+							label="Study Level"
+							defaultValue={studyLevels[0]}
 							fullWidth
 						>
-							{careerLevels.map((option) => (
+							{studyLevels.map((option) => (
 								<MenuItem key={option} value={option}>
 									{option}
 								</MenuItem>
@@ -94,6 +94,14 @@ const PostJobs = () => {
 							fullWidth
 						/>
 					</div>
+					<div className="col-12 px-lg-5 px-3 my-3">
+						<TextField
+							id="outlined-textarea"
+							label="Location"
+							placeholder="Enter the job Location"
+							fullWidth
+						/>
+					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<TextField
 							id="outlined-textarea"
@@ -102,19 +110,19 @@ const PostJobs = () => {
 							fullWidth
 						/>
 					</div>
-					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
+					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<TextField
 							id="outlined-textarea"
-							label="Location"
-							placeholder="Enter the job Location"
+							label="Internship Duration"
+							placeholder="Enter the internship Duration"
 							fullWidth
 						/>
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
 						<TextField
 							id="outlined-textarea"
-							label="Job Description"
-							placeholder="Enter a brief job description"
+							label="Internship Description"
+							placeholder="Enter a brief internship description"
 							fullWidth
 							multiline
 						/>
@@ -122,8 +130,8 @@ const PostJobs = () => {
 					<div className="col-12 px-lg-5 px-3 my-3">
 						<TextField
 							id="outlined-textarea"
-							label="Job Requirements"
-							placeholder="Enter the job requirements and specifications..."
+							label="Internship Requirements"
+							placeholder="Enter the internship requirements and specifications..."
 							fullWidth
 							multiline
 							rows={4}
@@ -224,4 +232,4 @@ const PostJobs = () => {
 	);
 };
 
-export default PostJobs;
+export default PostIntern;

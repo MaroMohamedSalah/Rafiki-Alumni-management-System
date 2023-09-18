@@ -19,6 +19,7 @@ import CreateNewPassSuccess from "./pages/CreateNewPasswordSuccess";
 import PostJobs from "./pages/PostJobs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import PostIntern from "./pages/PostIntern";
 
 function App() {
 	return (
@@ -49,6 +50,7 @@ function App() {
 						<Route path="/dashboard" element={<DashboardLayout />}>
 							<Route index element={<h1>User will see this first</h1>} />
 							<Route path="postJob" element={<PostJobs />} />
+							<Route path="postIntern" element={<PostIntern />} />
 							<Route path="applyJob" element={<h1>Apply Jobs</h1>} />
 							<Route path="jobsApplications" element={<h1>Applications</h1>} />
 						</Route>
