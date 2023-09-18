@@ -97,6 +97,7 @@
 	right: 0;
 	width: calc(100% - (64px + 1rem));
 	transition: all ease-in-out var(--main-transition);
+	z-index: 250;
 }
 .Dashboard .dashboard-wrapper.sidebar-open .nav {
 	width: calc(100% - var(--sideBar-width));
@@ -166,7 +167,7 @@
 	background-color: #1e1934;
 	top: 0;
 	left: 0;
-	z-index: 100; /* Make sure sidebar and nav are above content */
+	z-index: 400; /* Make sure sidebar and nav are above content */
 	width: 80px;
 }
 .Dashboard .sidebar.open {

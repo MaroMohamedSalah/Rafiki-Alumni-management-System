@@ -1,0 +1,24 @@
+.jobs .title {
+	color: #392e67;
+	font-size: 55px;
+	font-weight: 700;
+}
+.jobs .submit {
+	border-radius: var(--main-border-radius);
+}
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.jobs .title {
+		font-size: 35px;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+}
