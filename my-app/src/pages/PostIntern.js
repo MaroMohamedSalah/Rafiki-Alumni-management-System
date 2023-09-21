@@ -1,24 +1,23 @@
-import {
-	Autocomplete,
-	Button,
-	FormControl,
-	FormControlLabel,
-	FormLabel,
-	MenuItem,
-	Radio,
-	RadioGroup,
-	TextField,
-} from "@mui/material/node";
+import { Button, TextField } from "@mui/material/node";
 import "./jobs.css";
-import { DesktopDatePicker, MobileDatePicker } from "@mui/x-date-pickers";
 import { useState } from "react";
+import JobTitleInput from "../components/jobsComponents/JobTitleInput";
+import JobTypesSelect from "../components/jobsComponents/JobTypesSelect";
+import JobCategoriesSelect from "../components/jobsComponents/JobCategoriesSelect";
+import JobEduLevelSelect from "../components/jobsComponents/JobEduLevelSelect";
+import JobCompanyNameInput from "../components/jobsComponents/JobCompanyNameInput";
+import JobCompanyLogoInput from "../components/jobsComponents/JobCompanyLogoInput";
+import JobSalaryInput from "../components/jobsComponents/JobSalaryInput";
+import JobDescriptionTextarea from "../components/jobsComponents/JobDescriptionTextarea";
+import JobRequirementsTextarea from "../components/jobsComponents/JobRequirementsTextarea";
+import JobSkillsSelect from "../components/jobsComponents/JobSkillsSelect";
+import JobDeadline from "../components/jobsComponents/JobDeadline";
+import JobMethodSelection from "../components/jobsComponents/JobMethodSelection";
+import JobExternalLinkInput from "../components/jobsComponents/JobExternalLinkInput";
+import JobCompanyEmail from "../components/jobsComponents/JobCompanyEmail";
 
 const PostIntern = () => {
-	const [applyWith, setApplyWith] = useState("");
-
-	const jobTypes = ["Remote", "Onsite", "Hybrid", "Full time", "Part time"];
-	const studyLevels = ["Grad", "UnderGrad"];
-	const skills = ["php", "React", "CSS", "HTML", "Node"];
+	const [applyWith, setApplyWith] = useState("WithExternalLink");
 
 	return (
 		<div className="PostIntern jobs">
@@ -26,73 +25,25 @@ const PostIntern = () => {
 			<form action="#">
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-textarea"
-							label="Internship Title"
-							placeholder="Enter the internship title"
-							fullWidth
+						<JobTitleInput
+							label={"Internship Title"}
+							placeholder={"Enter the internship title"}
 						/>
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-select"
-							select
-							label="Internship Type"
-							defaultValue="Remote"
-							fullWidth
-						>
-							{jobTypes.map((option) => (
-								<MenuItem key={option} value={option}>
-									{option}
-								</MenuItem>
-							))}
-						</TextField>
+						<JobTypesSelect label={"Internship Type"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-select"
-							select
-							label="Internship Category"
-							defaultValue="Front End"
-							fullWidth
-						>
-							{jobTypes.map((option) => (
-								<MenuItem key={option} value={option}>
-									{option}
-								</MenuItem>
-							))}
-						</TextField>
+						<JobCategoriesSelect label={"Internship Category"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-select"
-							select
-							label="Study Level"
-							defaultValue={studyLevels[0]}
-							fullWidth
-						>
-							{studyLevels.map((option) => (
-								<MenuItem key={option} value={option}>
-									{option}
-								</MenuItem>
-							))}
-						</TextField>
+						<JobEduLevelSelect />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-textarea"
-							label="Company Name"
-							placeholder="Enter the company name"
-							fullWidth
-						/>
+						<JobCompanyNameInput />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
-						<TextField
-							id="outlined-textarea"
-							label="Company Logo Link (optional)"
-							placeholder="Paste the company logo link"
-							fullWidth
-						/>
+						<JobCompanyLogoInput />
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
 						<TextField
@@ -103,12 +54,7 @@ const PostIntern = () => {
 						/>
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
-						<TextField
-							id="outlined-textarea"
-							label="Salary (optional)"
-							placeholder="Example: $5000"
-							fullWidth
-						/>
+						<JobSalaryInput />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<TextField
@@ -116,97 +62,39 @@ const PostIntern = () => {
 							label="Internship Duration"
 							placeholder="Enter the internship Duration"
 							fullWidth
+							name="Duration"
 						/>
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-textarea"
-							label="Internship Description"
-							placeholder="Enter a brief internship description"
-							fullWidth
-							multiline
-						/>
+						<JobDescriptionTextarea label={"Internship Description"} />
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-textarea"
-							label="Internship Requirements"
-							placeholder="Enter the internship requirements and specifications..."
-							fullWidth
-							multiline
-							rows={4}
+						<JobRequirementsTextarea
+							placeholder={
+								"Enter the internship requirements and specifications..."
+							}
 						/>
-						{/* <MUIRichTextEditor label="Start typing..." /> */}
 					</div>
 
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<Autocomplete
-							multiple
-							id="tags-outlined"
-							options={skills}
-							getOptionLabel={(option) => option}
-							defaultValue={[skills[1]]}
-							filterSelectedOptions
-							renderInput={(params) => (
-								<TextField
-									{...params}
-									label="Required Skills"
-									placeholder="Enter Skill"
-								/>
-							)}
-						/>
+						<JobSkillsSelect />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
-						{window.innerWidth >= 992 ? (
-							<DesktopDatePicker
-								className="w-100"
-								label="Application Deadline (optional)"
-							/>
-						) : (
-							<MobileDatePicker className="w-100" />
-						)}
+						<JobDeadline />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<FormControl>
-							<FormLabel id="demo-radio-buttons-group-label">
-								How would you like to receive applications?
-							</FormLabel>
-							<RadioGroup
-								aria-labelledby="demo-radio-buttons-group-label"
-								name="radio-buttons-group"
-								onChange={(e) => setApplyWith(e.target.value)}
-							>
-								<FormControlLabel
-									value="WithExternalLink"
-									control={<Radio />}
-									label="Receive applications via an external link"
-								/>
-								<FormControlLabel
-									value="WithRafikiSystem"
-									control={<Radio />}
-									label="Receive applications via Rafiki (our system)"
-								/>
-							</RadioGroup>
-						</FormControl>
+						<JobMethodSelection
+							applyWith={applyWith}
+							setApplyWith={setApplyWith}
+						/>
 					</div>
 					{applyWith === "WithExternalLink" ? (
 						<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-							<TextField
-								id="outlined-textarea"
-								label="External Apply Link"
-								placeholder="Insert the link that you need to receive applications in"
-								fullWidth
-							/>
+							<JobExternalLinkInput />
 						</div>
 					) : (
 						<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-							<TextField
-								id="outlined-textarea"
-								label="Applications Email"
-								placeholder="Enter the email that you want to receive applications at "
-								fullWidth
-								type="email"
-							/>
+							<JobCompanyEmail />
 						</div>
 					)}
 					<div className="col-12 px-lg-5 px-3 my-3">
