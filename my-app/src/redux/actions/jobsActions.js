@@ -1,9 +1,20 @@
 import {
 	UPDATE_JOB_CATEGORY,
+	UPDATE_JOB_COMPANY_EMAIL,
+	UPDATE_JOB_COMPANY_LOGO,
+	UPDATE_JOB_COMPANY_NAME,
+	UPDATE_JOB_COMPANY_SIZE,
+	UPDATE_JOB_DEADLINE,
+	UPDATE_JOB_DESCRIPTION,
+	UPDATE_JOB_DURATION,
 	UPDATE_JOB_EDUCATION_LEVEL,
+	UPDATE_JOB_EXTERNAL_LINK,
+	UPDATE_JOB_REQUIREMENT,
+	UPDATE_JOB_SALARY,
 	UPDATE_JOB_TITLE,
 	UPDATE_JOB_TYPE,
 	UPDATE_MISSING_INPUTS,
+	UPDATE_SELECTED_JOB_SKILLS_IDS,
 } from "./types";
 
 export const updateJobTitle = async (dispatch, jobTitle) => {
@@ -28,6 +39,75 @@ export const updateJobEduLevel = async (dispatch, eduLevel) => {
 	return dispatch({
 		type: UPDATE_JOB_EDUCATION_LEVEL,
 		payload: eduLevel,
+	});
+};
+export const updateJobCompanyName = async (dispatch, name) => {
+	return dispatch({
+		type: UPDATE_JOB_COMPANY_NAME,
+		payload: name,
+	});
+};
+export const updateJobCompanyLogo = async (dispatch, link) => {
+	return dispatch({
+		type: UPDATE_JOB_COMPANY_LOGO,
+		payload: link,
+	});
+};
+export const updateJobCompanySize = async (dispatch, size) => {
+	return dispatch({
+		type: UPDATE_JOB_COMPANY_SIZE,
+		payload: size,
+	});
+};
+export const updateJobSalary = async (dispatch, salary) => {
+	return dispatch({
+		type: UPDATE_JOB_SALARY,
+		payload: +salary,
+	});
+};
+export const updateJobDescription = async (dispatch, description) => {
+	return dispatch({
+		type: UPDATE_JOB_DESCRIPTION,
+		payload: description,
+	});
+};
+export const updateJobRequirements = async (dispatch, req) => {
+	return dispatch({
+		type: UPDATE_JOB_REQUIREMENT,
+		payload: req,
+	});
+};
+export const updateJobSkillIds = (dispatch, selectedIds) => {
+	return dispatch({
+		type: UPDATE_SELECTED_JOB_SKILLS_IDS,
+		payload: selectedIds,
+	});
+};
+
+export const updateJobDeadline = (dispatch, deadline) => {
+	return dispatch({
+		type: UPDATE_JOB_DEADLINE,
+		payload: deadline,
+	});
+};
+
+export const updateJobExternalLink = (dispatch, link) => {
+	return dispatch({
+		type: UPDATE_JOB_EXTERNAL_LINK,
+		payload: link,
+	});
+};
+
+export const updateJobCompanyEmail = (dispatch, email) => {
+	return dispatch({
+		type: UPDATE_JOB_COMPANY_EMAIL,
+		payload: email,
+	});
+};
+export const updateJobDuration = (dispatch, duration) => {
+	return dispatch({
+		type: UPDATE_JOB_DURATION,
+		payload: +duration,
 	});
 };
 

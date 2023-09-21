@@ -1,19 +1,28 @@
-import { DesktopDatePicker, MobileDatePicker } from "@mui/x-date-pickers";
-import { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { MobileDatePicker, DesktopDatePicker } from "@mui/x-date-pickers";
+import { updateJobDeadline } from "../../redux/actions/jobsActions";
 
 const JobDeadline = () => {
-	const [selectedDate, setSelectedDate] = useState(null);
+	// Redux dispatch function
+	const dispatch = useDispatch();
+
+	// Function to handle date change
 	const handleDateChange = (date) => {
-		setSelectedDate(date);
+		// Dispatch the action to update the selected date in Redux
+		const formattedDate = `${date.$D}-${date.$M + 1}-${date.$y}`;
+		updateJobDeadline(dispatch, formattedDate);
 	};
+
+	// Determine whether to render the mobile or desktop date picker based on screen size
 	const isMobile = window.innerWidth <= 768;
+
 	return (
 		<>
 			{isMobile ? (
 				<MobileDatePicker
 					className="w-100"
 					name="Application_Deadline"
-					value={selectedDate}
 					onChange={handleDateChange}
 					format="DD/MM/YYYY"
 				/>
@@ -21,8 +30,7 @@ const JobDeadline = () => {
 				<DesktopDatePicker
 					className="w-100"
 					label="Application Deadline (optional)"
-					value={selectedDate} // Set the selected date
-					onChange={handleDateChange} // Update selected date on change
+					onChange={handleDateChange}
 					format="DD/MM/YYYY"
 				/>
 			)}

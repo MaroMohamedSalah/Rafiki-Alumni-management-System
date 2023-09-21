@@ -1,23 +1,28 @@
-import { MenuItem, TextField } from "@mui/material/node";
+import React from "react";
+import { MenuItem, TextField } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 import { updateJobType } from "../../redux/actions/jobsActions";
-import { useDispatch } from "react-redux";
+import { isFieldMissing } from "../../redux/reducers/jobsReducer";
 
-const JobTypesSelect = ({ label, name }) => {
+const JobTypesSelect = ({ label }) => {
 	const jobTypes = ["remote", "onsite", "hybrid"];
 	const dispatch = useDispatch();
+	const selectedJobType = useSelector((state) => state.jobs.formData.Job_Type);
+
 	const handleTypeChange = (e) => {
 		const newJobType = e.target.value;
 		updateJobType(dispatch, newJobType);
 	};
+
 	return (
 		<TextField
-			id="outlined-select "
+			id="outlined-select"
 			select
 			label={label}
-			defaultValue={jobTypes[0]}
+			value={selectedJobType}
 			fullWidth
 			name="Job_Type"
-			onBlur={(e) => handleTypeChange(e)}
+			onChange={handleTypeChange}
 			// helperText={isFieldMissing("Job_Type") && "Job Type Is Required"}
 			// error={isFieldMissing("Job_Type")}
 		>

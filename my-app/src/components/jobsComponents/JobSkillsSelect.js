@@ -3,6 +3,7 @@ import { createFilterOptions } from "@mui/material/node/Autocomplete";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import { updateJobSkillIds } from "../../redux/actions/jobsActions";
 
 const JobSkillsSelect = () => {
 	const [skills, setSkills] = useState([{ label: "", id: "" }]);
@@ -14,6 +15,8 @@ const JobSkillsSelect = () => {
 
 	const handleSkillChange = (event, newValue) => {
 		setSelectedSkills(newValue);
+		const selectedSkillsIds = newValue.map((skill) => skill.id);
+		updateJobSkillIds(dispatch, selectedSkillsIds);
 	};
 
 	const getSkills = () => {
@@ -46,39 +49,41 @@ const JobSkillsSelect = () => {
 		getSkills();
 	}, []);
 	return (
-		<Autocomplete
-			multiple
-			id="tags-outlined"
-			options={skills}
-			getOptionLabel={(option) => option.label}
-			value={selectedSkills} // Set the selected skills
-			onChange={handleSkillChange} // Update selected skills on change
-			filterSelectedOptions
-			renderInput={(params) => (
-				<TextField
-					{...params}
-					label="Required Skills"
-					placeholder="Enter Skill"
-					name="Job_Skill"
-				/>
-			)}
-			filterOptions={(options, params) => {
-				const filtered = filter(options, params);
+		<>
+			<Autocomplete
+				multiple
+				id="tags-outlined"
+				options={skills}
+				getOptionLabel={(option) => option.label}
+				value={selectedSkills} // Set the selected skills
+				onChange={handleSkillChange} // Update selected skills on change
+				filterSelectedOptions
+				renderInput={(params) => (
+					<TextField
+						{...params}
+						label="Required Skills"
+						placeholder="Enter Skill"
+						name="Job_Skill"
+					/>
+				)}
+				filterOptions={(options, params) => {
+					const filtered = filter(options, params);
 
-				const { inputValue } = params;
-				// Suggest the creation of a new value
-				const isExisting = options.some(
-					(option) => inputValue === option.label
-				);
-				if (inputValue !== "" && !isExisting) {
-					filtered.push({
-						label: capitalizeFirstLetter(inputValue),
-					});
-				}
+					const { inputValue } = params;
+					// Suggest the creation of a new value
+					const isExisting = options.some(
+						(option) => inputValue === option.label
+					);
+					if (inputValue !== "" && !isExisting) {
+						filtered.push({
+							label: capitalizeFirstLetter(inputValue),
+						});
+					}
 
-				return filtered;
-			}}
-		/>
+					return filtered;
+				}}
+			/>
+		</>
 	);
 };
 

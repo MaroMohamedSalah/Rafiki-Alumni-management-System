@@ -15,6 +15,7 @@ import JobDeadline from "../components/jobsComponents/JobDeadline";
 import JobMethodSelection from "../components/jobsComponents/JobMethodSelection";
 import JobExternalLinkInput from "../components/jobsComponents/JobExternalLinkInput";
 import JobCompanyEmail from "../components/jobsComponents/JobCompanyEmail";
+import JobDurationInput from "../components/jobsComponents/JobDurationInput";
 
 const PostIntern = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
@@ -57,13 +58,7 @@ const PostIntern = () => {
 						<JobSalaryInput />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
-						<TextField
-							id="outlined-textarea"
-							label="Internship Duration"
-							placeholder="Enter the internship Duration"
-							fullWidth
-							name="Duration"
-						/>
+						<JobDurationInput />
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
 						<JobDescriptionTextarea label={"Internship Description"} />

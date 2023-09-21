@@ -1,9 +1,14 @@
-import { MenuItem, TextField } from "@mui/material/node";
+import React from "react";
+import { MenuItem, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { updateJobEduLevel } from "../../redux/actions/jobsActions";
-const JobEduLevelSelect = ({ name }) => {
+
+const JobEduLevelSelect = ({ name, label }) => {
 	// Define your education levels array
 	const eduLevels = ["graduate", "undergraduate", "both"];
+	const selectedLevel = useSelector(
+		(state) => state.jobs.formData.Education_Level
+	);
 
 	// Redux dispatch function
 	const dispatch = useDispatch();
@@ -19,15 +24,11 @@ const JobEduLevelSelect = ({ name }) => {
 		<TextField
 			id="outlined-select"
 			select
-			label={"Education Level"}
+			label={label}
 			defaultValue={eduLevels[0]}
 			fullWidth
-			name={"Education_Level"}
-			onBlur={(e) => handleEducationLevelChange(e)}
-			// helperText={
-			// 	isFieldMissing("Education_Level") && "Job Education Level Is Required"
-			// }
-			// error={isFieldMissing("Education_Level")}
+			onChange={(e) => handleEducationLevelChange(e)}
+			value={selectedLevel}
 		>
 			{eduLevels.map((option) => (
 				<MenuItem key={option} value={option}>
