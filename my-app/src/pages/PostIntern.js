@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material/node";
 import "./jobs.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobTitleInput from "../components/jobsComponents/JobTitleInput";
 import JobTypesSelect from "../components/jobsComponents/JobTypesSelect";
 import JobCategoriesSelect from "../components/jobsComponents/JobCategoriesSelect";
@@ -16,14 +16,102 @@ import JobMethodSelection from "../components/jobsComponents/JobMethodSelection"
 import JobExternalLinkInput from "../components/jobsComponents/JobExternalLinkInput";
 import JobCompanyEmail from "../components/jobsComponents/JobCompanyEmail";
 import JobDurationInput from "../components/jobsComponents/JobDurationInput";
+import {
+	clearAllJobInputs,
+	updateIsIntern,
+} from "../redux/actions/jobsActions";
+import Toast from "../components/Toast";
+import { useDispatch, useSelector } from "react-redux";
+import JobLocationInput from "../components/jobsComponents/JobLocationInput";
 
 const PostIntern = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
+	const [missingFields, setMissingFields] = useState([]);
+	const formData = useSelector((state) => state.jobs.formData);
+	const sessionId = localStorage.getItem("sessionId");
+	const dispatch = useDispatch();
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
+		// const missingFields = []; // Initialize the missingFields array
+
+		// if (formData.get("External_Link") === "") {
+		// 	missingFields.push("External_Link"); // Add field name to missingFields array
+		// }
+		// if (formData.get("Company_Email") === "") {
+		// 	missingFields.push("Company_Email"); // Add field name to missingFields array
+		// }
+		// if (selectedJobCategory === null) {
+		// 	missingFields.push("Job_Category");
+		// }
+		// setMissingFields(missingFields);
+		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+			body: JSON.stringify(formData), // Convert the data object to JSON
+		})
+			.then((res) => {
+				if (res.status === 400) {
+					Toast({ title: "Please Fill All Required Fields", icon: "error" });
+				} else if (!res.ok) {
+					Toast({
+						title: "An error occurred while submitting the form",
+						icon: "error",
+					});
+					throw new Error("Add Post Field");
+				}
+				return res.json();
+			})
+			.then((data) => {
+				if (data.job_post_created) {
+					Toast({
+						title: "Internship Post Added Successfully.",
+						icon: "success",
+					});
+					// Clear the form or redirect to a success page if needed
+					clearAllJobInputs(dispatch);
+				} else if (data.missing_fields) {
+					// Ensure missing_fields is an array of unique field names
+					const uniqueMissingFields = [...new Set(data.missing_fields)];
+
+					// Combine the new array with the existing missingFields array
+					const updatedMissingFields = [
+						...missingFields,
+						...uniqueMissingFields,
+					];
+
+					Toast({
+						title: "Please Fill All Required Fields",
+						icon: "error",
+					});
+
+					setMissingFields(updatedMissingFields);
+				} else {
+					Toast({
+						title: "Job Post Failed. Please try again later.",
+						icon: "error",
+					});
+				}
+			})
+			.catch((error) => {
+				if (error.request) {
+					Toast({ title: "Check Your Network and try again", icon: "error" });
+				} else {
+					Toast({ title: "Please Try Again Later", icon: "error" });
+				}
+			});
+	};
+
+	useEffect(() => {
+		updateIsIntern(dispatch, true);
+	}, []);
 	return (
 		<div className="PostIntern jobs">
 			<div className="title mb-4">Post Internship</div>
-			<form action="#">
+			<form action="#" onSubmit={handleSubmit}>
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobTitleInput
@@ -47,12 +135,7 @@ const PostIntern = () => {
 						<JobCompanyLogoInput />
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
-						<TextField
-							id="outlined-textarea"
-							label="Location"
-							placeholder="Enter the job Location"
-							fullWidth
-						/>
+						<JobLocationInput placeholder={"Enter Internship Location"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<JobSalaryInput />
