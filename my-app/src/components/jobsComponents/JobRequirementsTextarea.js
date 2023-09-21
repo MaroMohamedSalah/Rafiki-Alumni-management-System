@@ -9,7 +9,7 @@ const JobRequirementsTextarea = ({ name, label, placeholder }) => {
 			fullWidth
 			multiline
 			rows={4}
-			name={name}
+			name={"Job_Requirements"}
 			// helperText={
 			// 	isFieldMissing("Job_Requirements") && "Job Requirements Is Required"
 			// }

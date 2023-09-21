@@ -16,7 +16,7 @@ const JobTypesSelect = ({ label, name }) => {
 			label={label}
 			defaultValue={jobTypes[0]}
 			fullWidth
-			name={name}
+			name="Job_Type"
 			onBlur={(e) => handleTypeChange(e)}
 			// helperText={isFieldMissing("Job_Type") && "Job Type Is Required"}
 			// error={isFieldMissing("Job_Type")}

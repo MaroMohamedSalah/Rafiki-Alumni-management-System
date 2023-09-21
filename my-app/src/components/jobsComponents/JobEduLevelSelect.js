@@ -22,7 +22,7 @@ const JobEduLevelSelect = ({ name }) => {
 			label={"Education Level"}
 			defaultValue={eduLevels[0]}
 			fullWidth
-			name={name}
+			name={"Education_Level"}
 			onBlur={(e) => handleEducationLevelChange(e)}
 			// helperText={
 			// 	isFieldMissing("Education_Level") && "Job Education Level Is Required"

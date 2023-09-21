@@ -105,7 +105,7 @@ const JobCategoriesSelect = ({ name, label }) => {
 				<TextField
 					{...params}
 					label={label}
-					name={name}
+					name={"Job_Category"}
 					// helperText={
 					// 	isFieldMissing("Job_Category") && "Job Job Category Is Required"
 					// }

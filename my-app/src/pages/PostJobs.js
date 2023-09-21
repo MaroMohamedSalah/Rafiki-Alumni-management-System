@@ -200,21 +200,17 @@ const PostJobs = () => {
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobTitleInput
 							label={"Job Title"}
-							name={"Job_Title"}
 							placeholder={"Enter the job title"}
 						/>
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<JobTypesSelect name={"Job_Type"} label={"Job Type"} />
+						<JobTypesSelect label={"Job Type"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<JobCategoriesSelect label={"Job Category"} name={"Job_Category"} />
+						<JobCategoriesSelect label={"Job Category"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<JobEduLevelSelect
-							name={"Education_Level"}
-							label={"Education Level"}
-						/>
+						<JobEduLevelSelect label={"Education Level"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobCompanyNameInput />
@@ -239,7 +235,6 @@ const PostJobs = () => {
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
 						<JobRequirementsTextarea
-							name={"Job_Requirements"}
 							placeholder={"Enter the job requirements and specifications..."}
 							label={"Job Requirements"}
 						/>

@@ -18,7 +18,7 @@ const JobTitleInput = ({ placeholder, label, name }) => {
 			label={label}
 			placeholder={placeholder}
 			fullWidth
-			name={name}
+			name={"Job_Title"}
 			onBlur={(e) => handleTitleChange(e)}
 			// helperText={
 			// 	isFieldMissing(missingInputs, "Job_Title") && "Job Title Is Required"
