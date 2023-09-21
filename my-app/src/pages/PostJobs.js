@@ -18,184 +18,89 @@ import JobMethodSelection from "../components/jobsComponents/JobMethodSelection"
 import JobExternalLinkInput from "../components/jobsComponents/JobExternalLinkInput";
 import JobCompanyEmail from "../components/jobsComponents/JobCompanyEmail";
 import { Button } from "@mui/material/node";
+import Toast from "../components/Toast";
 
 const PostJobs = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
 	const [missingFields, setMissingFields] = useState([]);
 	const formData = useSelector((state) => state.jobs.formData);
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 			Authorization: `Bearer ${sessionId}`,
-	// 		},
-	// 		body: JSON.stringify(formData), // Convert the data object to JSON
-	// 	})
-	// 		.then((res) => {
-	// 			if (res.status === 400) {
-	// 				Toast({ title: "Please Fill All Required Fields", icon: "error" });
-	// 			} else if (!res.ok) {
-	// 				Toast({
-	// 					title: "An error occurred while submitting the form",
-	// 					icon: "error",
-	// 				});
-	// 				throw new Error("Add Post Field");
-	// 			}
-	// 			return res.json();
-	// 		})
-	// 		.then((data) => {
-	// 			if (data.job_post_created) {
-	// 				Toast({ title: "Job Post Added Successfully.", icon: "success" });
-	// 				// Clear the form or redirect to a success page if needed
-	// 				// formElement.reset();
-	// 				setSelectedSkills([]); // Clear selected skills
-	// 				setSelectedDate(null); // Clear selected date
-	// 			} else if (data.missing_fields) {
-	// 				// Ensure missing_fields is an array of unique field names
-	// 				const uniqueMissingFields = [...new Set(data.missing_fields)];
-	// 				// Combine the new array with the existing missingFields array
-	// 				// const updatedMissingFields = [
-	// 				// 	...missingFields,
-	// 				// 	...uniqueMissingFields,
-	// 				// ];
-	// 				Toast({
-	// 					title: "Please Fill All Required Fields",
-	// 					icon: "error",
-	// 				});
-	// 				// setMissingFields(updatedMissingFields);
-	// 				updateMissingInput(dispatch, uniqueMissingFields);
-	// 			} else {
-	// 				Toast({
-	// 					title: "Job Post Failed. Please try again later.",
-	// 					icon: "error",
-	// 				});
-	// 			}
-	// 		})
-	// 		.catch((error) => {
-	// 			if (error.request) {
-	// 				Toast({ title: "Check Your Network and try again", icon: "error" });
-	// 			} else {
-	// 				Toast({ title: "Please Try Again Later", icon: "error" });
-	// 			}
-	// 		});
-	// };
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	const formElement = e.target; // Get the form element
-	// 	const formData = new FormData(formElement);
-	// 	const arrayOfSkillsId = selectedSkills.map((skill) => skill.id);
+	const sessionId = localStorage.getItem("sessionId");
 
-	// 	if (selectedDate) {
-	// 		const applicationDeadline = `${selectedDate.$D}-${selectedDate.$M + 1}-${
-	// 			selectedDate.$y
-	// 		}`;
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
-	// 		formData.append("Application_Deadline", applicationDeadline);
-	// 	}
+		// const missingFields = []; // Initialize the missingFields array
 
-	// 	const missingFields = []; // Initialize the missingFields array
+		// if (formData.get("External_Link") === "") {
+		// 	missingFields.push("External_Link"); // Add field name to missingFields array
+		// }
+		// if (formData.get("Company_Email") === "") {
+		// 	missingFields.push("Company_Email"); // Add field name to missingFields array
+		// }
+		// if (selectedJobCategory === null) {
+		// 	missingFields.push("Job_Category");
+		// }
+		// setMissingFields(missingFields);
+		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+			body: JSON.stringify(formData), // Convert the data object to JSON
+		})
+			.then((res) => {
+				if (res.status === 400) {
+					Toast({ title: "Please Fill All Required Fields", icon: "error" });
+				} else if (!res.ok) {
+					Toast({
+						title: "An error occurred while submitting the form",
+						icon: "error",
+					});
+					throw new Error("Add Post Field");
+				}
+				return res.json();
+			})
+			.then((data) => {
+				if (data.job_post_created) {
+					Toast({ title: "Job Post Added Successfully.", icon: "success" });
+					// Clear the form or redirect to a success page if needed
+				} else if (data.missing_fields) {
+					// Ensure missing_fields is an array of unique field names
+					const uniqueMissingFields = [...new Set(data.missing_fields)];
 
-	// 	if (formData.get("External_Link") === "") {
-	// 		missingFields.push("External_Link"); // Add field name to missingFields array
-	// 	}
-	// 	if (formData.get("Company_Email") === "") {
-	// 		missingFields.push("Company_Email"); // Add field name to missingFields array
-	// 	}
-	// 	if (selectedJobCategory === null) {
-	// 		missingFields.push("Job_Category");
-	// 	}
-	// 	setMissingFields(missingFields);
+					// Combine the new array with the existing missingFields array
+					const updatedMissingFields = [
+						...missingFields,
+						...uniqueMissingFields,
+					];
 
-	// 	// Create the data object
-	// 	const postData = {
-	// 		Job_Title: formData.get("Job_Title"),
-	// 		Description: formData.get("Description"),
-	// 		Company_Name: formData.get("Company_Name"),
-	// 		Company_Logo: formData.get("Company_Logo"),
-	// 		Contact_Info: "test",
-	// 		Company_Email: "test",
-	// 		Company_Size: formData.get("Company_Size"),
-	// 		External_Link: formData.get("External_Link"),
-	// 		Location: formData.get("Location"),
-	// 		Application_Deadline: formData.get("Application_Deadline"),
-	// 		Job_Category_Id: selectedJobCategory ? selectedJobCategory.id : null, // Use the selected category ID if available, otherwise set to null
-	// 		Salary: +formData.get("Salary"),
-	// 		isInternship: false, // Update with the correct value
-	// 		Duration: null, // Update with the correct value
-	// 		Job_Type: formData.get("Job_Type"),
-	// 		Education_Level: formData.get("Education_Level"),
-	// 		Job_Skills: arrayOfSkillsId,
-	// 	};
+					Toast({
+						title: "Please Fill All Required Fields",
+						icon: "error",
+					});
 
-	// 	if (missingFields.length === 0) {
-	// 		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
-	// 			method: "POST",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 				Authorization: `Bearer ${sessionId}`,
-	// 			},
-	// 			body: JSON.stringify(postData), // Convert the data object to JSON
-	// 		})
-	// 			.then((res) => {
-	// 				if (res.status === 400) {
-	// 					Toast({ title: "Please Fill All Required Fields", icon: "error" });
-	// 				} else if (!res.ok) {
-	// 					Toast({
-	// 						title: "An error occurred while submitting the form",
-	// 						icon: "error",
-	// 					});
-	// 					throw new Error("Add Post Field");
-	// 				}
-	// 				return res.json();
-	// 			})
-	// 			.then((data) => {
-	// 				if (data.job_post_created) {
-	// 					Toast({ title: "Job Post Added Successfully.", icon: "success" });
-	// 					// Clear the form or redirect to a success page if needed
-	// 					formElement.reset();
-	// 					setSelectedSkills([]); // Clear selected skills
-	// 					setSelectedDate(null); // Clear selected date
-	// 				} else if (data.missing_fields) {
-	// 					// Ensure missing_fields is an array of unique field names
-	// 					const uniqueMissingFields = [...new Set(data.missing_fields)];
-
-	// 					// Combine the new array with the existing missingFields array
-	// 					const updatedMissingFields = [
-	// 						...missingFields,
-	// 						...uniqueMissingFields,
-	// 					];
-
-	// 					Toast({
-	// 						title: "Please Fill All Required Fields",
-	// 						icon: "error",
-	// 					});
-
-	// 					setMissingFields(updatedMissingFields);
-	// 				} else {
-	// 					Toast({
-	// 						title: "Job Post Failed. Please try again later.",
-	// 						icon: "error",
-	// 					});
-	// 				}
-	// 			})
-	// 			.catch((error) => {
-	// 				if (error.request) {
-	// 					Toast({ title: "Check Your Network and try again", icon: "error" });
-	// 				} else {
-	// 					Toast({ title: "Please Try Again Later", icon: "error" });
-	// 				}
-	// 			});
-	// 	} else {
-	// 		Toast({ title: "Please Fill All Required Fields", icon: "error" });
-	// 	}
-	// };
+					setMissingFields(updatedMissingFields);
+				} else {
+					Toast({
+						title: "Job Post Failed. Please try again later.",
+						icon: "error",
+					});
+				}
+			})
+			.catch((error) => {
+				if (error.request) {
+					Toast({ title: "Check Your Network and try again", icon: "error" });
+				} else {
+					Toast({ title: "Please Try Again Later", icon: "error" });
+				}
+			});
+	};
 	// Helper function to check if a field is missing
 	return (
 		<div className="PostJobs jobs">
 			<div className="title mb-4">Post Job</div>
-			<form action="#">
+			<form action="#" onSubmit={handleSubmit}>
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobTitleInput

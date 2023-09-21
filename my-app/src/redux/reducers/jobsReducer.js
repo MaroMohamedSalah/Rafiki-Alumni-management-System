@@ -9,6 +9,7 @@ import {
 	UPDATE_JOB_DURATION,
 	UPDATE_JOB_EDUCATION_LEVEL,
 	UPDATE_JOB_EXTERNAL_LINK,
+	UPDATE_JOB_LOCATION,
 	UPDATE_JOB_REQUIREMENT,
 	UPDATE_JOB_SALARY,
 	UPDATE_JOB_TITLE,
@@ -24,14 +25,14 @@ const initialState = {
 		Company_Name: null,
 		Company_Logo: null,
 		Contact_Info: "test",
-		Company_Email: null,
+		Company_Email: "test",
 		Company_Size: "1-10 employees",
 		External_Link: null,
 		Location: null,
 		Application_Deadline: null,
 		Job_Category_Id: null,
 		Salary: null,
-		isInternship: null,
+		isInternship: false,
 		Duration: null,
 		Job_Type: "remote",
 		Education_Level: "graduate",
@@ -163,6 +164,14 @@ const jobsReducer = (state = initialState, action) => {
 				formData: {
 					...state.formData,
 					Duration: action.payload,
+				},
+			};
+		case UPDATE_JOB_LOCATION:
+			return {
+				...state,
+				formData: {
+					...state.formData,
+					Location: action.payload,
 				},
 			};
 		case UPDATE_MISSING_INPUTS:

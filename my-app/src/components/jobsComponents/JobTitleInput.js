@@ -8,7 +8,7 @@ const JobTitleInput = ({ placeholder, label }) => {
 	const jobTitle = useSelector((state) => state.jobs.formData.Job_Title);
 
 	const handleTitleChange = (e) => {
-		const newJobTitle = e.target.value.trim() || null; // Convert empty string to null
+		const newJobTitle = e.target.value || null; // Convert empty string to null
 		updateJobTitle(dispatch, newJobTitle);
 	};
 

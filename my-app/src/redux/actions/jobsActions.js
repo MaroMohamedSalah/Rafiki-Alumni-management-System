@@ -9,6 +9,7 @@ import {
 	UPDATE_JOB_DURATION,
 	UPDATE_JOB_EDUCATION_LEVEL,
 	UPDATE_JOB_EXTERNAL_LINK,
+	UPDATE_JOB_LOCATION,
 	UPDATE_JOB_REQUIREMENT,
 	UPDATE_JOB_SALARY,
 	UPDATE_JOB_TITLE,
@@ -102,6 +103,12 @@ export const updateJobCompanyEmail = (dispatch, email) => {
 	return dispatch({
 		type: UPDATE_JOB_COMPANY_EMAIL,
 		payload: email,
+	});
+};
+export const updateJobLocation = (dispatch, location) => {
+	return dispatch({
+		type: UPDATE_JOB_LOCATION,
+		payload: location,
 	});
 };
 export const updateJobDuration = (dispatch, duration) => {

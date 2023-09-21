@@ -9,9 +9,13 @@ const JobDeadline = () => {
 
 	// Function to handle date change
 	const handleDateChange = (date) => {
-		// Dispatch the action to update the selected date in Redux
-		const formattedDate = `${date.$D}-${date.$M + 1}-${date.$y}`;
-		updateJobDeadline(dispatch, formattedDate);
+		if (date) {
+			// Dispatch the action to update the selected date in Redux
+			const formattedDate = `${date.$D}-${date.$M + 1}-${date.$y}`;
+			updateJobDeadline(dispatch, formattedDate);
+		} else {
+			updateJobDeadline(dispatch, null);
+		}
 	};
 
 	// Determine whether to render the mobile or desktop date picker based on screen size
