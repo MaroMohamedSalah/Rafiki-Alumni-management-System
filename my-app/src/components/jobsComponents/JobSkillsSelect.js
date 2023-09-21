@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { updateJobSkillIds } from "../../redux/actions/jobsActions";
+import Toast from "../Toast";
 
 const JobSkillsSelect = () => {
 	const [skills, setSkills] = useState([{ label: "", id: "" }]);
@@ -17,6 +18,43 @@ const JobSkillsSelect = () => {
 		setSelectedSkills(newValue);
 		const selectedSkillsIds = newValue.map((skill) => skill.id);
 		updateJobSkillIds(dispatch, selectedSkillsIds);
+
+		// Check if each selected skill already exists, and add it if it doesn't
+		newValue.forEach((skill) => {
+			const isSkillExisting = skills.some(
+				(existingSkill) => existingSkill.label === skill.label
+			);
+			if (!isSkillExisting) {
+				addUnExistingSkill(skill.label);
+			}
+		});
+	};
+
+	const addUnExistingSkill = (skillName) => {
+		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
+			method: "POST",
+			body: JSON.stringify({
+				Skill_Name: skillName,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error("Add Skill failed");
+				}
+				return res.json();
+			})
+			.then((data) => {
+				if (data.success) {
+					console.log("done", data.message);
+				} else {
+					console.log("error", data.message);
+				}
+			})
+			.catch((err) => Toast({ title: err.message, icon: "error" }));
 	};
 
 	const getSkills = () => {
@@ -48,6 +86,7 @@ const JobSkillsSelect = () => {
 	useEffect(() => {
 		getSkills();
 	}, []);
+
 	return (
 		<>
 			<Autocomplete

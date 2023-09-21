@@ -45,13 +45,68 @@ const JobCategoriesSelect = ({ name, label }) => {
 		}
 	};
 
+	const addJobCategory = (categoryName) => {
+		fetch(
+			"https://rafiki-backend.azurewebsites.net/api/jobs/add-job-category",
+			{
+				method: "POST",
+				body: JSON.stringify({
+					Job_Category_Name: categoryName,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			}
+		)
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error("Add Job Category failed");
+				}
+				return res.json();
+			})
+			.then((data) => {
+				if (data.success) {
+					// // Add the newly created category to the list
+					// const newCategory = {
+					// 	label: categoryName,
+					// 	id: data.categoryId, // Replace with the actual response property name
+					// };
+					// setJobCategories((prevCategories) => [
+					// 	...prevCategories,
+					// 	newCategory,
+					// ]);
+					// // Select the newly created category
+					// setSelectedJobCategory(newCategory);
+					// // Update the category in Redux
+					// updateJobCategory(dispatch, newCategory.id);
+				} else {
+					console.log("error", data.message);
+				}
+			})
+			.catch((err) => console.error("Add Job Category Error:", err));
+	};
+
 	const handleCategoryChange = (newValue) => {
-		setSelectedJobCategory(newValue);
-		if (newValue) {
+		setSelectedJobCategory(newValue); // Always set selectedJobCategory
+
+		if (newValue !== null) {
+			// Check if newValue is not null
 			updateJobCategory(dispatch, newValue.id);
 		} else {
 			// Remove the selected category from Redux if it's cleared
 			updateJobCategory(dispatch, null);
+		}
+
+		// Check if the selected category already exists, and add it if it doesn't
+		if (newValue !== null) {
+			// Check if newValue is not null
+			const isCategoryExisting = jobCategories.some(
+				(existingCategory) => existingCategory.id === newValue.id
+			);
+			if (!isCategoryExisting) {
+				addJobCategory(newValue.label);
+			}
 		}
 	};
 
@@ -78,6 +133,17 @@ const JobCategoriesSelect = ({ name, label }) => {
 			)}
 			filterOptions={(options, params) => {
 				const filtered = filter(options, params);
+
+				const { inputValue } = params;
+				// Suggest the creation of a new value only if it doesn't exist in the options
+				if (inputValue && !filtered.length) {
+					return [
+						{
+							label: inputValue,
+						},
+					];
+				}
+
 				return filtered;
 			}}
 		/>
