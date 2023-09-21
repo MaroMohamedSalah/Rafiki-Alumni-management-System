@@ -11,7 +11,7 @@ const JobDeadline = () => {
 	const handleDateChange = (date) => {
 		if (date) {
 			// Dispatch the action to update the selected date in Redux
-			const formattedDate = `${date.$D}-${date.$M + 1}-${date.$y}`;
+			const formattedDate = `${date.$y}-${date.$M + 1}-${date.$D}`;
 			updateJobDeadline(dispatch, formattedDate);
 		} else {
 			updateJobDeadline(dispatch, null);

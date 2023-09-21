@@ -1,4 +1,6 @@
 import {
+	CLEAR_ALL_INPUTS,
+	UPDATE_IS_INTER,
 	UPDATE_JOB_CATEGORY,
 	UPDATE_JOB_COMPANY_EMAIL,
 	UPDATE_JOB_COMPANY_LOGO,
@@ -39,6 +41,25 @@ const initialState = {
 		Job_Skills: null,
 	},
 	missingInputs: [],
+};
+const initialFormData = {
+	Job_Title: "",
+	Description: "",
+	Company_Name: "",
+	Company_Logo: "",
+	Contact_Info: "test",
+	Company_Email: "test",
+	Company_Size: "1-10 employees",
+	External_Link: "",
+	Location: "",
+	Application_Deadline: "",
+	Job_Category_Id: "",
+	Salary: "",
+	isInternship: false,
+	Duration: "",
+	Job_Type: "remote",
+	Education_Level: "graduate",
+	Job_Skills: "",
 };
 
 const isFieldMissing = (state, fieldName) =>
@@ -174,6 +195,32 @@ const jobsReducer = (state = initialState, action) => {
 					Location: action.payload,
 				},
 			};
+		case UPDATE_IS_INTER:
+			// Determine if isInternship is true, and set Duration accordingly
+			const isInternship = action.payload;
+			const updatedFormData = { ...state.formData };
+
+			if (!isInternship) {
+				updatedFormData.Duration = null;
+			}
+
+			return {
+				...state,
+				formData: {
+					...updatedFormData,
+					isInternship,
+				},
+			};
+
+		case CLEAR_ALL_INPUTS:
+			return {
+				...state,
+				formData: {
+					// Reset formData to its initial value
+					...initialFormData,
+				},
+			};
+
 		case UPDATE_MISSING_INPUTS:
 			return {
 				...state,

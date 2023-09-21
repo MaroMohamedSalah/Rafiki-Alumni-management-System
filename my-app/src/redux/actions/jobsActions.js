@@ -1,4 +1,6 @@
 import {
+	CLEAR_ALL_INPUTS,
+	UPDATE_IS_INTER,
 	UPDATE_JOB_CATEGORY,
 	UPDATE_JOB_COMPANY_EMAIL,
 	UPDATE_JOB_COMPANY_LOGO,
@@ -122,5 +124,16 @@ export const updateMissingInput = async (dispatch, missingInputArray) => {
 	return dispatch({
 		type: UPDATE_MISSING_INPUTS,
 		payload: missingInputArray,
+	});
+};
+export const updateIsIntern = async (dispatch, isIntern) => {
+	return dispatch({
+		type: UPDATE_IS_INTER,
+		payload: isIntern,
+	});
+};
+export const clearAllJobInputs = async (dispatch) => {
+	return dispatch({
+		type: CLEAR_ALL_INPUTS,
 	});
 };

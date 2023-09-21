@@ -1,7 +1,7 @@
 import "./jobs.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import JobTitleInput from "../components/jobsComponents/JobTitleInput";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import JobTypesSelect from "../components/jobsComponents/JobTypesSelect";
 import JobCategoriesSelect from "../components/jobsComponents/JobCategoriesSelect";
 import JobEduLevelSelect from "../components/jobsComponents/JobEduLevelSelect";
@@ -19,12 +19,17 @@ import JobExternalLinkInput from "../components/jobsComponents/JobExternalLinkIn
 import JobCompanyEmail from "../components/jobsComponents/JobCompanyEmail";
 import { Button } from "@mui/material/node";
 import Toast from "../components/Toast";
+import {
+	clearAllJobInputs,
+	updateIsIntern,
+} from "../redux/actions/jobsActions";
 
 const PostJobs = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
 	const [missingFields, setMissingFields] = useState([]);
 	const formData = useSelector((state) => state.jobs.formData);
 	const sessionId = localStorage.getItem("sessionId");
+	const dispatch = useDispatch();
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -65,6 +70,7 @@ const PostJobs = () => {
 				if (data.job_post_created) {
 					Toast({ title: "Job Post Added Successfully.", icon: "success" });
 					// Clear the form or redirect to a success page if needed
+					clearAllJobInputs(dispatch);
 				} else if (data.missing_fields) {
 					// Ensure missing_fields is an array of unique field names
 					const uniqueMissingFields = [...new Set(data.missing_fields)];
@@ -96,6 +102,10 @@ const PostJobs = () => {
 				}
 			});
 	};
+
+	useEffect(() => {
+		updateIsIntern(dispatch, false);
+	}, []);
 	// Helper function to check if a field is missing
 	return (
 		<div className="PostJobs jobs">
