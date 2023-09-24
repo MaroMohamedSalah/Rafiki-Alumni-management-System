@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateJobTitle } from "../../redux/actions/jobsActions";
 
 const JobTitleInput = ({ placeholder, label }) => {
 	const dispatch = useDispatch();
-	const [jobTitle, setJobTitle] = useState("");
+	const jobTitle = useSelector((state) => state.jobs.formData.Job_Title);
 
+	// Use useEffect to retrieve the description from sessionStorage on component mount
 	useEffect(() => {
-		// Retrieve the job title from sessionStorage on component mount
+		// Retrieve the description from sessionStorage on component mount
 		const storedJobTitle = sessionStorage.getItem("Job_Title");
 		if (storedJobTitle !== null) {
-			setJobTitle(storedJobTitle);
+			updateJobTitle(dispatch, storedJobTitle); // Update Redux state with the stored value
 		}
-	}, []);
+	}, [dispatch]);
 
 	const handleTitleChange = (e) => {
 		const newJobTitle = e.target.value || null; // Convert empty string to null
@@ -27,7 +28,6 @@ const JobTitleInput = ({ placeholder, label }) => {
 		}
 
 		updateJobTitle(dispatch, newJobTitle);
-		setJobTitle(newJobTitle); // Update the local state
 	};
 
 	return (
@@ -36,7 +36,7 @@ const JobTitleInput = ({ placeholder, label }) => {
 			label={label}
 			placeholder={placeholder}
 			fullWidth
-			value={jobTitle}
+			value={jobTitle || ""}
 			onChange={handleTitleChange}
 		/>
 	);
