@@ -185,7 +185,7 @@ const Login = () => {
 											onChange={(e) => {
 												const regex = /^[a-zA-Z0-9_]{3,20}$/;
 												setUsernameError(
-													regex.test(e.target.value)
+													regex.test(e.target.value.trim())
 														? ""
 														: "Username must be 3-20 characters long and can only contain letters, numbers, and underscores."
 												);

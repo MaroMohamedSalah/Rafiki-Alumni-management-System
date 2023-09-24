@@ -1,15 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { updateJobTitle } from "../../redux/actions/jobsActions";
 
 const JobTitleInput = ({ placeholder, label }) => {
 	const dispatch = useDispatch();
-	const jobTitle = useSelector((state) => state.jobs.formData.Job_Title);
+	const [jobTitle, setJobTitle] = useState("");
+
+	useEffect(() => {
+		// Retrieve the job title from sessionStorage on component mount
+		const storedJobTitle = sessionStorage.getItem("Job_Title");
+		if (storedJobTitle !== null) {
+			setJobTitle(storedJobTitle);
+		}
+	}, []);
 
 	const handleTitleChange = (e) => {
 		const newJobTitle = e.target.value || null; // Convert empty string to null
+
+		// Check if the newJobTitle is empty, and remove the entity from sessionStorage if it is
+		if (newJobTitle === null) {
+			sessionStorage.removeItem("Job_Title");
+		} else {
+			// Store the job title in sessionStorage
+			sessionStorage.setItem("Job_Title", newJobTitle);
+		}
+
 		updateJobTitle(dispatch, newJobTitle);
+		setJobTitle(newJobTitle); // Update the local state
 	};
 
 	return (
@@ -18,7 +36,7 @@ const JobTitleInput = ({ placeholder, label }) => {
 			label={label}
 			placeholder={placeholder}
 			fullWidth
-			value={jobTitle} // Use the value from the Redux store, or an empty string if null
+			value={jobTitle}
 			onChange={handleTitleChange}
 		/>
 	);

@@ -7,10 +7,14 @@ import { isFieldMissing } from "../../redux/reducers/jobsReducer";
 const JobTypesSelect = ({ label }) => {
 	const jobTypes = ["remote", "onsite", "hybrid"];
 	const dispatch = useDispatch();
-	const selectedJobType = useSelector((state) => state.jobs.formData.Job_Type);
+	let selectedJobType = useSelector((state) => state.jobs.formData.Job_Type);
+	if (sessionStorage.getItem("Job_Type")) {
+		selectedJobType = sessionStorage.getItem("Job_Type");
+	}
 
 	const handleTypeChange = (e) => {
 		const newJobType = e.target.value;
+		sessionStorage.setItem("Job_Type", newJobType);
 		updateJobType(dispatch, newJobType);
 	};
 
