@@ -23,6 +23,7 @@ import {
 	clearAllJobInputs,
 	updateIsIntern,
 } from "../redux/actions/jobsActions";
+import JobTimeSelect from "../components/jobsComponents/JobTimeSelect";
 
 const PostJobs = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
@@ -125,7 +126,7 @@ const PostJobs = () => {
 						<JobCategoriesSelect label={"Job Category"} />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
-						<JobEduLevelSelect label={"Education Level"} />
+						<JobTimeSelect />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobCompanyNameInput />
@@ -133,7 +134,7 @@ const PostJobs = () => {
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<JobCompanyLogoInput />
 					</div>
-					<div className="col-12 px-lg-5 px-3 my-3 opt">
+					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<JobCompanySizeSelect />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
@@ -141,6 +142,9 @@ const PostJobs = () => {
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobLocationInput placeholder={"Enter Job Location"} />
+					</div>
+					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
+						<JobEduLevelSelect label={"Education Level"} />
 					</div>
 					<div className="col-12 px-lg-5 px-3 my-3">
 						<JobDescriptionTextarea

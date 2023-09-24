@@ -26,8 +26,7 @@ const initialState = {
 		Description: null,
 		Company_Name: null,
 		Company_Logo: null,
-		Contact_Info: "test",
-		Company_Email: "test",
+		Company_Email: null,
 		Company_Size: "1-10 employees",
 		External_Link: null,
 		Location: null,
@@ -39,6 +38,7 @@ const initialState = {
 		Job_Type: "remote",
 		Education_Level: "graduate",
 		Job_Skills: null,
+		Job_Time: "Full-time",
 	},
 	missingInputs: [],
 };
@@ -47,19 +47,20 @@ const initialFormData = {
 	Description: "",
 	Company_Name: "",
 	Company_Logo: "",
-	Contact_Info: "test",
-	Company_Email: "test",
+	Company_Email: "",
 	Company_Size: "1-10 employees",
 	External_Link: "",
 	Location: "",
 	Application_Deadline: "",
-	Job_Category_Id: "",
+	Job_Category_Id: [],
 	Salary: "",
 	isInternship: false,
 	Duration: "",
 	Job_Type: "remote",
 	Education_Level: "graduate",
-	Job_Skills: "",
+	Job_Skills: [],
+	Job_Requirements: "",
+	Job_Time: "Full-time",
 };
 
 const isFieldMissing = (state, fieldName) =>
@@ -144,7 +145,7 @@ const jobsReducer = (state = initialState, action) => {
 				...state,
 				formData: {
 					...state.formData,
-					Requirements: action.payload,
+					Job_Requirements: action.payload,
 				},
 			};
 		case UPDATE_SELECTED_JOB_SKILLS_IDS:

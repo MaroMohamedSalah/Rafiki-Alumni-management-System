@@ -23,6 +23,7 @@ import {
 import Toast from "../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import JobLocationInput from "../components/jobsComponents/JobLocationInput";
+import JobTimeSelect from "../components/jobsComponents/JobTimeSelect";
 
 const PostIntern = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
@@ -134,8 +135,11 @@ const PostIntern = () => {
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<JobCompanyLogoInput />
 					</div>
-					<div className="col-12 px-lg-5 px-3 my-3">
+					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobLocationInput placeholder={"Enter Internship Location"} />
+					</div>
+					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
+						<JobTimeSelect />
 					</div>
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3 opt">
 						<JobSalaryInput />

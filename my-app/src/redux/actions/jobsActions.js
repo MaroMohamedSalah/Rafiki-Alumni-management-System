@@ -14,6 +14,7 @@ import {
 	UPDATE_JOB_LOCATION,
 	UPDATE_JOB_REQUIREMENT,
 	UPDATE_JOB_SALARY,
+	UPDATE_JOB_TIME,
 	UPDATE_JOB_TITLE,
 	UPDATE_JOB_TYPE,
 	UPDATE_MISSING_INPUTS,
@@ -117,6 +118,12 @@ export const updateJobDuration = (dispatch, duration) => {
 	return dispatch({
 		type: UPDATE_JOB_DURATION,
 		payload: +duration,
+	});
+};
+export const updateJobTime = (dispatch, jobTime) => {
+	return dispatch({
+		type: UPDATE_JOB_TIME,
+		payload: jobTime,
 	});
 };
 
