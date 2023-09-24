@@ -33,7 +33,9 @@ const JobTitleInput = ({ placeholder, label }) => {
 	};
 
 	useEffect(() => {
-		missingInputs.includes("Job_Title") && setHasError(true);
+		missingInputs.includes("Job_Title")
+			? setHasError(true)
+			: setHasError(false);
 	}, [missingInputs]);
 
 	return (
@@ -46,7 +48,7 @@ const JobTitleInput = ({ placeholder, label }) => {
 			onChange={handleTitleChange}
 			name="Job_Title"
 			error={hasError}
-			helperText={hasError && "job title is required"}
+			helperText={hasError && "Job title is required"}
 		/>
 	);
 };

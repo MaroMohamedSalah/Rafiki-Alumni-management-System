@@ -1,7 +1,7 @@
 import { Autocomplete, TextField } from "@mui/material/node";
 import { createFilterOptions } from "@mui/material/node/Autocomplete";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { updateJobSkillIds } from "../../redux/actions/jobsActions";
 import Toast from "../Toast";
@@ -10,6 +10,8 @@ const JobSkillsSelect = () => {
 	const [skills, setSkills] = useState([{ label: "", id: "" }]);
 	const [selectedSkills, setSelectedSkills] = useState([]);
 	const dispatch = useDispatch();
+	const [hasError, setHasError] = useState(false);
+	const missingInputs = useSelector((state) => state.jobs.missingInputs);
 
 	const sessionId = localStorage.getItem("sessionId");
 	const filter = createFilterOptions();
@@ -109,9 +111,10 @@ const JobSkillsSelect = () => {
 	}, []);
 
 	useEffect(() => {
-		console.log("Skills ", skills);
-		console.log("selected Skills ", selectedSkills);
-	}, [selectedSkills, skills]);
+		missingInputs.includes("Job_Skills")
+			? setHasError(true)
+			: setHasError(false);
+	}, [missingInputs]);
 
 	return (
 		<>
@@ -128,7 +131,9 @@ const JobSkillsSelect = () => {
 						{...params}
 						label="Required Skills"
 						placeholder="Enter Skill"
-						name="Job_Skill"
+						name="Job_Skills"
+						error={hasError}
+						helperText={hasError && "Job skills is required"}
 					/>
 				)}
 				filterOptions={(options, params) => {

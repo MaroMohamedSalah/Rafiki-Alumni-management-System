@@ -19,6 +19,7 @@ import JobDurationInput from "../components/jobsComponents/JobDurationInput";
 import {
 	clearAllJobInputs,
 	updateIsIntern,
+	updateMissingInput,
 } from "../redux/actions/jobsActions";
 import Toast from "../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,18 +35,6 @@ const PostIntern = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// const missingFields = []; // Initialize the missingFields array
-
-		// if (formData.get("External_Link") === "") {
-		// 	missingFields.push("External_Link"); // Add field name to missingFields array
-		// }
-		// if (formData.get("Company_Email") === "") {
-		// 	missingFields.push("Company_Email"); // Add field name to missingFields array
-		// }
-		// if (selectedJobCategory === null) {
-		// 	missingFields.push("Job_Category");
-		// }
-		// setMissingFields(missingFields);
 		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
 			method: "POST",
 			headers: {
@@ -68,10 +57,7 @@ const PostIntern = () => {
 			})
 			.then((data) => {
 				if (data.job_post_created) {
-					Toast({
-						title: "Internship Post Added Successfully.",
-						icon: "success",
-					});
+					Toast({ title: "Job Post Added Successfully.", icon: "success" });
 					// Clear the form or redirect to a success page if needed
 					clearAllJobInputs(dispatch);
 				} else if (data.missing_fields) {
@@ -89,7 +75,8 @@ const PostIntern = () => {
 						icon: "error",
 					});
 
-					setMissingFields(updatedMissingFields);
+					// setMissingFields(updatedMissingFields);
+					updateMissingInput(dispatch, updatedMissingFields);
 				} else {
 					Toast({
 						title: "Job Post Failed. Please try again later.",

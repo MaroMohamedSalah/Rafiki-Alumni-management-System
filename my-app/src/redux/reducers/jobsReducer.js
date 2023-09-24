@@ -220,6 +220,7 @@ const jobsReducer = (state = initialState, action) => {
 					// Reset formData to its initial value
 					...initialFormData,
 				},
+				missingInputs: [],
 			};
 
 		case UPDATE_MISSING_INPUTS:

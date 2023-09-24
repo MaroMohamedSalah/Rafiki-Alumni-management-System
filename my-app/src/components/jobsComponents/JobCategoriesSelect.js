@@ -10,6 +10,8 @@ import { createFilterOptions } from "@mui/material/Autocomplete";
 const JobCategoriesSelect = ({ name, label }) => {
 	const [jobCategories, setJobCategories] = useState([]);
 	const [selectedJobCategory, setSelectedJobCategory] = useState(null);
+	const missingInputs = useSelector((state) => state.jobs.missingInputs);
+	const [hasError, setHasError] = useState(false);
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
 	const filter = createFilterOptions();
@@ -67,19 +69,6 @@ const JobCategoriesSelect = ({ name, label }) => {
 			})
 			.then((data) => {
 				if (data.success) {
-					// // Add the newly created category to the list
-					// const newCategory = {
-					// 	label: categoryName,
-					// 	id: data.categoryId, // Replace with the actual response property name
-					// };
-					// setJobCategories((prevCategories) => [
-					// 	...prevCategories,
-					// 	newCategory,
-					// ]);
-					// // Select the newly created category
-					// setSelectedJobCategory(newCategory);
-					// // Update the category in Redux
-					// updateJobCategory(dispatch, newCategory.id);
 				} else {
 					console.log("error", data.message);
 				}
@@ -110,9 +99,11 @@ const JobCategoriesSelect = ({ name, label }) => {
 		}
 	};
 
-	const isFieldMissing = useSelector((state) =>
-		state.jobs.missingInputs.includes("Job_Category")
-	);
+	useEffect(() => {
+		missingInputs.includes("Job_Category_Id")
+			? setHasError(true)
+			: setHasError(false);
+	}, [missingInputs]);
 
 	return (
 		<Autocomplete
@@ -127,8 +118,8 @@ const JobCategoriesSelect = ({ name, label }) => {
 					{...params}
 					label={label}
 					name="Job_Category"
-					helperText={isFieldMissing && "Job Category Is Required"}
-					error={isFieldMissing}
+					helperText={hasError && "Job category is required"}
+					error={hasError}
 				/>
 			)}
 			filterOptions={(options, params) => {

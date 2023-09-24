@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { updateJobCompanyName } from "../../redux/actions/jobsActions";
@@ -6,6 +6,8 @@ import { updateJobCompanyName } from "../../redux/actions/jobsActions";
 const JobCompanyNameInput = () => {
 	const dispatch = useDispatch();
 	const companyName = useSelector((state) => state.jobs.formData.Company_Name);
+	const missingInputs = useSelector((state) => state.jobs.missingInputs);
+	const [hasError, setHasError] = useState(false);
 
 	// Use useEffect to retrieve the company name from sessionStorage on component mount
 	useEffect(() => {
@@ -31,6 +33,12 @@ const JobCompanyNameInput = () => {
 		updateJobCompanyName(dispatch, newCompanyName);
 	};
 
+	useEffect(() => {
+		missingInputs.includes("Company_Name")
+			? setHasError(true)
+			: setHasError(false);
+	}, [missingInputs]);
+
 	return (
 		<TextField
 			id="outlined-textarea"
@@ -40,6 +48,8 @@ const JobCompanyNameInput = () => {
 			name="Company_Name"
 			value={companyName || ""}
 			onChange={handleNameChange}
+			error={hasError}
+			helperText={hasError && "Company name is required"}
 		/>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { updateJobDescription } from "../../redux/actions/jobsActions";
@@ -6,6 +6,8 @@ import { updateJobDescription } from "../../redux/actions/jobsActions";
 const JobDescriptionTextarea = ({ label, placeholder }) => {
 	const dispatch = useDispatch();
 	const description = useSelector((state) => state.jobs.formData.Description);
+	const missingInputs = useSelector((state) => state.jobs.missingInputs);
+	const [hasError, setHasError] = useState(false);
 
 	// Use useEffect to retrieve the description from sessionStorage on component mount
 	useEffect(() => {
@@ -31,6 +33,12 @@ const JobDescriptionTextarea = ({ label, placeholder }) => {
 		updateJobDescription(dispatch, newDescription);
 	};
 
+	useEffect(() => {
+		missingInputs.includes("Description")
+			? setHasError(true)
+			: setHasError(false);
+	}, [missingInputs]);
+
 	return (
 		<TextField
 			id="outlined-textarea"
@@ -41,6 +49,8 @@ const JobDescriptionTextarea = ({ label, placeholder }) => {
 			name="Description"
 			value={description || ""}
 			onChange={handleDescriptionChange}
+			error={hasError}
+			helperText={hasError && "Job description is required"}
 		/>
 	);
 };

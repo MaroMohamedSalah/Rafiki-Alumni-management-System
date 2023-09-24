@@ -35,19 +35,6 @@ const PostJobs = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		const requiredFields = ["Job_Title", "Job_Type", ""];
-
-		const emptyFields = requiredFields.filter((field) => {
-			if (formData[field] === "" || formData[field] === null) {
-				console.log("Empty:" + field);
-				return field;
-			}
-		});
-
-		console.log(emptyFields);
-		updateMissingInput(dispatch, emptyFields);
-
 		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
 			method: "POST",
 			headers: {
