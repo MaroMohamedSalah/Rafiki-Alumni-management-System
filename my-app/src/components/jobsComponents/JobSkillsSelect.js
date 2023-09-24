@@ -50,6 +50,27 @@ const JobSkillsSelect = () => {
 			.then((data) => {
 				if (data.success) {
 					console.log("done", data.message);
+					const newSkill = {
+						label: data.skill.Skill_Name,
+						id: data.skill.Skill_Id,
+					};
+					// Create a new array with the updated selected skills
+					const updatedSelectedSkills = [...selectedSkills, newSkill];
+					setSelectedSkills(updatedSelectedSkills);
+					// Dispatch an action to update Redux with the new selected skills
+					updateJobSkillIds(
+						dispatch,
+						updatedSelectedSkills.map((skill) => skill.id)
+					);
+					// Create a new array with the updated skills
+					const updatedSkills = [
+						...skills,
+						{
+							label: data.skill.Skill_Name,
+							id: data.skill.Skill_Id,
+						},
+					];
+					setSkills(updatedSkills);
 				} else {
 					console.log("error", data.message);
 				}
@@ -86,6 +107,11 @@ const JobSkillsSelect = () => {
 	useEffect(() => {
 		getSkills();
 	}, []);
+
+	useEffect(() => {
+		console.log("Skills ", skills);
+		console.log("selected Skills ", selectedSkills);
+	}, [selectedSkills, skills]);
 
 	return (
 		<>
