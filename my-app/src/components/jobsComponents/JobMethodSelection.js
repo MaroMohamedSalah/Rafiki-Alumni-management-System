@@ -6,8 +6,28 @@ import {
 	RadioGroup,
 	TextField,
 } from "@mui/material/node";
+import {
+	updateJobCompanyEmail,
+	updateJobExternalLink,
+} from "../../redux/actions/jobsActions";
+import { useDispatch } from "react-redux";
 
 const JobMethodSelection = ({ setApplyWith, applyWith }) => {
+	const dispatch = useDispatch();
+	const handelMethodChange = (e) => {
+		setApplyWith(e.target.value);
+		switch (applyWith) {
+			case "WithExternalLink":
+				updateJobCompanyEmail(dispatch, null);
+				break;
+			case "WithRafikiSystem":
+				updateJobExternalLink(dispatch, null);
+				break;
+
+			default:
+				break;
+		}
+	};
 	return (
 		<>
 			<FormControl id="">
@@ -17,7 +37,7 @@ const JobMethodSelection = ({ setApplyWith, applyWith }) => {
 				<RadioGroup
 					aria-labelledby="demo-radio-buttons-group-label"
 					name="radio-buttons-group"
-					onChange={(e) => setApplyWith(e.target.value)}
+					onChange={(e) => handelMethodChange(e)}
 					value={applyWith}
 				>
 					<FormControlLabel

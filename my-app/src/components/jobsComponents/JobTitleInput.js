@@ -6,6 +6,8 @@ import { updateJobTitle } from "../../redux/actions/jobsActions";
 const JobTitleInput = ({ placeholder, label }) => {
 	const dispatch = useDispatch();
 	const jobTitle = useSelector((state) => state.jobs.formData.Job_Title);
+	const missingInputs = useSelector((state) => state.jobs.missingInputs);
+	const [hasError, setHasError] = useState(false);
 
 	// Use useEffect to retrieve the description from sessionStorage on component mount
 	useEffect(() => {
@@ -30,6 +32,10 @@ const JobTitleInput = ({ placeholder, label }) => {
 		updateJobTitle(dispatch, newJobTitle);
 	};
 
+	useEffect(() => {
+		missingInputs.includes("Job_Title") && setHasError(true);
+	}, [missingInputs]);
+
 	return (
 		<TextField
 			id="outlined-textarea"
@@ -38,6 +44,9 @@ const JobTitleInput = ({ placeholder, label }) => {
 			fullWidth
 			value={jobTitle || ""}
 			onChange={handleTitleChange}
+			name="Job_Title"
+			error={hasError}
+			helperText={hasError && "job title is required"}
 		/>
 	);
 };

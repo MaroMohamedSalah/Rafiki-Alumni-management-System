@@ -22,6 +22,7 @@ import Toast from "../components/Toast";
 import {
 	clearAllJobInputs,
 	updateIsIntern,
+	updateMissingInput,
 } from "../redux/actions/jobsActions";
 import JobTimeSelect from "../components/jobsComponents/JobTimeSelect";
 
@@ -35,18 +36,18 @@ const PostJobs = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// const missingFields = []; // Initialize the missingFields array
+		const requiredFields = ["Job_Title", "Job_Type", ""];
 
-		// if (formData.get("External_Link") === "") {
-		// 	missingFields.push("External_Link"); // Add field name to missingFields array
-		// }
-		// if (formData.get("Company_Email") === "") {
-		// 	missingFields.push("Company_Email"); // Add field name to missingFields array
-		// }
-		// if (selectedJobCategory === null) {
-		// 	missingFields.push("Job_Category");
-		// }
-		// setMissingFields(missingFields);
+		const emptyFields = requiredFields.filter((field) => {
+			if (formData[field] === "" || formData[field] === null) {
+				console.log("Empty:" + field);
+				return field;
+			}
+		});
+
+		console.log(emptyFields);
+		updateMissingInput(dispatch, emptyFields);
+
 		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
 			method: "POST",
 			headers: {
@@ -87,7 +88,8 @@ const PostJobs = () => {
 						icon: "error",
 					});
 
-					setMissingFields(updatedMissingFields);
+					// setMissingFields(updatedMissingFields);
+					updateMissingInput(dispatch, updatedMissingFields);
 				} else {
 					Toast({
 						title: "Job Post Failed. Please try again later.",
@@ -111,7 +113,7 @@ const PostJobs = () => {
 	return (
 		<div className="PostJobs jobs">
 			<div className="title mb-4">Post Job</div>
-			<form action="#" onSubmit={handleSubmit}>
+			<form action="#" onSubmit={handleSubmit} id="form">
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">
 						<JobTitleInput
