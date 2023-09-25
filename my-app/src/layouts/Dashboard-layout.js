@@ -53,7 +53,7 @@ const DashboardLayout = () => {
 	return (
 		<div className="Dashboard">
 			{userInfo && userInfo.user && profile ? (
-				<div className="container-fluid hv-100">
+				<div className="container-fluid vh-100">
 					<DashboardSidebar profileData={userInfo.user} />
 
 					<div

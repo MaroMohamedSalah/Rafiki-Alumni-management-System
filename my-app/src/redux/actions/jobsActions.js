@@ -1,5 +1,6 @@
 import {
 	CLEAR_ALL_INPUTS,
+	UPDATE_ALL_JOBS,
 	UPDATE_IS_INTER,
 	UPDATE_JOB_CATEGORY,
 	UPDATE_JOB_COMPANY_EMAIL,
@@ -142,5 +143,12 @@ export const updateIsIntern = async (dispatch, isIntern) => {
 export const clearAllJobInputs = async (dispatch) => {
 	return dispatch({
 		type: CLEAR_ALL_INPUTS,
+	});
+};
+
+export const updateAllJobs = async (dispatch, jobs) => {
+	return dispatch({
+		type: UPDATE_ALL_JOBS,
+		payload: jobs,
 	});
 };

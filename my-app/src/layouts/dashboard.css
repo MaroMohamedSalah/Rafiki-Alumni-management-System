@@ -269,10 +269,16 @@
 }
 .Dashboard .content {
 	padding-top: 66px;
+	height: calc(100vh);
+	overflow-y: scroll;
+}
+.Dashboard .content::-webkit-scrollbar {
+	width: 0;
+	height: 0;
 }
 .Dashboard .content-container {
-	background-color: white;
-	min-height: 100vh;
+	background-color: #e9e5f9;
+	height: fit-content;
 	border-top-right-radius: 20px;
 	border-top-left-radius: 0px;
 	padding: 10px;

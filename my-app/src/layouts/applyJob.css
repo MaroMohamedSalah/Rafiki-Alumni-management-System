@@ -1,0 +1,15 @@
+.ApplyJobLayout {
+	height: calc(100vh - 90px);
+	background-color: transparent;
+}
+.ApplyJobLayout .jobCards {
+	height: 88vh;
+	background-color: white;
+	overflow-y: scroll;
+	border-radius: var(--main-border-radius);
+}
+
+.ApplyJobLayout .jobCards::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}

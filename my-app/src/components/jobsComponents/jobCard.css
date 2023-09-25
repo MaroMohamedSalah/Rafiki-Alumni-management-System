@@ -1,0 +1,26 @@
+.ApplyJobLayout .jobCard .row {
+	transition: all ease-in-out var(--main-transition);
+	border-radius: var(--main-border-radius);
+}
+.ApplyJobLayout .jobCard:hover > .row {
+	background-color: rgba(57, 46, 103, 0.28);
+	cursor: pointer;
+}
+.ApplyJobLayout .jobCard .jobInfo .jobTitle {
+	font-weight: 400;
+	color: var(--Reset-pass-color);
+}
+.ApplyJobLayout .jobCard .jobInfo .companyName {
+	font-weight: 400;
+	color: black;
+	font-size: 16px;
+}
+.ApplyJobLayout .jobCard .companyLogo {
+	width: 75px;
+	height: 75px;
+	border-radius: var(--main-border-radius);
+	background-color: var(--Reset-pass-color);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

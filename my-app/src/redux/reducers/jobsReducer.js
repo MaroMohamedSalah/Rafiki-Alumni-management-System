@@ -1,5 +1,6 @@
 import {
 	CLEAR_ALL_INPUTS,
+	UPDATE_ALL_JOBS,
 	UPDATE_IS_INTER,
 	UPDATE_JOB_CATEGORY,
 	UPDATE_JOB_COMPANY_EMAIL,
@@ -41,6 +42,7 @@ const initialState = {
 		Job_Time: "Full-time",
 	},
 	missingInputs: [],
+	availableJobs: [],
 };
 const initialFormData = {
 	Job_Title: "",
@@ -229,6 +231,11 @@ const jobsReducer = (state = initialState, action) => {
 				missingInputs: [...action.payload],
 			};
 
+		case UPDATE_ALL_JOBS:
+			return {
+				...state,
+				availableJobs: [...action.payload],
+			};
 		// handle other actions and state updates here
 		default:
 			return state;
