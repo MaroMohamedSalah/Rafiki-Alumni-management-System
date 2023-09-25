@@ -1,26 +1,17 @@
 .LandingPage {
-	background-color: var(--bg-1);
+	background-color: white;
 }
-
 .LandingPage .btn {
 	position: relative;
 	border-radius: var(--main-border-radius);
-	background-color: var(--bs-blue);
-	width: 260px;
-	color: var(--bs-body-bg);
-	font-weight: 600;
-	font-size: 1.75em;
 	overflow: hidden;
 	transition: background-color 0.3s ease, color 0.3s ease;
-	min-height: 71px;
 	display: flex;
-	justify-content: center;
-	align-items: center;
 }
-.LandingPage .btn h2 {
-	position: absolute;
+.LandingPage .btn h5 {
 	z-index: 5;
 	color: white;
+	margin-bottom: 0;
 }
 
 .LandingPage .btn::after {
@@ -54,4 +45,36 @@
 
 .LandingPage a:hover {
 	cursor: none;
+}
+/* nav  */
+.LandingPage .login {
+	border: 2px solid var(--Professor-color);
+}
+.LandingPage .login h5 {
+	color: var(--Professor-color);
+}
+.LandingPage .login:hover {
+	border-color: var(--cursor-color);
+}
+.LandingPage .login:hover::after {
+	background-color: var(--cursor-follow-color);
+}
+.LandingPage nav .signup {
+	background-color: var(--Alumni-color);
+}
+
+/* intro  */
+.LandingPage .intro h1 {
+	font-size: 60px;
+	font-weight: 700;
+	color: var(--Professor-color);
+}
+.LandingPage .intro h2 {
+	font-size: 30px;
+	font-weight: 700;
+	color: var(--Professor-color);
+}
+.LandingPage .intro .signup {
+	width: fit-content;
+	background-color: var(--Alumni-color);
 }

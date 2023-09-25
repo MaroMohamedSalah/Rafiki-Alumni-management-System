@@ -47,7 +47,7 @@ const Cursor = () => {
 	};
 
 	return (
-		<>
+		<div className="d-none d-lg-block">
 			<div
 				className={`Cursor main ${isClicked ? "expend" : ""} ${
 					isHovered ? "hover" : ""
@@ -62,7 +62,7 @@ const Cursor = () => {
 				className={`Cursor follow2 ${isHovered ? "hover" : ""}`}
 				style={cursorStyle}
 			></div>
-		</>
+		</div>
 	);
 };
 
