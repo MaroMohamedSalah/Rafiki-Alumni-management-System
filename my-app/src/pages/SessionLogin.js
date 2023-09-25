@@ -37,7 +37,6 @@ const SessionLogin = () => {
 			console.log("Error while fetching profile data:", error);
 		}
 	};
-	const handelLogin = () => {};
 	const handelLogout = () => {
 		fetch("https://rafiki-backend.azurewebsites.net/api/users/logout", {
 			method: "GET",

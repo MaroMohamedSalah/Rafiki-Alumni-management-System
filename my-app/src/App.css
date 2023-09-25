@@ -17,6 +17,9 @@
 
 	--bg-1: #f5f5dc;
 
+	--cursor-color: #00695c;
+	--cursor-follow-color: #00695d4f;
+
 	--main-transition: 0.5s;
 	--main-border-radius: 9px;
 	--large-border-radius: 20px;

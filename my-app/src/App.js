@@ -43,7 +43,6 @@ function App() {
 								element={<CreateNewPassSuccess />}
 							/>
 						</Route>
-
 						{/* Private Routes */}
 						{/* Private routes are routes that require the user to be authenticated or
 					logged in to access them. */}
@@ -55,12 +54,10 @@ function App() {
 							<Route path="jobsApplications" element={<h1>Applications</h1>} />
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
-
 						{/* Signup Routes */}
 						<Route path="/alumniSignup" element={<AlumniSignup />} />
 						<Route path="/studentSignup" element={<CurrantStudentSignup />} />
 						<Route path="/hrSignup" element={<HRSignup />} />
-
 						{/* Profile Routes */}
 						{/* <Route path="/profile" element={<Profile />} /> */}
 						<Route path="/profile" element={<ProfileLayout />}>

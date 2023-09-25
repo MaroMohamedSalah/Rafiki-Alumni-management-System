@@ -1,15 +1,57 @@
 .LandingPage {
 	background-color: var(--bg-1);
 }
-.LandingPage button {
+
+.LandingPage .btn {
+	position: relative;
 	border-radius: var(--main-border-radius);
 	background-color: var(--bs-blue);
 	width: 260px;
 	color: var(--bs-body-bg);
 	font-weight: 600;
 	font-size: 1.75em;
+	overflow: hidden;
+	transition: background-color 0.3s ease, color 0.3s ease;
+	min-height: 71px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-.LandingPage button:hover {
-	opacity: 0.75;
-	background-color: var(--bs-blue);
+.LandingPage .btn h2 {
+	position: absolute;
+	z-index: 5;
+	color: white;
+}
+
+.LandingPage .btn::after {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	opacity: 0;
+	background-color: var(--cursor-color);
+	left: 0;
+	bottom: 0;
+	transition: all ease-in-out 0.2s;
+	z-index: 1; /* Ensure the ::after element is above the text */
+}
+
+.LandingPage .btn:hover::after {
+	width: 100%;
+	height: 100%;
+	border-radius: var(--main-border-radius);
+	opacity: 1;
+	cursor: none;
+	z-index: 2; /* Bring the ::after element above the text on hover */
+}
+
+.LandingPage .btn:hover {
+	background-color: transparent;
+	color: var(--cursor-color);
+	cursor: none;
+}
+
+.LandingPage a:hover {
+	cursor: none;
 }

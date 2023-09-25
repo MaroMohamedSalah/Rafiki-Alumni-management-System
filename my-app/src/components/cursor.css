@@ -1,0 +1,28 @@
+.LandingPage {
+	cursor: none;
+	overflow-x: hidden;
+}
+.Cursor.main {
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	border-radius: 50% !important;
+	background-color: var(--cursor-color);
+	transition: width 0.3s, height 0.3s;
+}
+.Cursor.expend {
+	width: 18px;
+	height: 18px;
+}
+.Cursor.hover {
+	width: 50px;
+	height: 50px;
+}
+.Cursor.follow1 {
+	position: absolute;
+	width: 13px;
+	height: 13px;
+	border-radius: 50% !important;
+	background-color: var(--cursor-follow-color);
+	transition: transform 0.4s;
+}
