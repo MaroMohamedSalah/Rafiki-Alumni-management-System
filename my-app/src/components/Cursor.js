@@ -58,10 +58,6 @@ const Cursor = () => {
 				className={`Cursor follow1 ${isHovered ? "hover" : ""}`}
 				style={cursorStyle}
 			></div>
-			<div
-				className={`Cursor follow2 ${isHovered ? "hover" : ""}`}
-				style={cursorStyle}
-			></div>
 		</div>
 	);
 };

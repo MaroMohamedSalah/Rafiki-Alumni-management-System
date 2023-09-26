@@ -60,7 +60,7 @@
 	background-color: var(--cursor-follow-color);
 }
 .LandingPage nav .signup {
-	background-color: var(--Alumni-color);
+	background-color: var(--secondary-color);
 }
 
 /* intro  */
@@ -76,5 +76,5 @@
 }
 .LandingPage .intro .signup {
 	width: fit-content;
-	background-color: var(--Alumni-color);
+	background-color: var(--secondary-color);
 }
