@@ -3,6 +3,8 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import WorkIcon from "@mui/icons-material/Work";
 import "./jobCard.css";
+import { useState } from "react"; // Import useState to manage selected state
+import { displayJobSkills } from "../../utils/displayJobSkills";
 
 const JobCard = ({
 	jobTitle,
@@ -10,11 +12,25 @@ const JobCard = ({
 	companyName,
 	companyLocation,
 	skills,
-	key,
+	onClick, // Add onClick prop
+	active, // Add selected prop
 }) => {
+	const [isChecked, setIsChecked] = useState(false); // State to manage checkbox
+
+	const handleCheckboxChange = () => {
+		setIsChecked(!isChecked); // Toggle checkbox state
+	};
+
+	const handleCardClick = () => {
+		onClick(); // Invoke the onClick callback from props
+	};
+
 	return (
-		<div className="jobCard" key={key}>
-			<div className="row py-3 px-2">
+		<div
+			className={`jobCard ${active ? "active" : ""}`} // Apply 'active' class based on selected prop
+			onClick={handleCardClick} // Add click handler to the entire card
+		>
+			<div className="row p-3">
 				<div className="col-3">
 					<div className="companyLogo text-white">
 						{logo ? (
@@ -33,7 +49,10 @@ const JobCard = ({
 						<p className="companyLocation text-black-50 mb-1">
 							{companyLocation}
 						</p>
-						<p className="skills text-black-50 mb-0">HTML . CSS ...</p>
+						<p className="skillList text-black-50 mb-0">
+							Skills:
+							{displayJobSkills(true, skills)}
+						</p>
 					</div>
 					<div className="col position-relative">
 						<Checkbox
@@ -41,6 +60,8 @@ const JobCard = ({
 							aria-label="save"
 							icon={<BookmarkBorderIcon />}
 							checkedIcon={<BookmarkIcon />}
+							checked={isChecked} // Bind checkbox state
+							onChange={handleCheckboxChange} // Handle checkbox change
 						/>
 					</div>
 				</div>

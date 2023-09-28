@@ -1,0 +1,6 @@
+.jobDetail .jobTitle,
+.jobDetail .jobDescription .title .jobDetail .jobReqs .title {
+	font-size: 24px;
+	font-weight: 400;
+	color: black;
+}

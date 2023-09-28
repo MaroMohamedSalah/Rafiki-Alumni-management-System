@@ -21,6 +21,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import PostIntern from "./pages/PostIntern";
 import ApplyJobLayout from "./layouts/ApplyJob-layout";
+import JobDetail from "./components/jobsComponents/JobDetail";
 
 function App() {
 	return (
@@ -51,7 +52,9 @@ function App() {
 							<Route index element={<h1>User will see this first</h1>} />
 							<Route path="postJob" element={<PostJobs />} />
 							<Route path="postIntern" element={<PostIntern />} />
-							<Route path="applyJob" element={<ApplyJobLayout />} />
+							<Route path="applyJob" element={<ApplyJobLayout />}>
+								<Route index path=":jobId" element={<JobDetail />} />
+							</Route>
 							<Route path="jobsApplications" element={<h1>Applications</h1>} />
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />

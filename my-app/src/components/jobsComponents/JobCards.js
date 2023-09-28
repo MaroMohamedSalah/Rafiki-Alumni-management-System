@@ -6,6 +6,7 @@ import animationData from "../../animations/no_jobs_found.json";
 import { updateAllJobs } from "../../redux/actions/jobsActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Backdrop, CircularProgress } from "@mui/material/node";
+import { useNavigate } from "react-router-dom";
 
 const JobCards = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -13,9 +14,11 @@ const JobCards = () => {
 	const allJobs = useSelector((state) => state.jobs.availableJobs);
 	const [page, setPage] = useState(0); // Start with page 0
 	const [hasMore, setHasMore] = useState(true);
+	const [selectedJob, setSelectedJob] = useState(0);
 
 	const dispatch = useDispatch();
 	const jobCardsRef = useRef(null);
+	const navigate = useNavigate();
 
 	const getJobs = (page) => {
 		setLoading(true);
@@ -61,6 +64,9 @@ const JobCards = () => {
 		getJobs(page);
 	}, []); // Load initial data when the component mounts
 
+	useEffect(() => {
+		allJobs.length !== 0 && navigate(`./${allJobs[selectedJob].Job_Id}`);
+	}, [allJobs, navigate, selectedJob]);
 	return (
 		<div
 			className="jobCards shadow position-relative"
@@ -77,13 +83,16 @@ const JobCards = () => {
 					<CircularProgress color="inherit" />
 				</Backdrop>
 			) : allJobs.length !== 0 ? (
-				allJobs.map((job) => (
+				allJobs.map((job, index) => (
 					<JobCard
+						active={index === selectedJob}
 						key={job.Job_Id}
 						jobTitle={job.Job_Title}
 						companyName={job.Company_Name}
 						logo={job.Company_Logo}
 						companyLocation={job.Location}
+						skills={job.Job_Skills}
+						onClick={() => setSelectedJob(index)} // Pass the click handler to the card
 					/>
 				))
 			) : (

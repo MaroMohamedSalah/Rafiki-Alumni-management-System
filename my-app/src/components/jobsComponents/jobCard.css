@@ -1,3 +1,6 @@
+.ApplyJobLayout .jobCard.active {
+	background: rgba(57, 46, 103, 0.28);
+}
 .ApplyJobLayout .jobCard .row {
 	transition: all ease-in-out var(--main-transition);
 	border-radius: var(--main-border-radius);
@@ -23,4 +26,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.ApplyJobLayout .jobCard .skillList {
+	white-space: nowrap; /* Prevent text from wrapping */
+	overflow: hidden; /* Hide overflowed content */
+	text-overflow: ellipsis; /* Display ellipsis for overflowed text */
 }

@@ -16,7 +16,7 @@ const ApplyJobLayout = () => {
 					<div className="col-12 col-lg-5">
 						<JobCards />
 					</div>
-					<div className="col-7 jobDetail">
+					<div className="col-7">
 						<Outlet />
 					</div>
 				</div>

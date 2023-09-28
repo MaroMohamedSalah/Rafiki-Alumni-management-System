@@ -2,14 +2,31 @@
 	height: calc(100vh - 90px);
 	background-color: transparent;
 }
-.ApplyJobLayout .jobCards {
-	height: 88vh;
+.ApplyJobLayout .jobCards,
+.ApplyJobLayout .jobDetail {
+	height: 80vh;
 	background-color: white;
 	overflow-y: scroll;
 	border-radius: var(--main-border-radius);
 }
 
-.ApplyJobLayout .jobCards::-webkit-scrollbar {
+.ApplyJobLayout .jobCards::-webkit-scrollbar,
+.ApplyJobLayout .jobDetail::-webkit-scrollbar {
 	width: 0;
 	height: 0;
+}
+.ApplyJobLayout .skillList span {
+	position: relative;
+	font-size: 14px;
+}
+.ApplyJobLayout .skillList span:not(:last-child):after {
+	position: absolute;
+	content: "";
+	width: 4px;
+	height: 4px;
+	right: 0;
+	border-radius: 50%;
+	background-color: #66646d;
+	top: 50%;
+	transform: translateY(-50%);
 }
