@@ -46,6 +46,29 @@
 .LandingPage a:hover {
 	cursor: none;
 }
+
+.LandingPage .sectionTitle {
+	font-size: 70px;
+	font-weight: 700;
+	color: var(--Professor-color);
+}
+/* Mobile Styles */
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.LandingPage .sectionTitle {
+		font-size: 45px;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+}
 /* nav  */
 .LandingPage .login {
 	border: 2px solid var(--Professor-color);
@@ -77,4 +100,85 @@
 .LandingPage .intro .signup {
 	width: fit-content;
 	background-color: var(--secondary-color);
+}
+
+/* features  */
+.LandingPage .features {
+	background-color: #f5f5f5;
+}
+.LandingPage .features .image img {
+	margin-top: -40px;
+}
+.LandingPage .features .card {
+	position: relative;
+	border-color: var(--Professor-color);
+	border-radius: var(--large-border-radius);
+	overflow: hidden;
+	z-index: 1;
+}
+.LandingPage .features .card::after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: var(--Professor-color);
+	height: 0px;
+	transition: all ease-in-out 0.3s;
+	z-index: -1;
+}
+.LandingPage .features .card:hover::after {
+	top: auto;
+	bottom: 0;
+	height: 100%;
+}
+.LandingPage .features .card .title {
+	font-size: 36px;
+	font-weight: 700;
+	color: var(--Professor-color);
+}
+.LandingPage .features .card .title .activeText {
+	color: var(--secondary-color);
+}
+.LandingPage .features .card:hover .title,
+.LandingPage .features .card:hover .description {
+	color: white;
+}
+
+/* actors  */
+.LandingPage .actors .actor {
+	background-color: #dedce6;
+	border-radius: var(--large-border-radius);
+	margin-bottom: 95px;
+}
+.LandingPage .actors .actor .actorName {
+	color: var(--Professor-color);
+	font-size: 35px;
+	font-weight: 700;
+}
+.LandingPage .actors .actor .actorDescription {
+	color: #333333;
+	font-size: 20px;
+	font-weight: 400;
+}
+
+/* team  */
+.LandingPage .team {
+	background-color: #f5f5f5;
+}
+
+/* footer */
+.LandingPage footer {
+	border-radius: 198.5px 198.5px 0px 0px;
+	background: var(--Professor-color);
+	color: white;
+}
+.LandingPage footer .logo {
+	font-size: 67px;
+	font-weight: 400;
+	color: white;
+}
+.LandingPage footer .logo::after,
+.LandingPage footer .logo::before {
+	background: #dedce6;
 }

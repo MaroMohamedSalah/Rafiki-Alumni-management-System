@@ -1,30 +1,43 @@
 .LandingPage {
 	cursor: none;
-	overflow-x: hidden;
 }
+
 .Cursor.main {
-	position: absolute;
+	position: fixed; /* Change to fixed position */
+	z-index: 1000;
 	width: 6px;
 	height: 6px;
 	border-radius: 50% !important;
 	background-color: var(--cursor-color);
 	transition: width 0.3s, height 0.3s;
+	pointer-events: none; /* Ensure it doesn't interfere with click events */
+	transform: translate(
+		-50%,
+		-50%
+	); /* Position cursor at the mouse coordinates */
 }
+
 .Cursor.expend {
 	width: 18px;
 	height: 18px;
 }
+
 .Cursor.hover {
 	width: 50px;
 	height: 50px;
+	z-index: -1;
 }
+
 .Cursor.follow1 {
-	position: absolute;
+	position: fixed;
+	z-index: 1000;
 	width: 20px;
 	height: 20px;
 	border-radius: 50% !important;
 	background-color: var(--cursor-follow-color);
 	transition: transform 0.4s;
+	pointer-events: none; /* Ensure it doesn't interfere with click events */
+	transform-origin: center; /* Set the transform origin to the center */
 	top: -6.5px;
 	left: -6.5px;
 }

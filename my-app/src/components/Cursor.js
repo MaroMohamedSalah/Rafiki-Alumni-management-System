@@ -4,7 +4,6 @@ import "./cursor.css";
 const Cursor = () => {
 	const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 	const [isClicked, setIsClicked] = useState(false); // Add state to track click
-	const [isHovered, setIsHovered] = useState(false); // Add state to track hover
 
 	useEffect(() => {
 		const moveCursor = (e) => {
@@ -22,23 +21,12 @@ const Cursor = () => {
 			}, 500); // 500 milliseconds (adjust as needed)
 		};
 
-		const hoverCursor = () => {
-			setIsHovered(true);
-		};
-		const leaveCursor = () => {
-			setIsHovered(false);
-		};
-
 		window.addEventListener("mousemove", moveCursor);
 		window.addEventListener("click", clickCursor);
-		window.addEventListener("mouseenter", hoverCursor);
-		window.addEventListener("mouseleave", leaveCursor);
 
 		return () => {
 			window.removeEventListener("mousemove", moveCursor);
 			window.removeEventListener("click", clickCursor);
-			window.removeEventListener("mouseenter", hoverCursor);
-			window.removeEventListener("mouseleave", leaveCursor);
 		};
 	}, []);
 
@@ -49,15 +37,10 @@ const Cursor = () => {
 	return (
 		<div className="d-none d-lg-block">
 			<div
-				className={`Cursor main ${isClicked ? "expend" : ""} ${
-					isHovered ? "hover" : ""
-				}`}
+				className={`Cursor main ${isClicked ? "expend" : ""} `}
 				style={cursorStyle}
 			></div>
-			<div
-				className={`Cursor follow1 ${isHovered ? "hover" : ""}`}
-				style={cursorStyle}
-			></div>
+			<div className={`Cursor follow1`} style={cursorStyle}></div>
 		</div>
 	);
 };
