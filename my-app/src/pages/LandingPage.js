@@ -4,51 +4,75 @@ import Cursor from "../components/Cursor";
 import Logo from "../components/Logo";
 import { Divider } from "@mui/material/node";
 import introImg from "../imgs/landing_page_intro.png";
-import feature1Img from "../imgs/feature-1.png";
+import feature1Animation from "../animations/animation_feature_1.json";
+import feature2Animation from "../animations/animation_feature_2.json";
+import feature3Animation from "../animations/animation_feature_3.json";
+import missionAnimation from "../animations/animation_mission.json";
+import whatWeOfferAnimation from "../animations/animation_what_we_offer.json";
+import joinUsAnimation from "../animations/animation_join.json";
+
 import alumniImg from "../imgs/alumniActor.png";
 import studentImg from "../imgs/studentActor.png";
 import hrImg from "../imgs/hrActor.png";
+import introDecoration1 from "../imgs/introDecoration1.png";
+import introDecoration2 from "../imgs/introDecoration2.png";
+import actorsDecoration1 from "../imgs/actorsDecoration1.png";
+import actorsDecoration3 from "../imgs/actorsDecoration3.png";
+
 import TeamSwiper from "../components/TeamSwiper";
 
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import EmailIcon from "@mui/icons-material/Email";
+import InstagramIcon from "@mui/icons-material/Instagram";
+
+import { useEffect } from "react";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Lottie from "lottie-react";
+import LandingPageNav from "../components/LandingPageNav";
 
 const LandingPage = () => {
+	useEffect(() => {
+		AOS.init({
+			duration: 1000, // Set the duration for animations (in milliseconds)
+		});
+	}, []);
 	return (
 		<div className="LandingPage">
 			<Cursor />
 			{/* start nav  */}
-			<nav>
-				<div className="container d-flex justify-content-between align-items-center py-2">
-					<h1>Logo</h1>
-					<div className="d-flex">
-						<Link to={"./login"} className="btn login me-4 py-2 px-3 rounded-5">
-							<h5>Login</h5>
-						</Link>
-						<Link
-							to={"./getStarted"}
-							className="btn signup py-2 px-3 rounded-5"
-						>
-							<h5>Signup</h5>
-						</Link>
-					</div>
-				</div>
-			</nav>
+			<LandingPageNav />
 			{/* end nav  */}
 			{/* start intro  */}
-			<section className="intro">
-				<div className="container py-5">
+			<section className="intro position-relative">
+				<div className="container">
 					<div className="row py-5">
 						<div className="col-12 col-lg-6">
-							<h1>Discover Rafiki</h1>
-							<h2>Your College's All-in-One Hub</h2>
-							<p className="text-black-50">
+							<h1 data-aos="fade-up" className="text-center text-md-start">
+								Discover Rafiki
+							</h1>
+							<h2
+								data-aos="fade-up"
+								data-aos-delay="100"
+								className="text-center text-md-start"
+							>
+								Your College's All-in-One Hub
+							</h2>
+							<p
+								data-aos="fade-up"
+								data-aos-delay="100"
+								className="text-black-50 text-center text-md-start"
+							>
 								Join our unique community, uniting students, graduates, faculty,
 								and administrators. Explore discussions, jobs, ask questions,
-								materials, and more!
+								materials, <br /> and more!
 							</p>
-							<div className="d-flex justify-content-center flex-column align-items-center my-5">
+							<div
+								className="d-flex justify-content-center flex-column align-items-center my-5"
+								data-aos="zoom-in"
+							>
 								<Link
 									to={"./getStarted"}
 									className="btn signup py-2 px-3 rounded-5"
@@ -62,14 +86,28 @@ const LandingPage = () => {
 							</div>
 						</div>
 						<div className="col-12 col-lg-6">
-							<img
-								src={introImg}
-								className="img-fluid"
-								alt="introImg"
-								srcset=""
-							/>
+							<div data-aos="zoom-in" data-aos-delay="100">
+								<img
+									src={introImg}
+									className="img-fluid"
+									alt="introImg"
+									srcset=""
+								/>
+							</div>
 						</div>
 					</div>
+				</div>
+				<div
+					className="decoration1 position-absolute d-none d-md-block"
+					data-aos="fade-right"
+				>
+					<img src={introDecoration1} alt="decoration" className="img-fluid" />
+				</div>
+				<div
+					className="decoration2 position-absolute d-none d-md-block"
+					data-aos="fade-left"
+				>
+					<img src={introDecoration2} alt="decoration" className="img-fluid" />
 				</div>
 			</section>
 			{/* end intro  */}
@@ -80,74 +118,84 @@ const LandingPage = () => {
 						<h2 className="sectionTitle">Features</h2>
 					</div>
 					<div className="row py-5">
-						<div className="col-12 col-lg-4 px-5 mb-4">
-							<div className="card shadow-lg d-flex flex-column justify-content-center align-items-center p-2">
+						<div className="col-12 col-lg-4 px-3 px-md-5 mb-4">
+							<div
+								className="card shadow-lg d-flex flex-column justify-content-center align-items-center p-2"
+								data-aos="flip-left"
+							>
 								<div className="image">
-									<img
-										src={feature1Img}
-										alt="feature-1"
-										className="img-fluid"
+									<Lottie
+										loop={true}
+										autoplay
+										animationData={feature1Animation}
+										style={{ height: "250px" }}
 									/>
 								</div>
 								<h3 className="title text-center py-3">
-									Empowering Your <span className="activeText">Career</span>
+									Unlock Your <span className="activeText">Potential</span>
 								</h3>
 								<p className="description text-center">
-									Rafiki provides a dedicated Career Services platform, tailored
-									to support your professional growth. As an active member of
-									our community, you can post job listings and discover exciting
-									career opportunities within the CS industry. Our user-friendly
-									tools simplify the job search process and enable you to
-									connect with top-notch talent or find your dream job. Take
-									control of your career path with Rafiki.
+									Rafiki offers exclusive career opportunities tailored to FCAI
+									alumni and students. Build a comprehensive professional
+									profile, craft an impressive CV, and connect with top talent.
+									Access job listings exclusively available to our community and
+									take charge of your career journey with Rafiki.
 								</p>
 							</div>
 						</div>
 
-						<div className="col-12 col-lg-4 px-5 mb-4">
-							<div className="card shadow-lg d-flex flex-column justify-content-center align-items-center p-2">
+						<div className="col-12 col-lg-4 px-3 px-md-5 mb-4">
+							<div
+								className="card shadow-lg d-flex flex-column justify-content-center align-items-center p-2"
+								data-aos="flip-left"
+								data-aos-delay="100"
+							>
 								<div className="image">
-									<img
-										src={feature1Img}
-										alt="feature-1"
-										className="img-fluid"
+									<Lottie
+										loop={true}
+										autoplay
+										animationData={feature2Animation}
+										style={{ height: "250px" }}
 									/>
 								</div>
 								<h3 className="title text-center py-3">
-									Empowering Your <span className="activeText">Career</span>
+									Connect & <span className="activeText">Collaborate</span>
 								</h3>
 								<p className="description text-center">
-									Rafiki provides a dedicated Career Services platform, tailored
-									to support your professional growth. As an active member of
-									our community, you can post job listings and discover exciting
-									career opportunities within the CS industry. Our user-friendly
-									tools simplify the job search process and enable you to
-									connect with top-notch talent or find your dream job. Take
-									control of your career path with Rafiki.
+									Rafiki serves as a dynamic hub where FCAI alumni connect,
+									build detailed profiles, form country-based communities, find
+									answers in our FAQ, and schedule meetings with professors.
+									Elevate your personal and professional journey within our
+									thriving community, forging valuable connections and accessing
+									resources tailored to your needs.
 								</p>
 							</div>
 						</div>
 
-						<div className="col-12 col-lg-4 px-5 mb-4">
-							<div className="card shadow-lg d-flex flex-column justify-content-center align-items-center p-2">
+						<div className="col-12 col-lg-4 px-3 px-md-5 mb-4">
+							<div
+								className="card shadow-lg d-flex flex-column justify-content-center align-items-center p-2"
+								data-aos="flip-left"
+								data-aos-delay="200"
+							>
 								<div className="image">
-									<img
-										src={feature1Img}
-										alt="feature-1"
-										className="img-fluid"
+									<Lottie
+										loop={true}
+										autoplay
+										animationData={feature3Animation}
+										style={{ height: "250px" }}
 									/>
 								</div>
 								<h3 className="title text-center py-3">
-									Empowering Your <span className="activeText">Career</span>
+									Engage & <span className="activeText">Share</span>
 								</h3>
 								<p className="description text-center">
-									Rafiki provides a dedicated Career Services platform, tailored
-									to support your professional growth. As an active member of
-									our community, you can post job listings and discover exciting
-									career opportunities within the CS industry. Our user-friendly
-									tools simplify the job search process and enable you to
-									connect with top-notch talent or find your dream job. Take
-									control of your career path with Rafiki.
+									Rafiki encourages open dialogue and knowledge exchange among
+									students, alumni, HR professionals, and faculty. Engage in
+									discussions covering academic advice, industry trends, and
+									more. Connect with experts for collaborative problem-solving
+									and gain insights from a diverse range of experiences and
+									perspectives.
 								</p>
 							</div>
 						</div>
@@ -156,12 +204,15 @@ const LandingPage = () => {
 			</section>
 			{/* end features */}
 			{/* start actors  */}
-			<section className="actors">
+			<section className="actors position-relative">
 				<div className="container py-5">
 					<div className="title text-center mb-4">
 						<h2 className="sectionTitle">Who can join us?</h2>
 					</div>
-					<div className="actor row p-2 mx-0 mx-md-5 position-relative">
+					<div
+						className="actor row p-2 mx-0 mx-md-5 position-relative"
+						data-aos="fade-right"
+					>
 						<div className="col-12 col-md-9 col-lg-10">
 							<h4 className="actorName text-md-start text-center py-3">
 								Alumni
@@ -182,7 +233,11 @@ const LandingPage = () => {
 							</div>
 						</div>
 					</div>
-					<div className="actor row p-2 mx-0 mx-md-5 position-relative">
+					<div
+						className="actor row p-2 mx-0 mx-md-5 position-relative"
+						data-aos="fade-left"
+						data-aos-delay="100"
+					>
 						<div className="col">
 							<div className="actorImg position-absolute bottom-0 left-0 d-none d-md-block">
 								<img src={studentImg} alt="actor-img" className="img-fluid" />
@@ -202,7 +257,12 @@ const LandingPage = () => {
 							</p>
 						</div>
 					</div>
-					<div className="actor row p-2 mx-0 mx-md-5 position-relative">
+
+					<div
+						className="actor row p-2 mx-0 mx-md-5 position-relative"
+						data-aos="fade-right"
+						data-aos-delay="200"
+					>
 						<div className="col-12 col-md-9 col-lg-10">
 							<h4 className="actorName text-center text-md-start py-3">
 								Recruiters
@@ -224,6 +284,18 @@ const LandingPage = () => {
 						</div>
 					</div>
 				</div>
+				<div
+					className="actorDecoration1 position-absolute d-none d-md-block"
+					data-aos="zoom-in"
+				>
+					<img src={actorsDecoration1} alt="decoration" />
+				</div>
+				<div
+					className="actorDecoration3 position-absolute d-none d-md-block"
+					data-aos="zoom-in"
+				>
+					<img src={actorsDecoration3} alt="decoration" />
+				</div>
 			</section>
 			{/* end actors  */}
 			{/* start team */}
@@ -233,31 +305,142 @@ const LandingPage = () => {
 						<h2 className="sectionTitle">Meet the team</h2>
 					</div>
 					{/* <!-- Slider main container --> */}
-					<TeamSwiper />
+					<div data-aos="fade-up">
+						<TeamSwiper />
+					</div>
 				</div>
 			</section>
 			{/* end team */}
+			{/* start about  */}
+			<section className="about">
+				<div className="container py-5">
+					<div className="title text-center mb-5">
+						<h2 className="sectionTitle">About Rafiki</h2>
+					</div>
+					<div className="row py-5">
+						<div className="col-12 col-md-4">
+							<div className="aboutCard shadow">
+								<h3
+									className="subtitle text-center pb-2 mb-0 position-relative"
+									data-aos="fade-down"
+								>
+									<div className="icon position-absolute">
+										<Lottie
+											loop={true}
+											autoplay
+											animationData={missionAnimation}
+											style={{ height: "80px" }}
+										/>
+									</div>
+									Our Mission
+								</h3>
+								<p className="description p-3 text-justify" data-aos="fade-up">
+									At Rafiki, we are on a mission to unite the vibrant community
+									of the Faculty of Computers and Artificial Intelligence (FCAI)
+									at HU. We believe in fostering lifelong connections among
+									students, alumni, educators, and administrators. Our platform
+									is designed to empower your academic and professional journey
+									by providing exclusive opportunities, knowledge sharing, and
+									meaningful collaboration.
+								</p>
+							</div>
+						</div>
+						<div className="col-12 col-md-4">
+							<div className="aboutCard shadow">
+								<h3
+									className="subtitle text-center pb-2 mb-0 position-relative"
+									data-aos="fade-down"
+									data-aos-delay="200"
+								>
+									<div className="icon position-absolute">
+										<Lottie
+											loop={true}
+											autoplay
+											animationData={whatWeOfferAnimation}
+											style={{ height: "60px" }}
+										/>
+									</div>
+									What We Offer
+								</h3>
+								<p
+									className="description p-3 text-justify"
+									data-aos="fade-up"
+									data-aos-delay="200"
+								>
+									Rafiki is more than just an alumni management system; it's a
+									dynamic hub where you can unlock exclusive career
+									opportunities, build professional profiles, engage in
+									discussions, and connect with fellow members of the FCAI
+									community. Whether you're a current student looking to secure
+									your future, an alumnus seeking to reconnect, or an HR
+									professional seeking top talent, Rafiki has something special
+									to offer you.
+								</p>
+							</div>
+						</div>
+						<div className="col-12 col-md-4">
+							<div className="aboutCard shadow">
+								<h3
+									className="subtitle text-center pb-2 mb-0 position-relative"
+									data-aos="fade-down"
+								>
+									<div className="icon position-absolute">
+										<Lottie
+											loop={true}
+											autoplay
+											animationData={joinUsAnimation}
+											style={{ height: "100px" }}
+										/>
+									</div>
+									Join Our Community
+								</h3>
+								<p className="description p-3 text-justify" data-aos="fade-up">
+									We invite you to join our unique community, where your journey
+									doesn't end with graduation—it continues here. Together, we
+									can shape the future of computer science and artificial
+									intelligence education and employment. Connect, collaborate,
+									and elevate your personal and professional aspirations with
+									Rafiki.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			{/* end about  */}
 			{/* start footer */}
 			<footer>
 				<div className="container pt-4 pb-2 d-flex justify-content-center align-items-center flex-column">
 					<Divider light className="w-100 my-2 logo">
-						LOGO
+						<Logo />
 					</Divider>
 					<h4 className="my-3">Reach Us</h4>
 					<ul className="social list-unstyled d-flex justify-content-between my-4">
 						<li>
-							<Link to={""} className="m-2" target="_blank">
-								<LinkedInIcon fontSize="medium" />
+							<Link
+								to={"https://www.facebook.com/rafikiFCAIHu"}
+								className="m-2 facebook text-white-50"
+								target="_blank"
+							>
+								<FacebookIcon fontSize="medium" />
 							</Link>
 						</li>
 						<li>
-							<Link to={""} className="m-2" target="_blank">
-								<LinkedInIcon fontSize="medium" />
+							<Link
+								to={"https://www.instagram.com/rafiki_fcai/"}
+								className="m-2 instagram  text-white-50"
+								target="_blank"
+							>
+								<InstagramIcon fontSize="medium" />
 							</Link>
 						</li>
 						<li>
-							<Link to={""} className="m-2" target="_blank">
-								<LinkedInIcon fontSize="medium" />
+							<Link
+								to="mailto:rafiki.questions@gmail.com"
+								className="m-2 email text-white-50"
+								target="_blank"
+							>
+								<EmailIcon fontSize="medium" />
 							</Link>
 						</li>
 					</ul>
