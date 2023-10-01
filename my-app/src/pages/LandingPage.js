@@ -48,8 +48,8 @@ const LandingPage = () => {
 			{/* start intro  */}
 			<section className="intro position-relative">
 				<div className="container">
-					<div className="row py-5">
-						<div className="col-12 col-lg-6">
+					<div className="row py-5 justify-content-between flex-column-reverse flex-md-row">
+						<div className="col-12 col-lg-5">
 							<h1 data-aos="fade-up" className="text-center text-md-start">
 								Discover Rafiki
 							</h1>
@@ -85,7 +85,7 @@ const LandingPage = () => {
 								</Link>
 							</div>
 						</div>
-						<div className="col-12 col-lg-6">
+						<div className="col-12 col-lg-6 mb-5 mb-md-0">
 							<div data-aos="zoom-in" data-aos-delay="100">
 								<img
 									src={introImg}
@@ -321,7 +321,7 @@ const LandingPage = () => {
 						<div className="col-12 col-md-4">
 							<div className="aboutCard shadow">
 								<h3
-									className="subtitle text-center pb-2 mb-0 position-relative"
+									className="subtitle text-center pb-3 position-relative"
 									data-aos="fade-down"
 								>
 									<div className="icon position-absolute">
@@ -348,7 +348,7 @@ const LandingPage = () => {
 						<div className="col-12 col-md-4">
 							<div className="aboutCard shadow">
 								<h3
-									className="subtitle text-center pb-2 mb-0 position-relative"
+									className="subtitle text-center pb-3 mb-0 position-relative"
 									data-aos="fade-down"
 									data-aos-delay="200"
 								>
@@ -381,7 +381,7 @@ const LandingPage = () => {
 						<div className="col-12 col-md-4">
 							<div className="aboutCard shadow">
 								<h3
-									className="subtitle text-center pb-2 mb-0 position-relative"
+									className="subtitle text-center pb-3 mb-0 position-relative"
 									data-aos="fade-down"
 								>
 									<div className="icon position-absolute">

@@ -128,15 +128,19 @@ const TeamSwiper = () => {
 			social: [
 				{
 					platform: "linkedin",
-					link: "https://www.linkedin.com/in/victory-171200",
+					link: "https://www.linkedin.com/in/mohey-e-maher",
+				},
+				{
+					platform: "facebook",
+					link: "https://m.facebook.com/mohey.e.maher",
 				},
 				{
 					platform: "github",
-					link: "https://github.com/victory-17",
+					link: "https://github.com/mohey-e-maher",
 				},
 				{
 					platform: "behance",
-					link: "https://www.behance.net/victory-17",
+					link: "https://www.behance.net/mohey_e_maher",
 				},
 			],
 		},
@@ -206,17 +210,17 @@ const TeamSwiper = () => {
 			title: "Tester",
 			img: mahmoudImg,
 			social: [
-				{
-					platform: "linkedin",
-					link: "https://www.linkedin.com/in/mazin-islam-88658b22b",
-				},
-				{
-					platform: "github",
-					link: "https://github.com/N1ghtHunter",
-				},
+				// {
+				// 	platform: "linkedin",
+				// 	link: "https://www.linkedin.com/in/mazin-islam-88658b22b",
+				// },
+				// {
+				// 	platform: "github",
+				// 	link: "https://github.com/N1ghtHunter",
+				// },
 				{
 					platform: "facebook",
-					link: "https://www.facebook.com/mazinislam?mibextid=9R9pXO",
+					link: "https://www.facebook.com/profile.php?id=100028448964098&mibextid=ZbWKwL",
 				},
 			],
 		},
