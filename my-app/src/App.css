@@ -2,10 +2,36 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 :root {
+	/* Primary Colors  */
+	--primary-color: #1a4b96; /* The main primary color for your design. */
+	--primary-color-shade1: #3762a3;
+	--primary-color-shade2: #5378b0;
+	--primary-color-shade3: #8da5cb;
+	--primary-color-shade4: #8da5cb;
+	--primary-color-shade5: #a9bcd8;
+	--primary-color-shade6: #c6d2e5;
+	--primary-color-shade7: #e2e9f2;
+
+	/* Secondary Color */
+	--secondary-color: #00acca; /* The secondary color used for various design elements. */
+
+	/* Text Color */
+	--text-color: #333333; /* For body text and headings. */
+
+	/* Accent Colors */
+	--accent-color: #4d85ff; /* The primary accent color for your call-to-action elements and highlights. */
+	--accent-color-shade1: #4d85ff5e;
+
+	/* Background Colors */
+	--primary-bg-color: #f5f5f5; /* A neutral background color for the main content area. */
+	--secondary-bg-color: #f0f3f9; /* A secondary background color that complements the primary color. */
+
+	/* Border Color */
+	--border-color: #e6e6e6; /* A light gray for borders and dividing lines. */
+
 	--color-one: #f1f1f1;
 	--color-tow: #23032e;
 	--color-three: #40a7f4;
-	--secondary-color: #e76f51;
 
 	--Alumni-color: #ad3336;
 	--Student-color: #00c2a8;
@@ -17,9 +43,6 @@
 	--Reset-pass-color: #49378e;
 
 	--bg-1: #f5f5dc;
-
-	--cursor-color: #00695c;
-	--cursor-follow-color: #00695d4f;
 
 	--main-transition: 0.5s;
 	--main-border-radius: 9px;

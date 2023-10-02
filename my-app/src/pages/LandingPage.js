@@ -3,7 +3,7 @@ import "./LandingPage.css";
 import Cursor from "../components/Cursor";
 import Logo from "../components/Logo";
 import { Divider } from "@mui/material/node";
-import introImg from "../imgs/landing_page_intro.png";
+import introImg from "../imgs/introImg.png";
 import feature1Animation from "../animations/animation_feature_1.json";
 import feature2Animation from "../animations/animation_feature_2.json";
 import feature3Animation from "../animations/animation_feature_3.json";
@@ -97,7 +97,7 @@ const LandingPage = () => {
 						</div>
 					</div>
 				</div>
-				<div
+				{/* <div
 					className="decoration1 position-absolute d-none d-md-block"
 					data-aos="fade-right"
 				>
@@ -108,7 +108,7 @@ const LandingPage = () => {
 					data-aos="fade-left"
 				>
 					<img src={introDecoration2} alt="decoration" className="img-fluid" />
-				</div>
+				</div> */}
 			</section>
 			{/* end intro  */}
 			{/* start features */}
@@ -234,7 +234,7 @@ const LandingPage = () => {
 						</div>
 					</div>
 					<div
-						className="actor row p-2 mx-0 mx-md-5 position-relative"
+						className="actor row p-2 mx-0 mx-md-5 position-relative reverseGradient"
 						data-aos="fade-left"
 						data-aos-delay="100"
 					>

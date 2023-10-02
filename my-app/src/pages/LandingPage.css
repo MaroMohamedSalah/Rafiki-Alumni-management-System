@@ -1,5 +1,5 @@
 .LandingPage {
-	background-color: white;
+	background-color: var(--primary-bg-color);
 	overflow-x: hidden;
 }
 .LandingPage .btn {
@@ -22,7 +22,7 @@
 	height: 10px;
 	border-radius: 50%;
 	opacity: 0;
-	background-color: var(--cursor-color);
+	background-color: var(--accent-color);
 	left: 0;
 	bottom: 0;
 	transition: all ease-in-out 0.2s;
@@ -40,7 +40,7 @@
 
 .LandingPage .btn:hover {
 	background-color: transparent;
-	color: var(--cursor-color);
+	color: var(--accent-color);
 	cursor: none;
 }
 
@@ -51,7 +51,7 @@
 .LandingPage .sectionTitle {
 	font-size: 70px;
 	font-weight: 700;
-	color: var(--Professor-color);
+	color: var(--primary-color);
 }
 /* Mobile Styles */
 @media (max-width: 767px) {
@@ -76,22 +76,22 @@
 	width: 100%;
 	top: 0;
 	z-index: 500;
-	background-color: white;
+	background-color: var(--primary-bg-color);
 }
 .LandingPage .login {
-	border: 3px solid var(--Professor-color);
+	border: 3px solid var(--primary-color);
 }
 .LandingPage .login h5 {
-	color: var(--Professor-color);
+	color: var(--primary-color);
 }
 .LandingPage .login:hover {
-	border-color: var(--cursor-color);
+	border-color: var(--accent-color);
 }
 .LandingPage .login:hover::after {
-	background-color: var(--cursor-follow-color);
+	background-color: var(--accent-color-shade1);
 }
 .LandingPage nav .signup {
-	background-color: var(--secondary-color);
+	background-color: var(--accent-color);
 }
 
 /* intro  */
@@ -102,16 +102,16 @@
 .LandingPage .intro h1 {
 	font-size: 60px;
 	font-weight: 700;
-	color: var(--Professor-color);
+	color: var(--primary-color);
 }
 .LandingPage .intro h2 {
 	font-size: 30px;
 	font-weight: 700;
-	color: var(--Professor-color);
+	color: var(--primary-color);
 }
 .LandingPage .intro .signup {
 	width: fit-content;
-	background-color: var(--secondary-color);
+	background-color: var(--accent-color);
 }
 .LandingPage .intro .decoration1,
 .LandingPage .intro .decoration2 {
@@ -148,14 +148,14 @@
 }
 /* features  */
 .LandingPage .features {
-	background-color: #f5f5f5;
+	background-color: var(--secondary-bg-color);
 }
 .LandingPage .features .image img {
 	margin-top: -40px;
 }
 .LandingPage .features .card {
 	position: relative;
-	border-color: var(--Professor-color);
+	border-color: var(--border-color);
 	border-radius: var(--large-border-radius);
 	overflow: hidden;
 	z-index: 1;
@@ -167,7 +167,7 @@
 	width: 100%;
 	top: 0;
 	left: 0;
-	background-color: var(--Professor-color);
+	background-color: var(--primary-color);
 	height: 0px;
 	transition: all ease-in-out 0.3s;
 	z-index: -1;
@@ -180,10 +180,13 @@
 .LandingPage .features .card .title {
 	font-size: 36px;
 	font-weight: 700;
-	color: var(--Professor-color);
+	color: var(--primary-color);
 }
 .LandingPage .features .card .title .activeText {
 	color: var(--secondary-color);
+}
+.LandingPage .features .card:hover .description {
+	color: var(--text-color);
 }
 .LandingPage .features .card:hover .title,
 .LandingPage .features .card:hover .description {
@@ -213,17 +216,63 @@
 	z-index: 1;
 }
 .LandingPage .actors .actor {
-	background-color: #dedce6;
+	/* background-color: var(--primary-color-shade7); */
+	background: rgb(26, 75, 150);
+	background: -moz-linear-gradient(
+		90deg,
+		rgba(26, 75, 150, 1) 47%,
+		rgba(0, 172, 202, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		90deg,
+		rgba(26, 75, 150, 1) 47%,
+		rgba(0, 172, 202, 1) 100%
+	);
+	background: linear-gradient(
+		90deg,
+		rgba(26, 75, 150, 1) 47%,
+		rgba(0, 172, 202, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1a4b96",endColorstr="#00acca",GradientType=1);
 	border-radius: var(--large-border-radius);
 	margin-bottom: 95px;
+	border-color: var(--border-color);
 }
+.LandingPage .actors .reverseGradient {
+	/* Your CSS styles for the second actor here */
+	background: rgb(26, 75, 150);
+	background: -moz-linear-gradient(
+		275deg,
+		rgba(26, 75, 150, 1) 47%,
+		rgba(0, 172, 202, 1) 100%
+	);
+	background: -webkit-linear-gradient(
+		275deg,
+		rgba(26, 75, 150, 1) 47%,
+		rgba(0, 172, 202, 1) 100%
+	);
+	background: linear-gradient(
+		275deg,
+		rgba(26, 75, 150, 1) 47%,
+		rgba(0, 172, 202, 1) 100%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr="#1a4b96",
+    endColorstr="#00acca",
+    GradientType=1
+  );
+}
+
 .LandingPage .actors .actor .actorName {
-	color: var(--Professor-color);
+	/* color: var(--primary-color); */
+	color: var(--primary-color-shade7);
 	font-size: 35px;
 	font-weight: 700;
 }
 .LandingPage .actors .actor .actorDescription {
-	color: #333333;
+	/* color: var(--text-color); */
+	color: var(--primary-color-shade7);
+	opacity: 0.75;
 	font-size: 20px;
 	font-weight: 400;
 }
@@ -239,7 +288,7 @@
 
 /* team  */
 .LandingPage .team {
-	background-color: #f5f5f5;
+	background-color: var(--secondary-bg-color);
 }
 
 /* about */
@@ -248,7 +297,7 @@
 }
 .LandingPage .about .aboutCard .subtitle {
 	padding-top: 55px;
-	background-color: var(--Professor-color);
+	background-color: var(--primary-color);
 	color: white;
 	border-top-right-radius: var(--main-border-radius);
 	border-top-left-radius: var(--main-border-radius);
@@ -256,11 +305,12 @@
 	font-weight: 400;
 }
 .LandingPage .about .aboutCard .description {
-	background-color: #e8eaf6;
+	background-color: var(--primary-color-shade7);
 	min-height: 295px;
 	text-align: justify !important;
 	font-size: 16px;
 	line-height: 1.8;
+	color: var(--text-color);
 }
 .LandingPage .about .aboutCard .icon {
 	transform: translateX(-50%);
@@ -279,7 +329,7 @@
 /* footer */
 .LandingPage footer {
 	border-radius: 91.5px 91.5px 0px 0px;
-	background: var(--Professor-color);
+	background: var(--primary-color);
 	color: white;
 }
 .LandingPage footer .logo {

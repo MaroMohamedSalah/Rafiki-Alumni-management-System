@@ -8,7 +8,7 @@
 	width: 6px;
 	height: 6px;
 	border-radius: 50% !important;
-	background-color: var(--cursor-color);
+	background-color: var(--accent-color);
 	transition: width 0.3s, height 0.3s;
 	pointer-events: none; /* Ensure it doesn't interfere with click events */
 	transform: translate(
@@ -34,7 +34,7 @@
 	width: 20px;
 	height: 20px;
 	border-radius: 50% !important;
-	background-color: var(--cursor-follow-color);
+	background-color: var(--accent-color-shade1);
 	transition: transform 0.4s;
 	pointer-events: none; /* Ensure it doesn't interfere with click events */
 	transform-origin: center; /* Set the transform origin to the center */
