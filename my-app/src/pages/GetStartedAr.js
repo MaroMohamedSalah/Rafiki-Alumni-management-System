@@ -171,7 +171,7 @@ const GetStartedAr = () => {
 
 				<Link
 					to="/roleSelection"
-					className={`getStartBtn btn rounded-5 px-4 px-md-5 mb-5 ${
+					className={`getStartBtn btn rounded-5 px-4 px-md-5 mb-5 start-50 end-50 ${
 						isLastSlide ? "d-block" : "d-none"
 					}`}
 				>
@@ -179,7 +179,7 @@ const GetStartedAr = () => {
 				</Link>
 
 				<div
-					className={`swiper-button-next btn rounded-5 px-4 px-md-5 mb-5 ${
+					className={`swiper-button-next btn rounded-5 px-4 px-md-5 mb-5 start-50 end-50 ${
 						isLastSlide ? "d-none" : "d-block"
 					} `}
 				>
