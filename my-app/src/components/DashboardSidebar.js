@@ -30,10 +30,14 @@ const DashboardSidebar = ({ profileData }) => {
 					},
 				})
 					.then((res) => res.json())
-					.then((res) => console.log(res))
+					.then((res) => {
+						console.log(res);
+						if (res.success) {
+							navigate("../login");
+							localStorage.removeItem("sessionId");
+						}
+					})
 					.catch((error) => console.log(error));
-
-				navigate("../");
 			} else if (result.isDenied) {
 				Swal.fire("Changes are not saved", "", "info");
 			}

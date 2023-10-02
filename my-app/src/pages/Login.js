@@ -52,7 +52,7 @@ const Login = () => {
 
 			try {
 				const response = await fetch(
-					"https://rafiki-backend.azurewebsites.net/api/users/login",
+					"https://rafiki-backend.azurewebsites.net/api/auth/login",
 					{
 						method: "POST",
 						body: JSON.stringify({

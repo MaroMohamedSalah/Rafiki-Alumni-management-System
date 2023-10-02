@@ -46,9 +46,14 @@ const SessionLogin = () => {
 			},
 		})
 			.then((res) => res.json())
-			.then((res) => console.log(res))
+			.then((res) => {
+				console.log(res);
+				if (res.success) {
+					localStorage.removeItem("sessionId");
+					navigate("../");
+				}
+			})
 			.catch((error) => console.log(error));
-		navigate("../");
 	};
 	useEffect(() => {
 		fetchProfileData();

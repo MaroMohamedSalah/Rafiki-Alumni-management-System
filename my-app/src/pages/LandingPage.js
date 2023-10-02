@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./LandingPage.css";
 import Cursor from "../components/Cursor";
 import Logo from "../components/Logo";
@@ -34,11 +34,24 @@ import Lottie from "lottie-react";
 import LandingPageNav from "../components/LandingPageNav";
 
 const LandingPage = () => {
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		// Check if the user is already authenticated or has an active session.
+		const isAuthenticated = localStorage.getItem("sessionId");
+
+		if (isAuthenticated) {
+			// Redirect to the desired route when the user is already in session.
+			navigate("/dashboard"); // Change '/dashboard' to your desired route.
+		}
+	}, [navigate]);
+
 	useEffect(() => {
 		AOS.init({
 			duration: 1000, // Set the duration for animations (in milliseconds)
 		});
 	}, []);
+
 	return (
 		<div className="LandingPage">
 			<Cursor />
