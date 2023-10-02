@@ -12,9 +12,9 @@ import AOS from "aos";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 
-const GetStarted = () => {
+const GetStartedAr = () => {
 	const [isLastSlide, setIsLastSlide] = useState(false);
-	const swiperRef = useRef(null); // Create a ref for swiper instance
+	const swiperRef = useRef(null);
 	useEffect(() => {
 		AOS.init({
 			duration: 1000,
@@ -38,19 +38,18 @@ const GetStarted = () => {
 			},
 			on: {
 				slideChange: () => {
-					const isMobileScreen = window.innerWidth <= 767; // Example breakpoint
+					const isMobileScreen = window.innerWidth <= 767;
 
 					const activeIndex = swiperRef.current.activeIndex;
 					const slidesCount = swiperRef.current.slides.length;
 					setIsLastSlide(activeIndex === slidesCount - 1);
 
-					// Apply fade-up animation to the image in the current slide
 					const currentSlide = swiperRef.current.slides[activeIndex];
 					const image = currentSlide.querySelector(".actorImg");
 					if (image) {
 						image.classList.add("fade-up");
 					}
-					// change the circle position
+
 					switch (activeIndex) {
 						case 0:
 							isMobileScreen
@@ -83,14 +82,13 @@ const GetStarted = () => {
 		};
 	}, []);
 
-	// Helper function to set the circle position and color
 	const setCirclePosition = (element, left, bottom, background) => {
 		element.style.left = left;
 		element.style.bottom = bottom;
 		element.style.background = background;
 	};
 	return (
-		<div className="GetStartedSwiper">
+		<div className="GetStartedSwiper" dir="rtl">
 			<div className="swiper-container overflow-hidden vh-100 position-relative">
 				<div className="swiper-nav container position-relative d-flex justify-content-between align-items-center position-absolute">
 					<h1 className="z-2 d-none d-md-block py-2">
@@ -102,21 +100,19 @@ const GetStarted = () => {
 				</div>
 				<div className="swiper-wrapper h-100">
 					<div className="swiper-slide pt-5 alumni">
-						{/* Content for Slide 1 */}
 						<div className="container h-75 d-flex justify-content-center align-items-center">
 							<div className="row p-md-3 w-100">
 								<div className="col-12 col-md-8  d-flex justify-content-center align-items-start flex-column order-2 order-md-1">
 									<h2 className="actorName mb-3 mb-md-5">
-										Alumni{" "}
-										<Link className="fs-6" to={"/getStartedAr"}>
-											AR?
-										</Link>{" "}
+										خريج{" "}
+										<Link className="fs-6" to={"/getStarted"}>
+											EN
+										</Link>
 									</h2>
 									<p className="actorDescription">
-										Our graduates, now alumni, actively participate in our
-										Alumni Management System by applying for job opportunities,
-										sharing career milestones, and connecting with fellow alumni
-										to foster a robust professional network.
+										خريجي الكلية، يشاركون بفعالية في نظام إدارة الخريجين الخاص
+										بنا. يشمل ذلك التقديم لفرص العمل، مشاركة إنجازاتهم المهنية،
+										والتواصل مع زملائهم السابقين لتعزيز شبكتهم المهنية القوية.
 									</p>
 								</div>
 								<div className="col-12 col-md-4 order-1 order-md-2">
@@ -130,16 +126,13 @@ const GetStarted = () => {
 						</div>
 					</div>
 					<div className="swiper-slide pt-5 student">
-						{/* Content for Slide 2 */}
 						<div className="container h-75 d-flex justify-content-center align-items-center">
 							<div className="row p-md-3 w-100">
 								<div className="col-12 col-md-8 d-flex justify-content-center align-items-start flex-column order-2 order-md-1">
-									<h2 className="actorName mb-3 mb-md-5">Student</h2>
+									<h2 className="actorName mb-3 mb-md-5">طالب</h2>
 									<p className="actorDescription">
-										As a student, you're at the heart of our community. Join us
-										and explore opportunities, resources, and connections to
-										support your academic and professional journey. Your future
-										starts here.
+										كطالب، أنت في قلب مجتمعنا. انضم إلينا واستكشف الفرص والموارد
+										والروابط لدعم رحلتك الأكاديمية والمهنية. مستقبلك يبدأ هنا.
 									</p>
 								</div>
 								<div className="col-12 col-md-4 order-1 order-md-2">
@@ -149,16 +142,15 @@ const GetStarted = () => {
 						</div>
 					</div>
 					<div className="swiper-slide pt-5 hr">
-						{/* Content for Slide 3 */}
 						<div className="container h-75 d-flex justify-content-center align-items-center">
 							<div className="row p-md-3 w-100">
 								<div className="col-12 col-md-8 d-flex justify-content-center align-items-start flex-column order-2 order-md-1">
-									<h2 className="actorName mb-3 mb-md-5">HR</h2>
+									<h2 className="actorName mb-3 mb-md-5">موارد بشرية</h2>
 									<p className="actorDescription">
-										With a focus on practicality, HR professionals facilitate
-										job placements and career advancements within the Alumni
-										Management System, connecting alumni and current students
-										with valuable employment opportunities and paths to growth.
+										باهتمامهم بالتطبيق العملي، يسهل محترفو الموارد البشرية
+										عمليات توظيف الوظائف وتطوير الوظائف ضمن نظام إدارة الخريجين.
+										يقومون بربط الخريجين والطلاب الحاليين بفرص العمل القيمة
+										ومسارات النمو.
 									</p>
 								</div>
 								<div className="col-12 col-md-4 order-1 order-md-2">
@@ -177,15 +169,13 @@ const GetStarted = () => {
 					</div>
 				</div>
 
-				{/* Render button or link based on the active slide */}
-
 				<Link
 					to="/roleSelection"
 					className={`getStartBtn btn rounded-5 px-4 px-md-5 mb-5 ${
 						isLastSlide ? "d-block" : "d-none"
 					}`}
 				>
-					Get Started
+					ابدأ الآن
 				</Link>
 
 				<div
@@ -193,7 +183,7 @@ const GetStarted = () => {
 						isLastSlide ? "d-none" : "d-block"
 					} `}
 				>
-					Next
+					التالي
 				</div>
 
 				<div className="after"></div>
@@ -202,4 +192,4 @@ const GetStarted = () => {
 	);
 };
 
-export default GetStarted;
+export default GetStartedAr;

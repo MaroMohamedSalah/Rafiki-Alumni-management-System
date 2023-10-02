@@ -22,6 +22,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import PostIntern from "./pages/PostIntern";
 import ApplyJobLayout from "./layouts/ApplyJob-layout";
 import JobDetail from "./components/jobsComponents/JobDetail";
+import GetStartedAr from "./pages/GetStartedAr";
 
 function App() {
 	return (
@@ -58,6 +59,7 @@ function App() {
 							<Route path="jobsApplications" element={<h1>Applications</h1>} />
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
+						<Route path="/getStartedAr" element={<GetStartedAr />} />
 						{/* Signup Routes */}
 						<Route path="/alumniSignup" element={<AlumniSignup />} />
 						<Route path="/studentSignup" element={<CurrantStudentSignup />} />
