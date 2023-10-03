@@ -26,7 +26,11 @@ const DashboardNav = ({ profileData }) => {
 					<div className="col-2 d-flex align-items-center">
 						{(!isMobile || !sideBarIsOpen) && <DashboardSidebarBurgerIcon />}
 					</div>
-					<div className="col-6 d-md-flex d-none justify-content-center align-items-center">
+					<div
+						className={`col-6 d-lg-flex d-none justify-content-center align-items-center ${
+							sideBarIsOpen ? "d-none" : ""
+						}`}
+					>
 						<SearchBar />
 					</div>
 					<div className="col d-flex align-items-center justify-content-end">

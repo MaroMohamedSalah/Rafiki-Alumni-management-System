@@ -68,13 +68,13 @@
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */
 	.Dashboard .burgerIcon div:nth-child(1) {
-		width: 50%;
+		width: 48%;
 	}
 	.Dashboard .burgerIcon div:nth-child(2) {
-		width: 80%;
+		width: 60%;
 	}
 	.Dashboard .burgerIcon div:nth-child(3) {
-		width: 50%;
+		width: 48%;
 	}
 }
 
@@ -144,6 +144,9 @@
 }
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */
+	.Dashboard .nav {
+		width: 100%;
+	}
 	.Dashboard .dashboard-wrapper.sidebar-open .nav {
 		width: calc(100% - (64px + 1rem));
 	}
@@ -241,8 +244,12 @@
 
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */
+	.Dashboard .sidebar {
+		left: -100%;
+	}
 	.Dashboard .sidebar.open {
 		width: 238px;
+		left: 0;
 	}
 	.Dashboard .sidebar .sidebar-container .logo {
 		height: 58px !important;
@@ -289,6 +296,9 @@
 
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */
+	.Dashboard .dashboard-wrapper {
+		padding-left: 0;
+	}
 	.Dashboard .dashboard-wrapper.sidebar-open {
 		padding-left: calc(64px + 1rem);
 	}

@@ -50,7 +50,7 @@ function App() {
 						{/* Private routes are routes that require the user to be authenticated or
 					logged in to access them. */}
 						<Route path="/dashboard" element={<DashboardLayout />}>
-							<Route index element={<h1>User will see this first</h1>} />
+							{/* <Route index element={<h1>User will see this first</h1>} /> */}
 							<Route path="postJob" element={<PostJobs />} />
 							<Route path="postIntern" element={<PostIntern />} />
 							<Route path="applyJob" element={<ApplyJobLayout />}>

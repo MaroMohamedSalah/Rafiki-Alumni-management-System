@@ -12,11 +12,11 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 	const dispatch = useDispatch();
 
 	const alumniFeatures = [
-		{
-			title: "Discussion",
-			icon: "fa-solid fa-comment",
-			link: "#",
-		},
+		// {
+		// 	title: "Discussion",
+		// 	icon: "fa-solid fa-comment",
+		// 	link: "#",
+		// },
 		{
 			title: "Jobs",
 			icon: "fa-solid fa-laptop",
@@ -35,21 +35,21 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 				},
 			],
 		},
-		{
-			title: "Professors Profiles",
-			icon: "fa-solid fa-circle-user",
-			link: "#",
-		},
+		// {
+		// 	title: "Professors Profiles",
+		// 	icon: "fa-solid fa-circle-user",
+		// 	link: "#",
+		// },
 		{
 			title: "FAQ",
 			icon: "fa-solid fa-question",
 			link: "#",
 		},
-		{
-			title: "Ask Admin",
-			icon: "fa-solid fa-paper-plane",
-			link: "#",
-		},
+		// {
+		// 	title: "Ask Admin",
+		// 	icon: "fa-solid fa-paper-plane",
+		// 	link: "#",
+		// },
 		{
 			title: "Feedback",
 			icon: "fa-solid fa-face-grin-wide",
@@ -58,11 +58,11 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 		// Add more items as needed
 	];
 	const studentFeatures = [
-		{
-			title: "Discussion",
-			icon: "fa-solid fa-comment",
-			link: "#",
-		},
+		// {
+		// 	title: "Discussion",
+		// 	icon: "fa-solid fa-comment",
+		// 	link: "#",
+		// },
 		{
 			title: "Jobs",
 			icon: "fa-solid fa-laptop",
@@ -86,21 +86,21 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 			icon: "fa-solid fa-file-pdf",
 			link: "#",
 		},
-		{
-			title: "Professors Profiles",
-			icon: "fa-solid fa-circle-user",
-			link: "#",
-		},
+		// {
+		// 	title: "Professors Profiles",
+		// 	icon: "fa-solid fa-circle-user",
+		// 	link: "#",
+		// },
 		{
 			title: "FAQ",
 			icon: "fa-solid fa-question",
 			link: "#",
 		},
-		{
-			title: "Ask Admin",
-			icon: "fa-solid fa-paper-plane",
-			link: "#",
-		},
+		// {
+		// 	title: "Ask Admin",
+		// 	icon: "fa-solid fa-paper-plane",
+		// 	link: "#",
+		// },
 		{
 			title: "Feedback",
 			icon: "fa-solid fa-face-grin-wide",
