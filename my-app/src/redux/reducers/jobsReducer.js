@@ -19,6 +19,7 @@ import {
 	UPDATE_JOB_TYPE,
 	UPDATE_MISSING_INPUTS,
 	UPDATE_SELECTED_JOB_SKILLS_IDS,
+	UPDATE_SELECT_JOB,
 } from "../actions/types";
 
 const initialState = {
@@ -43,6 +44,7 @@ const initialState = {
 	},
 	missingInputs: [],
 	availableJobs: [],
+	isJobSelect: true,
 };
 const initialFormData = {
 	Job_Title: "",
@@ -235,6 +237,13 @@ const jobsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				availableJobs: [...action.payload],
+			};
+
+		// User select job to see its detail
+		case UPDATE_SELECT_JOB:
+			return {
+				...state,
+				isJobSelect: action.payload,
 			};
 		// handle other actions and state updates here
 		default:

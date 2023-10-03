@@ -2,6 +2,7 @@
 	height: calc(100vh - 90px);
 	background-color: transparent;
 }
+
 .ApplyJobLayout .jobCards,
 .ApplyJobLayout .jobDetail {
 	height: 80vh;
@@ -29,4 +30,22 @@
 	background-color: #66646d;
 	top: 50%;
 	transform: translateY(-50%);
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.ApplyJobLayout .outlet {
+		position: absolute;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Toast from "../Toast";
 import { Backdrop, Button, CircularProgress } from "@mui/material/node";
 import "./jobDetail.css";
@@ -10,12 +10,17 @@ import ApartmentIcon from "@mui/icons-material/Apartment";
 import GppGoodIcon from "@mui/icons-material/GppGood";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useDispatch } from "react-redux";
+import { handelSelectJobToSeeDetail } from "../../redux/actions/jobsActions";
 
 const JobDetail = () => {
 	const { jobId } = useParams();
 	const [jobDetail, setJobDetail] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const sessionId = localStorage.getItem("sessionId");
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const getJobDetail = () => {
 		setLoading(true);
 		fetch(
@@ -37,6 +42,10 @@ const JobDetail = () => {
 			.finally(() => setLoading(false));
 	};
 
+	const handelBack = () => {
+		handelSelectJobToSeeDetail(dispatch, false);
+	};
+
 	useEffect(() => {
 		getJobDetail();
 	}, [jobId]);
@@ -54,11 +63,14 @@ const JobDetail = () => {
 			) : (
 				jobDetail.length !== 0 && (
 					<div className="row">
-						<div className="col-12">
+						<div className="col-12 d-flex justify-content-between">
 							<h1 className="jobTitle">
 								{jobDetail.Job_Title}{" "}
 								<span>{jobDetail.isInternship && "(internship)"}</span>
 							</h1>
+							<div className="back d-lg-none" onClick={handelBack}>
+								<ArrowBackIosNewIcon fontSize="medium" />
+							</div>
 						</div>
 						<div className="col-12">
 							<h6 className="text-black-50">

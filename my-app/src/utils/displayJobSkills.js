@@ -1,6 +1,5 @@
 export const displayJobSkills = (limit, jobSkills) => {
 	return jobSkills.map((skill, index) => {
-		console.log(skill);
 		if (limit === true) {
 			if (index <= 3) {
 				return (

@@ -20,6 +20,7 @@ import {
 	UPDATE_JOB_TYPE,
 	UPDATE_MISSING_INPUTS,
 	UPDATE_SELECTED_JOB_SKILLS_IDS,
+	UPDATE_SELECT_JOB,
 } from "./types";
 
 export const updateJobTitle = async (dispatch, jobTitle) => {
@@ -150,5 +151,12 @@ export const updateAllJobs = async (dispatch, jobs) => {
 	return dispatch({
 		type: UPDATE_ALL_JOBS,
 		payload: jobs,
+	});
+};
+
+export const handelSelectJobToSeeDetail = async (dispatch, status) => {
+	return dispatch({
+		type: UPDATE_SELECT_JOB,
+		payload: status,
 	});
 };

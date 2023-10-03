@@ -3,7 +3,10 @@ import JobCard from "./JobCard";
 import Toast from "../Toast";
 import Lottie from "lottie-react";
 import animationData from "../../animations/no_jobs_found.json";
-import { updateAllJobs } from "../../redux/actions/jobsActions";
+import {
+	handelSelectJobToSeeDetail,
+	updateAllJobs,
+} from "../../redux/actions/jobsActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Backdrop, CircularProgress } from "@mui/material/node";
 import { useNavigate } from "react-router-dom";
@@ -67,6 +70,10 @@ const JobCards = () => {
 	useEffect(() => {
 		allJobs.length !== 0 && navigate(`./${allJobs[selectedJob].Job_Id}`);
 	}, [allJobs, navigate, selectedJob]);
+
+	useEffect(() => {
+		handelSelectJobToSeeDetail(dispatch, true);
+	}, [dispatch, selectedJob]);
 	return (
 		<div
 			className="jobCards shadow position-relative"
@@ -86,7 +93,7 @@ const JobCards = () => {
 				allJobs.map((job, index) => (
 					<JobCard
 						active={index === selectedJob}
-						key={job.Job_Id}
+						key={index}
 						jobTitle={job.Job_Title}
 						companyName={job.Company_Name}
 						logo={job.Company_Logo}
