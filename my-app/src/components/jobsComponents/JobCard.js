@@ -44,7 +44,7 @@ const JobCard = ({
 					<div className="col-12">
 						<h4 className="jobTitle mb-3">{jobTitle}</h4>
 					</div>
-					<div className="col-8">
+					<div className="col-10 col-lg-8">
 						<h5 className="companyName">{companyName}</h5>
 						<p className="companyLocation text-black-50 mb-1">
 							{companyLocation}

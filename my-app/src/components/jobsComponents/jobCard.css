@@ -32,3 +32,28 @@
 	overflow: hidden; /* Hide overflowed content */
 	text-overflow: ellipsis; /* Display ellipsis for overflowed text */
 }
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+	/* Your CSS styles for mobile devices here */
+	.ApplyJobLayout .jobCard .jobInfo .jobTitle {
+		font-size: 18px;
+	}
+	.ApplyJobLayout .jobCard .jobInfo .companyName {
+		font-size: 12px;
+	}
+	.ApplyJobLayout .jobCard .companyLogo {
+		width: 45px;
+		height: 45px;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+}

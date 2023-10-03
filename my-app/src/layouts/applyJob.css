@@ -43,9 +43,15 @@
 /* iPad Landscape Styles */
 @media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
 	/* Your CSS styles for iPad in landscape orientation here */
+	.ApplyJobLayout .outlet {
+		z-index: 1 !important;
+	}
 }
 
 /* iPad Portrait Styles */
 @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
 	/* Your CSS styles for iPad in portrait orientation here */
+	.ApplyJobLayout .outlet {
+		position: absolute;
+	}
 }

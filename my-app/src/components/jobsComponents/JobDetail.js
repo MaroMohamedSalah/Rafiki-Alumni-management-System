@@ -50,7 +50,7 @@ const JobDetail = () => {
 		getJobDetail();
 	}, [jobId]);
 	return (
-		<div className="jobDetail shadow px-5 py-4">
+		<div className="jobDetail shadow px-2 px-md-5 py-4">
 			{loading ? (
 				<Backdrop
 					sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -103,22 +103,25 @@ const JobDetail = () => {
 						</div>
 						<div className="col-12">
 							{jobDetail.External_Link === "" ? (
-								<Button variant="contained" className="rounded-5 my-4">
+								<Button variant="contained" className="rounded-5 my-md-4 my-2">
 									Easy Apply
 								</Button>
 							) : (
 								<Link to={jobDetail.External_Link}>
-									<Button variant="contained" className="rounded-5 my-4">
+									<Button
+										variant="contained"
+										className="rounded-5 my-md-4 my-2"
+									>
 										Apply <ArrowOutwardIcon fontSize="small" className="ms-2" />
 									</Button>
 								</Link>
 							)}
 						</div>
-						<div className="col-12 my-4 jobDescription">
+						<div className="col-12 my-md-4 my-2 jobDescription">
 							<h2 className="title">Job Description</h2>
 							<p>{jobDetail.Description}</p>
 						</div>
-						<div className="col-12 my-4 jobReqs">
+						<div className="col-12 my-md-4 my-2 jobReqs">
 							<h2 className="title">Job Requirements</h2>
 							<p>{jobDetail.Job_Requirements}</p>
 						</div>
