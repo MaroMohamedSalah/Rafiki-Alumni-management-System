@@ -1,4 +1,5 @@
-import icon4 from "../imgs/sign up 4.svg";
+import { InputAdornment, TextField } from "@mui/material/node";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 const EmailInput = ({ emailError, setEmailError }) => {
 	const emailChecker = (emailV) => {
 		fetch("https://rafiki-backend.azurewebsites.net/api/users/check_email", {
@@ -22,38 +23,33 @@ const EmailInput = ({ emailError, setEmailError }) => {
 			})
 			.catch((error) => console.error("Error:", error));
 	};
-
-	const makeVibrate = () => {
-		if ("vibrate" in navigator) {
-			navigator.vibrate([50]);
-		}
-	};
 	return (
 		<div className="email mb-3">
-			<div className="input-group p-2">
-				<span className="input-group-text" id="basic-addon1">
-					<img src={icon4} alt="" />
-				</span>
-				<input
-					name="Email"
-					id="email"
-					type="email"
-					className="form-control"
-					placeholder="Email"
-					aria-label="Email"
-					aria-describedby="basic-addon1"
-					onChange={(e) => {
-						if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
-							setEmailError("Invalid Email Address");
-						} else {
-							setEmailError("");
-							emailChecker(e.target.value);
-						}
-					}}
-					onClick={makeVibrate}
-				/>
-			</div>
-			<h5 className="error">{emailError}</h5>
+			<TextField
+				type="email"
+				id="email"
+				name="Email"
+				label="Email"
+				InputProps={{
+					startAdornment: (
+						<InputAdornment position="start">
+							<AlternateEmailIcon />
+						</InputAdornment>
+					),
+				}}
+				onChange={(e) => {
+					if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
+						setEmailError("Invalid Email Address");
+					} else {
+						setEmailError("");
+						emailChecker(e.target.value);
+					}
+				}}
+				variant="outlined"
+				error={emailError !== ""}
+				helperText={emailError}
+				fullWidth
+			/>
 		</div>
 	);
 };

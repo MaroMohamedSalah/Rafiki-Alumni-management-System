@@ -23,6 +23,7 @@ import PostIntern from "./pages/PostIntern";
 import ApplyJobLayout from "./layouts/ApplyJob-layout";
 import JobDetail from "./components/jobsComponents/JobDetail";
 import GetStartedAr from "./pages/GetStartedAr";
+import Signup from "./pages/Signup";
 
 function App() {
 	return (
@@ -62,6 +63,7 @@ function App() {
 						<Route path="/getStartedAr" element={<GetStartedAr />} />
 						{/* Signup Routes */}
 						<Route path="/alumniSignup" element={<AlumniSignup />} />
+						<Route path="/signup/:actor" element={<Signup />} />
 						<Route path="/studentSignup" element={<CurrantStudentSignup />} />
 						<Route path="/hrSignup" element={<HRSignup />} />
 						{/* Profile Routes */}

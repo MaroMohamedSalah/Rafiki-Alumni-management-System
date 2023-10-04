@@ -1,8 +1,10 @@
-import show from "../imgs/show password.svg";
-import hide from "../imgs/hide password.svg";
-import icon5 from "../imgs/sign up 5.svg";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import PasswordIcon from "@mui/icons-material/Password";
+import CheckIcon from "@mui/icons-material/Check";
 import icon6 from "../imgs/sign up 6.svg";
 import { useState } from "react";
+import { IconButton, InputAdornment, TextField } from "@mui/material/node";
 const PasswordInput = ({
 	passwordError,
 	setPasswordError,
@@ -12,6 +14,12 @@ const PasswordInput = ({
 }) => {
 	const [showPassword, setShowPassword] = useState(false);
 	const [password, setPassword] = useState("");
+
+	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+	const handleMouseDownPassword = (event) => {
+		event.preventDefault();
+	};
 
 	function validatePassword(password) {
 		// Define the password complexity rules
@@ -35,63 +43,74 @@ const PasswordInput = ({
 	return (
 		<>
 			<div className="password mb-3">
-				<div className="input-group p-2">
-					<span className="input-group-text" id="basic-addon1">
-						<img src={icon5} alt="" />
-					</span>
-					<input
-						name="Password"
-						onCopy={(e) => e.preventDefault()}
-						id="password"
-						type={showPassword === true ? "text" : "password"}
-						className="form-control"
-						placeholder="Password"
-						aria-label="Password"
-						aria-describedby="basic-addon1"
-						onChange={(e) => {
-							if (validatePassword(e.target.value) === null) {
-								setPasswordError("");
-								setPassword(e.target.value);
-							} else {
-								setPasswordError(validatePassword(e.target.value));
-							}
-						}}
-					/>
-					<span className="input-group-text" id="basic-addon1">
-						{showPassword === true ? (
-							<img src={hide} alt="" onClick={() => setShowPassword(false)} />
-						) : (
-							<img src={show} alt="" onClick={() => setShowPassword(true)} />
-						)}
-					</span>
-				</div>
-				<h5 className="error">{passwordError}</h5>
+				<TextField
+					id="password"
+					label="Password"
+					type={showPassword === true ? "text" : "password"}
+					name="Password"
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position="start">
+								<PasswordIcon />
+							</InputAdornment>
+						),
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton
+									aria-label="toggle password visibility"
+									onClick={handleClickShowPassword}
+									onMouseDown={handleMouseDownPassword}
+									edge="end"
+								>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
+							</InputAdornment>
+						),
+					}}
+					onChange={(e) => {
+						if (validatePassword(e.target.value) === null) {
+							setPasswordError("");
+							setPassword(e.target.value);
+						} else {
+							setPasswordError(validatePassword(e.target.value));
+						}
+					}}
+					onCopy={(e) => e.preventDefault()}
+					variant="outlined"
+					error={passwordError !== ""}
+					helperText={passwordError}
+					fullWidth
+				/>
 			</div>
 			<div className="confirm mb-3">
-				<div className="input-group p-2">
-					<span className="input-group-text" id="basic-addon1">
-						<img src={icon6} alt="" />
-					</span>
-					<input
-						id="confirm"
-						type="password"
-						className="form-control"
-						placeholder="Confirm Password"
-						aria-label="Confirm Password"
-						aria-describedby="basic-addon1"
-						onChange={(e) => {
-							setConfirmPass(e.target.value);
-							if (e.target.value === password) {
-								setConfirmPasswordError("");
-							} else {
-								setConfirmPasswordError(
-									"Password and Confirm Password must be the same"
-								);
-							}
-						}}
-					/>
-				</div>
-				<h5 className="error">{confirmPasswordError}</h5>
+				<TextField
+					id="confirm"
+					label="Confirm Password"
+					type="password"
+					name="conPassword"
+					InputProps={{
+						startAdornment: (
+							<InputAdornment position="start">
+								<CheckIcon />
+							</InputAdornment>
+						),
+					}}
+					onChange={(e) => {
+						setConfirmPass(e.target.value);
+						if (e.target.value === password) {
+							setConfirmPasswordError("");
+						} else {
+							setConfirmPasswordError(
+								"Password and Confirm Password must be the same"
+							);
+						}
+					}}
+					onCopy={(e) => e.preventDefault()}
+					variant="outlined"
+					error={confirmPasswordError !== ""}
+					helperText={confirmPasswordError}
+					fullWidth
+				/>
 			</div>
 		</>
 	);

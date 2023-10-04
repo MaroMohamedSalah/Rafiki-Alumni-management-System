@@ -34,12 +34,7 @@ const DashboardNav = ({ profileData }) => {
 						<SearchBar />
 					</div>
 					<div className="col d-flex align-items-center justify-content-end">
-						<Badge
-							badgeContent={4}
-							color="primary"
-							invisible={false}
-							size="small"
-						>
+						<Badge badgeContent={4} invisible={false} size="small">
 							<NotificationsIcon fontSize="small" className="notification me" />
 						</Badge>
 						<div className="dashProfile d-flex ms-3 align-items-center">

@@ -1,4 +1,4 @@
-import studentImg from "../imgs/Student img 2.svg";
+import studentImg from "../imgs/studentImg2.svg";
 import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import ProgressLine from "../components/ProgressLine";

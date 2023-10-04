@@ -61,13 +61,8 @@
 }
 .Auth form .part1,
 .Auth form .part2 {
-	position: absolute;
 	width: 100%;
 	transition: all var(--main-transition) ease-in-out;
-}
-.Auth form .part1 {
-	top: 50%;
-	transform: translateY(-50%);
 }
 .Auth form .part2 {
 	display: none;
@@ -93,7 +88,6 @@
 	}
 }
 .Auth form .submit {
-	top: 68%;
 	transition: all var(--main-transition) ease-in-out;
 }
 .Auth.Login form button,
@@ -101,7 +95,6 @@
 	color: #ffffff;
 	font-family: 600;
 	transition: all 0.2s ease-in-out !important;
-	margin-bottom: 20px;
 }
 .AlumniSignup form button {
 	background-color: var(--Alumni-color);

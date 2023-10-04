@@ -1,5 +1,5 @@
 .jobs .title {
-	color: #392e67;
+	color: var(--primary-color);
 	font-size: 55px;
 	font-weight: 700;
 }

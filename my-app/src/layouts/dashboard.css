@@ -4,7 +4,7 @@
 
 /* General  */
 .Dashboard {
-	background-color: #1e1934;
+	background-color: var(--primary-color);
 }
 .Dashboard a {
 	text-decoration: none;
@@ -92,7 +92,7 @@
 	position: fixed;
 	height: fit-content;
 	width: inherit;
-	background-color: #1e1934;
+	background-color: var(--primary-color);
 	top: 0;
 	right: 0;
 	width: calc(100% - (64px + 1rem));
@@ -114,12 +114,12 @@
 	align-items: center;
 	overflow: hidden;
 	cursor: pointer;
-	background-color: #9b9a9a;
-	color: #1e1934;
+	color: var(--primary-color);
 	font-size: 25px;
+	background-color: var(--primary-color-shade5);
 }
 .Dashboard .nav .notification {
-	color: white;
+	color: var(--primary-color-shade5);
 	font-size: 10px;
 	cursor: pointer;
 	width: 20px;
@@ -127,6 +127,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.Dashboard .nav .MuiBadge-badge {
+	background-color: #ff4d4d;
+	color: var(--primary-color-shade5);
 }
 .Dashboard .nav .notification:hover {
 	animation: headShake;
@@ -167,7 +171,7 @@
 	position: fixed;
 	height: 100%; /* Take full height of the viewport */
 	overflow-y: auto; /* Allow scrolling for the sidebar */
-	background-color: #1e1934;
+	background-color: var(--primary-color);
 	top: 0;
 	left: 0;
 	z-index: 400; /* Make sure sidebar and nav are above content */
@@ -179,7 +183,7 @@
 .Dashboard .sidebar-container {
 	border-top-right-radius: var(--large-border-radius);
 	border-bottom-right-radius: var(--large-border-radius);
-	background-color: #392e67;
+	background-color: var(--primary-color);
 	height: 100%;
 	transition: all var(--main-transition) var(--main-transition) ease-in-out;
 	display: flex;
