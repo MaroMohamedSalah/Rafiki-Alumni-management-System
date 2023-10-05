@@ -5,6 +5,7 @@
 }
 .jobs .submit {
 	border-radius: var(--main-border-radius);
+	background-color: var(--accent-color);
 }
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */

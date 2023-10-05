@@ -22,7 +22,7 @@ const DashboardSidebar = ({ profileData }) => {
 		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				fetch("https://rafiki-backend.azurewebsites.net/api/users/logout", {
+				fetch("https://rafiki-backend.azurewebsites.net/api/auth/logout", {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",

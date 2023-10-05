@@ -1,5 +1,5 @@
 :root {
-	--sideBar-width: 366px;
+	--sideBar-width: 255px;
 }
 
 /* General  */
@@ -116,10 +116,10 @@
 	cursor: pointer;
 	color: var(--primary-color);
 	font-size: 25px;
-	background-color: var(--primary-color-shade5);
+	background-color: var(--primary-color-shade7);
 }
 .Dashboard .nav .notification {
-	color: var(--primary-color-shade5);
+	color: var(--primary-color-shade7);
 	font-size: 10px;
 	cursor: pointer;
 	width: 20px;
@@ -130,7 +130,7 @@
 }
 .Dashboard .nav .MuiBadge-badge {
 	background-color: #ff4d4d;
-	color: var(--primary-color-shade5);
+	color: var(--primary-color-shade7);
 }
 .Dashboard .nav .notification:hover {
 	animation: headShake;
@@ -152,7 +152,7 @@
 		width: 100%;
 	}
 	.Dashboard .dashboard-wrapper.sidebar-open .nav {
-		width: calc(100% - (64px + 1rem));
+		width: calc(100% - (53px + 1rem));
 	}
 }
 
@@ -252,7 +252,7 @@
 		left: -100%;
 	}
 	.Dashboard .sidebar.open {
-		width: 238px;
+		width: 100%;
 		left: 0;
 	}
 	.Dashboard .sidebar .sidebar-container .logo {
@@ -272,7 +272,7 @@
 
 /* content */
 .Dashboard .dashboard-wrapper {
-	padding-left: calc(64px + 1rem);
+	padding-left: calc(53px + 1rem);
 	transition: all ease-in-out var(--main-transition);
 }
 .Dashboard .dashboard-wrapper.sidebar-open {
@@ -291,7 +291,7 @@
 	background-color: #e9e5f9;
 	height: fit-content;
 	border-top-right-radius: 20px;
-	border-top-left-radius: 0px;
+	border-top-left-radius: 20px;
 	padding: 10px;
 }
 .Dashboard .dashboard-wrapper.sidebar-open .content-container {
@@ -304,7 +304,7 @@
 		padding-left: 0;
 	}
 	.Dashboard .dashboard-wrapper.sidebar-open {
-		padding-left: calc(64px + 1rem);
+		padding-left: calc(53px + 1rem);
 	}
 }
 

@@ -38,7 +38,7 @@ const SessionLogin = () => {
 		}
 	};
 	const handelLogout = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/users/logout", {
+		fetch("https://rafiki-backend.azurewebsites.net/api/auth/logout", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

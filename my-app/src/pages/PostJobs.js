@@ -99,7 +99,7 @@ const PostJobs = () => {
 	// Helper function to check if a field is missing
 	return (
 		<div className="PostJobs jobs">
-			<div className="title mb-4">Post Job</div>
+			<div className="title mb-4 px-3 px-lg-4">Post Job</div>
 			<form action="#" onSubmit={handleSubmit} id="form">
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">

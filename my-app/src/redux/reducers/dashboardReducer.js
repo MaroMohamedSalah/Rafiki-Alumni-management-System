@@ -2,7 +2,7 @@ import { UPDATE_DASHBOARD_SIDEBAR } from "../actions/types";
 
 const initialState = {
 	sidebar: {
-		sideBarIsOpen: true,
+		sideBarIsOpen: false,
 	},
 };
 const dashboardReducer = (state = initialState, action) => {

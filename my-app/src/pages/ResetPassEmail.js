@@ -105,7 +105,7 @@ const ResetPassEmail = () => {
 				MuiOutlinedInput: {
 					styleOverrides: {
 						notchedOutline: {
-							borderColor: "var(--Reset-pass-color)",
+							borderColor: "var(--primary-color)",
 							borderRadius: "var(--main-border-radius)",
 						},
 						root: {
@@ -113,7 +113,7 @@ const ResetPassEmail = () => {
 								borderColor: "#388ba6",
 							},
 							[`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-								borderColor: "var(--Reset-pass-color)",
+								borderColor: "var(--primary-color)",
 							},
 						},
 					},
@@ -184,7 +184,7 @@ const ResetPassEmail = () => {
 											>
 												<path
 													d="M42.3 0C43.5465 0 44.742 0.447766 45.6234 1.2448C46.5048 2.04183 47 3.12283 47 4.25V29.75C47 30.8772 46.5048 31.9582 45.6234 32.7552C44.742 33.5522 43.5465 34 42.3 34H4.7C3.45348 34 2.25802 33.5522 1.3766 32.7552C0.495177 31.9582 0 30.8772 0 29.75V4.25C0 1.9125 2.115 0 4.7 0H42.3ZM32.0305 19.3375L47 29.75V25.5L34.968 17.2125L47 8.5V4.25L23.5 21.25L0 4.25V8.5L12.032 17.2125L0 25.5V29.75L14.9695 19.3375L23.5 25.5L32.0305 19.3375Z"
-													fill="#392E67"
+													fill="#1A4B96"
 												/>
 											</svg>
 										</InputAdornment>

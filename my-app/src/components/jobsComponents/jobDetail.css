@@ -4,6 +4,12 @@
 	font-weight: 400;
 	color: black;
 }
+.jobDetail .apply {
+	background-color: var(--accent-color);
+}
+.jobDetail .list li svg {
+	color: var(--accent-color);
+}
 /* Mobile Styles */
 @media (max-width: 767px) {
 	/* Your CSS styles for mobile devices here */

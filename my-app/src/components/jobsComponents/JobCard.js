@@ -56,7 +56,7 @@ const JobCard = ({
 					</div>
 					<div className="col position-relative">
 						<Checkbox
-							className="position-absolute bottom-0"
+							className="position-absolute bottom-0 save"
 							aria-label="save"
 							icon={<BookmarkBorderIcon />}
 							checkedIcon={<BookmarkIcon />}

@@ -98,7 +98,7 @@ const PostIntern = () => {
 	}, []);
 	return (
 		<div className="PostIntern jobs">
-			<div className="title mb-4">Post Internship</div>
+			<div className="title mb-4 px-3 px-lg-4">Post Internship</div>
 			<form action="#" onSubmit={handleSubmit}>
 				<div className="row">
 					<div className="col-12 col-lg-6 px-lg-5 px-3 my-3">

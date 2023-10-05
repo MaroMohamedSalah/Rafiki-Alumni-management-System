@@ -1,6 +1,6 @@
 /* General  */
 .ResetPass {
-	background-color: var(--Reset-pass-color);
+	background-color: var(--primary-color);
 }
 .ResetPass .logo {
 	height: 197px !important;
@@ -25,7 +25,7 @@
 }
 
 .ResetPass form .submit button {
-	background-color: var(--Reset-pass-color);
+	background-color: var(--primary-color);
 	border: initial;
 }
 /* Left Side  */
@@ -44,17 +44,17 @@
 .ResetPass .rightSide .introText h1 {
 	font-size: 55px;
 	font-weight: 700;
-	color: var(--Reset-pass-color);
+	color: var(--primary-color);
 }
 .ResetPass .rightSide .introText p {
 	font-size: 24px;
 	font-weight: 500;
-	color: var(--Reset-pass-color);
+	color: var(--text-color);
 }
 
 /* Reset Pass Email */
 .ResetPass .ResetPassEmail .email {
-	border: 2px var(--Reset-pass-color) var(--main-border-radius) solid;
+	border: 2px var(--primary-color) var(--main-border-radius) solid;
 }
 @media (max-width: 767px) {
 	.ResetPass .ResetPassEmail form button {

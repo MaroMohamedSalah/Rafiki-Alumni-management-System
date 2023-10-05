@@ -31,7 +31,7 @@
 	background-color: var(--HR-color);
 }
 .Login .row > div:nth-child(1) {
-	background-color: var(--login-color-1);
+	background-color: var(--primary-color);
 }
 
 .Auth .row > div:nth-of-type(1) img {
@@ -46,7 +46,7 @@
 	text-align: center;
 }
 .Auth .row .introText p {
-	font-size: 10px;
+	font-size: 16px;
 	text-align: center;
 	font-weight: 800;
 }
@@ -96,6 +96,14 @@
 	font-family: 600;
 	transition: all 0.2s ease-in-out !important;
 }
+.Auth.Signup form .part2 button {
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+}
+.Auth.Signup form .part2 button svg {
+	font-size: 15px;
+}
 .AlumniSignup form button {
 	background-color: var(--Alumni-color);
 }
@@ -107,7 +115,7 @@
 }
 .Login form button,
 .Login .toSignup button {
-	background-color: var(--login-color-2);
+	background-color: var(--primary-color);
 	border: 1px solid #23032e !important;
 }
 
@@ -132,7 +140,10 @@
 	background-color: #2b6f85 !important;
 }
 .Login form button:hover {
-	background-color: var(--login-color-2) !important;
+	background-color: var(--primary-color-shade1);
+}
+.Login .rightPart {
+	background-color: var(--secondary-bg-color);
 }
 .Auth form .error {
 	margin-left: 1em;
@@ -193,7 +204,7 @@
 }
 .Login .forgetPass a {
 	text-decoration: none;
-	color: var(--login-color-2);
+	color: var(--accent-color);
 }
 @keyframes up-Down {
 	0% {

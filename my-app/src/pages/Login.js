@@ -141,28 +141,18 @@ const Login = () => {
 		<div className="Auth Login">
 			<div className="container-fluid">
 				<Backbtn
-					btnColor="var(--login-color-2)"
+					btnColor="var(--secondary-bg-color)"
 					btnSize="25px"
 					btnTop="10px"
-					btnColorMobile="var(--Alumni-color)"
+					btnColorMobile="var(--primary-color)"
 					btnSizeMobile="15px"
 					btnTopMobile="10px"
 				/>
 				<div className="row">
-					<div className="col-12 col-md-6 d-none d-md-flex justify-content-between align-items-center flex-column">
+					<div className="col-12 col-md-6 d-none d-md-flex justify-content-around align-items-center flex-column">
 						<img src={loginImg} alt="" />
-						<div className="toSignup d-flex justify-content-center align-items-center w-100 mb-2">
-							<h5 className="m-0">Not A Member ? </h5>
-							<span>
-								<Link to="/roleSelection">
-									<button className="btn px-4 py-1 fs-6 text mx-4">
-										Signup
-									</button>
-								</Link>
-							</span>
-						</div>
 					</div>
-					<div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center">
+					<div className="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center rightPart">
 						<div className="introText p-4 w-100">
 							<h1>Welcome Again!</h1>
 							<p className="text-black-50">welcome back again to us </p>
@@ -239,24 +229,23 @@ const Login = () => {
 										Submit
 									</button>
 								</div>
-								<h5 className="text-center forgetPass">
+								<h5 className="text-center forgetPass my-3">
 									forget password?{" "}
 									<Link className="d-block d-md-inline" to="/resetPass">
 										Reset Password
 									</Link>{" "}
 								</h5>
-								<div className="image img-fluid w-75 opacity-50 d-block d-md-none">
-									<img className="w-100" src={loginImg} alt="" />
-								</div>
-								<div className="toSignup d-flex d-md-none justify-content-evenly align-items-center w-100 mb-2">
-									<h5 className="m-0">Not A Member ? </h5>
-									<Link to="/roleSelection">
-										<button className="btn px-4 py-1 fs-6 text m-0">
-											Signup
-										</button>
-									</Link>
-								</div>
 							</form>
+						</div>
+						<div className="toSignup d-flex justify-content-center align-items-center w-100 mb-3 position-absolute bottom-0">
+							<h5 className="m-0">Not A Member ? </h5>
+							<span>
+								<Link to="/roleSelection">
+									<button className="btn px-4 py-1 fs-6 text mx-4">
+										Signup
+									</button>
+								</Link>
+							</span>
 						</div>
 					</div>
 				</div>

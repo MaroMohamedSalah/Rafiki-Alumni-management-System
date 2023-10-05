@@ -218,11 +218,7 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 	};
 
 	return (
-		<ul
-			className={`sidebarList w-${isMobile ? "100 p-0" : "75"} ${
-				!isSidebarOpen && "close"
-			}`}
-		>
+		<ul className={`sidebarList w-100 p-3 ${!isSidebarOpen && "close"}`}>
 			{generateSidebarItems(features)}
 		</ul>
 	);

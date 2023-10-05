@@ -1,5 +1,5 @@
 .ApplyJobLayout .jobCard.active {
-	background: rgba(57, 46, 103, 0.28);
+	background-color: var(--primary-color);
 }
 .ApplyJobLayout .jobCard .row {
 	transition: all ease-in-out var(--main-transition);
@@ -11,18 +11,30 @@
 }
 .ApplyJobLayout .jobCard .jobInfo .jobTitle {
 	font-weight: 400;
-	color: var(--Reset-pass-color);
+	color: var(--primary-color);
 }
 .ApplyJobLayout .jobCard .jobInfo .companyName {
 	font-weight: 400;
 	color: black;
 	font-size: 16px;
 }
+.ApplyJobLayout .jobCard.active .jobInfo .jobTitle,
+.ApplyJobLayout .jobCard.active .jobInfo .save {
+	color: white;
+}
+.ApplyJobLayout .jobCard.active .jobInfo .companyLocation,
+.ApplyJobLayout .jobCard.active .jobInfo .skillList,
+.ApplyJobLayout .jobCard.active .jobInfo .skillList span {
+	color: #ffffff7a !important;
+}
+.ApplyJobLayout .jobCard.active .jobInfo .companyName {
+	color: white;
+}
 .ApplyJobLayout .jobCard .companyLogo {
 	width: 75px;
 	height: 75px;
 	border-radius: var(--main-border-radius);
-	background-color: var(--Reset-pass-color);
+	background-color: var(--primary-color-shade1);
 	display: flex;
 	justify-content: center;
 	align-items: center;

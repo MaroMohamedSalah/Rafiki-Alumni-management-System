@@ -103,14 +103,17 @@ const JobDetail = () => {
 						</div>
 						<div className="col-12">
 							{jobDetail.External_Link === "" ? (
-								<Button variant="contained" className="rounded-5 my-md-4 my-2">
+								<Button
+									variant="contained"
+									className="rounded-5 my-md-4 my-2 apply"
+								>
 									Easy Apply
 								</Button>
 							) : (
 								<Link to={jobDetail.External_Link}>
 									<Button
 										variant="contained"
-										className="rounded-5 my-md-4 my-2"
+										className="rounded-5 my-md-4 my-2 apply"
 									>
 										Apply <ArrowOutwardIcon fontSize="small" className="ms-2" />
 									</Button>

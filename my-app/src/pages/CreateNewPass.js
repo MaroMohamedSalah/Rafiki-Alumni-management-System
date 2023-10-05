@@ -139,7 +139,7 @@ const CreateNewPass = () => {
 				MuiOutlinedInput: {
 					styleOverrides: {
 						notchedOutline: {
-							borderColor: "var(--Reset-pass-color)",
+							borderColor: "var(--primary-color)",
 							borderRadius: "var(--main-border-radius)",
 						},
 						root: {
@@ -147,7 +147,7 @@ const CreateNewPass = () => {
 								borderColor: "#388ba6",
 							},
 							[`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-								borderColor: "var(--Reset-pass-color)",
+								borderColor: "var(--primary-color)",
 							},
 						},
 					},
