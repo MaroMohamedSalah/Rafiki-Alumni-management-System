@@ -288,7 +288,7 @@
 	height: 0;
 }
 .Dashboard .content-container {
-	background-color: #e9e5f9;
+	background-color: var(--primary-bg-color);
 	height: fit-content;
 	border-top-right-radius: 20px;
 	border-top-left-radius: 20px;

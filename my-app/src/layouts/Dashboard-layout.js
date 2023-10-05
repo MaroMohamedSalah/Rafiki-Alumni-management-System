@@ -8,6 +8,7 @@ import { RedirectToLoginNotification } from "../components/RedirectToLoginNotifi
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserInfo } from "../redux/actions/profileActions";
+import JoinTelegramNotification from "../components/JoinTelegramNotification";
 
 const DashboardLayout = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -66,6 +67,7 @@ const DashboardLayout = () => {
 							</div>
 						</div>
 					</div>
+					<JoinTelegramNotification />
 				</div>
 			) : (
 				<Loading />

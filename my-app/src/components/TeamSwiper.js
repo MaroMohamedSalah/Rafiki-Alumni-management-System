@@ -172,15 +172,11 @@ const TeamSwiper = () => {
 			social: [
 				{
 					platform: "linkedin",
-					link: "https://www.linkedin.com/in/martina-mousa-a88708223?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+					link: "https://www.linkedin.com/in/ahmed-hany-aou?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
 				},
 				{
 					platform: "github",
-					link: "https://github.com/MARTINA-MOUSA",
-				},
-				{
-					platform: "facebook",
-					link: "https://www.facebook.com/profile.php?id=100029764970180&mibextid=ZbWKwL",
+					link: "https://github.com/Ahmed-Hany-Aou",
 				},
 			],
 		},
