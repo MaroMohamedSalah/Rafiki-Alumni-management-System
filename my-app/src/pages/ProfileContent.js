@@ -43,16 +43,12 @@ const ProfileContent = () => {
 			</div>
 
 			<div className="row">
-				<div className="col-12">
-					<ProfileExperience />
-				</div>
+				<div className="col-12">{/* <ProfileExperience /> */}</div>
 			</div>
 
 			{actorName !== "HR" && (
 				<div className="row">
-					<div className="col-12">
-						<ProfileEdu actor={"Alumni"} />
-					</div>
+					<div className="col-12">{/* <ProfileEdu actor={"Alumni"} /> */}</div>
 				</div>
 			)}
 

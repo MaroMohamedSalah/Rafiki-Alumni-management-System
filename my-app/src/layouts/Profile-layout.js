@@ -76,7 +76,7 @@ const ProfileLayout = () => {
 			<div className={`${actorName}Profile profile`}>
 				<div className="profile-overlay"></div>
 				<div className="container pb-5 position-relative">
-					<Logo to={`/dashboard?username=${userInfo.user.UserName}`} />
+					<Logo to={`/dashboard?username=${userInfo.user.UserName}`} dark />
 
 					<ProfileInfoContainer />
 					<Outlet />

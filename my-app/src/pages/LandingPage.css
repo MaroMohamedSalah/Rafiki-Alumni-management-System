@@ -78,6 +78,13 @@
 	z-index: 500;
 	background-color: var(--primary-bg-color);
 }
+.LandingPage nav .logo {
+	height: 80px !important;
+	transition: all ease-in-out 0.3s;
+}
+.LandingPage nav .navLogo.scrollHight .logo {
+	height: 50px !important;
+}
 .LandingPage .login {
 	border: 3px solid var(--primary-color);
 }

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import logo from "../imgs/logo.png";
+import logoDark from "../imgs/logo-picdark-shfaf.png";
+import logoLight from "../imgs/logo-pic-accent.png";
 
-const Logo = ({ to }) => {
+const Logo = ({ to, dark }) => {
 	const isMobile = window.innerWidth <= 768;
 	let logoStyle = {
 		height: "50px",
@@ -17,7 +18,11 @@ const Logo = ({ to }) => {
 	}
 	return (
 		<Link to={to} className="logo" style={logoStyle}>
-			<img src={logo} alt="" className="img-fluid h-100" />
+			{dark ? (
+				<img src={logoDark} alt="" className="img-fluid h-100" />
+			) : (
+				<img src={logoLight} alt="" className="img-fluid h-100" />
+			)}
 		</Link>
 	);
 };

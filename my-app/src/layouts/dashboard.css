@@ -192,7 +192,7 @@
 	flex-direction: column;
 }
 .Dashboard .sidebar .sidebar-container .logo {
-	height: 82px !important;
+	height: 114px !important;
 	transition: all ease-in-out var(--main-transition);
 	margin-bottom: 20px;
 }
@@ -293,6 +293,7 @@
 	border-top-right-radius: 20px;
 	border-top-left-radius: 20px;
 	padding: 10px;
+	min-height: 91vh;
 }
 .Dashboard .dashboard-wrapper.sidebar-open .content-container {
 	border-top-left-radius: 20px;
