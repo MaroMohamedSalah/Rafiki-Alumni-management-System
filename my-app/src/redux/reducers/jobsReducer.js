@@ -41,6 +41,7 @@ const initialState = {
 		Education_Level: "graduate",
 		Job_Skills: null,
 		Job_Time: "Full-time",
+		notification: true,
 	},
 	missingInputs: [],
 	availableJobs: [],

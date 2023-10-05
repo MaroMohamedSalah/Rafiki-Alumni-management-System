@@ -16,6 +16,7 @@ const JoinTelegramNotification = () => {
 
 	const handleClose = () => {
 		setOpen(false);
+		return;
 	};
 
 	const handleJoin = () => {

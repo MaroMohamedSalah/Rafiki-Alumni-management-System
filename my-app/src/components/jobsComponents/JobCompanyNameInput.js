@@ -19,7 +19,7 @@ const JobCompanyNameInput = () => {
 	}, [dispatch]);
 
 	const handleNameChange = (e) => {
-		const newCompanyName = e.target.value.trim() || null; // Convert empty string to null
+		const newCompanyName = e.target.value || null; // Convert empty string to null
 
 		// Check if the new company name is empty, and remove the entity from sessionStorage if it is
 		if (newCompanyName === null) {
