@@ -14,6 +14,7 @@ const LoginLayout = () => {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${sessionId}`,
+				"Demo-Code": "demo2023",
 			},
 		})
 			.then((res) => {

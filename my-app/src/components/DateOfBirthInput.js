@@ -62,7 +62,7 @@ const DateOfBirthInput = ({
 					name="DateOfBirth"
 					label="Date Of Birth"
 					onChange={handleDateChange}
-					inputFormat="DD/MM/YYYY"
+					format="DD/MM/YYYY"
 					// defaultValue={defaultDate}
 					maxDate={maxSelect}
 					slotProps={{
@@ -80,7 +80,7 @@ const DateOfBirthInput = ({
 					onChange={handleDateChange}
 					// defaultValue={defaultDate}
 					maxDate={maxSelect}
-					inputFormat="DD/MM/YYYY"
+					format="DD/MM/YYYY"
 					slotProps={{
 						textField: {
 							helperText: dateOfBirthError, // Use errorMessage here

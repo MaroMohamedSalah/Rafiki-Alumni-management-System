@@ -43,6 +43,7 @@ const SessionLogin = () => {
 			headers: {
 				"Content-Type": "application/json",
 				Authorization: `Bearer ${sessionId}`,
+				"Demo-Code": "demo2023",
 			},
 		})
 			.then((res) => res.json())

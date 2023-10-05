@@ -131,6 +131,7 @@ const Signup = () => {
 							}),
 							headers: {
 								"Content-Type": "application/json",
+								"Demo-Code": "demo2023",
 							},
 						}
 					);

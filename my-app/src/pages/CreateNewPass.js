@@ -70,7 +70,7 @@ const CreateNewPass = () => {
 	};
 	const handelSubmit = async (e) => {
 		e.preventDefault();
-		const url = `https://rafiki-backend.azurewebsites.net/api/users/reset_password/${token}`;
+		const url = `https://rafiki-backend.azurewebsites.net/api/auth/reset_password/${token}`;
 		if (confirmPassword !== "" && password !== "") {
 			updateResetPassLoading(dispatch, true);
 			try {
@@ -81,6 +81,7 @@ const CreateNewPass = () => {
 					}),
 					headers: {
 						"Content-Type": "application/json",
+						"Demo-Code": "demo2023",
 					},
 				});
 

@@ -41,7 +41,7 @@ const ResetPassEmail = () => {
 
 			try {
 				const response = await fetch(
-					"https://rafiki-backend.azurewebsites.net/api/users/reset_password",
+					"https://rafiki-backend.azurewebsites.net/api/auth/reset_password",
 					{
 						method: "POST",
 						body: JSON.stringify({
@@ -49,6 +49,7 @@ const ResetPassEmail = () => {
 						}),
 						headers: {
 							"Content-Type": "application/json",
+							"Demo-Code": "demo2023",
 						},
 					}
 				);
