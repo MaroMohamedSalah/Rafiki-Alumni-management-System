@@ -1,10 +1,10 @@
 {
-	"theme_color": "#00c2a8",
-	"background_color": "#d73222",
+	"theme_color": "#8da5cb",
+	"background_color": "#1a4b96",
 	"display": "standalone",
 	"scope": "/",
 	"start_url": "/",
-	"name": "Alumni Management Software",
+	"name": "Rafiki - رفيقي",
 	"short_name": "FCAI",
 	"icons": [
 		{

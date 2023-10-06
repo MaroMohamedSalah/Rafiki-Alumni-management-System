@@ -38,7 +38,6 @@ const DashboardLayout = () => {
 				}
 			})
 			.then((data) => {
-				console.log(data);
 				if (data.success === true) {
 					updateUserInfo(dispatch, data);
 				}
