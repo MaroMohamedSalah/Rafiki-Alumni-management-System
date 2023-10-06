@@ -3,10 +3,9 @@ import Swal from "sweetalert2";
 import Toast from "./Toast";
 import { useState } from "react";
 import { Skeleton, Tooltip } from "@mui/material";
+import { calculateAge } from "../utils/calcAge";
 
-const ProfilePersonalInfo = ({ countryPram }) => {
-	const [birthDay, setBirthDay] = useState("");
-	const profile = useSelector((state) => state.profile);
+const ProfilePersonalInfo = ({ countryPram, birthPram }) => {
 	const [country, setCountry] = useState(countryPram);
 	const sessionId = localStorage.getItem("sessionId");
 
@@ -97,9 +96,11 @@ const ProfilePersonalInfo = ({ countryPram }) => {
 						<span className="icon">
 							<i className="fa-solid fa-cake-candles"></i>
 						</span>{" "}
-						{birthDay === "" ? (
+						{birthPram === "" ? (
 							<Skeleton width={"50%"} animation="wave" />
-						) : null}
+						) : (
+							calculateAge(birthPram)
+						)}
 					</h1>
 				</div>
 			</div>

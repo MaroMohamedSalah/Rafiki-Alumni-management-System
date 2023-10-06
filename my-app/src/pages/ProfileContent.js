@@ -54,7 +54,10 @@ const ProfileContent = () => {
 
 			<div className="row">
 				<div className="col-12">
-					<ProfilePersonalInfo countryPram={userInfo.user.Country} />
+					<ProfilePersonalInfo
+						countryPram={userInfo.user.Country}
+						birthPram={userInfo.user.Date_Of_Birth}
+					/>
 				</div>
 			</div>
 		</div>
