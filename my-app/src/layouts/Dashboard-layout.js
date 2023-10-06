@@ -32,6 +32,7 @@ const DashboardLayout = () => {
 				if (res.status === 401) {
 					// Redirect to login page
 					RedirectToLoginNotification();
+					localStorage.removeItem("sessionId");
 					navigate("/login");
 				} else {
 					return res.json();

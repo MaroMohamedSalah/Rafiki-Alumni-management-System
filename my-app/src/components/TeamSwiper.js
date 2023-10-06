@@ -17,6 +17,10 @@ import azzaImg from "../imgs/azzaImg.jpeg";
 import mahmoudImg from "../imgs/mahmoudImg.JPG";
 import mazenIslamImg from "../imgs/mazinIslamImg.jpg";
 import ahmedImg from "../imgs/ahmedImg.jpg";
+import amrImg from "../imgs/drAmrImg.jpg";
+import moheyImg from "../imgs/moheyImg.jpg";
+import martinaImg from "../imgs/martinaImg.jpg";
+import samaImg from "../imgs/samaImg.jpg";
 import { Link } from "react-router-dom";
 
 //style
@@ -48,7 +52,7 @@ const TeamSwiper = () => {
 		{
 			name: "Amr S. Ghoneim",
 			title: "Our Amazing Consultant",
-			img: "https://scontent.fcai22-2.fna.fbcdn.net/v/t39.30808-6/243579308_10165512914965401_8628431571916992085_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeEtSKqFGlPYmRJgeC60iCggXn_ygJaaW55ef_KAlppbnovswDGYcMgODpaFh2hUO4mNrHtg3U816ZJn2C48KCVY&_nc_ohc=87sszfAyneIAX862vWY&_nc_ht=scontent.fcai22-2.fna&oh=00_AfDzoEGZfR3OfKVp6FP5v3HnHwHsCF7tFnzz4eXopgxfxg&oe=651CA015",
+			img: amrImg,
 			social: [
 				{
 					platform: "linkedin",
@@ -64,7 +68,7 @@ const TeamSwiper = () => {
 		{
 			name: "Sama Gomaa",
 			title: "Business Analyst",
-			img: "https://scontent.fcai22-1.fna.fbcdn.net/v/t39.30808-6/346975300_638832794344741_5663229216656707559_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeEq-2ubxtaT3AUeODEhpQiiPCGnbUtOQlk8IadtS05CWduvOCt_zrjPIgkGDfNGPh6a-F0LDLazpVBFckLKclo8&_nc_ohc=oKbjcyrbHIEAX_LULoA&_nc_ht=scontent.fcai22-1.fna&oh=00_AfB-CmbcNCmfUtQubmEsIuGf4GCce7OYHdI99F--OxMFGw&oe=651BD3BD",
+			img: samaImg,
 			social: [
 				{
 					platform: "linkedin",
@@ -124,7 +128,7 @@ const TeamSwiper = () => {
 		{
 			name: "Mohey El-deen",
 			title: "Designer",
-			img: "https://scontent.fcai22-4.fna.fbcdn.net/v/t39.30808-6/345598192_956495852035157_8795313300678831859_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeFGMC2B-e-KAR3jVapyuQKODdX_f4iKZAMN1f9_iIpkA-wjHTDcbjnep1oGidOZ7n1yCEpyL3ac57Or26lpirZr&_nc_ohc=gOARr1EcXq8AX_TJv9N&_nc_ht=scontent.fcai22-4.fna&oh=00_AfBhdaHrcXBEmdPkMPfDLTzub4Y-h_sxLMO7FdsU9RR7Dg&oe=651D9C8E",
+			img: moheyImg,
 			social: [
 				{
 					platform: "linkedin",
@@ -148,7 +152,7 @@ const TeamSwiper = () => {
 		{
 			name: "Martina Mousa",
 			title: "Database Designer",
-			img: "https://scontent.fcai22-4.fna.fbcdn.net/v/t39.30808-6/371894708_1085439445791544_6425038245321750238_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeGfy5O2gLesTh9pzUEJIs7o5FWq0a1r2jLkVarRrWvaMpWz2OCRFSbP2UGDUMBXokIVSSBlpD7DIo0Z733B6nSo&_nc_ohc=LkoO3Lx7uu8AX_9CJBz&_nc_ht=scontent.fcai22-4.fna&oh=00_AfA04A04nC0EjznHof8NfX6cYVPjsgl5CSJy0tmAMBIxpA&oe=651CD6F3",
+			img: martinaImg,
 			social: [
 				{
 					platform: "linkedin",

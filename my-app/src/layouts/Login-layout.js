@@ -24,6 +24,7 @@ const LoginLayout = () => {
 				} else if (res.status === 401) {
 					// The user is not logged in
 					setIsLoggedIn(false);
+					localStorage.removeItem("sessionId");
 				} else {
 					// Handle other status codes if needed
 				}
