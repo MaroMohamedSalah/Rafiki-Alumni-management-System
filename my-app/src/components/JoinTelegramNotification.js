@@ -21,7 +21,7 @@ const JoinTelegramNotification = () => {
 	const handleJoin = () => {
 		setOpen(false);
 		localStorage.setItem("joinTelegram", true);
-		window.open("https://t.me/rafikijobs/1", "_blank"); // Open in a new tab/window
+		window.open("https://t.me/rafikijobs", "_blank"); // Open in a new tab/window
 	};
 
 	function SlideTransition(props) {
