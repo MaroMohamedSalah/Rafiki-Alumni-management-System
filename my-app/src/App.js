@@ -24,6 +24,7 @@ import ApplyJobLayout from "./layouts/ApplyJob-layout";
 import JobDetail from "./components/jobsComponents/JobDetail";
 import GetStartedAr from "./pages/GetStartedAr";
 import Signup from "./pages/Signup";
+import ComingSoon from "./pages/ComingSoon";
 
 function App() {
 	return (
@@ -57,7 +58,10 @@ function App() {
 							<Route path="applyJob" element={<ApplyJobLayout />}>
 								<Route index path=":jobId" element={<JobDetail />} />
 							</Route>
-							<Route path="jobsApplications" element={<h1>Applications</h1>} />
+							<Route
+								path="jobsApplications"
+								element={<ComingSoon date={"01/11/2023"} />}
+							/>
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
 						<Route path="/getStartedAr" element={<GetStartedAr />} />

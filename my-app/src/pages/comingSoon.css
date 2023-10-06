@@ -1,0 +1,37 @@
+.ComingSoon {
+	min-height: 88vh;
+}
+.ComingSoon .container {
+	min-height: inherit;
+}
+.ComingSoon .title {
+	font-size: 55px;
+	color: var(--accent-color);
+	font-weight: 700;
+}
+.ComingSoon .subtitle {
+	font-size: 18px;
+	color: var(--text-color);
+	font-weight: 400;
+}
+.ComingSoon .image {
+	width: 300px;
+}
+.ComingSoon .launchDate {
+	color: var(--primary-color);
+	font-size: 18px;
+	font-weight: 700;
+}
+.ComingSoon li a {
+	transition: all ease-in-out 0.3s;
+	color: var(--primary-color) !important;
+}
+.ComingSoon li:hover .facebook {
+	color: #0866ff !important;
+}
+.ComingSoon li:hover .instagram {
+	color: #e1306c !important;
+}
+.ComingSoon li:hover .email {
+	color: #c71610 !important;
+}
