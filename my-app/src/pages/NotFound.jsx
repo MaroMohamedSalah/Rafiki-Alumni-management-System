@@ -1,6 +1,6 @@
 import React from 'react'
-import img from './assests/erorNotFound.json'
-import logo from './assests/logo.erorNotFound.png'
+import logo from "../imgs/logo.erorNotFound.png";
+import img from "../animations/erorNotFound.json";
 import Lottie from 'lottie-react'
 import style from './NotFound.module.css'
 
