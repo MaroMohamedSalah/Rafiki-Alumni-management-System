@@ -15,7 +15,7 @@ export default function NotFound() {
                 <div className="col-md-12">
                     <h2 className={style.editHead + ' text-center'}>ERROR 404 - PAGE NOT FOUND</h2>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-7">
                     <div className=''>
                         <Lottie animationData={img}></Lottie>
                     </div>
