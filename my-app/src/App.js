@@ -25,6 +25,7 @@ import JobDetail from "./components/jobsComponents/JobDetail";
 import GetStartedAr from "./pages/GetStartedAr";
 import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
+import NotFound from "./pages/NotFound";
 
 function App() {
 	return (
@@ -76,6 +77,8 @@ function App() {
 							<Route index element={<ProfileContent />} />
 							<Route path="addSkills" element={<AddSkills />} />
 						</Route>
+						{/* Not Found Route */}
+						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>
