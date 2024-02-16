@@ -3,6 +3,10 @@ import logo from "../imgs/logo.erorNotFound.png";
 import img from "../animations/erorNotFound.json";
 import Lottie from "lottie-react";
 import style from "./NotFound.module.css";
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import test from "../imgs/test.png"
+
 
 export default function NotFound() {
 	return (
@@ -12,23 +16,29 @@ export default function NotFound() {
 					<figure className="text-center">
 						<img src={logo} alt="logo" className={style.editLogo + " "} />
 					</figure>
-					<div className="col-md-12">
+					<div className="col-lg-12 col-md-12">
 						<h2 className={style.editHead + " text-center"}>
 							ERROR 404 - PAGE NOT FOUND
 						</h2>
 					</div>
-					<div className="col-md-3 col-7">
+					<div className="col-lg-3 col-7 col-md-6">
 						<div className="">
 							<Lottie animationData={img}></Lottie>
 						</div>
 					</div>
-					<div className="col-md-7">
+					<div className="col-lg-7 col-md-10">
 						<div className="d-flex flex-column align-items-center">
 							<p className={style.editAlert}>
 								The page you are looking for might have been removed had its
 								name changed or is temporarily unavailable.
 							</p>
-							<button className={style.btnEdit + ""}>GO TO HOMEPAGE</button>
+
+							<Button className={style.editButton}>
+								<Link to={"./"} className="text-white text-decoration-none">
+									GO TO HOMEPAGE
+								</Link>
+							</Button>
+
 						</div>
 					</div>
 					<div className="col-md-8">
@@ -40,7 +50,7 @@ export default function NotFound() {
 								<a href="#" target="__blank">
 									<i class="fa-brands fa-github"></i>
 								</a>
-								<a
+								<a className="text-text-decoration-none"
 									href="https://www.facebook.com/rafikiFCAIHu?locale=ar_AR"
 									target="__blank"
 								>
