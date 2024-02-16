@@ -17,16 +17,7 @@
     text-align: center;
 }
 
-.btnEdit{
-    background-color: #4D85FF;
-    color: white;
-    font-family: "Roboto", sans-serif;
-    padding: 8px 20px 8px 20px;
-    border: 1px solid transparent;
-    border-radius: 16px;
-}
-
-.editFooter{
+.editFooter {
     font-size: 14px;
     line-height: 29.05px;
     font-weight: 400;
@@ -35,7 +26,27 @@
     padding-top: 30px;
 }
 
-.footerIcons i{
-    font-size: 22px;
-    color: #4D85FE;
+
+.footerIcons i {
+    font-size: 25px;
+    color: var(--accent-color);
+}
+
+
+.footerIcons i:hover{
+    color: #145eff;
+}
+
+
+.editButton {
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: var(--main-border-radius);
+    padding: 8px 20px 8px 20px;
+    font-family: "Roboto", sans-serif;
+}
+
+.editButton:hover {
+    background-color: #145eff;
+    color: white;
 }
