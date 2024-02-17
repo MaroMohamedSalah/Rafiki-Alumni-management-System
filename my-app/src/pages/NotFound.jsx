@@ -4,10 +4,10 @@ import img from "../animations/erorNotFound.json";
 import Lottie from "lottie-react";
 import style from "./NotFound.module.css";
 import { Link } from "react-router-dom";
-import Button from '@mui/material/Button';
-
+import Button from "@mui/material/Button";
 
 export default function NotFound() {
+	document.title = "Rafiki | Page Not Found";
 	return (
 		<div className="NotFound vh-100">
 			<div className="container h-100">
@@ -32,12 +32,11 @@ export default function NotFound() {
 								name changed or is temporarily unavailable.
 							</p>
 
-							<Button className={style.editButton}>
+							<Button className={style.editButton} variant="contained">
 								<Link to={"./"} className="text-white text-decoration-none">
 									GO TO HOMEPAGE
 								</Link>
 							</Button>
-
 						</div>
 					</div>
 					<div className="col-md-8">
@@ -49,7 +48,8 @@ export default function NotFound() {
 								<a href="#" target="__blank">
 									<i class="fa-brands fa-github"></i>
 								</a>
-								<a className="text-text-decoration-none"
+								<a
+									className="text-text-decoration-none"
 									href="https://www.facebook.com/rafikiFCAIHu?locale=ar_AR"
 									target="__blank"
 								>
