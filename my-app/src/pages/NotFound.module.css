@@ -51,5 +51,32 @@
     color: white;
 }
 
+@media (min-width: 844px) and (max-width: 1023px) and (orientation: landscape){
+    .mainImg{
+        width: 23%;
+        margin: auto;
+    }
+    .editLogo {
+        width: 35px;
+    }
+    .editHead {
+        font-size: 20px;
+    }
+    .editAlert {
+        font-size: 13px;
+    }
+    .footerIcons i {
+        font-size: 14px;
+        color: var(--accent-color);
+    }
+    .editFooter {
+        font-size: 12px;
+        padding-top: 10px;
+    }
+    .editButton {
+        padding: 5px 15px 5px 15px;
+        font-size: 12px;
+    }
+}
   
   
