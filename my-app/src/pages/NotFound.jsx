@@ -5,7 +5,6 @@ import Lottie from "lottie-react";
 import style from "./NotFound.module.css";
 import { Link } from "react-router-dom";
 import Button from '@mui/material/Button';
-import test from "../imgs/test.png"
 
 
 export default function NotFound() {
@@ -21,7 +20,7 @@ export default function NotFound() {
 							ERROR 404 - PAGE NOT FOUND
 						</h2>
 					</div>
-					<div className="col-lg-3 col-7 col-md-6">
+					<div className="col-lg-3 col-7 col-md-10 mi-landscape">
 						<div className="">
 							<Lottie animationData={img}></Lottie>
 						</div>
