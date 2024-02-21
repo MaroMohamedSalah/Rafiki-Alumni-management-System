@@ -1,0 +1,76 @@
+.editLogo {
+	width: 75px;
+}
+
+.editHead {
+	font-size: 35px;
+	color: var(--primary-color);
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+}
+
+.editAlert {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	color: var(--text-color);
+	font-size: 16px;
+	text-align: center;
+}
+
+.editFooter {
+	font-size: 14px;
+	line-height: 29.05px;
+	font-weight: 400;
+	font-family: "Inter", sans-serif;
+	color: var(--text-color);
+	padding-top: 30px;
+}
+
+.footerIcons i {
+	font-size: 25px;
+	color: var(--accent-color);
+}
+
+.footerIcons i:hover {
+	color: var(--accent-color);
+}
+
+.editButton {
+	background-color: var(--accent-color) !important;
+	color: var(--primary-color-shade7) !important;
+	border-radius: var(--main-border-radius) !important;
+	padding: 8px 20px 8px 20px !important;
+}
+
+.editButton:hover {
+	background-color: var(--accent-color);
+	color: var(--primary-color-shade7);
+}
+
+@media (min-width: 844px) and (max-width: 1023px) and (orientation: landscape) {
+	.mainImg {
+		width: 23%;
+		margin: auto;
+	}
+	.editLogo {
+		width: 35px;
+	}
+	.editHead {
+		font-size: 20px;
+	}
+	.editAlert {
+		font-size: 13px;
+	}
+	.footerIcons i {
+		font-size: 14px;
+		color: var(--accent-color);
+	}
+	.editFooter {
+		font-size: 12px;
+		padding-top: 10px;
+	}
+	.editButton {
+		padding: 5px 15px 5px 15px;
+		font-size: 12px;
+	}
+}
