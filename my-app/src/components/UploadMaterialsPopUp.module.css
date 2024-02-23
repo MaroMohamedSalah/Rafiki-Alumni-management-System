@@ -30,3 +30,7 @@
     transition: all ease-in-out 0.5s;
 
 }
+
+.btnConfig:hover{
+    background-color: rgb(19, 89, 193) !important;
+}
