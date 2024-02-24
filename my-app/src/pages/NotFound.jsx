@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../imgs/logo.errorNotFound.png";
-import img from "../animations/errorNotFound.json";
+import logo from "../imgs/logo.erorNotFound.png";
+import img from "../animations/erorNotFound.json";
 import Lottie from "lottie-react";
 import style from "./NotFound.module.css";
 import { Link } from "react-router-dom";
