@@ -8,18 +8,15 @@ const IdInput = ({
 	const collageIDChecker = (ID) => {
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		submitBtn.setAttribute("disabled", true);
-		fetch(
-			"https://rafiki-backend.azurewebsites.net/api/users/check_academic_id",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					Academic_Id: ID,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-				},
-			}
-		)
+		fetch("/users/check_academic_id", {
+			method: "POST",
+			body: JSON.stringify({
+				Academic_Id: ID,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				submitBtn.removeAttribute("disabled");

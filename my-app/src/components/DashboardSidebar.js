@@ -5,6 +5,7 @@ import DashboardSidebarBurgerIcon from "./DashboardSidebarBurgerIcon";
 import DashboardSidebarList from "./DashboardSidebarList";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 const DashboardSidebar = ({ profileData }) => {
 	const sideBarIsOpen = useSelector(
 		(state) => state.dashboard.sidebar.sideBarIsOpen
@@ -22,7 +23,7 @@ const DashboardSidebar = ({ profileData }) => {
 		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				fetch("https://rafiki-backend.azurewebsites.net/api/auth/logout", {
+				fetch(`${baseBackendUrl}/auth/logout`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",

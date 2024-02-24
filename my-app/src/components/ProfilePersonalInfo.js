@@ -4,6 +4,7 @@ import Toast from "./Toast";
 import { useState } from "react";
 import { Skeleton, Tooltip } from "@mui/material";
 import { calculateAge } from "../utils/calcAge";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfilePersonalInfo = ({ countryPram, birthPram }) => {
 	const [country, setCountry] = useState(countryPram);
@@ -30,8 +31,7 @@ const ProfilePersonalInfo = ({ countryPram, birthPram }) => {
 
 		if (selectedCountry) {
 			// Send address to server
-			const url =
-				"https://rafiki-backend.azurewebsites.net/api/users/update_country";
+			const url = `${baseBackendUrl}/users/update_country`;
 			const options = {
 				method: "PUT",
 				body: JSON.stringify({

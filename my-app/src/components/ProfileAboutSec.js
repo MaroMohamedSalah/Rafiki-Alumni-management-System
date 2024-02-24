@@ -7,6 +7,7 @@ import {
 	updateProfileAbout,
 } from "../redux/actions/profileActions";
 import { Skeleton, Tooltip } from "@mui/material";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileAboutSec = ({ aboutContent }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -38,8 +39,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 
 		if (updatedAbout) {
 			// send PUT request to update About Section
-			const apiUrl =
-				"https://rafiki-backend.azurewebsites.net/api/users/update_about";
+			const apiUrl = `${baseBackendUrl}/users/update_about`;
 
 			fetch(apiUrl, {
 				method: "PUT",
@@ -82,15 +82,12 @@ const ProfileAboutSec = ({ aboutContent }) => {
 
 	const deleteAboutSection = async () => {
 		try {
-			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/users/delete_about",
-				{
-					method: "DELETE",
-					headers: {
-						Authorization: `Bearer ${sessionId}`,
-					},
-				}
-			);
+			const response = await fetch("${baseBackendUrl}/users/delete_about", {
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${sessionId}`,
+				},
+			});
 
 			if (!response.ok) {
 				console.error(`Request failed with status ${response.status}`);

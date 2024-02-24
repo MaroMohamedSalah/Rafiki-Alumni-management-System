@@ -8,6 +8,7 @@ import UsernameInput from "../components/UsernameInput";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
 import NationalIdInput from "../components/NationalIdInput";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const AlumniSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -92,7 +93,7 @@ const AlumniSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://rafiki-backend.azurewebsites.net/api/users/alumni_signup",
+						`${baseBackendUrl}/users/alumni_signup`,
 						{
 							method: "POST",
 							body: JSON.stringify({

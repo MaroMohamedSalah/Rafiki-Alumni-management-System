@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import Toast from "./Toast";
 import { CloudinaryUploadWidget } from "react-cloudinary-uploader";
 import { Tooltip } from "@mui/material";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileImg = ({ profileData }) => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -26,7 +27,7 @@ const ProfileImg = ({ profileData }) => {
 		setPic(info.secure_url); // Update the state to display the image locally
 		console.log("Upload success:", info);
 
-		fetch("https://rafiki-backend.azurewebsites.net/api/users/upload_picture", {
+		fetch(`${baseBackendUrl}/users/upload_picture`, {
 			method: "POST",
 			body: JSON.stringify({
 				pictureUrl: info.secure_url,
@@ -88,16 +89,13 @@ const ProfileImg = ({ profileData }) => {
 		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				fetch(
-					`https://rafiki-backend.azurewebsites.net/api/users/delete_profile_picture`,
-					{
-						method: "DELETE",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${sessionId}`,
-						},
-					}
-				)
+				fetch(`${baseBackendUrl}/users/delete_profile_picture`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${sessionId}`,
+					},
+				})
 					.then((response) => {
 						if (response.ok) {
 							// show a success message if the request was successful

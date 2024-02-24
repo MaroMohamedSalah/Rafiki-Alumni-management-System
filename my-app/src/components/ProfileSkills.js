@@ -5,6 +5,7 @@ import { IconButton, Rating, Skeleton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Toast from "./Toast";
 import { deleteSkill } from "../redux/actions/profileActions";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileSkills = () => {
 	const skills = useSelector((state) => state.profile.userInfo.user.UserSkills);
@@ -37,7 +38,7 @@ const ProfileSkills = () => {
 
 	const handelDeleteSkill = (skillId) => {
 		fetch(
-			`https://rafiki-backend.azurewebsites.net/api/user_skills/${skillId}`,
+			`${baseBackendUrl}/user_skills/${skillId}`,
 
 			{
 				method: "DELETE",

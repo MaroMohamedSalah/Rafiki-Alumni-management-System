@@ -22,6 +22,7 @@ import {
 	updateResetPassLoading,
 	updateResetPassStatus,
 } from "../redux/actions/passwordResetActions";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const CreateNewPass = () => {
 	const [passwordError, setPasswordError] = useState("");
@@ -70,7 +71,7 @@ const CreateNewPass = () => {
 	};
 	const handelSubmit = async (e) => {
 		e.preventDefault();
-		const url = `https://rafiki-backend.azurewebsites.net/api/auth/reset_password/${token}`;
+		const url = `${baseBackendUrl}/auth/reset_password/${token}`;
 		if (confirmPassword !== "" && password !== "") {
 			updateResetPassLoading(dispatch, true);
 			try {

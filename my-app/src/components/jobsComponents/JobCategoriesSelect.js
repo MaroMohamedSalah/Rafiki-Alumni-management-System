@@ -6,6 +6,7 @@ import {
 	updateJobCategory,
 } from "../../redux/actions/jobsActions";
 import { createFilterOptions } from "@mui/material/Autocomplete";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
 
 const JobCategoriesSelect = ({ name, label }) => {
 	const [jobCategories, setJobCategories] = useState([]);
@@ -23,7 +24,7 @@ const JobCategoriesSelect = ({ name, label }) => {
 	const getAllJobCategories = async () => {
 		try {
 			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/jobs/get-job-categories",
+				`${baseBackendUrl}/jobs/get-job-categories`,
 				{
 					method: "GET",
 					headers: {
@@ -48,19 +49,16 @@ const JobCategoriesSelect = ({ name, label }) => {
 	};
 
 	const addJobCategory = (categoryName) => {
-		fetch(
-			"https://rafiki-backend.azurewebsites.net/api/jobs/add-job-category",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					Job_Category_Name: categoryName,
-				}),
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch(`${baseBackendUrl}/jobs/add-job-category`, {
+			method: "POST",
+			body: JSON.stringify({
+				Job_Category_Name: categoryName,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error("Add Job Category failed");

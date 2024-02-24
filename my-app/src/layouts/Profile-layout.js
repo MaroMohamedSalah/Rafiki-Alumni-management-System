@@ -5,6 +5,7 @@ import { RedirectToLoginNotification } from "../components/RedirectToLoginNotifi
 import { updateUserInfo } from "../redux/actions/profileActions";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileLayout = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -17,16 +18,13 @@ const ProfileLayout = () => {
 	// Make API request and update user Info in the Redux store
 	const fetchUserData = async () => {
 		try {
-			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/users",
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${sessionId}`,
-					},
-				}
-			);
+			const response = await fetch(`${baseBackendUrl}/users`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			});
 
 			if (response.status === 401) {
 				// Redirect to login page

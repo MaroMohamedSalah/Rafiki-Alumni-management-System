@@ -23,19 +23,16 @@ const CheckYourEmail = () => {
 	const reSendEmail = async () => {
 		updateResetPassLoading(dispatch, true);
 		try {
-			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/auth/reset_password",
-				{
-					method: "POST",
-					body: JSON.stringify({
-						email: email,
-					}),
-					headers: {
-						"Content-Type": "application/json",
-						"Demo-Code": "demo2023",
-					},
-				}
-			);
+			const response = await fetch("${baseBackendUrl}/auth/reset_password", {
+				method: "POST",
+				body: JSON.stringify({
+					email: email,
+				}),
+				headers: {
+					"Content-Type": "application/json",
+					"Demo-Code": "demo2023",
+				},
+			});
 
 			if (!response.ok) {
 				// Handle non-200 HTTP status codes

@@ -1,5 +1,6 @@
 import { InputAdornment, TextField } from "@mui/material/node";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const UsernameInput = ({
 	setUsernameError,
@@ -11,18 +12,15 @@ const UsernameInput = ({
 	const usernameChecker = (username) => {
 		const submitBtn = document.querySelector(".Auth form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
-		fetch(
-			"https://rafiki-backend.azurewebsites.net/api/users/check_user_name",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-				body: new URLSearchParams({
-					UserName: username,
-				}),
-			}
-		)
+		fetch(`${baseBackendUrl}/users/check_user_name`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				UserName: username,
+			}),
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				isMain === true && submitBtn.removeAttribute("disabled");

@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 const StudentProfile = () => {
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
@@ -30,16 +31,13 @@ const StudentProfile = () => {
 	// Make API request and update profile in the Redux store
 	const fetchUserData = async () => {
 		try {
-			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/users",
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${sessionId}`,
-					},
-				}
-			);
+			const response = await fetch(`${baseBackendUrl}/users`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			});
 
 			if (response.status === 401) {
 				// Redirect to login page
@@ -62,6 +60,7 @@ const StudentProfile = () => {
 			fetchUserData();
 		}
 	}, [profileFetched]);
+
 	return (
 		userInfo &&
 		userInfo.user && (

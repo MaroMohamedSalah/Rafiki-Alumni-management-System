@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import FnameInput from "../components/FirstnameInput";
 import LastnameInput from "../components/LastnameInput";
 import DateOfBirthInput from "../components/DateOfBirthInput";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const Signup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -116,25 +117,22 @@ const Signup = () => {
 			) {
 				// If no errors exist, send form data to API
 				try {
-					const response = await fetch(
-						"https://rafiki-backend.azurewebsites.net/api/auth/register",
-						{
-							method: "POST",
-							body: JSON.stringify({
-								UserName: formData.get("UserName"),
-								Email: formData.get("Email"),
-								Role_Id: actorId,
-								Password: formData.get("Password"),
-								Date_Of_Birth: dateOfBirth,
-								FirstName: formData.get("FirstName"),
-								LastName: formData.get("LastName"),
-							}),
-							headers: {
-								"Content-Type": "application/json",
-								"Demo-Code": "demo2023",
-							},
-						}
-					);
+					const response = await fetch(`${baseBackendUrl}/auth/register`, {
+						method: "POST",
+						body: JSON.stringify({
+							UserName: formData.get("UserName"),
+							Email: formData.get("Email"),
+							Role_Id: actorId,
+							Password: formData.get("Password"),
+							Date_Of_Birth: dateOfBirth,
+							FirstName: formData.get("FirstName"),
+							LastName: formData.get("LastName"),
+						}),
+						headers: {
+							"Content-Type": "application/json",
+							"Demo-Code": "demo2023",
+						},
+					});
 					const data = await response.json();
 
 					// Handle response from API here

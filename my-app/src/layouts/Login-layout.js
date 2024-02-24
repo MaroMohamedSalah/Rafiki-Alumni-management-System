@@ -10,7 +10,7 @@ const LoginLayout = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	const checkSession = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/auth/status", {
+		fetch("${baseBackendUrl}/auth/status", {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${sessionId}`,

@@ -21,6 +21,7 @@ import {
 import { useDispatch } from "react-redux";
 import animationData from "../animations/animation_lmdvoyj3.json";
 import Lottie from "lottie-react";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ResetPassEmail = () => {
 	const [emailError, setEmailError] = useState("");
@@ -40,19 +41,16 @@ const ResetPassEmail = () => {
 			updateResetPassLoading(dispatch, true);
 
 			try {
-				const response = await fetch(
-					"https://rafiki-backend.azurewebsites.net/api/auth/reset_password",
-					{
-						method: "POST",
-						body: JSON.stringify({
-							email: formData.get("email"),
-						}),
-						headers: {
-							"Content-Type": "application/json",
-							"Demo-Code": "demo2023",
-						},
-					}
-				);
+				const response = await fetch(`${baseBackendUrl}/auth/reset_password`, {
+					method: "POST",
+					body: JSON.stringify({
+						email: formData.get("email"),
+					}),
+					headers: {
+						"Content-Type": "application/json",
+						"Demo-Code": "demo2023",
+					},
+				});
 
 				if (!response.ok) {
 					// Handle non-200 HTTP status codes

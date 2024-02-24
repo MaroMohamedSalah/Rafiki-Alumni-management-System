@@ -1,5 +1,6 @@
 import { RedirectToLoginNotification } from "../components/RedirectToLoginNotification";
 import { updateUserInfo } from "../redux/actions/profileActions";
+import { baseBackendUrl } from "./baseBackendUrl";
 
 const fetchUserData = async (
 	sessionId,
@@ -8,16 +9,13 @@ const fetchUserData = async (
 	setProfileFetched
 ) => {
 	try {
-		const response = await fetch(
-			"https://rafiki-backend.azurewebsites.net/api/users",
-			{
-				method: "GET",
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		);
+		const response = await fetch(`${baseBackendUrl}/users`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${sessionId}`,
+			},
+		});
 
 		if (response.status === 401) {
 			// Redirect to login page

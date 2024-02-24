@@ -7,6 +7,7 @@ import GenerateCV from "./GenerateCV";
 import { CircularProgress, IconButton, Tooltip } from "@mui/material";
 import FolderDeleteRoundedIcon from "@mui/icons-material/FolderDeleteRounded";
 import axios from "axios"; // Import axios for making API requests
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileCV = ({ cv, actorName }) => {
 	const sessionId = window.localStorage.getItem("sessionId");
@@ -50,7 +51,7 @@ const ProfileCV = ({ cv, actorName }) => {
 	};
 
 	const saveCv = (cvUrl) => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/users/upload_cv", {
+		fetch(`${baseBackendUrl}/users/upload_cv`, {
 			method: "POST",
 			body: JSON.stringify({
 				cvUrl: cvUrl,
@@ -86,7 +87,7 @@ const ProfileCV = ({ cv, actorName }) => {
 	};
 
 	const handelDeleteCv = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/users/delete_cv", {
+		fetch(`${baseBackendUrl}/users/delete_cv`, {
 			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",

@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import Toast from "./Toast";
 import { useEffect, useState } from "react";
 import { FormHelperText } from "@mui/material/node";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 const GenerateCV = () => {
 	const [jobTitle, setJobTitle] = useState("");
 	const [open, setOpen] = useState(false);
@@ -31,7 +32,7 @@ const GenerateCV = () => {
 			setIsLoading(true); // Show loading indicator
 			try {
 				const response = await fetch(
-					`https://rafiki-backend.azurewebsites.net/api/users/generate_cv?Job_Title=${jobTitle}`,
+					`${baseBackendUrl}/users/generate_cv?Job_Title=${jobTitle}`,
 					{
 						method: "GET",
 						headers: {

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import UsernameInput from "../components/UsernameInput";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const CurrantStudentSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -103,7 +104,7 @@ const CurrantStudentSignup = () => {
 				// If no errors exist, send form data to API
 				try {
 					const response = await fetch(
-						"https://rafiki-backend.azurewebsites.net/api/users/student_signup",
+						`${baseBackendUrl}/users/student_signup`,
 						{
 							method: "POST",
 							body: JSON.stringify({

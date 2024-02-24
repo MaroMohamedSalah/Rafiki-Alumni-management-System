@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Backdrop, CircularProgress } from "@mui/material/node";
 import { useNavigate } from "react-router-dom";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
 
 const JobCards = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -25,15 +26,12 @@ const JobCards = () => {
 
 	const getJobs = (page) => {
 		setLoading(true);
-		fetch(
-			`https://rafiki-backend.azurewebsites.net/api/jobs/get-job-posts?page=${page}&limit=5`,
-			{
-				method: "GET",
-				headers: {
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch(`${baseBackendUrl}/jobs/get-job-posts?page=${page}&limit=5`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data) {

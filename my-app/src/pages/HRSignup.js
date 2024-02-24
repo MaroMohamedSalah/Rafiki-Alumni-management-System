@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import FnameInput from "../components/FirstnameInput";
 import LastnameInput from "../components/LastnameInput";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const HRSignup = () => {
 	const [submitBtnContent, setSubmitBtnContent] = useState("Confirm");
@@ -99,22 +100,19 @@ const HRSignup = () => {
 			) {
 				// If no errors exist, send form data to API
 				try {
-					const response = await fetch(
-						"https://rafiki-backend.azurewebsites.net/api/users/hr_signup",
-						{
-							method: "POST",
-							body: JSON.stringify({
-								UserName: formData.get("UserName"),
-								Email: formData.get("Email"),
-								Password: formData.get("Password"),
-								FirstName: formData.get("FirstName"),
-								LastName: formData.get("LastName"),
-							}),
-							headers: {
-								"Content-Type": "application/json",
-							},
-						}
-					);
+					const response = await fetch(`${baseBackendUrl}/users/hr_signup`, {
+						method: "POST",
+						body: JSON.stringify({
+							UserName: formData.get("UserName"),
+							Email: formData.get("Email"),
+							Password: formData.get("Password"),
+							FirstName: formData.get("FirstName"),
+							LastName: formData.get("LastName"),
+						}),
+						headers: {
+							"Content-Type": "application/json",
+						},
+					});
 					const data = await response.json();
 
 					// Handle response from API here

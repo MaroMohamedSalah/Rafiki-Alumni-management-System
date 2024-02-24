@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 import { updateJobSkillIds } from "../../redux/actions/jobsActions";
 import Toast from "../Toast";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
 
 const JobSkillsSelect = () => {
 	const [skills, setSkills] = useState([{ label: "", id: "" }]);
@@ -33,7 +34,7 @@ const JobSkillsSelect = () => {
 	};
 
 	const addUnExistingSkill = (skillName) => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
+		fetch(`${baseBackendUrl}/skills/`, {
 			method: "POST",
 			body: JSON.stringify({
 				Skill_Name: skillName,
@@ -81,7 +82,7 @@ const JobSkillsSelect = () => {
 	};
 
 	const getSkills = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
+		fetch(`${baseBackendUrl}/skills/`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

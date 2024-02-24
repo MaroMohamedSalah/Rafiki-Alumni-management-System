@@ -8,6 +8,7 @@ import {
 import Toast from "./Toast";
 import ClearIcon from "@mui/icons-material/Clear";
 import { IconButton, Skeleton, Tooltip } from "@mui/material";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileURLsSec = ({ profileData }) => {
 	const [isEmpty, setIsEmpty] = useState(true);
@@ -18,8 +19,7 @@ const ProfileURLsSec = ({ profileData }) => {
 	}
 	const saveURLsToServer = (requestData) => {
 		// send POST request to the API to add URLs to the user's record
-		const apiUrl =
-			"https://rafiki-backend.azurewebsites.net/api/users/update_social_urls";
+		const apiUrl = `${baseBackendUrl}/users/update_social_urls`;
 
 		fetch(apiUrl, {
 			method: "PUT",
@@ -186,16 +186,13 @@ const ProfileURLsSec = ({ profileData }) => {
 		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				fetch(
-					`https://rafiki-backend.azurewebsites.net/api/users/delete_${urlType}_url`,
-					{
-						method: "DELETE",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${sessionId}`,
-						},
-					}
-				)
+				fetch(`${baseBackendUrl}/users/delete_${urlType}_url`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${sessionId}`,
+					},
+				})
 					.then((response) => {
 						if (response.ok) {
 							// show a success message if the request was successful

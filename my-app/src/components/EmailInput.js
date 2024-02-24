@@ -1,8 +1,9 @@
 import { InputAdornment, TextField } from "@mui/material/node";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 const EmailInput = ({ emailError, setEmailError }) => {
 	const emailChecker = (emailV) => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/users/check_email", {
+		fetch(`${baseBackendUrl}/users/check_email`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded",

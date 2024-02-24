@@ -9,6 +9,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUserInfo } from "../redux/actions/profileActions";
 import JoinTelegramNotification from "../components/JoinTelegramNotification";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const DashboardLayout = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -21,7 +22,7 @@ const DashboardLayout = () => {
 	const dispatch = useDispatch();
 	// Make API request and update profile in the Redux store
 	const fetchProfileData = async () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/users/", {
+		fetch(`${baseBackendUrl}/users/`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

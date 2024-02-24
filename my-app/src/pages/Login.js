@@ -10,6 +10,7 @@ import hide from "../imgs/hide password.svg";
 import "./Auth.css";
 import { useDispatch } from "react-redux";
 import { setUserInfo } from "../redux/actions/profileActions";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const Login = () => {
 	const [showPassword, setShowPassword] = useState(false);
@@ -51,20 +52,17 @@ const Login = () => {
 			submitBtn.setAttribute("disabled", true);
 
 			try {
-				const response = await fetch(
-					"https://rafiki-backend.azurewebsites.net/api/auth/login",
-					{
-						method: "POST",
-						body: JSON.stringify({
-							UserName: formData.get("username"),
-							Password: formData.get("password"),
-						}),
-						headers: {
-							"Content-Type": "application/json",
-							"Demo-Code": "demo2023",
-						},
-					}
-				);
+				const response = await fetch(`${baseBackendUrl}/auth/login`, {
+					method: "POST",
+					body: JSON.stringify({
+						UserName: formData.get("username"),
+						Password: formData.get("password"),
+					}),
+					headers: {
+						"Content-Type": "application/json",
+						"Demo-Code": "demo2023",
+					},
+				});
 
 				const data = await response.json();
 
@@ -111,16 +109,13 @@ const Login = () => {
 	// Make API request and set userinfo in the Redux store
 	const fetchUserData = async (sessionId) => {
 		try {
-			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/users/",
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${sessionId}`,
-					},
-				}
-			);
+			const response = await fetch(`${baseBackendUrl}/users/`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			});
 
 			if (response.status === 401) {
 				// Redirect to login page

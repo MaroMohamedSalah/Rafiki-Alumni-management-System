@@ -25,6 +25,7 @@ import Toast from "../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import JobLocationInput from "../components/jobsComponents/JobLocationInput";
 import JobTimeSelect from "../components/jobsComponents/JobTimeSelect";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const PostIntern = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
@@ -35,7 +36,7 @@ const PostIntern = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
+		fetch(`${baseBackendUrl}/jobs/add-job-post`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

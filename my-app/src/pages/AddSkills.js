@@ -10,6 +10,7 @@ import {
 import Toast from "../components/Toast";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProfileSkills } from "../redux/actions/profileActions";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const filter = createFilterOptions();
 
@@ -25,7 +26,7 @@ const AddSkills = () => {
 	const dispatch = useDispatch();
 
 	const getSkills = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
+		fetch(`${baseBackendUrl}/skills/`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -53,7 +54,7 @@ const AddSkills = () => {
 	};
 
 	const addSkillToUser = (skill_id, rate) => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/user_skills/", {
+		fetch(`${baseBackendUrl}/user_skills/`, {
 			method: "POST",
 			body: JSON.stringify({
 				Skill_Id: skill_id,
@@ -97,7 +98,7 @@ const AddSkills = () => {
 	};
 
 	const addUnExistingSkill = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/skills/", {
+		fetch(`${baseBackendUrl}/skills/`, {
 			method: "POST",
 			body: JSON.stringify({
 				Skill_Name: selectedSkill,

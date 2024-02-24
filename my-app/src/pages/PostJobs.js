@@ -25,6 +25,7 @@ import {
 	updateMissingInput,
 } from "../redux/actions/jobsActions";
 import JobTimeSelect from "../components/jobsComponents/JobTimeSelect";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const PostJobs = () => {
 	const [applyWith, setApplyWith] = useState("WithExternalLink");
@@ -35,7 +36,7 @@ const PostJobs = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		fetch("https://rafiki-backend.azurewebsites.net/api/jobs/add-job-post", {
+		fetch(`${baseBackendUrl}/jobs/add-job-post`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

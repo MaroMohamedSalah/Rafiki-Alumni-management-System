@@ -12,6 +12,7 @@ import {
 import { IconButton, Tooltip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const ProfileContactInfoSec = () => {
 	const userInfo = useSelector((state) => state.profile.userInfo);
@@ -43,8 +44,7 @@ const ProfileContactInfoSec = () => {
 		});
 
 		if (num) {
-			const url =
-				"https://rafiki-backend.azurewebsites.net/api/users/update_phone";
+			const url = `${baseBackendUrl}/users/update_phone`;
 			const options = {
 				method: "PUT",
 				body: JSON.stringify({
@@ -82,16 +82,13 @@ const ProfileContactInfoSec = () => {
 		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				fetch(
-					"https://rafiki-backend.azurewebsites.net/api/users/delete_phone",
-					{
-						method: "DELETE",
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${sessionId}`,
-						},
-					}
-				)
+				fetch(`${baseBackendUrl}/users/delete_phone`, {
+					method: "DELETE",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${sessionId}`,
+					},
+				})
 					.then((response) => {
 						if (response.ok) {
 							// show a success message if the request was successful

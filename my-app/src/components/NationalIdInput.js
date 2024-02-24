@@ -1,4 +1,5 @@
 import icon1 from "../imgs/sign up 1.svg";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 const NationalIdInput = ({
 	nationalIDError,
 	setNationalIDError,
@@ -9,18 +10,15 @@ const NationalIdInput = ({
 	const NIDchecker = (national_ID) => {
 		const submitBtn = document.querySelector(".Signup form .submit button");
 		isMain === true && submitBtn.setAttribute("disabled", true);
-		fetch(
-			"https://rafiki-backend.azurewebsites.net/api/users/check_national_id",
-			{
-				method: "POST",
-				headers: {
-					"Content-Type": "application/x-www-form-urlencoded",
-				},
-				body: new URLSearchParams({
-					NID: national_ID,
-				}),
-			}
-		)
+		fetch(`${baseBackendUrl}/users/check_national_id`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: new URLSearchParams({
+				NID: national_ID,
+			}),
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				isMain === true && submitBtn.removeAttribute("disabled");

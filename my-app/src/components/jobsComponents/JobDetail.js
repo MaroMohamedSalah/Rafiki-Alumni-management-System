@@ -13,6 +13,7 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useDispatch } from "react-redux";
 import { handelSelectJobToSeeDetail } from "../../redux/actions/jobsActions";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
 
 const JobDetail = () => {
 	const { jobId } = useParams();
@@ -23,15 +24,12 @@ const JobDetail = () => {
 	const dispatch = useDispatch();
 	const getJobDetail = () => {
 		setLoading(true);
-		fetch(
-			`https://rafiki-backend.azurewebsites.net/api/jobs/get-job-post/${jobId}`,
-			{
-				method: "GET",
-				headers: {
-					Authorization: `Bearer ${sessionId}`,
-				},
-			}
-		)
+		fetch(`${baseBackendUrl}/jobs/get-job-post/${jobId}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${sessionId}`,
+			},
+		})
 			.then((res) => res.json())
 			.then((data) => {
 				if (data) {

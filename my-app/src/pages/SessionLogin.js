@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProfileName from "../components/ProfileName";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
+import { baseBackendUrl } from "../utils/baseBackendUrl";
 
 const SessionLogin = () => {
 	const sessionId = localStorage.getItem("sessionId");
@@ -13,16 +14,13 @@ const SessionLogin = () => {
 	const fetchProfileData = async () => {
 		setLoading(true);
 		try {
-			const response = await fetch(
-				"https://rafiki-backend.azurewebsites.net/api/users/",
-				{
-					method: "GET",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${sessionId}`,
-					},
-				}
-			);
+			const response = await fetch(`${baseBackendUrl}/users/`, {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+			});
 
 			if (response.status === 401) {
 			} else {
@@ -38,7 +36,7 @@ const SessionLogin = () => {
 		}
 	};
 	const handelLogout = () => {
-		fetch("https://rafiki-backend.azurewebsites.net/api/auth/logout", {
+		fetch(`${baseBackendUrl}/auth/logout`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
