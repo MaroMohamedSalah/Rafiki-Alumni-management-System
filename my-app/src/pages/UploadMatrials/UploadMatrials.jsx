@@ -1,70 +1,96 @@
 import React from "react";
 import "./uploadMatrials.css";
-import { Fab } from "@mui/material";
+import { Fab, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material/node";
 
 function UploadMatrials() {
   return (
-    <section className="upload_material">
-      <div className="container-xxl">
+    <section className="uploadMaterial">
+      <div className="container">
         <div className="row">
           <div className="col">
             <h1 className="title">Upload Material</h1>
           </div>
         </div>
 
-        <div className="row my-4">
-          <div className="col-5">
+        <div className="row my-4 firstRow">
+          <div className="col-xl-5">
             <div className="d-flex flex-column ">
-              <p className="mb-0 input_label">Title :</p>
-              <input type="text" placeholder="What's the title ?" />
+              <p className="mb-0 inputLabel">Title :</p>
+              <TextField id="outlined-basic" label="*" variant="outlined" />
             </div>
           </div>
 
-          <div className="col-4">
+          <div className="col-xl-4">
             <div className="d-flex flex-column ">
-              <p className="mb-0 input_label">Subject :</p>
-              <select className="" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <p className="mb-0 inputLabel">Subject :</p>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">*</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  // value={age}
+                  label="*"
+                  // onChange={handleChange}
+                  style={{ height: "44px" }}
+                  className="select"
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
 
-          <div className="col-3">
+          <div className="col-xl-3">
             <div className="d-flex flex-column ">
-              <p className="mb-0 input_label">Week :</p>
-              <select className="" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+              <p className="mb-0 inputLabel">Week :</p>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">*</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  // value={age}
+                  label="*"
+                  // onChange={handleChange}
+                  style={{ height: "44px" }}
+                  className="select"
+                >
+                  <MenuItem value={10}>Ten</MenuItem>
+                  <MenuItem value={20}>Twenty</MenuItem>
+                  <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
         </div>
 
-        <div className="row my-4">
+        <div className="row my-4 secondRow">
           <div className="col-12">
             <div className="">
-              <p className="input_label mb-0">Description :</p>
-              <div className="description_div">
-                <input
-                  type="text"
-                  placeholder="Write Your Material Description "
-                />
-              </div>
+              <p className="inputLabel mb-0">Description :</p>
+              {/* <div className="descriptionDiv"> */}
+              <TextField
+                id="filled-multiline-static"
+                // label="Multiline"
+                multiline
+                rows={4}
+                defaultValue="Description"
+                variant="filled"
+                className="w-100"
+              />
+              {/* </div> */}
             </div>
           </div>
         </div>
 
-        <div className="row my-4">
+        <div className="row my-4 thirdRow">
           <div className="col-12">
             <div className="">
-              <p className="file_label mb-0">File :</p>
-              <div className="file_div">
+              <p className="fileLabel mb-0">File :</p>
+              <div className="fileDiv">
                 <Fab
                   variant="extended"
                   style={{
@@ -83,17 +109,27 @@ function UploadMatrials() {
           </div>
         </div>
 
-        <div className="row my-4">
-          <div className="col-6">
+        <div className="row my-4 fourthRow">
+          <div className="col-xl-6">
             <div className="w-100">
               <p className="file_label mb-0">Link :</p>
-              <input type="text" placeholder="Your Link" />
+              <TextField
+                id="outlined-basic"
+                label="*"
+                variant="outlined"
+                className="w-100"
+              />
             </div>
           </div>
-          <div className="col-6">
+          <div className="col-xl-6">
             <div className="w-100">
               <p className="file_label mb-0">Description :</p>
-              <input type="text" placeholder="Your Link" />
+              <TextField
+                id="outlined-basic"
+                label="*"
+                variant="outlined"
+                className="w-100"
+              />
             </div>
           </div>
           <p className="my-3">
@@ -103,7 +139,7 @@ function UploadMatrials() {
           <hr />
         </div>
 
-        <div className="div d-flex align-items-center gap-3 justify-content-end mb-5">
+        <div className="buttonsDiv  mb-5">
           <div className="div">
             <Button
               variant="outlined"

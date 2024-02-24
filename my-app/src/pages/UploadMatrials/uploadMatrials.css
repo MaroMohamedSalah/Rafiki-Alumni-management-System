@@ -1,4 +1,4 @@
-.upload_material .title{
+.uploadMaterial .title{
   font-family: "Montserrat", sans-serif;;
   font-weight: 700;
   font-size: 40px;
@@ -7,7 +7,8 @@
   position: relative;
 }
 
-:is(.upload_material ) input ,select{
+.uploadMaterial input , 
+.uploadMaterial .select{
   padding:10px 8px ;
   background: var(--primary-bg-color);
   outline: none;
@@ -16,8 +17,8 @@
   width: 100%;
 } 
 
-.upload_material .input_label
-, .file_label{
+.uploadMaterial .inputLabel
+, .fileLabel{
   font-family: "Roboto Condensed" ;
   font-weight: 700;
   font-size: 24px;
@@ -25,26 +26,27 @@
   padding-bottom: 10px;
 }
 
-.upload_material .input_label::after{
+.uploadMaterial .inputLabel::after{
   content:'*';
   color:red;
   position: absolute;
   margin-left: 5px;
 }
 
-.description_div{
+.descriptionDiv{
   width: 100%;
   height:97px;
   background: var(--primary-bg-color);
   border-radius: 8px;
+  position: relative;
 }
 
-.description_div input{
+.descriptionDiv input{
   width: 100%;
-  height:50%;
+  height:100%;
 }
 
-.file_div{
+.fileDiv{
   height: 120px;
   padding:32px 8px ; 
   border-radius: 8px;
@@ -56,9 +58,40 @@
   gap: 8px;
 }
 
-.file_div p{
+.fileDiv p{
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
   line-height:19.5px;
+}
+
+.buttonsDiv{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap:20px;
+}
+
+@media (max-width: 767px) {
+  .firstRow >div , .fourthRow>div{
+    margin-bottom: 20px;
+  }
+  .buttonsDiv{
+    flex-direction: column;
+    justify-content: center;
+  }
+  .buttonsDiv .button{
+    width:120px;
+  }
+
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
 }
