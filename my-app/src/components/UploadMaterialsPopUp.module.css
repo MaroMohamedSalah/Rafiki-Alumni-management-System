@@ -1,36 +1,35 @@
 .editContent {
-    /* color: var(--primary-color); */
-    color: #1A4B96 !important;
+	/* color: var(--primary-color); */
+	color: #1a4b96 !important;
 }
 
 .editContent h4 {
-    font-family: "Roboto", sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 37.5px;
+	/* font-family: "Roboto", sans-serif; */
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 37.5px;
 }
 
 .editContent h5 {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 28.13px;
+	/* font-family: "Roboto", sans-serif; */
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 28.13px;
 }
 
 .btnConfig {
-    /* color: var(--primary-color) !important; */
-    background-color: #1A4B96 !important;
-    border-radius: 8px !important;
-    font-family: "Montserrat", sans-serif !important;
-    font-weight: 700 !important;
-    font-size: 16px !important;
-    line-height: 19.5px !important;
+	/* color: var(--primary-color) !important; */
+	background-color: #1a4b96 !important;
+	border-radius: 8px !important;
+	font-family: "Montserrat", sans-serif !important;
+	font-weight: 700 !important;
+	font-size: 16px !important;
+	line-height: 19.5px !important;
 
-    /* transition: all ease-in-out var(--main-transition); */
-    transition: all ease-in-out 0.5s;
-
+	/* transition: all ease-in-out var(--main-transition); */
+	transition: all ease-in-out 0.5s;
 }
 
-.btnConfig:hover{
-    background-color: rgb(19, 89, 193) !important;
+.btnConfig:hover {
+	background-color: rgb(19, 89, 193) !important;
 }
