@@ -26,8 +26,32 @@ import GetStartedAr from "./pages/GetStartedAr";
 import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
+import UploadMaterials from "./pages/UploadMaterials/UploadMaterials";
 
 function App() {
+	return (
+		<div className="App">
+			<LocalizationProvider dateAdapter={AdapterDayjs}>
+				<BrowserRouter>
+					<Routes>
+						{/* Public Routes */}
+						<Route path="/" element={<LandingPage />} />
+						<Route path="/roleSelection" element={<RoleSelection />} />
+						<Route path="/login" element={<LoginLayout />} />
+						<Route path="/resetPass" element={<ResetPassLayout />}>
+							<Route index element={<ResetPassEmail />} />
+							<Route path="checkYourEmail" element={<CheckYourEmail />} />
+							<Route
+								path="createNewPassword/:token"
+								element={<CreateNewPassword />}
+							/>
+							<Route
+								path="createNewPasswordSuccess"
+								element={<CreateNewPassSuccess />}
+							/>
+						</Route>
+						{/* Private Routes */}
+						{/* Private routes are routes that require the user to be authenticated or
 	return (
 		<div className="App">
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -79,6 +103,7 @@ function App() {
 						</Route>
 						{/* Not Found Route */}
 						<Route path="*" element={<NotFound />} />
+						<Route path="upload-material" element={<UploadMaterials />} />
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>
