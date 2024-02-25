@@ -4,224 +4,225 @@ import { updateDashboardSidebar } from "../redux/actions/dashboardActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
-	const [activeItem, setActiveItem] = useState("");
-	const [showSuperFSubItems, setShowSuperFSubItems] = useState(false);
-	const actorName = useSelector(
-		(state) => state.profile.userInfo.user.Role.Role_Name
-	);
-	const dispatch = useDispatch();
+  const [activeItem, setActiveItem] = useState("");
+  const [showSuperFSubItems, setShowSuperFSubItems] = useState(false);
+  const actorName = useSelector(
+    (state) => state.profile.userInfo.user.Role.Role_Name
+  );
+  const dispatch = useDispatch();
 
-	const alumniFeatures = [
-		// {
-		// 	title: "Discussion",
-		// 	icon: "fa-solid fa-comment",
-		// 	link: "#",
-		// },
-		{
-			title: "Jobs",
-			icon: "fa-solid fa-laptop",
-			link: "#",
-			type: "super",
-			subItems: [
-				{
-					title: "Apply For A Job",
-					icon: "fa-regular fa-share-from-square",
-					link: "applyJob",
-				},
-				{
-					title: "Application State",
-					icon: "fa-regular fa-handshake",
-					link: "jobsApplications",
-				},
-			],
-		},
-		// {
-		// 	title: "Professors Profiles",
-		// 	icon: "fa-solid fa-circle-user",
-		// 	link: "#",
-		// },
-		{
-			title: "FAQ",
-			icon: "fa-solid fa-question",
-			link: "#",
-		},
-		// {
-		// 	title: "Ask Admin",
-		// 	icon: "fa-solid fa-paper-plane",
-		// 	link: "#",
-		// },
-		{
-			title: "Feedback",
-			icon: "fa-solid fa-face-grin-wide",
-			link: "#",
-		},
-		// Add more items as needed
-	];
-	const studentFeatures = [
-		// {
-		// 	title: "Discussion",
-		// 	icon: "fa-solid fa-comment",
-		// 	link: "#",
-		// },
-		{
-			title: "Jobs",
-			icon: "fa-solid fa-laptop",
-			link: "#",
-			type: "super",
-			subItems: [
-				{
-					title: "Apply For A Job",
-					icon: "fa-regular fa-share-from-square",
-					link: "applyJob",
-				},
-				{
-					title: "Application State",
-					icon: "fa-regular fa-handshake",
-					link: "jobsApplications",
-				},
-			],
-		},
-		{
-			title: "Materials",
-			icon: "fa-solid fa-file-pdf",
-			link: "#",
-		},
-		// {
-		// 	title: "Professors Profiles",
-		// 	icon: "fa-solid fa-circle-user",
-		// 	link: "#",
-		// },
-		{
-			title: "FAQ",
-			icon: "fa-solid fa-question",
-			link: "#",
-		},
-		// {
-		// 	title: "Ask Admin",
-		// 	icon: "fa-solid fa-paper-plane",
-		// 	link: "#",
-		// },
-		{
-			title: "Feedback",
-			icon: "fa-solid fa-face-grin-wide",
-			link: "#",
-		},
-		// Add more items as needed
-	];
+  const alumniFeatures = [
+    // {
+    // 	title: "Discussion",
+    // 	icon: "fa-solid fa-comment",
+    // 	link: "#",
+    // },
+    {
+      title: "Jobs",
+      icon: "fa-solid fa-laptop",
+      link: "#",
+      type: "super",
+      subItems: [
+        {
+          title: "Apply For A Job",
+          icon: "fa-regular fa-share-from-square",
+          link: "applyJob",
+        },
+        {
+          title: "Application State",
+          icon: "fa-regular fa-handshake",
+          link: "jobsApplications",
+        },
+      ],
+    },
+    // {
+    // 	title: "Professors Profiles",
+    // 	icon: "fa-solid fa-circle-user",
+    // 	link: "#",
+    // },
+    {
+      title: "FAQ",
+      icon: "fa-solid fa-question",
+      link: "#",
+    },
+    // {
+    // 	title: "Ask Admin",
+    // 	icon: "fa-solid fa-paper-plane",
+    // 	link: "#",
+    // },
+    {
+      title: "Feedback",
+      icon: "fa-solid fa-face-grin-wide",
+      link: "#",
+    },
 
-	const hrFeatures = [
-		{
-			title: "Jobs",
-			icon: "fa-solid fa-laptop",
-			link: "#",
-			type: "super",
-			subItems: [
-				{
-					title: "Post Job",
-					icon: "fa-solid fa-plus",
-					link: "postJob",
-				},
-				{
-					title: "Post Internship",
-					icon: "fa-solid fa-plus",
-					link: "postIntern",
-				},
-				{
-					title: "Jobs Applications",
-					icon: "fa-regular fa-handshake",
-					link: "jobsApplications",
-				},
-			],
-		},
-		{
-			title: "FAQ",
-			icon: "fa-solid fa-question",
-			link: "#",
-		},
-		{
-			title: "Feedback",
-			icon: "fa-solid fa-face-grin-wide",
-			link: "#",
-		},
-		// Add more items as needed
-	];
+    // Add more items as needed
+  ];
+  const studentFeatures = [
+    // {
+    // 	title: "Discussion",
+    // 	icon: "fa-solid fa-comment",
+    // 	link: "#",
+    // },
+    {
+      title: "Jobs",
+      icon: "fa-solid fa-laptop",
+      link: "#",
+      type: "super",
+      subItems: [
+        {
+          title: "Apply For A Job",
+          icon: "fa-regular fa-share-from-square",
+          link: "applyJob",
+        },
+        {
+          title: "Application State",
+          icon: "fa-regular fa-handshake",
+          link: "jobsApplications",
+        },
+      ],
+    },
+    {
+      title: "Materials",
+      icon: "fa-solid fa-file-pdf",
+      link: "/dashboard/uploadMaterial",
+    },
+    // {
+    // 	title: "Professors Profiles",
+    // 	icon: "fa-solid fa-circle-user",
+    // 	link: "#",
+    // },
+    {
+      title: "FAQ",
+      icon: "fa-solid fa-question",
+      link: "#",
+    },
+    // {
+    // 	title: "Ask Admin",
+    // 	icon: "fa-solid fa-paper-plane",
+    // 	link: "#",
+    // },
+    {
+      title: "Feedback",
+      icon: "fa-solid fa-face-grin-wide",
+      link: "#",
+    },
+    // Add more items as needed
+  ];
 
-	const handleSidebarItemClick = (item) => {
-		setActiveItem(item.title);
-		if (item.type === "super" && isSidebarOpen) {
-			setShowSuperFSubItems(!showSuperFSubItems);
-		} else if (item.type === "super" && !isSidebarOpen) {
-			updateDashboardSidebar(dispatch, "true");
-			setShowSuperFSubItems(!showSuperFSubItems);
-		} else {
-			setShowSuperFSubItems(false);
-		}
-	};
+  const hrFeatures = [
+    {
+      title: "Jobs",
+      icon: "fa-solid fa-laptop",
+      link: "#",
+      type: "super",
+      subItems: [
+        {
+          title: "Post Job",
+          icon: "fa-solid fa-plus",
+          link: "postJob",
+        },
+        {
+          title: "Post Internship",
+          icon: "fa-solid fa-plus",
+          link: "postIntern",
+        },
+        {
+          title: "Jobs Applications",
+          icon: "fa-regular fa-handshake",
+          link: "jobsApplications",
+        },
+      ],
+    },
+    {
+      title: "FAQ",
+      icon: "fa-solid fa-question",
+      link: "#",
+    },
+    {
+      title: "Feedback",
+      icon: "fa-solid fa-face-grin-wide",
+      link: "#",
+    },
+    // Add more items as needed
+  ];
 
-	let features = [];
-	if (actorName) {
-		switch (actorName) {
-			case "Alumni":
-				features = alumniFeatures;
-				break;
-			case "HR":
-				features = hrFeatures;
-				break;
-			case "Student":
-				features = studentFeatures;
-				break;
+  const handleSidebarItemClick = (item) => {
+    setActiveItem(item.title);
+    if (item.type === "super" && isSidebarOpen) {
+      setShowSuperFSubItems(!showSuperFSubItems);
+    } else if (item.type === "super" && !isSidebarOpen) {
+      updateDashboardSidebar(dispatch, "true");
+      setShowSuperFSubItems(!showSuperFSubItems);
+    } else {
+      setShowSuperFSubItems(false);
+    }
+  };
 
-			default:
-				break;
-		}
-	}
+  let features = [];
+  if (actorName) {
+    switch (actorName) {
+      case "Alumni":
+        features = alumniFeatures;
+        break;
+      case "HR":
+        features = hrFeatures;
+        break;
+      case "Student":
+        features = studentFeatures;
+        break;
 
-	const generateSidebarItems = (items) => {
-		return items.map((item, index) => (
-			<div key={index}>
-				<Link to={item.link}>
-					<li
-						className={`d-flex justify-content-${
-							isSidebarOpen ? "start" : "center"
-						} align-items-center py-3 ${
-							activeItem === item.title ? "active" : ""
-						}`}
-						onClick={() => handleSidebarItemClick(item)}
-					>
-						<div className={`icon ${isSidebarOpen && "me-4"}`}>
-							<i className={item.icon}></i>
-						</div>
-						{isSidebarOpen && <div className="title">{item.title}</div>}
-					</li>
-				</Link>
-				{item.type === "super" && showSuperFSubItems && isSidebarOpen && (
-					<ul className="subF p-0">
-						{item.subItems.map((subItem, subIndex) => (
-							<Link key={subIndex} to={subItem.link}>
-								<li
-									className={`d-flex justify-content-start align-items-center subF py-3 ps-4 ${
-										activeItem === subItem.title ? "active" : ""
-									}`}
-									onClick={() => setActiveItem(subItem.title)}
-								>
-									<div className={`icon me-4`}>
-										<i className={subItem.icon}></i>
-									</div>
-									<div className="title">{subItem.title}</div>
-								</li>
-							</Link>
-						))}
-					</ul>
-				)}
-			</div>
-		));
-	};
+      default:
+        break;
+    }
+  }
 
-	return (
-		<ul className={`sidebarList w-100 p-3 ${!isSidebarOpen && "close"}`}>
-			{generateSidebarItems(features)}
-		</ul>
-	);
+  const generateSidebarItems = (items) => {
+    return items.map((item, index) => (
+      <div key={index}>
+        <Link to={item.link}>
+          <li
+            className={`d-flex justify-content-${
+              isSidebarOpen ? "start" : "center"
+            } align-items-center py-3 ${
+              activeItem === item.title ? "active" : ""
+            }`}
+            onClick={() => handleSidebarItemClick(item)}
+          >
+            <div className={`icon ${isSidebarOpen && "me-4"}`}>
+              <i className={item.icon}></i>
+            </div>
+            {isSidebarOpen && <div className="title">{item.title}</div>}
+          </li>
+        </Link>
+        {item.type === "super" && showSuperFSubItems && isSidebarOpen && (
+          <ul className="subF p-0">
+            {item.subItems.map((subItem, subIndex) => (
+              <Link key={subIndex} to={subItem.link}>
+                <li
+                  className={`d-flex justify-content-start align-items-center subF py-3 ps-4 ${
+                    activeItem === subItem.title ? "active" : ""
+                  }`}
+                  onClick={() => setActiveItem(subItem.title)}
+                >
+                  <div className={`icon me-4`}>
+                    <i className={subItem.icon}></i>
+                  </div>
+                  <div className="title">{subItem.title}</div>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        )}
+      </div>
+    ));
+  };
+
+  return (
+    <ul className={`sidebarList w-100 p-3 ${!isSidebarOpen && "close"}`}>
+      {generateSidebarItems(features)}
+    </ul>
+  );
 };
 
 export default DashboardSidebarList;
