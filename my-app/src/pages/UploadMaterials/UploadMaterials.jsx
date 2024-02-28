@@ -60,8 +60,8 @@ function UploadMaterials() {
                   // value={age}
                   label="Week"
                   // onChange={handleChange}
-                  style={{ height: "44px" }}
                   className="select"
+                  style={{ height: "44px" }}
                 >
                   <MenuItem value={10}>Ten</MenuItem>
                   <MenuItem value={20}>Twenty</MenuItem>

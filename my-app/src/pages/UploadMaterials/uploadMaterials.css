@@ -11,14 +11,12 @@
 .UploadMaterials .select ,.multilineInput {
 	padding: 10px 8px;
 	background: var(--primary-bg-color);
-	outline: none;
-	border: none;
+  background-color: var(--inputs-background);
 	border-radius: 8px;
 	width: 100%;
 }
 
-/* .UploadMaterials .inputLabel,
-.fileLabel {
+.UploadMaterials .fileLabel {
 	font-family: "Roboto Condensed";
 	font-weight: 700;
 	font-size: 24px;
@@ -26,6 +24,7 @@
 	padding-bottom: 10px;
 }
 
+/*
 .UploadMaterials .inputLabel::after {
 	content: "*";
 	color: red;
