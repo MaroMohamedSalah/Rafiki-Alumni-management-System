@@ -26,7 +26,7 @@ import GetStartedAr from "./pages/GetStartedAr";
 import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
-import UploadMaterials from "./pages/UploadMaterials/UploadMaterials";
+import RateMaterial from "./components/RateMaterial";
 
 function App() {
 	return (
@@ -67,6 +67,10 @@ function App() {
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
 						<Route path="/getStartedAr" element={<GetStartedAr />} />
+						
+						{/* rate material popUp page */}
+						<Route path="/rateMaterial" element={<RateMaterial />} />
+
 						{/* Signup Routes */}
 						<Route path="/alumniSignup" element={<AlumniSignup />} />
 						<Route path="/signup/:actor" element={<Signup />} />
@@ -80,7 +84,6 @@ function App() {
 						</Route>
 						{/* Not Found Route */}
 						<Route path="*" element={<NotFound />} />
-						<Route path="upload-material" element={<UploadMaterials />} />
 					</Routes>
 				</BrowserRouter>
 			</LocalizationProvider>
