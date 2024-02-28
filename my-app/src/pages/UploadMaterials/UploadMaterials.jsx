@@ -38,7 +38,7 @@ function UploadMaterials() {
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   label={"Subject"}
-                  style={{ height: "44px" }}
+                  // style={{ height: "44px" }}
                   className="select"
                 >
                   <MenuItem value={10}>Ten</MenuItem>
@@ -61,7 +61,7 @@ function UploadMaterials() {
                   label="Week"
                   // onChange={handleChange}
                   className="select"
-                  style={{ height: "44px" }}
+                  // style={{ height: "44px" }}
                 >
                   <MenuItem value={10}>Ten</MenuItem>
                   <MenuItem value={20}>Twenty</MenuItem>
@@ -94,16 +94,7 @@ function UploadMaterials() {
             <div className="">
               <p className="fileLabel mb-0">File :</p>
               <div className="fileDiv">
-                <Fab
-                  variant="extended"
-                  style={{
-                    background: "#4D85FF",
-                    color: "#fff",
-                    padding: "8px 36px",
-                    width: "190px",
-                    height: "51px",
-                  }}
-                >
+                <Fab variant="extended" className="fileButton">
                   Browse
                 </Fab>
                 <p className="mb-0">Files Must be in format ppt , pdf</p>
@@ -148,8 +139,8 @@ function UploadMaterials() {
             <Button
               variant="outlined"
               style={{
-                width: "292px",
-                height: "60px",
+                width: "215px",
+                height: "52px",
                 borderRadius: "8px",
                 padding: "8px 36px",
                 borderColor: "#1A4B96",
@@ -163,8 +154,8 @@ function UploadMaterials() {
             <Button
               variant="contained"
               style={{
-                width: "292px",
-                height: "60px",
+                width: "215px",
+                height: "52px",
                 borderRadius: "8px",
                 padding: "8px 36px",
                 color: "#fff",

@@ -1,7 +1,7 @@
 .UploadMaterials .title {
 	font-family: "Montserrat", sans-serif;
 	font-weight: 700;
-	font-size: 40px;
+	font-size: 36px;
 	line-height: 48.76px;
 	padding-top: 30px;
 	position: relative;
@@ -9,12 +9,17 @@
 
 .UploadMaterials input,
 .UploadMaterials .select ,.multilineInput {
-	padding: 10px 8px;
 	background: var(--primary-bg-color);
   background-color: var(--inputs-background);
 	border-radius: 8px;
 	width: 100%;
 }
+
+.UploadMaterials input::placeholder,
+.UploadMaterials .select::placeholder{
+	padding-bottom: 20px;
+}
+
 
 .UploadMaterials .fileLabel {
 	font-family: "Roboto Condensed";
@@ -47,6 +52,22 @@
 	justify-content: center;
 	flex-direction: column;
 	gap: 8px;
+}
+
+.fileDiv button{
+	background: #4D85FF;
+	color: #fff;
+	padding: 8px 36px;
+	width: 190px;
+	height: 51px;
+	transition :.3s ;
+	position:relative;
+	z-index:1;
+}
+
+.fileDiv button:hover{
+	background: var(--primary-color);
+
 }
 
 .fileDiv p {
@@ -90,6 +111,14 @@
 
 /* iPad Portrait Styles */
 @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+  .firstRow > div,
+	.fourthRow > div {
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-width: 1024px) and (max-width: 1280px)  {
 	/* Your CSS styles for iPad in portrait orientation here */
   .firstRow > div,
 	.fourthRow > div {
