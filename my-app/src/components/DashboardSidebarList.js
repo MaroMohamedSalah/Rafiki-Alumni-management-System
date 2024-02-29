@@ -89,8 +89,13 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
     },
     {
       title: "Upload Materials",
-      icon: "fa-solid fa-plus",
+      icon: "fa-solid fa-upload",
       link: "/dashboard/uploadMaterial",
+    },
+    {
+      title: "Add Course",
+      icon: "fa-solid fa-add",
+      link: "/dashboard/addCourse",
     },
     // {
     // 	title: "Professors Profiles",

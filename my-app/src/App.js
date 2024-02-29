@@ -27,6 +27,7 @@ import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import UploadMaterials from "./pages/UploadMaterials/UploadMaterials";
+import AddCourse from "./pages/AddCourse/AddCourse";
 
 function App() {
   return (
@@ -80,11 +81,12 @@ function App() {
               {/* <Route index element={<h1>User will see this first</h1>} /> */}
               <Route path="postJob" element={<PostJobs />} />
               <Route path="postIntern" element={<PostIntern />} />
-              
+
               <Route
                 path="/dashboard/uploadMaterial"
                 element={<UploadMaterials />}
               />
+              <Route path="/dashboard/addCourse" element={<AddCourse />} />
 
               <Route path="applyJob" element={<ApplyJobLayout />}>
                 <Route index path=":jobId" element={<JobDetail />} />
