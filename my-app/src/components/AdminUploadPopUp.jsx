@@ -6,32 +6,14 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import style from './AdminUploadPopUp.module.css'
-import Rating from '@mui/material/node/Rating';
-import { Link } from 'react-router-dom';
-// import RateStars from './RateStars';
 
-
-export default function RateMaterial() {
-
-
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
+export default function AdminUploadPopUp({ isOpen, onClose }) {
 
     return (
-        <div className='RateMaterialPopUp'>
-            <Button variant="contained" onClick={handleClickOpen} className='d-block m-auto mt-5'>
-                Submit
-            </Button>
+        <div className='AdminUploadPopUp'>
             <Dialog
-                open={open}
-                onClose={handleClose}
+                open={isOpen}
+                onClose={onClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
                 className='m-auto col-lg-6 col-md-7 col-sm-12'
@@ -61,12 +43,7 @@ export default function RateMaterial() {
                         <Button variant="contained" className={style.submitBtn}>Accept</Button>
                     </div>
                 </DialogContent>
-
                 <DialogActions>
-                    {/* <div className={style.bottomBtns}>
-                        <Button variant="outlined" className={style.cancelBtn}>Cancel</Button>
-                        <Button variant="contained" className={style.submitBtn}>Submit</Button>
-                    </div> */}
                 </DialogActions>
             </Dialog>
         </div>
