@@ -1,7 +1,7 @@
 import { InputAdornment, TextField } from "@mui/material/node";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { baseBackendUrl } from "../utils/baseBackendUrl";
-const EmailInput = ({ emailError, setEmailError }) => {
+const EmailInput = ({ emailError, setEmailError, actor }) => {
 	const emailChecker = (emailV) => {
 		fetch(`${baseBackendUrl}/users/check_email`, {
 			method: "POST",
@@ -39,11 +39,17 @@ const EmailInput = ({ emailError, setEmailError }) => {
 					),
 				}}
 				onChange={(e) => {
-					if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
+					const emailInputValue = e.target.value;
+					const studentEmailRegex =
+						/\b[A-Za-z0-9._%+-]+@fci\.helwan\.edu\.eg\b/;
+					if (actor === "student" && !studentEmailRegex.test(emailInputValue)) {
+						setEmailError("Enter your Collage Email Address");
+					} else if (!/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(emailInputValue)) {
+						console.log("email");
 						setEmailError("Invalid Email Address");
 					} else {
 						setEmailError("");
-						emailChecker(e.target.value);
+						emailChecker(emailInputValue);
 					}
 				}}
 				variant="outlined"

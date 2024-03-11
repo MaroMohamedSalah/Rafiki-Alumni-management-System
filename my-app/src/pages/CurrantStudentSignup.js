@@ -148,8 +148,6 @@ const CurrantStudentSignup = () => {
 				}
 			}
 		} else {
-			console.log(collageID.value.length);
-			console.log(collageIDError.length);
 			if (collageID.value.length !== 0) {
 				// go to login
 				console.log("login");
@@ -203,6 +201,7 @@ const CurrantStudentSignup = () => {
 									<EmailInput
 										emailError={emailError}
 										setEmailError={setEmailError}
+										actor={"student"}
 									/>
 
 									<PasswordInput
