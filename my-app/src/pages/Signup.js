@@ -243,6 +243,7 @@ const Signup = () => {
 									<EmailInput
 										emailError={emailError}
 										setEmailError={setEmailError}
+										actor={actor}
 									/>
 
 									<DateOfBirthInput
