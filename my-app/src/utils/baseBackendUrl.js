@@ -1,1 +1,1 @@
-export const baseBackendUrl = "http://rafiki-backend1.azurewebsites.net/api";
+export const baseBackendUrl = "https://rafiki-backend1.azurewebsites.net/api";
