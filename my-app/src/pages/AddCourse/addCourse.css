@@ -30,18 +30,17 @@
 	gap: 8px;
 }
 
-.AddCourse .imageDiv  button{
+.AddCourse .imageDiv  .browse{
 	background: #4D85FF;
 	color: #fff;
-	padding: 8px 36px;
-	width: 190px;
-	height: 51px;
+	padding: 8px 32px;
+	width: 160px;
 	transition :.3s ;
 	position:relative;
 	z-index:1;
 }
 
-.AddCourse .imageDiv  button:hover{
+.AddCourse .imageDiv  .browse:hover{
 	background: var(--primary-color);
 
 }
@@ -90,7 +89,8 @@
 	/* Your CSS styles for iPad in landscape orientation here */
   .firstRow > div,
 	.fourthRow > div , 
-	.secondRow >div {
+	.secondRow >div , 
+	.addedRow >div {
 		margin-bottom: 20px;
 	}
 	
