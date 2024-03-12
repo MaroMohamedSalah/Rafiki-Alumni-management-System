@@ -28,6 +28,7 @@ import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import UploadMaterials from "./pages/UploadMaterials/UploadMaterials";
 import AddCourse from "./pages/AddCourse/AddCourse";
+import AdminAcceptingMaterials from "./pages/AdminAcceptingMaterials";
 
 function App() {
 	return (
@@ -84,6 +85,10 @@ function App() {
 								path="jobsApplications"
 								element={<ComingSoon date={"01/11/2023"} />}
 							/>
+							<Route
+								path="AdminAcceptingMaterials"
+								element={<AdminAcceptingMaterials />}
+							/>
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
 						<Route path="/getStartedAr" element={<GetStartedAr />} />
@@ -99,6 +104,7 @@ function App() {
 							<Route path="addSkills" element={<AddSkills />} />
 						</Route>
 						{/* Not Found Route */}
+
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 				</BrowserRouter>
