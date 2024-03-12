@@ -12,44 +12,41 @@ import {
 import { AddCircleOutlineOutlined } from "@mui/icons-material";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
+import Toast from "../../components/Toast";
 
 const AddCourse = () => {
   // ADD Another link Functions
-  const [links, setLinks] = useState([{ id: 1 }]);
-  const addLink = () => {
-    const newLinks = [...links, { id: links.length + 1 }];
-    setLinks(newLinks);
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    console.log("Selected file:", file);
-  };
+  // const [links, setLinks] = useState([{ id: 1 }]);
+  // const addLink = () => {
+  //   const newLinks = [...links, { id: links.length + 1 }];
+  //   setLinks(newLinks);
+  // };
 
   const FORM_VALIDATION = Yup.object().shape({
     courseName: Yup.string().required("Course Name is required"),
-    professorsName: Yup.string().required("Professor's Name is required"),
-    department: Yup.string().required("Department is required"),
-    creditHours: Yup.string().required("Credit Hours is required"),
-    prerequisite: Yup.string().required("Prerequisite is required"),
-    Image: Yup.string(),
-    importantLink1: Yup.string(),
-    importantLink2: Yup.string(),
-    anotherLink: Yup.string(),
-    anotherLinkDescription: Yup.string(),
+    teamsCode: Yup.string().required("Teams Code is required"),
+    doctorName: Yup.string().required("Doctor Name is required"),
+    lectureDay: Yup.string().required("Lecture Day is required"),
+    lectureTime: Yup.string().required("Lecture Time is required"),
+
+    // importantLink1: Yup.string(),
+    // importantLink2: Yup.string(),
+    // anotherLink: Yup.string(),
+    // anotherLinkDescription: Yup.string(),
   });
 
   const INITIAL_FORM_STATE = {
     courseName: "",
-    professorsName: "",
-    department: "",
-    creditHours: "",
-    prerequisite: "",
-    Image: "",
-    importantLink1: "",
-    importantLink2: "",
-    anotherLink: "",
-    anotherLinkDescription: "",
+    teamsCode: "",
+    doctorName: "",
+    lectureDay: "",
+    lectureTime: "",
+    // importantLink1: "",
+    // importantLink2: "",
+    // anotherLink: "",
+    // anotherLinkDescription: "",
   };
 
   return (
@@ -64,8 +61,34 @@ const AddCourse = () => {
         <Formik
           initialValues={{ ...INITIAL_FORM_STATE }}
           validationSchema={FORM_VALIDATION}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true);
+            const data = JSON.stringify(values);
+            const sessionId = localStorage.getItem("sessionId");
+            axios
+              .post(`${baseBackendUrl}/courses/`, data, {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${sessionId}`,
+                },
+              })
+              .then((response) => {
+                console.log("Form data submitted successfully:", response.data);
+                Toast({
+                  title: "Added Successfully.",
+                  icon: "success",
+                });
+              })
+              .catch((error) => {
+                Toast({
+                  title: "Something Went Wrong.",
+                  icon: "error",
+                });
+                console.log("Error submitting form data:", error);
+              })
+              .finally(() => {
+                setSubmitting(false);
+              });
           }}
         >
           <Form>
@@ -78,12 +101,11 @@ const AddCourse = () => {
                     label={"Course Name"}
                     placeholder={"Add Course Name "}
                     fullWidth
-                    required
                     name="courseName"
                   />
                   <ErrorMessage
                     className="mt-2 ps-2 text-danger"
-                    name="professorsName"
+                    name="courseName"
                     component="div"
                   />
                 </div>
@@ -93,24 +115,23 @@ const AddCourse = () => {
                 <div className="d-flex flex-column ">
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label" className="w-100">
-                      Professor's Name
+                      Doctor Name
                     </InputLabel>
                     <Field
                       as={Select}
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      label={"Professor's Name"}
+                      label={"Doctor Name "}
                       className="select"
-                      name="professorsName"
-                      required
+                      name="doctorName"
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      <MenuItem value="Ten">Ten</MenuItem>
+                      <MenuItem value="Twenty">Twenty</MenuItem>
+                      <MenuItem value="Thirty">Thirty</MenuItem>
                     </Field>
                     <ErrorMessage
                       className="mt-2 ps-2 text-danger"
-                      name="professorsName"
+                      name="doctorName"
                       component="div"
                     />
                   </FormControl>
@@ -121,24 +142,26 @@ const AddCourse = () => {
                 <div className="d-flex flex-column ">
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">
-                      Department
+                      Lecture Day
                     </InputLabel>
                     <Field
                       as={Select}
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      label="Department"
+                      label="Lecture Day"
                       className="select"
-                      name="department"
-                      required
+                      name="lectureDay"
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      <MenuItem value="Saturday">Saturday</MenuItem>
+                      <MenuItem value="Sunday">Sunday</MenuItem>
+                      <MenuItem value="Monday">Monday</MenuItem>
+                      <MenuItem value="Tuesday">Tuesday</MenuItem>
+                      <MenuItem value="Wednesday">Wednesday</MenuItem>
+                      <MenuItem value="Thursday">Thursday</MenuItem>
                     </Field>
                     <ErrorMessage
                       className="mt-2 ps-2 text-danger"
-                      name="department"
+                      name="lectureDay"
                       component="div"
                     />
                   </FormControl>
@@ -150,25 +173,18 @@ const AddCourse = () => {
               <div className="col-xl-3">
                 <div className="d-flex flex-column ">
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Credit Hours
-                    </InputLabel>
                     <Field
-                      as={Select}
+                      as={TextField}
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      label="Department"
+                      label="Teams Code"
                       className="select"
-                      name="creditHours"
-                      required
-                    >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Field>
+                      name="teamsCode"
+                      placeholder={" Teams Code"}
+                    ></Field>
                     <ErrorMessage
                       className="mt-2 ps-2 text-danger"
-                      name="creditHours"
+                      name="teamsCode"
                       component="div"
                     />
                   </FormControl>
@@ -180,24 +196,21 @@ const AddCourse = () => {
                   <Field
                     as={TextField}
                     id="outlined-textarea"
-                    label={"Prerequisite"}
-                    placeholder={
-                      " Add the Prerequisite to This Course if There isn’t Type N/A"
-                    }
+                    label={"Lecture Time"}
+                    placeholder={" Lecture Time"}
                     fullWidth
-                    required
-                    name="prerequisite"
+                    name="lectureTime"
                   />
                   <ErrorMessage
                     className="mt-2 ps-2 text-danger"
-                    name="prerequisite"
+                    name="lectureTime"
                     component="div"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="row my-4 thirdRow">
+            {/* <div className="row my-4 thirdRow">
               <div className="col-12">
                 <div className="">
                   <p className="imageLabel mb-0">Image to the Course:</p>
@@ -216,7 +229,9 @@ const AddCourse = () => {
                       type="file"
                       id="upload-photo"
                       style={{ display: "none" }}
-                      onChange={handleFileChange}
+                      // onChange={(event) =>
+                      //   handleFileChange(event, setFieldValue)
+                      // }
                       accept="image/*"
                       name="Image"
                     />
@@ -226,9 +241,9 @@ const AddCourse = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="row my-4 fourthRow">
+            {/* <div className="row my-4 fourthRow">
               <h1 className="title py-3">Important Links</h1>
               <div className="col-xl-6">
                 <div className="w-100">
@@ -257,10 +272,10 @@ const AddCourse = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
             <hr className="fourthRowLine" />
 
-            <div className="row mb-4  ">
+            {/* <div className="row mb-4  ">
               <h1 className="title py-3">Other Links</h1>
               <div>
                 <div>
@@ -325,39 +340,23 @@ const AddCourse = () => {
                 lecturers on YouTube or any other platform.
               </p>
               <hr />
-            </div>
+            </div> */}
 
-            <div className="buttonsDiv  mb-5">
-              <div className="div">
-                <Button
-                  variant="outlined"
-                  style={{
-                    width: "215px",
-                    height: "52px",
-                    borderRadius: "8px",
-                    padding: "8px 36px",
-                    borderColor: "#1A4B96",
-                    color: "#1A4B96",
-                  }}
-                >
-                  Outlined
-                </Button>
-              </div>
-              <div className="div">
-                <Button
-                  variant="contained"
-                  style={{
-                    width: "215px",
-                    height: "52px",
-                    borderRadius: "8px",
-                    padding: "8px 36px",
-                    color: "#fff",
-                    background: "#1A4B96",
-                  }}
-                >
-                  Submit
-                </Button>
-              </div>
+            <div className="buttonsDiv  my-5">
+              <Button
+                type="submit"
+                variant="contained"
+                style={{
+                  width: "215px",
+                  height: "52px",
+                  borderRadius: "8px",
+                  padding: "8px 36px",
+                  color: "#fff",
+                  background: "#1A4B96",
+                }}
+              >
+                Submit
+              </Button>
             </div>
           </Form>
         </Formik>
