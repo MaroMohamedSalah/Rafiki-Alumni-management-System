@@ -51,7 +51,7 @@ export default function AdminAcceptingMaterials() {
 	}, [profileFetched]);
 
 	return (
-		<>
+		<div className="AdminAcceptingMaterials">
 			<div className="container">
 				{profileFetched && (
 					<div className="row pt-4">
@@ -117,6 +117,6 @@ export default function AdminAcceptingMaterials() {
 					</div>
 				)}
 			</div>
-		</>
+		</div>
 	);
 }
