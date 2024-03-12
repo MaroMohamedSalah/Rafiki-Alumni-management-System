@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { baseBackendUrl } from "../utils/baseBackendUrl";
 import AdminUploadPopUp from "../components/AdminUploadPopUp/AdminUploadPopUp";
+import Toast from "../components/Toast";
 
 export default function AdminAcceptingMaterials() {
 	const sessionId = localStorage.getItem("sessionId");
 	const [profileFetched, setProfileFetched] = useState(false);
+	const [materialReviewed, setMaterialReviewed] = useState(false);
 	const [data, setData] = useState([]);
 
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -40,6 +42,34 @@ export default function AdminAcceptingMaterials() {
 		}
 	};
 
+
+	const declineMaterial = async (materialId) => {
+		try {
+			const response = await fetch(`${baseBackendUrl}/materials/review/${materialId}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+				body: JSON.stringify({
+					accepted: false,
+				}),
+			});
+
+			if (response.status === 401) {
+				console.log("Unauthorized");
+			} else {
+				const responese = await response.json();
+				if (responese.success === true) {
+					setMaterialReviewed(true);
+					fetchUserData();
+				}
+			}
+		} catch (error) {
+			console.log("Error while fetching materials:", error);
+		}
+	};
+
 	function toggleDetails(id) {
 		document.getElementById(`${id}`).classList.toggle("d-none");
 	}
@@ -56,7 +86,7 @@ export default function AdminAcceptingMaterials() {
 				{profileFetched && (
 					<div className="row pt-4">
 						{data.map((material, idx) => (
-							<div key={idx} className="col-md-3">
+							material.isVisible ? <div key={idx} className="col-md-3">
 								<div className="bg-body-secondary p-1 mb-3 rounded-3">
 									<h4 className="text-center">
 										MaterialID : {material.materialID}
@@ -109,10 +139,13 @@ export default function AdminAcceptingMaterials() {
 											courseName={material.course.courseName}
 											title={material.title}
 											userEmail={material.uploader.Email}
+											declineMaterial={declineMaterial}
+											materialID={material.materialID}
 										/>
 									)}
 								</div>
-							</div>
+							</div> : ""
+
 						))}
 					</div>
 				)}
