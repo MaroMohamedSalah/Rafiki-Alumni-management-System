@@ -148,6 +148,7 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 		},
 		// Add more items as needed
 	];
+	
 	const adminFeatures = [
 		{
 			title: "Jobs",
@@ -193,11 +194,11 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 					icon: "fa-solid fa-add",
 					link: "addCourse",
 				},
-				// {
-				// 	title: "Manage Materials",
-				// 	icon: "fa-solid fa-add",
-				// 	link: "#",
-				// },
+				{
+					title: "Manage Materials",
+					icon: "fa-solid fa-add",
+					link: "AdminAcceptingMaterials",
+				},
 			],
 		},
 		// Add more items as needed
