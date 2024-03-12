@@ -42,7 +42,6 @@ export default function AdminAcceptingMaterials() {
 		}
 	};
 
-
 	const declineMaterial = async (materialId) => {
 		try {
 			const response = await fetch(`${baseBackendUrl}/materials/review/${materialId}`, {
@@ -53,6 +52,33 @@ export default function AdminAcceptingMaterials() {
 				},
 				body: JSON.stringify({
 					accepted: false,
+				}),
+			});
+
+			if (response.status === 401) {
+				console.log("Unauthorized");
+			} else {
+				const responese = await response.json();
+				if (responese.success === true) {
+					setMaterialReviewed(true);
+					fetchUserData();
+				}
+			}
+		} catch (error) {
+			console.log("Error while fetching materials:", error);
+		}
+	};
+
+	const acceptMaterial = async (materialId) => {
+		try {
+			const response = await fetch(`${baseBackendUrl}/materials/review/${materialId}`, {
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${sessionId}`,
+				},
+				body: JSON.stringify({
+					accepted: true,
 				}),
 			});
 
@@ -140,6 +166,7 @@ export default function AdminAcceptingMaterials() {
 											title={material.title}
 											userEmail={material.uploader.Email}
 											declineMaterial={declineMaterial}
+											acceptMaterial={acceptMaterial}
 											materialID={material.materialID}
 										/>
 									)}

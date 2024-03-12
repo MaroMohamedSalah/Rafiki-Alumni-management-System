@@ -18,9 +18,10 @@ export default function AdminUploadPopUp({
 	courseName,
 	userEmail,
 	declineMaterial,
+	acceptMaterial,
 	materialID
 }) {
-	
+
 	function declineToast(materialID) {
 		setTimeout(() => {
 			onClose();
@@ -34,6 +35,21 @@ export default function AdminUploadPopUp({
 	function declineBtn(materialID){
 		declineToast(materialID);
 		declineMaterial(materialID);
+	}
+
+	function acceptToast(materialID) {
+		setTimeout(() => {
+			onClose();
+		}, 300);
+		Toast({
+			title: `Material ${materialID} is accepted`,
+			icon: "success",
+		});
+	}
+
+	function acceptBtn(materialID){
+		acceptToast(materialID);
+		acceptMaterial(materialID);
 	}
 
 	return (
@@ -82,7 +98,7 @@ export default function AdminUploadPopUp({
 						<Button
 							variant="contained"
 							className={style.submitBtn}
-							onClick={declineToast}
+							onClick={()=>{acceptBtn(materialID)}}
 						>
 							Accept
 						</Button>
