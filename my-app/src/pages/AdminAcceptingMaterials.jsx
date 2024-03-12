@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { baseBackendUrl } from '../utils/baseBackendUrl';
-import AdminUploadPopUp from '../components/AdminUploadPopUp/AdminUploadPopUp';
+// import AdminUploadPopUp from '../components/AdminUploadPopUp/AdminUploadPopUp';
+// import AdminUploadPopUp from '../';
 
 
 export default function AdminAcceptingMaterials() {
