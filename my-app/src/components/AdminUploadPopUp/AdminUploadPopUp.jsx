@@ -14,6 +14,9 @@ export default function AdminUploadPopUp({
 	userId,
 	fileUrl,
 	title,
+	userName,
+	courseName,
+	userEmail
 }) {
 	function openToast() {
 		setTimeout(() => {
@@ -35,7 +38,8 @@ export default function AdminUploadPopUp({
 				className="m-auto col-lg-6 col-md-7 col-sm-12"
 			>
 				<DialogTitle id="alert-dialog-title" className={style.DialogTitle}>
-					<h3>User Name : Omar</h3>
+					<h3>User Name : {userName}</h3>
+					<h3>Email : {userEmail}</h3>
 					<h3>User ID : {userId}</h3>
 				</DialogTitle>
 				<DialogContent>
@@ -45,7 +49,7 @@ export default function AdminUploadPopUp({
 					>
 						<div className="row text-center">
 							<div className="col-md-12">
-								<h5>Course name : AI</h5>
+								<h5>Course name : {courseName}</h5>
 							</div>
 							<div className="col-md-12">
 								<h5>Title : {title}</h5>
@@ -60,7 +64,11 @@ export default function AdminUploadPopUp({
 					</DialogContentText>
 
 					<div className={style.bottomBtns}>
-						<Button variant="contained" className={style.cancelBtn}>
+						<Button
+							variant="contained"
+							className={style.cancelBtn}
+							onClick={openToast}
+						>
 							Decline
 						</Button>
 						<Button

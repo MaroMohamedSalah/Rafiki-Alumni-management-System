@@ -103,8 +103,12 @@ export default function AdminAcceptingMaterials() {
 										<AdminUploadPopUp
 											isOpen={isPopupOpen}
 											onClose={handleClosePopup}
-											userId={material.uploaderID}
+											userName={material.uploader.UserName}
+											userId={material.uploader.User_Id}
 											fileUrl={material.fileURL}
+											courseName={material.course.courseName}
+											title={material.title}
+											userEmail={material.uploader.Email}
 										/>
 									)}
 								</div>
