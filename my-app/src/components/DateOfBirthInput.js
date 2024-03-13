@@ -12,10 +12,21 @@ const DateOfBirthInput = ({
 	const maxSelect = dayjs().subtract(16, "year");
 
 	// Function to handle date change
-	const handleDateChange = (date) => {
-		if (date) {
-			// Check if the selected date is not less than 16 years ago
-			setDateOfBirth(`${date.$y}-${date.$M + 1}-${date.$D}`);
+	const handleDateChange = (dateObject) => {
+		if (dateObject) {
+			// Extract year, month, and day from the date object
+			const year = dateObject.$y;
+			const month = dateObject.$M + 1; // Months are zero-indexed, so add 1
+			const day = dateObject.$D;
+
+			// Format the date as DD/MM/YYYY
+			const formattedDate = `${year}-${month.toString().padStart(2, "0")}-${day
+				.toString()
+				.padStart(2, "0")}`;
+
+			// Set the formatted date
+			setDateOfBirth(formattedDate);
+
 			// Clear any previous error when a valid date is selected
 			setDateOfBirthError("");
 		} else {
