@@ -31,10 +31,10 @@ const ProfileContactInfoSec = () => {
 			showLoaderOnConfirm: true,
 			preConfirm: (num) => {
 				// validate the phone number using a regular expression
-				const phonePattern = /^[0-9]{10}$/;
+				const phonePattern = /^[0-9]{11}$/;
 				if (!phonePattern.test(num)) {
 					Swal.showValidationMessage(
-						"Please enter a valid 10-digit phone number"
+						"Please enter a valid 11-digit phone number"
 					);
 					return;
 				}
