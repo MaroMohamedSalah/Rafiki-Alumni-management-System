@@ -1,0 +1,22 @@
+.CoursesLayout .CoursesData .course {
+	background-color: var(--primary-color);
+	border-radius: var(--main-border-radius);
+	color: var(--secondary-bg-color);
+	transition: all ease-in-out var(--main-transition);
+	cursor: pointer;
+}
+.CoursesLayout .CoursesData .course .courseName {
+	font-size: 36px;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+.CoursesLayout .CoursesData .course .doctorName {
+	color: var(--primary-color-shade5);
+}
+.CoursesLayout .CoursesData .course .image {
+	background-color: var(--secondary-bg-color);
+	border-radius: var(--main-border-radius);
+}
+.CoursesLayout .CoursesData .course .notificationIcon svg {
+	color: var(--secondary-bg-color);
+}

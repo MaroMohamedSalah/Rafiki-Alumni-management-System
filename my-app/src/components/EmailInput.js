@@ -16,7 +16,6 @@ const EmailInput = ({ emailError, setEmailError, actor }) => {
 			.then((data) => {
 				if (data.success === false) {
 					// yes -> Email is exist in our database
-					console.log(data);
 					setEmailError(data.message);
 				} else {
 					setEmailError("");

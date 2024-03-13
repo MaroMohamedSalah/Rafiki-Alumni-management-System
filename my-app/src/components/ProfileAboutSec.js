@@ -82,7 +82,7 @@ const ProfileAboutSec = ({ aboutContent }) => {
 
 	const deleteAboutSection = async () => {
 		try {
-			const response = await fetch("${baseBackendUrl}/users/delete_about", {
+			const response = await fetch(`${baseBackendUrl}/users/delete_about`, {
 				method: "DELETE",
 				headers: {
 					Authorization: `Bearer ${sessionId}`,

@@ -88,7 +88,7 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 				{
 					title: "Courses",
 					icon: "fa-solid fa-file-pdf",
-					link: "#",
+					link: "courses",
 				},
 				{
 					title: "Upload Materials",
