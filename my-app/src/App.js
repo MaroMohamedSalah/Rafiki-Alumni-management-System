@@ -29,6 +29,7 @@ import NotFound from "./pages/NotFound";
 import UploadMaterials from "./pages/UploadMaterials/UploadMaterials";
 import AddCourse from "./pages/AddCourse/AddCourse";
 import AdminAcceptingMaterials from "./pages/AdminAcceptingMaterials";
+import MaterialHome from "./pages/MaterialHome";
 
 function App() {
 	return (
@@ -77,6 +78,7 @@ function App() {
 							<Route path="postJob" element={<PostJobs />} />
 							<Route path="postIntern" element={<PostIntern />} />
 							<Route path="uploadMaterial" element={<UploadMaterials />} />
+							<Route path="materials" element={<MaterialHome />} />
 							<Route path="addCourse" element={<AddCourse />} />
 							<Route path="applyJob" element={<ApplyJobLayout />}>
 								<Route index path=":jobId" element={<JobDetail />} />

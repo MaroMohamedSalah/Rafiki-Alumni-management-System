@@ -83,22 +83,31 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 			title: "Materials",
 			icon: "fa-solid fa-file-pdf",
 			link: "#",
+			type: "super",
+			subItems: [
+				{
+					title: "Courses",
+					icon: "fa-solid fa-file-pdf",
+					link: "#",
+				},
+				{
+					title: "Upload Materials",
+					icon: "fa-solid fa-upload",
+					link: "uploadMaterial",
+				},
+			],
 		},
-		{
-			title: "Upload Materials",
-			icon: "fa-solid fa-upload",
-			link: "uploadMaterial",
-		},
+
 		// {
 		// 	title: "Professors Profiles",
 		// 	icon: "fa-solid fa-circle-user",
 		// 	link: "#",
 		// },
-		{
-			title: "FAQ",
-			icon: "fa-solid fa-question",
-			link: "#",
-		},
+		// {
+		// 	title: "FAQ",
+		// 	icon: "fa-solid fa-question",
+		// 	link: "#",
+		// },
 		// {
 		// 	title: "Ask Admin",
 		// 	icon: "fa-solid fa-paper-plane",
@@ -148,7 +157,7 @@ const DashboardSidebarList = ({ isMobile, isSidebarOpen }) => {
 		},
 		// Add more items as needed
 	];
-	
+
 	const adminFeatures = [
 		{
 			title: "Jobs",
