@@ -22,33 +22,18 @@ export default function AdminUploadPopUp({
 	materialID
 }) {
 
-	function declineToast(materialID) {
+
+	function declineBtn(materialID) {
 		setTimeout(() => {
 			onClose();
 		}, 300);
-		Toast({
-			title: `Material ${materialID} is rejected`,
-			icon: "success",
-		});
-	}
-
-	function declineBtn(materialID){
-		declineToast(materialID);
 		declineMaterial(materialID);
 	}
 
-	function acceptToast(materialID) {
+	function acceptBtn(materialID) {
 		setTimeout(() => {
 			onClose();
 		}, 300);
-		Toast({
-			title: `Material ${materialID} is accepted`,
-			icon: "success",
-		});
-	}
-
-	function acceptBtn(materialID){
-		acceptToast(materialID);
 		acceptMaterial(materialID);
 	}
 
@@ -91,14 +76,14 @@ export default function AdminUploadPopUp({
 						<Button
 							variant="contained"
 							className={style.cancelBtn}
-							onClick={()=>{declineBtn(materialID)}}
+							onClick={() => { declineBtn(materialID) }}
 						>
 							Decline
 						</Button>
 						<Button
 							variant="contained"
 							className={style.submitBtn}
-							onClick={()=>{acceptBtn(materialID)}}
+							onClick={() => { acceptBtn(materialID) }}
 						>
 							Accept
 						</Button>

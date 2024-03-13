@@ -8,8 +8,8 @@ export default function AdminAcceptingMaterials() {
 	const [profileFetched, setProfileFetched] = useState(false);
 	const [materialReviewed, setMaterialReviewed] = useState(false);
 	const [data, setData] = useState([]);
-
 	const [isPopupOpen, setIsPopupOpen] = useState(false);
+
 	const handleShowPopup = () => {
 		setIsPopupOpen(true);
 	};
@@ -61,6 +61,10 @@ export default function AdminAcceptingMaterials() {
 				const responese = await response.json();
 				if (responese.success === true) {
 					setMaterialReviewed(true);
+					Toast({
+						title: `Material ${materialId} is rejected`,
+						icon: "success",
+					});
 					fetchUserData();
 				}
 			}
@@ -88,6 +92,10 @@ export default function AdminAcceptingMaterials() {
 				const responese = await response.json();
 				if (responese.success === true) {
 					setMaterialReviewed(true);
+					Toast({
+						title: `Material ${materialId} is accepted`,
+						icon: "success",
+					});
 					fetchUserData();
 				}
 			}
@@ -172,7 +180,6 @@ export default function AdminAcceptingMaterials() {
 									)}
 								</div>
 							</div> : ""
-
 						))}
 					</div>
 				)}
