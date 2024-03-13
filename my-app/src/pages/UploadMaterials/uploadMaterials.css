@@ -1,0 +1,127 @@
+.UploadMaterials .title {
+	font-family: "Montserrat", sans-serif;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 48.76px;
+	padding-top: 30px;
+	position: relative;
+}
+
+.UploadMaterials input,
+.UploadMaterials .select ,.multilineInput {
+	background: var(--primary-bg-color);
+  background-color: var(--inputs-background);
+	border-radius: 8px;
+	width: 100%;
+}
+
+.UploadMaterials input::placeholder,
+.UploadMaterials .select::placeholder{
+	padding-bottom: 20px;
+}
+
+
+.UploadMaterials .fileLabel {
+	font-family: "Roboto Condensed";
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 28.13px;
+	padding-bottom: 10px;
+}
+
+/*
+.UploadMaterials .inputLabel::after {
+	content: "*";
+	color: red;
+	position: absolute;
+	margin-left: 5px;
+} */
+
+.multilineInput  {
+	width: 100%;
+	/* height: 97px; */
+}
+
+.fileDiv {
+	height: 120px;
+	padding: 32px 8px;
+	border-radius: 8px;
+	border: 1px dashed var(--Admin-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.fileDiv button{
+	background: #4D85FF;
+	color: #fff;
+	padding: 8px 36px;
+	width: 190px;
+	height: 51px;
+	transition :.3s ;
+	position:relative;
+	z-index:1;
+}
+
+.fileDiv button:hover{
+	background: var(--primary-color);
+
+}
+
+.fileDiv p {
+	font-weight: 400;
+	font-family: "Montserrat", sans-serif;
+	font-size: 16px;
+	line-height: 19.5px;
+}
+
+.buttonsDiv {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 20px;
+}
+
+@media (max-width: 767px) {
+	.firstRow > div,
+	.fourthRow > div {
+		margin-bottom: 20px;
+	}
+	.buttonsDiv {
+		flex-direction: column;
+		justify-content: center;
+	}
+	.UploadMaterials .title{
+		font-size: 32px;
+	}
+}
+
+/* iPad Landscape Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+	/* Your CSS styles for iPad in landscape orientation here */
+  .firstRow > div,
+	.fourthRow > div {
+		margin-bottom: 20px;
+	}
+	
+
+}
+
+/* iPad Portrait Styles */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+	/* Your CSS styles for iPad in portrait orientation here */
+  .firstRow > div,
+	.fourthRow > div {
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-width: 1024px) and (max-width: 1280px)  {
+	/* Your CSS styles for iPad in portrait orientation here */
+  .firstRow > div,
+	.fourthRow > div {
+		margin-bottom: 20px;
+	}
+}
