@@ -21,6 +21,7 @@ import { RedirectToLoginNotification } from "../components/RedirectToLoginNotifi
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import { baseBackendUrl } from "../utils/baseBackendUrl";
+
 const StudentProfile = () => {
 	const dispatch = useDispatch();
 	const sessionId = localStorage.getItem("sessionId");
