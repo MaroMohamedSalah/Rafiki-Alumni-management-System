@@ -3,8 +3,12 @@ import Checkbox from "@mui/material/Checkbox";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { Button, Tooltip } from "@mui/material";
+import { useEffect } from "react";
 
 const CoursesData = ({ fetchedCourses }) => {
+	useEffect(() => {
+		console.log("from course data: ", fetchedCourses);
+	});
 	return (
 		<div className="CoursesData row">
 			{fetchedCourses.map((course) => {
@@ -34,7 +38,7 @@ const CoursesData = ({ fetchedCourses }) => {
 								<div className="col d-flex flex-column justify-content-between align-items-start">
 									<div>
 										<h1 className="courseName">{course.courseName}</h1>
-										<h5 className="doctorName text-white-50">
+										<h5 className="doctorName">
 											<span className="text-bolder pe-1">Dr.</span>
 											{course.doctorName}
 										</h5>
