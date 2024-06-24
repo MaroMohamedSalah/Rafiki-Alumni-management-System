@@ -3,7 +3,6 @@ import "./courses.css";
 import { baseBackendUrl } from "../utils/baseBackendUrl";
 import Toast from "../components/Toast";
 import CoursesData from "../components/Courses/CoursesData";
-import CoursesDataPlaceholder from "../components/Courses/CoursesDataPlaceholder";
 const CoursesLayout = () => {
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -40,8 +39,7 @@ const CoursesLayout = () => {
 			<div className="container">
 				<div className="search"></div>
 				<div className="result">
-					<CoursesDataPlaceholder />
-					{/* <CoursesData fetchedCourses={courses} /> */}
+					<CoursesData fetchedCourses={courses} />
 				</div>
 			</div>
 		</div>
