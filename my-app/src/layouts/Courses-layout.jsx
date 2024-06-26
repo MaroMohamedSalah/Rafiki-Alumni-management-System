@@ -40,8 +40,8 @@ const CoursesLayout = () => {
 			<div className="container">
 				<div className="search"></div>
 				<div className="result">
-					<CoursesDataPlaceholder />
-					{/* <CoursesData fetchedCourses={courses} /> */}
+					{/* <CoursesDataPlaceholder /> */}
+					<CoursesData fetchedCourses={courses} />
 				</div>
 			</div>
 		</div>

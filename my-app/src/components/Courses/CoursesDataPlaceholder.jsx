@@ -10,7 +10,7 @@ const CoursesDataPlaceholder = () => {
 					<div className="course d-flex mb-3 px-3 py-4 position-relative z-1">
 						<Skeleton
 							animation={"wave"}
-							height={182.5}
+							height={200}
 							className="position-absolute w-100 top-0 start-0 z-n1"
 						/>
 						<div className="row">
