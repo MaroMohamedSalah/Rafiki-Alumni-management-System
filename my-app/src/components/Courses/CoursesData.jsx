@@ -35,7 +35,6 @@ const CoursesData = ({ fetchedCourses }) => {
 									<div>
 										<h1 className="courseName">{course.courseName}</h1>
 										<h5 className="doctorName text-white-50">
-											<span className="text-bolder pe-1">Dr.</span>
 											{course.doctorName}
 										</h5>
 									</div>

@@ -6,13 +6,9 @@ const CoursesDataPlaceholder = () => {
 		const placeholders = [];
 		for (let index = 0; index < 12; index++) {
 			placeholders.push(
-				<div key={index} className="col-12 col-md-6 col-xl-4">
-					<div className="course d-flex mb-3 px-3 py-4 position-relative z-1">
-						<Skeleton
-							animation={"wave"}
-							height={200}
-							className="position-absolute w-100 top-0 start-0 z-n1"
-						/>
+				<div key={index} className="col-12 col-md-6 col-xl-4 position-relative">
+					<div className="position-absolute w-100 top-0 start-0 "></div>
+					<div className="course d-flex mb-3 px-3 py-4  z-1">
 						<div className="row">
 							<div className="w-25 me-3 d-flex flex-column justify-content-between align-items-center col-2">
 								<div className="image mb-4">
