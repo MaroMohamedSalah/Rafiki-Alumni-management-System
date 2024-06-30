@@ -27,6 +27,7 @@ import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import RateMaterial from "./components/RateMaterial";
+import Test from "./components/Test";
 
 function App() {
 	return (
@@ -36,6 +37,7 @@ function App() {
 					<Routes>
 						{/* Public Routes */}
 						<Route path="/" element={<LandingPage />} />
+						<Route path="/test" element={<Test />} />
 						<Route path="/roleSelection" element={<RoleSelection />} />
 						<Route path="/login" element={<LoginLayout />} />
 						<Route path="/resetPass" element={<ResetPassLayout />}>

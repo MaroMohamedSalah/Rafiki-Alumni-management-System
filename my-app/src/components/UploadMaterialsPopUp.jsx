@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Lottie from 'lottie-react'
-import animation from '../../animations/successfully done.json'
+import animation from '../animations/successfully done.json'
 import style from './UploadMaterialsPopUp.module.css'
 import { Link } from 'react-router-dom';
 
