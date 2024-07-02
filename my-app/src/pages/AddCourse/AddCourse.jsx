@@ -2,55 +2,59 @@ import React, { useState } from "react";
 import "./addCourse.css";
 import {
   Button,
-  Fab,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   TextField,
 } from "@mui/material";
-import { AddCircleOutlineOutlined } from "@mui/icons-material";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
+import Toast from "../../components/Toast";
 
 const AddCourse = () => {
-  // ADD Another link Functions
-  const [links, setLinks] = useState([{ id: 1 }]);
-  const addLink = () => {
-    const newLinks = [...links, { id: links.length + 1 }];
-    setLinks(newLinks);
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    console.log("Selected file:", file);
-  };
-
-  const FORM_VALIDATION = Yup.object().shape({
+  const FORM_VALIDATION = Yup.object({
     courseName: Yup.string().required("Course Name is required"),
-    professorsName: Yup.string().required("Professor's Name is required"),
-    department: Yup.string().required("Department is required"),
-    creditHours: Yup.string().required("Credit Hours is required"),
-    prerequisite: Yup.string().required("Prerequisite is required"),
-    Image: Yup.string(),
-    importantLink1: Yup.string(),
-    importantLink2: Yup.string(),
-    anotherLink: Yup.string(),
-    anotherLinkDescription: Yup.string(),
+    teamsCode: Yup.string().required("Teams Code is required"),
+    doctorName: Yup.string().required("Doctor Name is required"),
+    lectureDay: Yup.string().required("Lecture Day is required"),
+    lectureTime: Yup.string().required("Lecture Time is required"),
   });
 
   const INITIAL_FORM_STATE = {
     courseName: "",
-    professorsName: "",
-    department: "",
-    creditHours: "",
-    prerequisite: "",
-    Image: "",
-    importantLink1: "",
-    importantLink2: "",
-    anotherLink: "",
-    anotherLinkDescription: "",
+    teamsCode: "",
+    doctorName: "",
+    lectureDay: "",
+    lectureTime: "",
   };
+
+  const formik = useFormik({
+    initialValues: INITIAL_FORM_STATE,
+    validationSchema: FORM_VALIDATION,
+    onSubmit: async (values) => {
+      try {
+        const sessionId = localStorage.getItem("sessionId");
+        const config = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${sessionId}`,
+          },
+        };
+        console.log(values);
+        const response = await axios.post(
+          `${baseBackendUrl}/courses/`,
+          values,
+          config
+        );
+        Toast({ title: "Course Added Successfully", icon: "success" });
+      } catch (error) {
+        Toast({ title: error.response.data.message, icon: "error" });
+      }
+    },
+  });
 
   return (
     <section className="AddCourse">
@@ -61,306 +65,166 @@ const AddCourse = () => {
           </div>
         </div>
 
-        <Formik
-          initialValues={{ ...INITIAL_FORM_STATE }}
-          validationSchema={FORM_VALIDATION}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-        >
-          <Form>
-            <div className="row my-4 firstRow">
-              <div className="col-xl-5">
-                <div className="d-flex flex-column  ">
-                  <Field
-                    as={TextField}
-                    id="outlined-textarea"
-                    label={"Course Name"}
-                    placeholder={"Add Course Name "}
-                    fullWidth
-                    required
-                    name="courseName"
-                  />
-                  <ErrorMessage
-                    className="mt-2 ps-2 text-danger"
-                    name="professorsName"
-                    component="div"
-                  />
-                </div>
-              </div>
-
-              <div className="col-xl-4">
-                <div className="d-flex flex-column ">
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label" className="w-100">
-                      Professor's Name
-                    </InputLabel>
-                    <Field
-                      as={Select}
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      label={"Professor's Name"}
-                      className="select"
-                      name="professorsName"
-                      required
-                    >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Field>
-                    <ErrorMessage
-                      className="mt-2 ps-2 text-danger"
-                      name="professorsName"
-                      component="div"
-                    />
-                  </FormControl>
-                </div>
-              </div>
-
-              <div className="col-xl-3">
-                <div className="d-flex flex-column ">
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Department
-                    </InputLabel>
-                    <Field
-                      as={Select}
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      label="Department"
-                      className="select"
-                      name="department"
-                      required
-                    >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Field>
-                    <ErrorMessage
-                      className="mt-2 ps-2 text-danger"
-                      name="department"
-                      component="div"
-                    />
-                  </FormControl>
-                </div>
+        <form onSubmit={formik.handleSubmit}>
+          <div className="row my-4 firstRow">
+            <div className="col-xl-5">
+              <div className="d-flex flex-column  ">
+                <TextField
+                  fullWidth
+                  label={"Course Name"}
+                  placeholder={"Add Course Name "}
+                  id="courseName"
+                  name="courseName"
+                  value={formik.values.courseName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.courseName &&
+                    Boolean(formik.errors.courseName)
+                  }
+                  helperText={
+                    formik.touched.courseName && formik.errors.courseName
+                  }
+                />
               </div>
             </div>
 
-            <div className="row my-4 secondRow">
-              <div className="col-xl-3">
-                <div className="d-flex flex-column ">
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Credit Hours
-                    </InputLabel>
-                    <Field
-                      as={Select}
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      label="Department"
-                      className="select"
-                      name="creditHours"
-                      required
-                    >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
-                    </Field>
-                    <ErrorMessage
-                      className="mt-2 ps-2 text-danger"
-                      name="creditHours"
-                      component="div"
-                    />
-                  </FormControl>
-                </div>
-              </div>
-
-              <div className="col-xl-5">
-                <div className="d-flex flex-column ">
-                  <Field
-                    as={TextField}
-                    id="outlined-textarea"
-                    label={"Prerequisite"}
-                    placeholder={
-                      " Add the Prerequisite to This Course if There isn’t Type N/A"
-                    }
-                    fullWidth
-                    required
-                    name="prerequisite"
-                  />
-                  <ErrorMessage
-                    className="mt-2 ps-2 text-danger"
-                    name="prerequisite"
-                    component="div"
-                  />
-                </div>
+            <div className="col-xl-4">
+              <div className="d-flex flex-column ">
+                <TextField
+                  id="teamsCode"
+                  label={"Teams Code"}
+                  placeholder={"Teams Code"}
+                  fullWidth
+                  name="teamsCode"
+                  value={formik.values.teamsCode}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.teamsCode && Boolean(formik.errors.teamsCode)
+                  }
+                  helperText={
+                    formik.touched.teamsCode && formik.errors.teamsCode
+                  }
+                />
               </div>
             </div>
 
-            <div className="row my-4 thirdRow">
-              <div className="col-12">
-                <div className="">
-                  <p className="imageLabel mb-0">Image to the Course:</p>
-                  <div className="imageDiv">
-                    <label htmlFor="upload-photo">
-                      <Fab
-                        style={{ height: "45px" }}
-                        variant="extended"
-                        component="span"
-                        className="browse"
-                      >
-                        Browse
-                      </Fab>
-                    </label>
-                    <input
-                      type="file"
-                      id="upload-photo"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                      accept="image/*"
-                      name="Image"
-                    />
-                    <p className="mb-0">
-                      Images Must be in format JPG, JPEG, PNG
-                    </p>
-                  </div>
-                </div>
+            <div className="col-xl-3">
+              <div className="d-flex flex-column ">
+                <TextField
+                  id="doctorName"
+                  label={"Doctor Name"}
+                  placeholder={"Doctor Name"}
+                  fullWidth
+                  name="doctorName"
+                  value={formik.values.doctorName}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.doctorName &&
+                    Boolean(formik.errors.doctorName)
+                  }
+                  helperText={
+                    formik.touched.doctorName && formik.errors.doctorName
+                  }
+                />
               </div>
             </div>
+          </div>
 
-            <div className="row my-4 fourthRow">
-              <h1 className="title py-3">Important Links</h1>
-              <div className="col-xl-6">
-                <div className="w-100">
-                  <TextField
-                    id="outlined-textarea"
-                    label={"WhatsApp Group Link"}
-                    placeholder={
-                      " add the WhatsApp Group link to this course if there isn’t type N/A "
-                    }
-                    fullWidth
-                    name="importantLink1"
-                  />
-                </div>
-              </div>
-              <div className="col-xl-6">
-                <div className="w-100">
-                  <TextField
-                    id="outlined-basic"
-                    label="Microsoft Teams code"
-                    placeholder={
-                      " add the Microsoft Teams code to this course if there isn’t type N/A "
-                    }
-                    variant="outlined"
-                    className="w-100"
-                    name="importantLink2"
-                  />
-                </div>
-              </div>
-            </div>
-            <hr className="fourthRowLine" />
-
-            <div className="row mb-4  ">
-              <h1 className="title py-3">Other Links</h1>
-              <div>
-                <div>
-                  {links.map((link) => {
-                    return (
-                      <div key={link.id} className="row my-4 fourthRow">
-                        <div className="col-xl-6">
-                          <div className="w-100">
-                            <TextField
-                              id={`outlined-textarea-${link.id}`}
-                              label="Link"
-                              placeholder="Add a link like the official channel of this course on youtube, etc."
-                              fullWidth
-                              name="anotherLink"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-xl-6">
-                          <div className="w-100">
-                            <TextField
-                              id={`outlined-basic-${link.id}`}
-                              label="Description :"
-                              placeholder="add a description to this link like what’s this link is about"
-                              variant="outlined"
-                              className="w-100"
-                              name="anotherLinkDescription"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-
-                  <Fab
-                    variant="extended"
-                    style={{
-                      background: "#4D85FF",
-                      color: "#fff",
-                      height: "40px",
-                      margin: "20px 13px 5px 13px",
-                      position: "relative",
-                      zIndex: "1",
-                    }}
-                    onClick={addLink}
+          <div className="row my-4 secondRow">
+            <div className="col-xl-6">
+              <div className="d-flex flex-column ">
+                <FormControl
+                  fullWidth
+                  error={
+                    formik.touched.lectureDay &&
+                    Boolean(formik.errors.lectureDay)
+                  }
+                >
+                  <InputLabel id="lecture-day-label">Lecture Day</InputLabel>
+                  <Select
+                    labelId="lecture-day-label"
+                    id="lectureDay"
+                    name="lectureDay"
+                    label="Lecture Day"
+                    value={formik.values.lectureDay}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                   >
-                    <AddCircleOutlineOutlined
-                      style={{
-                        background: "#fff",
-                        color: "#4D85FF",
-                        padding: "5px 0",
-                        borderRadius: "5px",
-                        fontSize: "30px",
-                      }}
-                      sx={{ mr: 1 }}
-                    />
-                    Add another Link
-                  </Fab>
-                </div>
+                    <MenuItem value="">Saturday</MenuItem>
+                    <MenuItem value="Sunday">Sunday</MenuItem>
+                    <MenuItem value="Monday">Monday</MenuItem>
+                    <MenuItem value="Tuesday">Tuesday</MenuItem>
+                    <MenuItem value="Wednesday">Wednesday</MenuItem>
+                    <MenuItem value="Thursday">Thursday</MenuItem>
+                  </Select>
+                  {formik.touched.lectureDay && formik.errors.lectureDay ? (
+                    <div className="mt-2 ps-2 text-danger">
+                      {formik.errors.lectureDay}
+                    </div>
+                  ) : null}
+                </FormControl>
               </div>
-              <p className="my-3">
-                *PRO TIP : you can add a link if you are Summarizes the
-                lecturers on YouTube or any other platform.
-              </p>
-              <hr />
             </div>
+            <div className="col-xl-6">
+              <div className="d-flex flex-column ">
+                <FormControl
+                  fullWidth
+                  error={
+                    formik.touched.lectureTime &&
+                    Boolean(formik.errors.lectureTime)
+                  }
+                >
+                  <InputLabel id="lecture-time-label">Lecture Time</InputLabel>
+                  <Select
+                    labelId="lecture-time-label"
+                    id="lectureTime"
+                    name="lectureTime"
+                    label="Lecture Time"
+                    value={formik.values.lectureTime}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  >
+                    <MenuItem value="8:00">8:00</MenuItem>
+                    <MenuItem value="10:00">10:00</MenuItem>
+                    <MenuItem value="12:00">12:00</MenuItem>
+                    <MenuItem value="2:00">2:00</MenuItem>
+                    <MenuItem value="4:00">4:00</MenuItem>
+                    <MenuItem value="6:00">6:00</MenuItem>
+                  </Select>
+                  {formik.touched.lectureTime && formik.errors.lectureTime ? (
+                    <div className="mt-2 ps-2 text-danger">
+                      {formik.errors.lectureTime}
+                    </div>
+                  ) : null}
+                </FormControl>
+              </div>
+            </div>
+          </div>
 
-            <div className="buttonsDiv  mb-5">
-              <div className="div">
-                <Button
-                  variant="outlined"
-                  style={{
-                    width: "215px",
-                    height: "52px",
-                    borderRadius: "8px",
-                    padding: "8px 36px",
-                    borderColor: "#1A4B96",
-                    color: "#1A4B96",
-                  }}
-                >
-                  Outlined
-                </Button>
-              </div>
-              <div className="div">
-                <Button
-                  variant="contained"
-                  style={{
-                    width: "215px",
-                    height: "52px",
-                    borderRadius: "8px",
-                    padding: "8px 36px",
-                    color: "#fff",
-                    background: "#1A4B96",
-                  }}
-                >
-                  Submit
-                </Button>
-              </div>
+          <hr className="fourthRowLine" />
+
+          <div className="buttonsDiv  my-5">
+            <div className="div">
+              <Button
+                variant="contained"
+                style={{
+                  width: "215px",
+                  height: "52px",
+                  borderRadius: "8px",
+                  padding: "8px 36px",
+                  color: "#fff",
+                  background: "#1A4B96",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
             </div>
-          </Form>
-        </Formik>
+          </div>
+        </form>
       </div>
     </section>
   );

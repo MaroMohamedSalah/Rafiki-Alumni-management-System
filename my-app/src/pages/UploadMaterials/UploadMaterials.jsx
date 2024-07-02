@@ -137,21 +137,6 @@ function UploadMaterials() {
         <div className="buttonsDiv  mb-5">
           <div className="div">
             <Button
-              variant="outlined"
-              style={{
-                width: "215px",
-                height: "52px",
-                borderRadius: "8px",
-                padding: "8px 36px",
-                borderColor: "#1A4B96",
-                color: "#1A4B96",
-              }}
-            >
-              Outlined
-            </Button>
-          </div>
-          <div className="div">
-            <Button
               variant="contained"
               style={{
                 width: "215px",
