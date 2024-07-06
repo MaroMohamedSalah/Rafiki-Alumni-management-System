@@ -1,10 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./uploadMaterials.css";
 import { Fab, TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material/node";
+import axios from "axios";
+import { baseBackendUrl } from "../../utils/baseBackendUrl";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import Toast from "../../components/Toast";
 
 function UploadMaterials() {
+  const sessionId = localStorage.getItem("sessionId");
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionId}`,
+    },
+  };
+
+  const FORM_VALIDATION = Yup.object({
+    title: Yup.string().required("Materials Title is required"),
+    courseID: Yup.number()
+      .typeError("Course Name is required")
+      .required("Course Name is required"),
+    fileURL: Yup.string().required("materials Link is required"),
+  });
+
+  const INITIAL_FORM_STATE = {
+    courseID: 0,
+    title: "",
+    fileURL: "",
+    fileType: "PDF",
+    fileSize: 1000,
+  };
+
+  const formik = useFormik({
+    initialValues: INITIAL_FORM_STATE,
+    validationSchema: FORM_VALIDATION,
+    onSubmit: async (values) => {
+      console.log(values);
+
+      try {
+        const response = await axios.post(
+          `${baseBackendUrl}/materials/upload`,
+          values,
+          config
+        );
+        Toast({ title: "Materials Uploaded Successfully", icon: "success" });
+      } catch (error) {
+        Toast({ title: error.response.data.message, icon: "error" });
+      }
+    },
+  });
+
+  const [allCourses, setAllCourses] = useState([]);
+  const getAllCourses = async () => {
+    try {
+      const response = await axios.get(`${baseBackendUrl}/courses/`, config);
+      const data = response.data.Courses;
+      setAllCourses(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getAllCourses();
+  }, []);
+
   return (
     <section className="UploadMaterials">
       <div className="container">
@@ -14,68 +77,106 @@ function UploadMaterials() {
           </div>
         </div>
 
-        <div className="row my-4 firstRow">
-          <div className="col-xl-5">
-            <div className="d-flex flex-column ">
-              {/* <p className="mb-0 inputLabel">Title :</p> */}
-              <TextField
-                id="outlined-textarea"
-                label={"Title"}
-                placeholder={"Write Materials Title "}
-                fullWidth
-              />
+        <form onSubmit={formik.handleSubmit}>
+          <div className="row my-4 firstRow">
+            <div className="col-xl-4">
+              <div className="d-flex flex-column ">
+                {/* <p className="mb-0 inputLabel">Title :</p> */}
+                <TextField
+                  id="outlined-textarea"
+                  label={"Title"}
+                  placeholder={"Write Materials Title "}
+                  fullWidth
+                  name="title"
+                  value={formik.values.title}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.title && Boolean(formik.errors.title)}
+                  helperText={formik.touched.title && formik.errors.title}
+                />
+              </div>
+            </div>
+
+            <div className="col-xl-4">
+              <div className="d-flex flex-column ">
+                {/* <p className="mb-0 inputLabel">Subject :</p> */}
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label" className="w-100">
+                    Course Name
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="courseID"
+                    label={"Course Name"}
+                    className="select"
+                    name="courseID"
+                    value={formik.values.courseID}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  >
+                    {allCourses.map((item) => {
+                      return (
+                        <MenuItem key={item.courseId} value={item.courseId}>
+                          {item.courseName}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                  {formik.touched.courseID && formik.errors.courseID ? (
+                    <div className="mt-2 ps-2 text-danger">
+                      {formik.errors.courseID}
+                    </div>
+                  ) : null}
+                </FormControl>
+              </div>
+            </div>
+
+            <div className="col-xl-4">
+              <div className="d-flex flex-column ">
+                {/* <p className="mb-0 inputLabel">Title :</p> */}
+                <TextField
+                  id="outlined-textarea"
+                  label={"Material Link"}
+                  placeholder={"Paste Material Link "}
+                  fullWidth
+                  name="fileURL"
+                  value={formik.values.fileURL}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.fileURL && Boolean(formik.errors.fileURL)
+                  }
+                  helperText={formik.touched.fileURL && formik.errors.fileURL}
+                />
+              </div>
             </div>
           </div>
+          <hr />
 
-          <div className="col-xl-4">
-            <div className="d-flex flex-column ">
-              {/* <p className="mb-0 inputLabel">Subject :</p> */}
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label" className="w-100">
-                  Subject
-                </InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label={"Subject"}
-                  // style={{ height: "44px" }}
-                  className="select"
-                >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
+          <div className="buttonsDiv  mb-5">
+            <div className="div">
+              <Button
+                variant="contained"
+                style={{
+                  width: "215px",
+                  height: "52px",
+                  borderRadius: "8px",
+                  padding: "8px 36px",
+                  color: "#fff",
+                  background: "#1A4B96",
+                }}
+                type="submit"
+              >
+                Submit
+              </Button>
             </div>
           </div>
+        </form>
 
-          <div className="col-xl-3">
-            <div className="d-flex flex-column ">
-              {/* <p className="mb-0 inputLabel">Week :</p> */}
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Week</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  // value={age}
-                  label="Week"
-                  // onChange={handleChange}
-                  className="select"
-                  // style={{ height: "44px" }}
-                >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
-          </div>
-        </div>
-
+        {/* 
         <div className="row my-4 secondRow">
           <div className="col-12">
             <div className="">
-              {/* <p className="inputLabel mb-0">Description :</p> */}
 
               <TextField
                 id="outlined-textarea"
@@ -87,9 +188,9 @@ function UploadMaterials() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="row my-4 thirdRow">
+        {/* <div className="row my-4 thirdRow">
           <div className="col-12">
             <div className="">
               <p className="fileLabel mb-0">File :</p>
@@ -101,12 +202,11 @@ function UploadMaterials() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="row my-4 fourthRow">
+        {/* <div className="row my-4 fourthRow">
           <div className="col-xl-6">
             <div className="w-100">
-              {/* <p className="file_label mb-0">Link :</p> */}
               <TextField
                 id="outlined-textarea"
                 label={"Link"}
@@ -117,7 +217,6 @@ function UploadMaterials() {
           </div>
           <div className="col-xl-6">
             <div className="w-100">
-              {/* <p className="file_label mb-0">Description :</p> */}
               <TextField
                 id="outlined-basic"
                 label="Description"
@@ -131,26 +230,7 @@ function UploadMaterials() {
             *PRO TIP : you can add a link if you are Summarizes the lecturers on
             YouTube or any other platform.
           </p>
-          <hr />
-        </div>
-
-        <div className="buttonsDiv  mb-5">
-          <div className="div">
-            <Button
-              variant="contained"
-              style={{
-                width: "215px",
-                height: "52px",
-                borderRadius: "8px",
-                padding: "8px 36px",
-                color: "#fff",
-                background: "#1A4B96",
-              }}
-            >
-              Submit
-            </Button>
-          </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

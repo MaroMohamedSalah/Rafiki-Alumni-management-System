@@ -43,7 +43,7 @@ const AddCourse = () => {
             Authorization: `Bearer ${sessionId}`,
           },
         };
-        console.log(values);
+
         const response = await axios.post(
           `${baseBackendUrl}/courses/`,
           values,
@@ -147,8 +147,8 @@ const AddCourse = () => {
                   <Select
                     labelId="lecture-day-label"
                     id="lectureDay"
-                    name="lectureDay"
                     label="Lecture Day"
+                    name="lectureDay"
                     value={formik.values.lectureDay}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
