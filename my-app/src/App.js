@@ -26,7 +26,7 @@ import GetStartedAr from "./pages/GetStartedAr";
 import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
-import RateMaterial from "./components/RateMaterial";
+
 import AllMaterials from "./pages/AllMaterials/AllMaterials";
 import BoxPopUp from "./components/BoxPopUp/BoxPopUp";
 import AddCourse from "./pages/AddCourse/AddCourse";
@@ -103,7 +103,7 @@ function App() {
             <Route path="/getStartedAr" element={<GetStartedAr />} />
 
             {/* rate material popUp page */}
-            <Route path="/rateMaterial" element={<RateMaterial />} />
+            {/* <Route path="/rateMaterial" element={<RateMaterial />} /> */}
             <Route path="/BoxPopup" element={<BoxPopUp />} />
 
             {/* Signup Routes */}
