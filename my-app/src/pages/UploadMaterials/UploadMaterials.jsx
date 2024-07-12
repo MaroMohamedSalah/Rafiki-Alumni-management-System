@@ -38,8 +38,6 @@ function UploadMaterials() {
     initialValues: INITIAL_FORM_STATE,
     validationSchema: FORM_VALIDATION,
     onSubmit: async (values) => {
-      console.log(values);
-
       try {
         const response = await axios.post(
           `${baseBackendUrl}/materials/upload`,
