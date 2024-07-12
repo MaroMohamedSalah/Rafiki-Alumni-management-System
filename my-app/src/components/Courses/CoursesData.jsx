@@ -27,7 +27,7 @@ const CoursesData = ({fetchedCourses}) => {
 						>
 							<div className="course d-flex mb-3 px-3 py-4">
 								<div className="row">
-									<div className="w-25 me-3 d-flex flex-column justify-content-between align-items-center col-2">
+									<div className="w-25 pe-3 d-flex flex-column justify-content-between align-items-center col-2">
 										<div className="image mb-4">
 											<img src={logo} alt="logo" className="img-fluid" />
 										</div>
@@ -42,7 +42,7 @@ const CoursesData = ({fetchedCourses}) => {
 											</Tooltip>
 										</div>
 									</div>
-									<div className="col d-flex flex-column justify-content-between align-items-start">
+									<div className="col-10 d-flex flex-column justify-content-between align-items-start">
 										<div>
 											<h1 className="courseName" title={course.courseName}>{course.courseName}</h1>
 											<h5 className="doctorName text-white-50">
