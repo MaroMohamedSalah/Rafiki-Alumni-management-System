@@ -41,7 +41,6 @@ function App() {
 				<BrowserRouter>
 					<Routes>
 						{/* Public Routes */}
-
 						<Route path="/" element={<LandingPage />} />
 						<Route path="/roleSelection" element={<RoleSelection />} />
 						<Route path="/login" element={<LoginLayout />} />
@@ -79,7 +78,6 @@ function App() {
 						{/* Private Routes */}
 						{/* Private routes are routes that require the user to be authenticated or
 					logged in to access them. */}
-
 						<Route path="/dashboard" element={<DashboardLayout />}>
 							<Route path="allMaterials" element={<AllMaterials />} />
 							<Route path="postJob" element={<PostJobs />} />
