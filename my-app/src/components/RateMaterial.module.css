@@ -60,16 +60,6 @@
     width: 100%;
 }
 
-.cancelBtn {
-    color: var(--primary-color) !important;
-    border: 1px solid var(--primary-color) !important;
-}
-
-.submitBtn {
-    background-color: var(--primary-color) !important;
-    border: 1px solid var(--primary-color) !important;
-}
-
 @media (min-width: 390px) and (max-width: 844px) and (orientation: portrait) {
     .bottomBtns button {
         width: 100px;

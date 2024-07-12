@@ -28,6 +28,8 @@ import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 import RateMaterial from "./components/RateMaterial";
 import Test from "./components/Test";
+import AllMaterials from "./pages/AllMaterials/AllMaterials";
+import BoxPopUp from "./components/BoxPopUp/BoxPopUp";
 
 function App() {
 	return (
@@ -57,6 +59,8 @@ function App() {
 					logged in to access them. */}
 						<Route path="/dashboard" element={<DashboardLayout />}>
 							{/* <Route index element={<h1>User will see this first</h1>} /> */}
+							<Route path="allMaterials" element={<AllMaterials />} />
+							<Route path="postJob" element={<PostJobs />} />
 							<Route path="postJob" element={<PostJobs />} />
 							<Route path="postIntern" element={<PostIntern />} />
 							<Route path="applyJob" element={<ApplyJobLayout />}>
@@ -69,9 +73,10 @@ function App() {
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
 						<Route path="/getStartedAr" element={<GetStartedAr />} />
-						
+
 						{/* rate material popUp page */}
 						<Route path="/rateMaterial" element={<RateMaterial />} />
+						<Route path="/BoxPopup" element={<BoxPopUp />} />
 
 						{/* Signup Routes */}
 						<Route path="/alumniSignup" element={<AlumniSignup />} />

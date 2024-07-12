@@ -6,11 +6,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Lottie from 'lottie-react'
-import animation from '../animations/successfully done.json'
 import style from './UploadMaterialsPopUp.module.css'
 import { Link } from 'react-router-dom';
 
-export default function UploadMaterialsPopUp({ isOpen, onClose }) {
+export default function UploadMaterialsPopUp({ isOpen, onClose, mainText, btnText, animation }) {
 
 
     return (
@@ -27,15 +26,16 @@ export default function UploadMaterialsPopUp({ isOpen, onClose }) {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description" className={style.editContent + ' text-center'}>
-                        <h4>Your Materiel Is under review</h4>
+                        <h4>{mainText}</h4>
                         <h5>Thank you for your participation</h5>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
 
-                    <Button className={style.btnConfig + " m-auto mb-4 w-50 p-3 text-white"}>
-                        Home page
-                    </Button>
+                    {btnText ? <Button className={style.btnConfig + " m-auto mb-4 w-50 p-3 text-white"}>
+                        {btnText}
+                    </Button> : ""}
+
 
                     {/* <Link
                         to="./"
@@ -47,7 +47,7 @@ export default function UploadMaterialsPopUp({ isOpen, onClose }) {
 
 
                 </DialogActions>
-            </Dialog>
-        </React.Fragment>
+            </Dialog >
+        </React.Fragment >
     );
 }
