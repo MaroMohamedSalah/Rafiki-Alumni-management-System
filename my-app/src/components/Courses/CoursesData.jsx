@@ -27,8 +27,8 @@ const CoursesData = ({fetchedCourses}) => {
 						>
 							<div className="course d-flex mb-3 px-3 py-4">
 								<div className="row">
-									<div className="w-25 pe-3 d-flex flex-column justify-content-between align-items-center col-2">
-										<div className="image mb-4">
+									<div className="w-25 d-flex flex-column justify-content-between align-items-center col-2">
+										<div className="image mb-4 me-3">
 											<img src={logo} alt="logo" className="img-fluid" />
 										</div>
 										<div className="notificationIcon">
