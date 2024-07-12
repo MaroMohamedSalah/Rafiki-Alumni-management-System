@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import "./courses.css";
-import { baseBackendUrl } from "../utils/baseBackendUrl";
+import {baseBackendUrl} from "../utils/baseBackendUrl";
 import Toast from "../components/Toast";
 import CoursesData from "../components/Courses/CoursesData";
 import CoursesDataPlaceholder from "../components/Courses/CoursesDataPlaceholder";
-import { Box, TextField } from "@mui/material";
+import {Box, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 const CoursesLayout = () => {
 	const [courses, setCourses] = useState([]);
@@ -41,7 +41,7 @@ const CoursesLayout = () => {
 		<div className="CoursesLayout">
 			<div className="container">
 				<div className="search py-3">
-					<Box sx={{ display: "flex", alignItems: "flex-end" }}>
+					<Box sx={{display: "flex", alignItems: "flex-end"}}>
 						<SearchIcon />
 						<TextField
 							className="w-25"
