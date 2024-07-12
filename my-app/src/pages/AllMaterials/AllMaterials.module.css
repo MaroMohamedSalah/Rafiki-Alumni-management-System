@@ -1,0 +1,49 @@
+.searchBg {
+    background-color: #E6E4E4;
+}
+
+.editBtn {
+    background-color: var(--primary-color) !important;
+}
+
+.mainDiv {
+    background-color: var(--primary-color) !important;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.mainDiv:hover {
+    background-color: #C6D2E5;
+}
+
+.elementEdit {
+    border: 1px solid #909090;
+    min-width: 90px;
+
+}
+
+.filterSymbol {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.filterElements {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+
+.editImg img {
+    border-radius: 50%;
+}
+
+.timeText{
+    color: #F5F5F5CC;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.reviewText{
+    color: #F5F5F5;
+    font-size: 11px;
+}

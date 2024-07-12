@@ -26,7 +26,9 @@ import GetStartedAr from "./pages/GetStartedAr";
 import Signup from "./pages/Signup";
 import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
-import UploadMaterials from "./pages/UploadMaterials/UploadMaterials";
+import RateMaterial from "./components/RateMaterial";
+import AllMaterials from "./pages/AllMaterials/AllMaterials";
+import BoxPopUp from "./components/BoxPopUp/BoxPopUp";
 import AddCourse from "./pages/AddCourse/AddCourse";
 import AdminAcceptingMaterials from "./pages/AdminAcceptingMaterials";
 import MaterialHome from "./pages/MaterialHome";
@@ -59,6 +61,7 @@ function App() {
 						{/* Private routes are routes that require the user to be authenticated or
 						{/* Public Routes */}
 						<Route path="/" element={<LandingPage />} />
+						<Route path="/test" element={<Test />} />
 						<Route path="/roleSelection" element={<RoleSelection />} />
 						<Route path="/login" element={<LoginLayout />} />
 						<Route path="/resetPass" element={<ResetPassLayout />}>
@@ -78,6 +81,7 @@ function App() {
 					logged in to access them. */}
 
 						<Route path="/dashboard" element={<DashboardLayout />}>
+							<Route path="allMaterials" element={<AllMaterials />} />
 							<Route path="postJob" element={<PostJobs />} />
 							<Route path="postIntern" element={<PostIntern />} />
 							<Route path="uploadMaterial" element={<UploadMaterials />} />
@@ -98,6 +102,11 @@ function App() {
 						</Route>
 						<Route path="/getStarted" element={<GetStarted />} />
 						<Route path="/getStartedAr" element={<GetStartedAr />} />
+
+						{/* rate material popUp page */}
+						<Route path="/rateMaterial" element={<RateMaterial />} />
+						<Route path="/BoxPopup" element={<BoxPopUp />} />
+
 						{/* Signup Routes */}
 						<Route path="/alumniSignup" element={<AlumniSignup />} />
 						<Route path="/signup/:actor" element={<Signup />} />
