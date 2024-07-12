@@ -44,7 +44,7 @@ const CoursesData = ({fetchedCourses}) => {
 									</div>
 									<div className="col d-flex flex-column justify-content-between align-items-start">
 										<div>
-											<h1 className="courseName">{course.courseName}</h1>
+											<h1 className="courseName" title={course.courseName}>{course.courseName}</h1>
 											<h5 className="doctorName text-white-50">
 												{course.doctorName}
 											</h5>
