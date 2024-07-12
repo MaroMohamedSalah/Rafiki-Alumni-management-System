@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import "./courses.css";
-import { baseBackendUrl } from "../utils/baseBackendUrl";
+import {baseBackendUrl} from "../utils/baseBackendUrl";
 import Toast from "../components/Toast";
 import CoursesData from "../components/Courses/CoursesData";
+import CoursesDataPlaceholder from "../components/Courses/CoursesDataPlaceholder";
+import {Box, TextField} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 const CoursesLayout = () => {
 	const [courses, setCourses] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -37,9 +40,23 @@ const CoursesLayout = () => {
 	return (
 		<div className="CoursesLayout">
 			<div className="container">
-				<div className="search"></div>
+				<div className="search py-3">
+					<Box sx={{display: "flex", alignItems: "flex-end"}}>
+						<SearchIcon />
+						<TextField
+							className="w-25"
+							label="Search With Course Name"
+							variant="standard"
+							onChange={(e) => fetchCourses(e.target.value)}
+						/>
+					</Box>
+				</div>
 				<div className="result">
-					<CoursesData fetchedCourses={courses} />
+					{loading ? (
+						<CoursesDataPlaceholder />
+					) : (
+						<CoursesData fetchedCourses={courses} />
+					)}
 				</div>
 			</div>
 		</div>
