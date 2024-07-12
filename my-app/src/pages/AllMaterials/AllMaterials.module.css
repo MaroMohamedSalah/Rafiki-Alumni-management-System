@@ -35,6 +35,9 @@
 .editImg img {
     border-radius: 50%;
 }
+.editImg i {
+    border-radius: 50%;
+}
 
 .timeText{
     color: #F5F5F5CC;
@@ -46,3 +49,9 @@
     color: #F5F5F5;
     font-size: 11px;
 }
+
+/* @media (min-width: 844px) and (max-width: 1023px){
+    .searchLine{
+        width: 100% !important;
+    }
+} */

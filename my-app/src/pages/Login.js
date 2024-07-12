@@ -52,7 +52,7 @@ const Login = () => {
       submitBtn.setAttribute("disabled", true);
 
       try {
-        const response = await fetch(`${baseBackendUrl}/auth/login`, {
+        const response = await fetch(`${baseBackendUrl}auth/login`, {
           method: "POST",
           body: JSON.stringify({
             UserName: formData.get("username"),
